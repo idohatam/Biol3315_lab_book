@@ -1,11 +1,8 @@
 fig:nice-fig
 tab:nice-tab
 eq:binom
-about
-usage
 render-book
 preview-book
-hello-bookdown
 a-section
 cross
 chapters-and-sub-chapters

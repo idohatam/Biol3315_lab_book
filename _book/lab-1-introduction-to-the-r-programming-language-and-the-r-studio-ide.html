@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Footnotes and citations | Biology 3315 Molecular Evolution and Phylogenetics</title>
-  <meta name="description" content="Chapter 3 Footnotes and citations | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <title>Lab 1 introduction to the R programming language and the R studio IDE | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="Lab 1 introduction to the R programming language and the R studio IDE | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Footnotes and citations | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:title" content="Lab 1 introduction to the R programming language and the R studio IDE | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Footnotes and citations | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="twitter:title" content="Lab 1 introduction to the R programming language and the R studio IDE | Biology 3315 Molecular Evolution and Phylogenetics" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="parts.html"/>
-<link rel="next" href="blocks.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cross.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -220,43 +220,60 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="footnotes-and-citations" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Footnotes and citations<a href="footnotes-and-citations.html#footnotes-and-citations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="footnotes" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Footnotes<a href="footnotes-and-citations.html#footnotes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Footnotes are put inside the square brackets after a caret <code>^[]</code>. Like this one <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<div id="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide" class="section level1 unnumbered hasAnchor">
+<h1><strong>Lab 1 introduction to the R programming language and the R studio IDE</strong><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-objectives" class="section level2 unnumbered hasAnchor">
+<h2><strong>Learning objectives</strong><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+Click to expand
+</summary>
+<p><strong>By the end of this lab you will be able to:</strong></p>
+<ul>
+<li><p>Install the R interpreter and the Rstudio integrated development environment</p></li>
+<li><p>Demonstrate the ability to install and load packages from a variety of repositories including development versions from github</p></li>
+<li><p>Understand the different components of the Rstudio environment</p></li>
+<li><p>Demonstrate mastery of R object and data types including indexing, subseting and manipulating objects</p></li>
+<li><p>Demonstrate the ability to call and chain functions</p></li>
+</ul>
+</details>
+<p><br></p>
 </div>
-<div id="citations" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Citations<a href="footnotes-and-citations.html#citations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Reference items in your bibliography file(s) using <code>@key</code>.</p>
-<p>For example, we are using the <strong>bookdown</strong> package <span class="citation">(<a href="#ref-R-bookdown" role="doc-biblioref">Xie 2023</a>)</span> (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(<a href="#ref-xie2015" role="doc-biblioref">Xie 2015</a>)</span> (this citation was added manually in an external file book.bib).
-Note that the <code>.bib</code> files need to be listed in the index.Rmd with the YAML <code>bibliography</code> key.</p>
-<p>The RStudio Visual Markdown Editor can also make it easier to insert citations: <a href="https://rstudio.github.io/visual-markdown-editing/#/citations" class="uri">https://rstudio.github.io/visual-markdown-editing/#/citations</a></p>
+<div id="getting-started" class="section level2 unnumbered hasAnchor">
+<h2><strong>Getting started</strong><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-r" class="section level3 unnumbered hasAnchor">
+<h3><strong>What is R?</strong><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#what-is-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R is a free and open source programming language, operating as a <a href="http://www.gnu.org/">GUN project</a>. The R language is maintained and supported by the <a href="https://www.r-project.org/foundation/">R Foundation for Statistical Computing</a>.</p>
+<blockquote>
+<p>“R is a functional programming language and environment for statistical computing and graphics”</p>
+<p>— The R dev team</p>
+</blockquote>
+<p>R is best known as a programming language with strong capabilities of
+manipulation, exploration and statistical analysis of data from diverse
+types and sources. However, it also provides an environment for data
+handling, graphical representation of data as well as data reporting.
+R is a great platform for documentation and in fact this entire lab
+manual was written in R using the rmarkdown package.</p>
+<p>All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (<code>#</code>) per .Rmd file.</p>
+</div>
+</div>
+<div id="a-section" class="section level2 hasAnchor" number="0.3">
+<h2><span class="header-section-number">0.3</span> A section<a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#a-section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All chapter sections start with a second-level (<code>##</code>) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.</p>
+<div id="an-unnumbered-section" class="section level3 unnumbered hasAnchor">
+<h3>An unnumbered section<a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#an-unnumbered-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Chapters and sections are numbered by default. To un-number a heading, add a <code>{.unnumbered}</code> or the shorter <code>{-}</code> at the end of the heading, like in this section.</p>
 
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-xie2015" class="csl-entry">
-Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
-</div>
-<div id="ref-R-bookdown" class="csl-entry">
-———. 2023. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>This is a footnote.<a href="footnotes-and-citations.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="parts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="blocks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cross.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -287,7 +304,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {

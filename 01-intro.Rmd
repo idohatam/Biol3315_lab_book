@@ -1,4 +1,46 @@
-# Hello bookdown 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+
+```
+
+# **Lab 1 introduction to the R programming language and the R studio IDE** {-}
+
+## **Learning objectives** {-}
+<details>
+  <summary>Click to expand</summary>
+__By the end of this lab you will be able to:__
+
+* Install the R interpreter and the Rstudio integrated development environment
+
+*	Demonstrate the ability to install and load packages from a variety of repositories including development versions from github
+
+* Understand the different components of the Rstudio environment
+
+*	Demonstrate mastery of R object and data types including indexing, subseting and manipulating objects
+
+*	Demonstrate the ability to call and chain functions
+
+</details>
+
+<br>
+
+## **Getting started**{-}
+
+### **What is R?**{-}
+
+R is a free and open source programming language, operating as a [GUN project](http://www.gnu.org/). The R language is maintained and supported by the [R Foundation for Statistical Computing](https://www.r-project.org/foundation/).
+
+>"R is a functional programming language and environment for statistical computing and graphics"
+>
+>  --- The R dev team
+
+R is best known as a programming language with strong capabilities of
+manipulation, exploration and statistical analysis of data from diverse
+types and sources. However, it also provides an environment for data
+handling, graphical representation of data as well as data reporting.
+R is a great platform for documentation and in fact this entire lab
+manual was written in R using the rmarkdown package.
 
 All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
 

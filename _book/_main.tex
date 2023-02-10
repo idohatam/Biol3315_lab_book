@@ -110,14 +110,21 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={A Minimal Book Example},
-  pdfauthor={John Doe},
+  pdftitle={Biology 3315 Molecular Evolution and Phylogenetics},
+  pdfauthor={Dr.~Ido Hatam},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{A Minimal Book Example}
-\author{John Doe}
-\date{2023-02-09}
+\title{Biology 3315 Molecular Evolution and Phylogenetics}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Lab manual}
+\author{Dr.~Ido Hatam}
+\date{February 10, 2023}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -143,13 +150,15 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{about}{%
-\chapter{About}\label{about}}
+\hypertarget{an-introduction-to-the-lab}{%
+\chapter*{\texorpdfstring{\textbf{An introduction to the lab}}{An introduction to the lab}}\label{an-introduction-to-the-lab}}
+\addcontentsline{toc}{chapter}{\textbf{An introduction to the lab}}
 
 This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports; for example, a math equation \(a^2 + b^2 = c^2\).
 
-\hypertarget{usage}{%
-\section{Usage}\label{usage}}
+\hypertarget{how-to-get-the-most-out-of-the-lab}{%
+\section*{\texorpdfstring{\textbf{How to get the most out of the lab}}{How to get the most out of the lab}}\label{how-to-get-the-most-out-of-the-lab}}
+\addcontentsline{toc}{section}{\textbf{How to get the most out of the lab}}
 
 Each \textbf{bookdown} chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter \emph{must} start with a first-level heading: \texttt{\#\ A\ good\ chapter}, and can contain one (and only one) first-level heading.
 
@@ -191,8 +200,53 @@ As you work, you may start a local server to live preview this HTML book. This p
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{hello-bookdown}{%
-\chapter{Hello bookdown}\label{hello-bookdown}}
+\hypertarget{lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide}{%
+\chapter*{\texorpdfstring{\textbf{Lab 1 introduction to the R programming language and the R studio IDE}}{Lab 1 introduction to the R programming language and the R studio IDE}}\label{lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide}}
+\addcontentsline{toc}{chapter}{\textbf{Lab 1 introduction to the R programming language and the R studio IDE}}
+
+\hypertarget{learning-objectives}{%
+\section*{\texorpdfstring{\textbf{Learning objectives}}{Learning objectives}}\label{learning-objectives}}
+\addcontentsline{toc}{section}{\textbf{Learning objectives}}
+
+Click to expand
+
+\textbf{By the end of this lab you will be able to:}
+
+\begin{itemize}
+\item
+  Install the R interpreter and the Rstudio integrated development environment
+\item
+  Demonstrate the ability to install and load packages from a variety of repositories including development versions from github
+\item
+  Understand the different components of the Rstudio environment
+\item
+  Demonstrate mastery of R object and data types including indexing, subseting and manipulating objects
+\item
+  Demonstrate the ability to call and chain functions
+\end{itemize}
+
+\hypertarget{getting-started}{%
+\section*{\texorpdfstring{\textbf{Getting started}}{Getting started}}\label{getting-started}}
+\addcontentsline{toc}{section}{\textbf{Getting started}}
+
+\hypertarget{what-is-r}{%
+\subsection*{\texorpdfstring{\textbf{What is R?}}{What is R?}}\label{what-is-r}}
+\addcontentsline{toc}{subsection}{\textbf{What is R?}}
+
+R is a free and open source programming language, operating as a \href{http://www.gnu.org/}{GUN project}. The R language is maintained and supported by the \href{https://www.r-project.org/foundation/}{R Foundation for Statistical Computing}.
+
+\begin{quote}
+``R is a functional programming language and environment for statistical computing and graphics''
+
+--- The R dev team
+\end{quote}
+
+R is best known as a programming language with strong capabilities of
+manipulation, exploration and statistical analysis of data from diverse
+types and sources. However, it also provides an environment for data
+handling, graphical representation of data as well as data reporting.
+R is a great platform for documentation and in fact this entire lab
+manual was written in R using the rmarkdown package.
 
 All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (\texttt{\#}) per .Rmd file.
 
