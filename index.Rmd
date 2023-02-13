@@ -5,6 +5,7 @@ author: "Dr. Ido Hatam"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 site: bookdown::bookdown_site
 split_by: section
+toc_depth: 6
 documentclass: book
 bibliography: [book.bib, packages.bib]
 link-citations: yes
