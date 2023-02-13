@@ -1,8 +1,14 @@
-# **Data manipulation and presentation in R**
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+
+```
+
+# **Lab 2 data manipulation and presentation in R**{-}
 
 <br>
 
-## **Learning objectives** 
+## **Learning objectives**{-} 
 
 <details>
   <summary>Click to expand</summary>
@@ -29,16 +35,22 @@ __By the end of this lab you will be able to:__
 
 ***
 
-# **Lab2**
+## **Setup**
 
 
-As part of lab #2 you will learn how to import, export and manipulate and present data in R.
+As part of this lab you will learn how to import, export, manipulate and present data in R.
 You will also learn how to use loops and conditional statements to control the flow of your script.
 Lastly you will learn how to write costume (user-defined) functions. 
 
-As part of this lab you will use some packages belonging to the [Tidyverse](https://www.tidyverse.org) package family (the link has more useful information). Tydiverse packages are geared towards data importation, manipulation, and presentation. They all use standardized grammar that make the code more streamlined and readable. Stringer, which you have already used, is part of the Tidyverse packages. 
+As part of this lab you will use some packages belonging to the [Tidyverse](https://www.tidyverse.org) package family (the 
+link has more useful information). Tydiverse packages are geared towards data importation, manipulation, and presentation. 
+They all use standardized grammar and philosophy that make the code more streamlined and readable. Stringer, which you have
+already used, is part of the Tidyverse packages. 
 
-All Tidyverse packages are packaged as one package, before you start this lab, use the code bellow to install and load it.
+It is possible to install packages belonging to the tidyverse individually, however all Tidyverse packages can also be 
+installed using a wrapper package called...tidyverse. Before you start this lab, use the code bellow to install and load 
+the tidyverse package. 
+Installing the 
 
 ```{r tidyverse install, eval=F, echo=T}
 install.packages("tidyverse")
@@ -51,28 +63,36 @@ library(tidyverse)
 
 ```
 
+***
 
-## **Importing and exporting data in R**
+>**Note: even if you installed the tidyverse packages using the tidyverse package tidyverse packages such as dplyr can still be loaded individually**
 
-So far you have been generating data in R, however when you work on real data most likely you will need to import it to R. 
-R is capable of importing multiple file formats, and additional packages can expand its capabilities to import specialized file formats (e.g. raw DNA and RNA sequencing files).
-During this lab you will import csv and txt files.
-Make sure to download the CSV and txt files from Brightspace.
+***
 
-**read.csv**
+## **Importing and exporting data in R**{-}
 
-[CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) (or comma-separated value files) are text files where values are separated by commas. This is a commonly used file format used to store tabulated data. 
-read.csv is a built-in function is BaseR that imports CSV files to R as a dataframe. Note that the readr package which is part of the Tidyverse has a read_csv function which imports CSV files to R.
-However it imports them as a tibble which is a sort of a redesigned dataframe with some quirks so make sure not to confuse them.
+So far you have been generating data in R, however when you work on real data you will need to import it to R. 
+R is capable of importing multiple file formats, and additional packages can expand its capabilities to import specialized 
+file formats (e.g. raw DNA and RNA sequencing files).
+During this lab you will import csv and txt files, make sure to download the CSV and txt files from Brightspace.
+
+### **read.csv**{-}
+
+[CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) (or comma-separated value files) are text files where 
+values are separated by commas. This is a commonly used file format used to store tabulated data. 
+`read.csv()` is a built-in function is base R that imports CSV files to R as a data frame. Note that the `readr` package 
+which is part of the Tidyverse has a `read_csv()` function which imports CSV files to R.
+However, it imports them as a tibble which is a sort of a redesigned data frame with some quirks so make sure not to
+confuse them.
 
 ```{r read.csv 1}
 
 #When calling read.csv, the file arguments specifies the path the the file you are loading 
 #/path/to/file.csv
-#eg c:/directory1/directory2/file.csv
-#eg ~/directory1/file.csv
+#eg in windows c:/directory1/directory2/file.csv
+#eg in mac or linux ~/directory1/file.csv
 
-df1 <- read.csv(file ="practice2.csv")
+df1 <- read.csv(file ="lab2_files/practice2.csv")
 class(df1)
 head(df1,3)
 #Note the column with the x, that's the column with the row names.
@@ -94,13 +114,14 @@ head(df1)
 
 ```
 
-read.csv can be used to read files from online sources as well, the code snippet bellow demonstrates how to read a file from my GitHub page. 
+`read.csv()` can be used to read files from online sources as well, the code snippet bellow demonstrates how to read a file
+from a public repository on my GitHub page. 
 
 ```{r read.csv2}
 
 df2 <- read.csv(
   file = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice.csv",
-  row.names = 1, stringsAsFactors = F)
+  row.names = 1, stringsAsFactors = FALSE)
 head(df2,3)
 
 ```
