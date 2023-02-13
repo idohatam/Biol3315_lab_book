@@ -259,7 +259,7 @@ Useless.function <- function(x){
 *   Try writing the last line instead of copying and pasting it, did you notice how the editor completes the syntax for 
 you as the function data.frame is called?
 
-Practice running it line by line, as a chunk, and sourcing it completely.
+*   Practice running it line by line, as a chunk, and sourcing it completely.
 
 *   What happens in the global environment when you ran the code?
 
