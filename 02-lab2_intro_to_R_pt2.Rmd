@@ -54,12 +54,13 @@ Installing the
 
 ```{r tidyverse install, eval=F, echo=T}
 install.packages("tidyverse")
-library(tidyverse)
+library("tidyverse")
 
 ```
 
 ```{r load packages, echo=FALSE,message=FALSE,warning=FALSE,include=FALSE}
 library(tidyverse)
+library("DT")
 
 ```
 
@@ -127,15 +128,19 @@ head(df2,3)
 ```
 
 
-**read.table**
+### **read.table**{-}
 
-read.csv is a private case of the read.table function (R has [several](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table) of those. read.table allows you to read tabulated data stored in text files, but separated by any type of spacer.
+`read.csv()` is a private case of the `read.table()` function (R has 
+[several](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table) of those. `read.table()` allows 
+you to read tabulated data stored in text files, but separated by any type of spacer.
 
-Here is an example where the spacer is a tab. Note that read.table can be used to read csv files as well and that read.csv can be used to read txt files so long as the sep argument is correct.
+Here is an example where the spacer is a tab. Note that read.table can be used to read csv files as well and that read.csv 
+can be used to read txt files so long as the sep argument is correct.
+
 ```{r read.table1}
 
 #sep = '\t' means tab delamination
-df1b <- read.table("practice2.txt", sep = '\t', header = T, 
+df1b <- read.table("lab2_files/practice2.txt", sep = '\t', header = T, 
                    row.names = 1, stringsAsFactors = F)
 
 class(df1b)
@@ -148,27 +153,33 @@ df1 == df1b
 
 ***
 
-**A note about funky files and funky R behavior**
-
-As bioinformaticians, often times you will be asked to analyze data that you did not create. If the columns contain characters that R recognizes as special characters, it might lead to errors in the delimitation process when importing the file. read.table and all private cases of it, has a quote argument that help circumvent these errors by ignoring specified characters. 
-This [blog post](https://biowize.wordpress.com/2013/10/08/quotation-marks-and-rs-read-table-function/) has a great example of how to use the quote argument in read.table.
-
+>**A note about funky files and funky R behavior**
+>
+>As bioinformaticians, often times you will be asked to analyze data that you did not create. If the columns contain 
+>characters that R recognizes as special characters, it might lead to errors in the delimitation process when importing the
+>file. `read.table()` and all private cases of it, has a quote argument that help circumvent these errors by ignoring 
+specified characters. 
+This [blog post](https://biowize.wordpress.com/2013/10/08/quotation-marks-and-rs-read-table-function/) has a great example 
+>of how to use the quote argument in read.table.
 
 ***
 
-**Reading non-tabulated text files**
+### **Reading non-tabulated text files**{-}
 
-As bioinformaticians you will be required to work with non-tabulated file formats. A great example of this are text files, where information is stored as lines of strings.  [FASTA format](https://en.wikipedia.org/wiki/FASTA_format), a standard for handling sequence data (will be covered in labs 3 and 4) is in fact a text file with lines as strings of sequences.
+As bioinformaticians you will be required to work with non-tabulated file formats. A great example of this are text files, 
+where information is stored as lines of strings. [FASTA format](https://en.wikipedia.org/wiki/FASTA_format), a standard 
+for handling sequence data (will be covered in labs 3 and 4) is in fact a text file with lines as strings of sequences.
 
-BaseR has some built-in functions to import non-tabulated text files. The snippet bellow demonstrates how read a text file from the Gutenberg organisation. Just like with read.csv, you can use it to read files locally as well.
+Base R has some built-in functions to import non-tabulated text files. The snippet bellow demonstrates how read a text file
+from the Gutenberg organisation. Just like with `read.csv()`, you can use it to read files locally as well.
 
 ```{r non-tabulated txt file}
 
 #The function file establishes a connection with the file, open="r" denotes a read only connection
 book <- file("https://www.gutenberg.org/files/98/98-0.txt", open="r")
 
-#The funcation readLines read the file to memmory line by line
-#This is also a usfull way to remove non tabulated lines from a file that otherwise contains tabulated data (e.g. header lines)
+#The function readLines read the file to memory line by line
+#This is also a useful way to remove non tabulated lines from a file that otherwise contains tabulated data (e.g. header lines)
 
 book.lines <- readLines(book)
 
@@ -186,7 +197,7 @@ length(book.lines)
 
 ```
 
-**Quick R exercise**
+#### **Quick R exercise - working with strings from non-tabulated data**{-}
 
 1. Load the stringer package if you haven't yet
 
@@ -194,9 +205,10 @@ length(book.lines)
 
 3. What is the title of the book you imported to R?
 
-**Exporting files**
+### **Exporting files**{-}
 
-There are many ways to export data from R as files. In many cases you would be required to export tabulated data from R. To do so you can use the write.csv function (yes it is a private case of write.table function).
+There are many ways to export data from R as files. In many cases you would be required to export tabulated data from R. To
+do so you can use the write.csv function (yes it is a private case of write.table function).
 
 ```{r write.csv}
 
@@ -242,11 +254,17 @@ write(book.lines[1:12], file = "book.txt", append = F)
 
 2. Add the 3 strings as new lines at the end of book.txt 
 
-## **Manipulating your data**
+## **Manipulating your data**{-}
 
-R has some powerful tools allowing you to manipulate and modify data. We have already gone over some of them. For example, you have learned several ways to subset objects, you have learned that almost any data type in R can be coerced to any other using the as.x functions. You have also learned the rbind and cbind can bind vectors to matrices and matrices to larger matrices.
+R has some powerful tools allowing you to manipulate and modify data. We have already gone over some of them. For example, 
+you have learned several ways to subset objects, you have learned that almost any data type in R can be coerced to any 
+other using the as.x functions. You have also learned the `rbind()` and `cbind()` can bind vectors to matrices and matrices
+to larger matrices.
 
-This section of the lab will expand your capabilities of modifying data, and will focus of tools mainly from the two Tidyverse packaged, dplyr and tydier. This packages are designed to streamline data manipulation, making data more tidy. They share some of the philosophy and framer of [SQL](https://en.wikipedia.org/wiki/SQL), and thus are worth getting to know.
+This section of the lab will expand your capabilities of modifying data, and will focus of tools mainly from the two 
+Tidyverse packaged, dplyr and tidyr. This packages are designed to streamline data manipulation, making data more tidy. 
+They share some of the philosophy and framework of [SQL](https://en.wikipedia.org/wiki/SQL), and thus are worth getting to 
+know.
 
 As always, there are some great cheatsheets for data manipulation using Tidyverse packages:
 
@@ -261,12 +279,13 @@ As always, there are some great cheatsheets for data manipulation using Tidyvers
 
 ***
 
-**A note about tidy data**
+>**A note about tidy data**
+>
+>A guiding principle of tidy data is that every line of tabulated information should have a unique identifier (similar to 
+>SQL). In BaseR row names act as a unique identifier for each row, as every row has a unique value. Tidyveres does not view >row names as an efficient way to handle unique ID and some tidyverse functions tend to omit the information stored as raw ?names. 
+>This is not a big deal, it just requires that you assign the row names to a column.
 
-A guiding principle of tidy data is that every line of tabulated information should have a unique identifier (similar to SQL). In BaseR row names act as a unique identifier for each row, as every row has a unique value. Tidyveres does not view row names as an efficient way to handle unique ID and some tidyverse functions tend to omit the information stored as raw names. 
-This is not a big deal, it just requires that you assign the row names to a column.
-
-The code snippet bellow will introduce you to two three tidyverse function that will allow you copy the row names as a column, I will also compare it to a non-tidyverse approach
+>The code snippet bellow will introduce you to two three tidyverse function that will allow you copy the row names as a >column, I will also compare it to a non-tidyverse approach
 
 ```{r tidyvers vs non-tydiverse}
 
@@ -293,11 +312,11 @@ da.df3[1:4,1:4]
 
 
 ```
-
+>
 
 ***
 
-**Subseting columns and rows**
+### **Subseting columns and rows using base R and tidyverse**{-}
 
 The dplyr package makes subseting columns and rows very simple using the select, filter, and slice functions.
 The select function allows to subset columns, while the filter and slice functions allows you to subset rows function
@@ -361,7 +380,7 @@ Select can be used with some helper functions from the tidyer package such as st
 
 ***
 
-Next lets see how to use filter and slice to subset a dataframe by rows
+Next lets see how to use filter and slice to subset a data frame by rows
 
 ```{r filter and slice}
 
@@ -386,7 +405,7 @@ df2
 
 
 
-**Streamlining data manipulation using %>% operator**
+### **Streamlining data manipulation using %>% (pip)operator**
 
 So far we have gone through two ways of sequentially running through functions.
 
@@ -396,7 +415,8 @@ So far we have gone through two ways of sequentially running through functions.
 
 X <- f3(f2(f1(x))) where the order in which the function run is inside out.
 
-This sort of writing, while concise, makes the code hard to read. The Tydiverse employs a piping operator %>%, colloquially referred to as an "and then" operator
+This sort of writing, while concise, makes the code hard to read. The Tydiverse employs a piping operator %>%, colloquially
+referred to as an "and then" operator
 
 x %>% f1() is equivalent to f1(x) and x %>% f1(y) is the equivalent of f1(x,y).
 
@@ -420,6 +440,17 @@ da.df3 <- da.df2 %>% select(1, 5:13) %>% filter(species11 > 50) %>%
   modify_if(is.numeric, log1p)
 
 ```
+
+***
+
+>**A note about piping:**
+> The `%>%` operator is part of a series of pipes [magritr package](https://data-and-the-world.onrender.com/posts/magrittr-pipes/)
+>Base R offeres pipes as well `|>`, however it is slighly less useable than `%>%`.
+>I still encourage you to try using it. 
+
+
+***
+
 
 **Adding and modifying columns**
 
