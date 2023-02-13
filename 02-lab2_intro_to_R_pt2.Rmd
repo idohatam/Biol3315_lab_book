@@ -370,7 +370,7 @@ da.df3[1:4,1:4]
 
 ***
 
-**Quick R exercise**
+#### **Quick R exercise**{-}
 
 Select can be used with some helper functions from the tidyer package such as starts_with
 
@@ -384,7 +384,7 @@ Next lets see how to use filter and slice to subset a data frame by rows
 
 ```{r filter and slice}
 
-#filter allows to subset the dataframe based on values of one column
+#filter allows to subset the data frame based on values of one column
 #Lets filter df based on CO2 concentration
 
 df1
@@ -460,7 +460,7 @@ The function mutate from the package dplyer can be used to add columns to datafr
 ```{r mutate1}
 
 #Lets add a column called elevation, with 3 vauleus high, sea level, low to df
-#Note that again I am coppying it since I would like to use it again
+#Note that again I am copying it since I would like to use it again
 # I am also creating the site collumn and than moving both to be columns 1 and 2
 
 elevation <- c("High", "Sea level", "Low")
