@@ -484,7 +484,7 @@ installation functions. We will go over it during labs 3-4.
 
 ***
 
-**Quick R exercise**
+### **Quick R exercise - installing and loading packages**{-}
 
 1. Install the package vegan from the CRAN repository
 
@@ -496,14 +496,19 @@ installation functions. We will go over it during labs 3-4.
 
 <br>
 
-## **Variable assignment in R (<- vs -> vs =)**
+### **Variable assignment in R (`<-` vs `->` vs `=`)**{-}
 
 R has three ways of assigning values to variables, two of them are leftwards and one rightwards.
-Leftwards assignment is the most common way to assign value to variables, this is similar to other programming language like python or C++. In R this is achieved by using the assign operator "<-", or alternatively similar to python and C++ by using the equal operator "=".
+Leftwards assignment is the most common way to assign value to variables, this is similar to other programming language 
+like python or C++. In R this is achieved by using the assign operator `<-`, or alternatively similar to python and C++ by 
+using the equal operator `=`.
 
-Leftwards assignment groups the values from right to left, therefore in the snippet bellow the value of the variable v will be 1 and the value of of variable v2 will also be 1 since it will get the value of variable v.
+Leftwards assignment groups the values from right to left, therefore in the snippet bellow the value of the variable v will
+be 1 and the value of of variable v2 will also be 1 since it will get the value of variable v.
 
-While on the surface both methods work identically, beneath the surface they are quit different and  using "=" may lead to errors . Therefore, the convention is to always use "<-" over "=". 
+While on the surface both methods work identically, beneath the surface they are quit different.  `=` is primeraly used to 
+assign value to function arguments and using it out of context may lead to unforseen errors. Therefore, the convention is 
+to use `<-` over `=`. 
 
 <br>
 
