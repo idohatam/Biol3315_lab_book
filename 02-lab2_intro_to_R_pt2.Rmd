@@ -444,7 +444,7 @@ da.df3 <- da.df2 %>% select(1, 5:13) %>% filter(species11 > 50) %>%
 ***
 
 >**A note about piping:**
-> The `%>%` operator is part of a series of pipes [magritr package](https://data-and-the-world.onrender.com/posts/magrittr-pipes/)
+> The `%>%` operator is part of a series of pipes [magrittr package](https://data-and-the-world.onrender.com/posts/magrittr-pipes/)
 >Base R offeres pipes as well `|>`, however it is slighly less useable than `%>%`.
 >I still encourage you to try using it. 
 
