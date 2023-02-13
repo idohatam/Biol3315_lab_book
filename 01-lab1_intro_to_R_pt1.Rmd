@@ -1318,9 +1318,9 @@ them as a preferred object.
 ### **Lists**{-}
 
 A list is a multidimensional vector, which is a fancy way of saying that a list is a vector that can house any R 
-object as an element.
-The elements of a list are independent of each other, making it a great object to store the output of function that 
-handle data. For example some functions from the stringer package output their result as lists. Especially those with
+object as an element (e.g. other vectors, matrices and even other lists).
+The elements of a list are independent of each other, making it a great container to store the output of functions that 
+handle data. For example, some functions from the stringer package output their result as lists, especially those with
 _all suffix.
 
 The code snippet bellow demonstrate how to create lists, as always there is more than one way to obtain your goal.
@@ -1341,7 +1341,7 @@ list2 <- list(matrix(sample(10:1000,100,replace = F),ncol = 2),
 ```
 
 
-### **Working with lists**
+#### **Working with lists**{-}
 
 The previous snippet demonstrated that lists can store any type of R object, even other lists.
 As mentioned, the elements of a list are independent of each other and in order to modify them they need to be 
@@ -1356,28 +1356,27 @@ list2[3]
 However, indexing a list like a vector does not allow you to modify the element
 
 ```{r working with lists 2}
-#Note how the head function is unable to truncate the element to its first 2 componenets
+#Note how the head function is unable to truncate the element to its first 2 components
 head(list2[5],2)
 
 #Note how indexing like a vector does not allow you to subset the element itself
 list2[5][1]
 ```
 
-In case you noticed, when using the head function on a list each element is sounded by double square brackets ( [[ ).
-When subseting a list with [, it will always return another list. Think of it elements one on a character vector 
-where each element is a string. You can see each string  even replace them but can't modify them. In order to access 
-and modify an element of the list [[ have to be used.
+In case you noticed, when using the `head()` function on a list each element is surrounded by double 
+square brackets ( `[[` ). When subseting a list with `[`, it will always return another list. Think of it elements one on a
+character vector where each element is a string. You can see each string  even replace them but can't modify them. In order
+to access and modify an element of the list `[[` have to be used.
 
 ```{r working with lists 3}
 #Subseting the last element of list2 and assigning it to the first element of list1
 list1[[1]] <- list2[[5]][1:3]
 list1[1]
-
 ```
 
-### **Lists and the $ operator**
+#### **Lists and the $ operator**{-}
 
-$ is an operator that can be thought of as the equivalent of [[ ]], therefore it can be used to access elements of a list. However, in order to use it the elements must be named first.
+`$` is an operator that can be thought of as the equivalent of `[[ ]]`, therefore it can be used to access elements of a list. However, in order to use it the elements must be named first.
 
 ```{r working with lists 4}
 
@@ -1401,7 +1400,7 @@ list2$Sample2[1,2]
 
 ***
 
-**Quick R exercise**
+#### **Quick R exercise - lists**{-}
 
 Let's wrap up working with lists with the following exercise:
 
@@ -1415,35 +1414,42 @@ Let's wrap up working with lists with the following exercise:
 
 <br>
 
-## **data.frames**
+### **Data frames**{-}
 
-Data frames are a commonly used objects in R especially in data preparation and analysis. 
-Data frames are a special case of a list containing vectors of equal length as element, giving it a rectangular shape. The vectors make up the columns of the dataframe.
+Data frames are a commonly used objects in R, especially in data preparation and analysis. 
+Data frames are a special case of a list containing vectors of equal length as element, giving it a rectangular shape. The 
+vectors make up the columns of the data frame.
 
-Let's create a datafram or two
+Let's create a data frame or two
 ```{r dataframes 1}
-# datafeames can be created by using the data.frame function
-#Note that by default strings are coereced to factors, which can be annoying
+# data frames can be created by using the data.frame function
+#Note that by default strings are coerced to factors, which can be annoying
+#Can avoid be using stringsAsFActors=FALSE
 df1 <- data.frame(X = seq(1,10, by = 1), 
                   Y = seq(100,1000, by = 100),
-                  Z = LETTERS[1:10], stringsAsFactors = F)
+                  Z = LETTERS[1:10], stringsAsFactors = FALSE)
 
 #Each column is an independent vector, that's why columns X and Y can be numeric and Z a character.
 str(df1)
 
-# It is also possible to coerce a matrix to a dataframe
+# It is also possible to coerce a matrix to a data frame and vice versa
 
 df2 <- as.data.frame(mat2)
 
-#let's see what a dataframe looks like
+#let's see what a data frame looks like
 head(df1,4)
 head(df2,4)
 
 
 
 ```
-As can be seen in the output of the head function all the columns of the dataframes are named.
-This is an attribute of dataframes. The name of the columns can be accessed and changed with the function colnames. The nameless column to the left is not a real column, it is the name of each row. This can be accessed by the function rownames.
+
+As can be seen in the output of the head function all columns of the data frame are named.
+This is an attribute of data frames. The name of the columns can be accessed and changed with the function `colnames()`. 
+The nameless column to the left is not a real column, it is the name of each row. This can be accessed by the function 
+`rownames()`. The row names is an identifying column, giving a unique ID to each row, similar to the identity column in 
+SQL.However, unlike SQL it does not have to hold a numeric value so long as the values are uniqe (i.e. rows with duplicate 
+names are not allowed)
 
 ```{r dataframes 2}
 colnames(df1)
@@ -1454,14 +1460,15 @@ rownames(df2) <- LETTERS[1:nrow(df2)]
 head(rownames(df2),3)
 ```
 
-Dataframes behave both like a list and like matrix. Because the columns are named, they can be accessed by the $ operator. However just like matrices they can also be subset by [. Just like matrices, operations on dataframes can be vectorized.
+Data frames behave both like a list and like matrix. Because the columns are named, they can be accessed by the `$` 
+operator. However, just like matrices they can also be subset by `[` and operations on data frames can be vectorized.
 
-Let's look at some examples of how to work with dataframes
+Let's look at some examples of how to work with data frames.
 
 ```{r}
-#accesing a single column using the $ operator
+#accessing a single column using the $ operator
 df1$Sample1
-#subseting a dataframe using []
+#subseting a data frame using []
 #If no commas are used this is like subseting a list 
 df1[1:2]
 #Like a matrix (i.e. 2D)
@@ -1469,14 +1476,14 @@ df1[,1]
 #First 3 rows, and first 2 columns
 df1[1:3,1:2]
 
-#Adding a column to the dataframe
+#Adding a column to the data frame
 df1$New_column <- df2$V1
 
-#adding a new row to a dataframe
+#adding a new row to a data frame
 df1[nrow(df1)+1,] <- c(1,1,1,1)
 df1[nrow(df1),]
 
-#Natural log transformation of a dataframe
+#Natural log transformation of a data frame
 df3 <- log(df2)
 head(df3,3)
 
@@ -1487,7 +1494,7 @@ head(df3,3)
 ## **Summary exercise Lab1**{-}
 
 Start a script file in RStudio name it 3315_lab1_yourinitials.R
-You will submit this script and output file if applicable to D2l submission folder by Tue Sept 20 23:59.
+You will submit this script and output file if applicable to D2l submission folder.
 
 
 **1.** Create a vector containing the string "How much wood would a woodchuck chuck if a woodchuck could chuck wood? He would chuck, he would, as much as he could, and chuck as much wood
