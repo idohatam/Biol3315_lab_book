@@ -1049,7 +1049,7 @@ lets <- letters[1:5]
 
 ***
 
-**Quick R exercise**
+#### **Quick R exercise - checking and coercing**{-}
 
 1.Try coercing numbers back to a numeric vector and than use the sum function to sum it, is it possible?
 
@@ -1064,12 +1064,12 @@ lets <- letters[1:5]
 <br>
 
 
-## **Factors - vectors' evil cousins**
+### **Factors - vectors' evil cousins**{-}
 
-Factors are special of integer vectors containing only predefined values. It has two values, the elements of the 
-vector and the levels. Levels are the defined set of values allowed in the vector.
-While vectors are useful for certain type of tasks, e.g. when you know exactly what values are expected in a 
-data-set, often times this is not the case. When working with R factors are actually pretty common since most of 
+Factors are special case of integer vectors containing only predefined values. Factors are comprised of to value sets, the 
+elements of the vector and the levels. Levels are the defined set of values (or categories) allowed in the vector.
+While factors are useful for certain type of tasks, e.g. when you know exactly what value categories are expected in a 
+data-set, often times this is not the case. When working with R, factors are actually pretty common since most of 
 BaseR data importation functions coerce vectors into factors, therefore it is worth while to dedicated a few minute 
 to familiarize yourself with them.
 
@@ -1077,8 +1077,11 @@ The snippet bellow includes a data-set of the quality of each season of game of 
 
 ```{r factors}
 
+#Let's create a character vector with 8 elements
+
 b <- c(rep("Terrible",7), "Thank god that series is over")
 
+#Coerce it into a factor
 seasons_of_GoT <- factor(b, levels = c("Terrible", "Thank god that series is over", "Great"))
 
 seasons_of_GoT
@@ -1131,10 +1134,10 @@ a==a4
 
 
 
-## **Matrices**
+### **Matrices**{-}
 
-Matrices are two dimensional vectors, which is a fancy way of saying that a matrix is a tabulated vector. Because one
-can think of a matrix as a vector folded into a table, matrices only contain elements of the same type (e.g. only
+Matrices are two dimensional vectors, which is a fancy way of saying that a matrix is a tabulated vector. Because a matrix 
+is essentially a linear vector folded into a table, matrices only contain elements of the same data type (e.g. only
 integer, only characters, etc).
 
 The code snippet bellow uses the function dim to change the dimensions of the vector.
@@ -1145,8 +1148,8 @@ mat <- seq(3.5, 4.6, by = 0.1)
 
 dim(mat)
 
-#Coers the vector into a matrix by changing its dimantion (i.e. adding collumns and rows)
-#When chaning dimentions the order is rows,columns (here 4 rows, 3 columns)
+#Coerce the vector into a matrix by changing its dimensions (i.e. adding columns and rows)
+#When changing dimensions the order is rows,columns (here 4 rows, 3 columns)
 dim(mat) <- c(4,3)
 
 mat
@@ -1158,7 +1161,7 @@ mat
 Note how the vector is folded into a two dimensional vector from top to bottom in each column.
 This essentially converts each column and each row to a vector.
 
-```{r ,echo=FALSE, out.width = '80%', fig.align = 'center', fig.cap = 'R matrix, each row and each column are vectors'}
+```{r mi ,echo=FALSE, out.width = '80%', fig.align = 'center', fig.cap = 'R matrix, each row and each column are vectors'}
 knitr::include_graphics('figs/matrix.png')
 ```
 
@@ -1182,32 +1185,32 @@ is.atomic(mat[1,])
 
 ***
 
-**Quick R exercise**
+#### **Quick R exercise - matrices 1**{-}
 
 There are several R functions that can be used to generate a matrix.
 
-1. Create a numeric vector of 10 elements, use the matrix function to convert is to a matrix with 5 rows and two columns, what happens when the argument byrow is set to TRUE?
+1. Create a numeric vector of 10 elements, use the matrix function to convert is to a matrix with 5 rows and two columns, what happens when the argument `byrow` is set to TRUE?
 
-2. Create a character vector of 10 element use the function cbind to bind it with the vector from the previous question. Are the vectors columns or rows? What happens when you use the function rbind?
+2. Create a character vector of 10 element use the function `cbind()` to bind it with the vector from the previous question. Are the vectors columns or rows? What happens when you use the function `rbind()`?
 
-3. Use the typeof function on one of the matrices from question 2, what type of data does this matrix contain, what does it tell you about the coercion of data type within a matrix?
+3. Use the `typeof()` function on one of the matrices from question 2, what type of data does this matrix contain, what does it tell you about the coercion of data type within a matrix?
 
 ***
 
 <br>
 
-### **Working with matrices**
+#### **Working with matrices**{-}
 
 A matrix is basically a vector with two dimensions when a matrix is indexed like a vector, i.e.
-matrix[n]. By default, when a matrix is indexed in that manor R will return the value found on the
+using `[`. By default, when a matrix is indexed using `[` R will return the value found on the
 nth position of the original vector (see snippet bellow).
 One of R strength is that it allows to also index and access any combination of columns and rows,
 not just individual elements. This is done similar to accessing a vector only the positions of the
-rows and columns are separated by a comma, e.g. matrix[row,column]. This form of indexing allows to
-subset specific rows and columns from the matrix, as demonstrated in the snippet bellow. 
+rows and columns are separated by a comma, i.e. matrix[row,column]. This form of indexing allows to
+subset specific rows and columns from the matrix,the following snippet demonstrates how. 
 
 ```{r indexing matrices}
-#Mat[5] will output the element occupaing the fifth position of the vector used to construct the
+#Mat[5] will output the element occupying the fifth position of the vector used to construct the
 #matrix i.e. 3.9
 mat[5]
 
@@ -1227,8 +1230,16 @@ mat[1:2,]
 #mat[1:2,1:2] will subset the first two rows and columns of the matrix
 mat[1:2,1:2]
 
-#The rows and colums of a matrix can be named, so that the vactors have meaningfull names.
-#This is done using the function colnames and rownames
+```
+
+<br> 
+
+It is possible to name the rows and columns of a matrix, once named the names can be used to index and subset the matrix.
+The code snippet bellow shows how to achieve this using the `colnames()` and `rownames()` functions.
+
+```{r naming mat cols and rows}
+#The rows and columns of a matrix can be named, so that the vectors have meaningful names.
+#This is done using the functions colnames and rownames
 
 stud_mrks <- mat
 rn <- c("Class1","Class2","Class3","Class4")
@@ -1245,11 +1256,11 @@ stud_mrks[,"Student1"]
 
 ```
 
-<br> 
+
 
 ***
 
-**Quick R exercise**
+##### **Quick R exercise - matrices 2**{-}
 
 1. Assign the matrix mat to the variable mat_bs and replace the first row of mat_bs with A,B,C
 
@@ -1304,7 +1315,7 @@ head(mat2_mlt)
 Because matrices are tables but behave like vectors, operating on them is memory efficient and many R packages use 
 them as a preferred object.
 
-## **Lists**
+### **Lists**{-}
 
 A list is a multidimensional vector, which is a fancy way of saying that a list is a vector that can house any R 
 object as an element.
