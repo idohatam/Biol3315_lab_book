@@ -1495,6 +1495,7 @@ head(df3,3)
 
 Start a script file in RStudio name it 3315_lab1_yourinitials.R
 You will submit this script and output file if applicable to D2l submission folder.
+Check your course outline for submission deadline. 
 
 
 **1.** Create a vector containing the string "How much wood would a woodchuck chuck if a woodchuck could chuck wood? He would chuck, he would, as much as he could, and chuck as much wood
