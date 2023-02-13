@@ -282,13 +282,16 @@ you as the function data.frame is called?
 R is an expression language with very simple syntax requiring that you list call-functions, in order to perform tasks
 on your data.
 
-In the code bellow two functions were called, first is the mathematical operator +, this is somewhat of an irregular
+The code snippit bellow calls two functions. The first function is mathematical operator `+`, which has an irregular
 function structure ( [infix function](https://en.wikipedia.org/wiki/Infix_notation) if you're interested) that tells
-R to sum the two numbers. 
-In this case, the arguments (the numbers needed to be summed) are placed on both side of the function (again in this 
-case the + operator). These are referred to as left hand side (LHD) and right hand side (RHD) arguments.
-The second function is the print function, which is a regular function, and R syntax 
-requires that you write the arguments within parenthesis that come after the function.  
+R to sum two numbers. 
+In this case, the arguments (the numbers needed to be summed) are placed on both side of the function (the `+` operator). 
+These are referred to as left hand side (LHD) and right hand side (RHD) arguments.
+The second function is `print()` , which is a regular function. For regular functions R syntax 
+requires that you write the arguments within the parenthesis that come after the function.
+
+The code snippit also includes hashed text (lines of text begining with `#`), hasing tells R to ignor the line.
+Hasing can be used to leave comments on the text.
 
 ```{r syntax 1}
 #Calling an irregular function <-- btw this is how you comment
@@ -329,7 +332,7 @@ Print(j)
 
 The print function only accepts one argument, however some functions in R accept multiple arguments. The code bellow 
 calls the function c, c concatenates similar variables in R into one variable. When more than one 
-argument is used, the arguments should be separated by a comma (","). 
+argument is used, the arguments should be separated by a comma (`,`). 
 
 ```{r syntax 2}
 #Spoiler for the order of operations in R
@@ -348,7 +351,7 @@ print( paste(j,k, sep = ";") )
 ```
 
 
-### **Asking for help**
+### **Asking for help**{-}
 
 So how can you tell which or how many arguments does a function accept? Well, the RStudio text editor offers a 
 glimpse of the arguments as you write the function but the proper way to do is is to call the function documentation.
@@ -384,11 +387,11 @@ pasted terms is a white space.
 
 <br>
 
-**Extended search**
+#### **Extended search**{-}
 
 Sometimes the documentation for a function is not found in the environment you loaded (we will get to libraries of 
 functions extending the capabilities of R later in this tutorial), in order to perform an extended search of all 
-libraries installed on your computer use double question mark ("??"). 
+libraries installed on your computer use double question mark (`??`). 
 
 <br>
 
