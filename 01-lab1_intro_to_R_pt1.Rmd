@@ -529,7 +529,7 @@ v2
 
 <br>
 
-Rightwards assignment works opposite to leftwards assignment. It uses the rightwards assign operator "->", and groups
+Rightwards assignment works opposite to leftwards assignment. It uses the rightwards assign operator `->`, and groups
 everything left to right. Therefore, in the code snippet bellow, the value of variable v2 will now be 3. Note that
 rightwards assignment is discouraged and good coding practices dictate that all variables should be assigned using
 the leftwards method. 
@@ -537,13 +537,10 @@ the leftwards method.
 <br>
 
 ```{r rightwords assignment}
-
 3 -> v2
 
 v
 v2
-
-
 ```
 
 <br>
@@ -552,16 +549,15 @@ v2
 
 >**A note on alliasing and R**
 >
->While the code above assigns the value of v to variable v2. Unlike in python or java for example, this does not
+>The code above assigns the value of v to variable v2. Unlike python or java for example, this does not
 >create an alias (creating an alternative name for a variable stored in memory) and there is no link between v and
->v2. v2 can be assigned a different value or be edited by upending more values to it or modifying the original value
->and v1 will not be affected.
+>v2. Therefore, v2 can be modified withouth the risk of modefying the variable v as well.
 
 ***
 
 <br>
 
-## **Rules for variable naming in R**
+#### **Rules for variable naming in R**{-}
 
 Variable naming in R follows a few simple rules:
 
@@ -582,7 +578,7 @@ these is optimized to handle either single or multidimensional information and i
 powerful tool in handling, analyzing, and representing data. This part will go over the commonly used data types in
 R.
 
-## **"Atomic" vectors**{}
+### **"Atomic" vectors**{-}
 
 Atomic vectors are probably the most basic form of data class in R. Similar to lists in python, they contain a 
 sequence of elements. In fact, the output from all the functions used in this tutorial so far were vectors with one 
@@ -590,7 +586,7 @@ element. That is the reason [1] was displayed next to the output, to denote the 
 each atomic vector class is capable of only storing information of the same type. There are four main classes of 
 atomic vectors in R, this part will detail them and how to work with them.   
 
-### **Numeric vectors (double and integer):**
+#### **Numeric vectors (double and integer):**{-}
 
 Numeric vectors store elements that are numbers, R has two common classes of numeric vectors: double (double precision [folating point numbers](https://en.wikipedia.org/wiki/Floating-point_arithmetic)) and integer.
 
