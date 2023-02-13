@@ -1,5 +1,5 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, class.source = "fold-show")
+knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
 options(knitr.duplicate.label = "allow")
 
 ```
@@ -256,22 +256,22 @@ Useless.function <- function(x){
 
 <br>
 
-Try writing the last line instead of copying and pasting it, did you notice how the editor completes the syntax for 
+*   Try writing the last line instead of copying and pasting it, did you notice how the editor completes the syntax for 
 you as the function data.frame is called?
 
 Practice running it line by line, as a chunk, and sourcing it completely.
 
-What happens in the global environment when you ran the code?
+*   What happens in the global environment when you ran the code?
 
-Are all called variables listed under the same category in the global environment pane?
+*   Are all called variables listed under the same category in the global environment pane?
 
-Can you tell how much memory is car_data using?
+*   Can you tell how much memory is car_data using?
 
-What happens when you press rowling?
+*   What happens when you press rowling?
 
-What do you see in the output pane?
+*   What do you see in the output pane?
 
-What happens when you call the rowling variable directly in the console?
+*   What happens when you call the rowling variable directly in the console?
 
 <br>
 

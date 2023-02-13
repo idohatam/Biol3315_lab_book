@@ -42,3 +42,7 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
+fig:unnamed-chunk-1
+fig:unnamed-chunk-3
+fig:unnamed-chunk-8
+asking-for-help
