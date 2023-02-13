@@ -586,11 +586,24 @@ element. That is the reason [1] was displayed next to the output, to denote the 
 each atomic vector class is capable of only storing information of the same type. There are four main classes of 
 atomic vectors in R, this part will detail them and how to work with them.   
 
-#### **Numeric vectors (double and integer):**{-}
+#### **Numeric vectors (double and integer)**{-}
 
-Numeric vectors store elements that are numbers, R has two common classes of numeric vectors: double (double precision [folating point numbers](https://en.wikipedia.org/wiki/Floating-point_arithmetic)) and integer.
+Numeric vectors store elements that are numbers, R has two common classes of numeric vectors: doubles (double precision 
+[folating point numbers](https://en.wikipedia.org/wiki/Floating-point_arithmetic)) and integers.
 
-The easiest way to create a numeric vector is using the function c which you have already encountered. 
+Let's make some:
+
+```{r cute}
+dbl <- 1.5
+dbl
+int <- 1L
+int
+
+```
+
+Ok, that was cheating. What if you actually want to create a vector with multiple elements?
+The easiest way to do that (or any other type of atomic vector) is using the function `c()` which you have already 
+encountered. 
 
 ```{r numeric vectors}
 #double
@@ -608,25 +621,27 @@ dub.vec
 
 int.vec
 
+int.vec2
+
 #Note this is one way of comparing variables in R
 dub.vec == int.vec
 
 
 ```
 
-Because the snippet above uses [natural numbers](https://en.wikipedia.org/wiki/Natural_number), the output of the two
-vectors is pretty much identical (as demonstrated by the is.equal operator "=="). Furthermore, as will be detailed
+The snippet above uses [natural numbers](https://en.wikipedia.org/wiki/Natural_number), the output of the two
+vectors is pretty much identical (as demonstrated by the is.equal operator `==`). Furthermore, as will be detailed
 later, regardless of the type of numbers used, R will automatically convert classes of numeric vectors when needed.
 However, sometimes it might behoove you know whether a vector contains floats or integers. The RStudio global
 environment pane will denote if a vector is a number or integer, however a more R way to do it is to use the function
-typeof().
+`typeof()`.
 
 ```{r typeof numerical}
 typeof(dub.vec)
 typeof(int.vec)
 ```
 
-Working with numerical vectors is pretty straightforward, R allows you to perform mathematical operations on them, 
+Working with numerical vectors is straightforward, R allows you to perform mathematical operations on them, 
 sum them and even concatenate them. When concatenating an integer and double to a single vector R will coarse it to 
 double. This is because coercing a float to integer will result in dropping the float (i.e. 4.99 will be coerced to 4
 you can try it using as.integer(4.99) ). Therefore coercing to double is less restrictive.
@@ -649,16 +664,21 @@ num.vec
 
 <br>
 
-### **Indexing and subseting numeric vectors**
+##### **Indexing and subseting numeric vectors**{-}
 
-R makes it easy to index, access and subset every element of a numeric vector, this is done using the square brackets. One thing to note is that unlike non-math programming language (looking at you python), R starts indexing at 1 and not at 0. 
+R makes it easy to index, access and subset every element of a numeric vector using the square brackets `[`. One 
+thing to note is that unlike other programming language (looking at you python), R starts indexing at 1 and not at 0. 
 
-In the example below, I used the function rnorm to generate a vector of 100 random numbers normally distributed around a mean of 45 (which would probably be the average for this course) and a standard deviation of 18. 
+In the example below, I used the function `rnorm()` to generate a vector of 100 random numbers normally distributed around 
+a mean of 45 (which would probably be this course's average) and a standard deviation of 18.
+Note that I didn't list the arguments for `rnorm()`, if arguments are not specified R assumes your input is in the order 
+defaulted by the function you call.   
+
 <br>
 
-```{r indexing numeric vectors }
+```{r indexing numeric vectors1 }
 
-#Note how I didn't specefy the arguments, R knows to match them 
+#Note how I didn't specify the arguments, R knows to match them 
 #you just have to make sure you write them in the correct order.
 this.course.avarage <- round(rnorm(100, 45, 18),2)
 
@@ -666,45 +686,62 @@ this.course.avarage <- round(rnorm(100, 45, 18),2)
 
 length(this.course.avarage)
 
-#Head lets you glimps the first n elements in a variable, default is 6 (tail is for last)
+#Head lets you glimpse the first n elements in a variable, default is 6 (tail is for last)
 head(this.course.avarage)
 
-#You can access any element on the vector using the square brackets[]
-#lets acces the first 10 elements in the vector
+```
+
+OK, you made a vector now what?
+As mentioned above, elements along the vector can be accessed (sometimes referred to as indexed) using the `[]`.
+Vectors are mutable meaning that accessing elements allows you to modify them.
+The following code is an example of how. 
+
+```{r indexing vertors 2}
+
+#let's access the first 10 elements in the vector.
 this.course.avarage[1:10]
 
-#You can also replace them with whatever it is you want, lets replace the first 10 elements with a copy of the last 10 elements.
+#You can also replace them with whatever it is you want. 
+#Let's replace the first 10 elements with a copy of the last 10 elements.
 
 this.course.avarage[1:10] <- this.course.avarage[91:100]
+
+#Did it work?
 
 this.course.avarage[1:10]
 this.course.avarage[91:100]
 
+#Did we replace or just increased the size of the vector? 
 length(this.course.avarage)
+
+```
+
+
+Let's look at another example of indexing, were we subset a vector in reverse and modify using some conditions without 
+resorting to conditional statements. 
+
+
+```{r indexing vertors 3}
 
 #note that indexing and subseting works in reverse order too
 another.course.avarage <- c(this.course.avarage[1:5],this.course.avarage[25:20])
 
 #What would the length of this vector be?
 
-#Another great aspect of vectors is that they allow you to change only a subset values without resorting to conditional statments (if else)
+#Another great aspect of vectors is that they allow you to change only a subset values without resorting to conditional statements (if else)
 
-#Let's creat a new vector
+#Let's create a new vector
 
 another.course.avarage2 <- rnorm(n=100,mean=75,sd=5)
 
 #Let's access only marks higher than the avarage
 another.course.avarage2[another.course.avarage2>75]
 
-#lets change anything equal to or grater than the 75 precentile to 100
-#this can be done using the quantile function and subseting the 3 element of the vector it produces which it the 75 precentile
+#lets change anything equal to or grater than the 75 percentile to 100
+#this can be done using the quantile function and subseting the 3 element of the vector it produces which it the 75 percentile
 another.course.avarage2[another.course.avarage2 >= quantile(another.course.avarage2)[3]] <- 100
+
 another.course.avarage2[another.course.avarage2==100]
-
-
-
-
-
 
 ```
 
@@ -728,7 +765,7 @@ another.course.avarage2[another.course.avarage2==100]
 
 ***
 
-**Quick R exercise:**
+##### **Quick R exercise - indexing and subseting:**{-}
 
 1. Use the function seq to create a numeric vector of all the natural numbers between 1 and 10.
 If you are unsure of how to use seq, use the help function.
@@ -751,9 +788,10 @@ If you are unsure of how to use seq, use the help function.
 
 <br>
 
-### **Character vectors:**
+#### **Character vectors:**{-}
 
-Character vectors only store elements that are characters. These could be letters,numbers, or characters. In order for any of those to count as a character it needs to be flanked by double quotation mark (e.g "j"). 
+Character vectors only store elements that are characters. These could be letters,numbers, or characters. In order for any 
+of those to count as a character they needs to be flanked by double quotation mark (e.g `"j"`). 
 
 ```{r character vector1}
 
@@ -769,7 +807,7 @@ length(char.vec)
 char.vec2 <- c("1","2","3")
 typeof(char.vec2)
 
-#Tip, R can convert this to a numeric vector
+#Tip, R can convert(coerce) this to a numeric vector
 #There is an as.x function for almost every data type in R 
 #(e.g. as.numeric, as.double, as.character, etc.)
 char.vec2b <- as.numeric(char.vec2)
@@ -787,7 +825,7 @@ char.vec4 <- letters[1:7]
 ```
 
 
-Indexing character vectors is done similarly to numeric vectors
+Indexing character vectors is done similarly to numeric vectors.
 
 ```{r index character}
 
@@ -805,7 +843,7 @@ char.vec[4]
 #To count the number of characters in each of the strings you can use the function nchar
 nchar(char.vec)
 
-#just like with numerical vercots it is possible to subset by value
+#just like with numerical vectors it is possible to subset by value
 char.vec[char.vec=="a"]
 
 #or rplace a value
@@ -817,7 +855,7 @@ char.vec[char.vec=="a"] <- "a2"
 
 ***
 
-**Quick R exercise:**
+#####**Quick R exercise - character vectors:**
 
 1. Use R to calculate the total number of character in char.vec (avoid hard coding)
 
@@ -848,10 +886,10 @@ borring <- "It was the best of times it was the worst of time"
 #count the number of characters
 str_count(borring)
 
-#split the string in boring to several elelements after every space
+#split the string in boring to several elements after every space
 #the indexing here is for a list, we will discuss lists later in this lab
 
-borring2 <- str_split(borring, " ")[[1]] #note how whitespace is reffered to 
+borring2 <- str_split(borring, " ")[[1]] #note how white space is referred to 
 
 #replace a part of a string, lets correct the typo at the end of the sentence to times
 
@@ -874,7 +912,7 @@ str_count(borring, "(?i)it")
 
 ***
 
-**Quick R exercise:**
+##### **Quick R exercise - strings:**{-}
 
 Now lets do something a bit biological
 Download the stringr cheatsheet and run the following code that will generate a string of 100 nucleotides.
@@ -892,13 +930,13 @@ dna <- paste(sample(bases,10000, replace = T), collapse = "")
 ```
 
 1. Use stringr to calculate the %GC of this string
-2. Use stringer to find out how many times do the codons ATG and TAG  appear in the string?
+2. Use stringr to find out how many times do the codons ATG and TAG  appear in the string?
 
 ***
 
 <br>
 
-### **Logical vectors:**
+#### **Logical vectors**{-}
 
 Logical vectors (or Boolean vectors) contain binary elements, i.e.  true or false or 1 and 0.
 They are the result of logical operators that compare variables. Due to their binary nature, R treats them like 
@@ -920,14 +958,16 @@ log.vec
 You can use logical vectors to index and subset types of vectors using the which function.
 
 ```{r the wich function}
-
+#The which function tells you the position of elements fulfill a condition (give an answer of TRUE)
 head(which(this.course.avarage > 50))
 
+#Can use it to subset only the elements that do
+#Here, asking R to subset only the elements larger than 50
 passed.the.course <- this.course.avarage[which(this.course.avarage > 50)]
 
 length(passed.the.course)
 
-#ofcours you can also use the subset function do echive the same results
+#of course you can also use the subset function do achieve the same results
 
 passed.the.course2 <- subset(this.course.avarage, this.course.avarage >50)
 length(passed.the.course2)
@@ -946,11 +986,14 @@ which(passed.the.course != passed.the.course2)
 
 <br>
 
-## **Checking and coercing**
+### **Checking and coercing**{-}
 
-### **The class function**
+Before we continue with data types in R, lets have a look at how we can tell which is which and how 
+do we convert (coerce) variable from one data type to another. 
 
-The class function lets you know what type of object a particular variable is.
+#### **The class function**{-}
+
+The `class()` function lets you know what class of data type does a particular variable belong to.
 It is useful since some packages (especially those from bioconductor) import data as variables containing more than 
 one type of objects.
 
@@ -960,7 +1003,7 @@ class(dna)
 ```
 
 
-### **The is.x function family**
+#### **The is.x function family**{-}
 
 The is.x function family is another option to query for the type of a variable.
 The output of any of these functions is a logical vector with the length of 1.
@@ -982,7 +1025,7 @@ typeof(passed.the.course)
 
 
 
-### **The as.x function family**
+#### **The as.x function family**{-}
 
 R variables can be coerced to another data type, depending of restriction. 
 This can be done using an as.x function. There is an as.x for every data type in R.
