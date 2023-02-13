@@ -302,14 +302,14 @@ print(j)
 
 ```
 
-The code snippet above is an example for a script where functions are separated by a line, and each function runs 
-sequentially. Functions, however, can also be separated by a semicolon (`;`) and written in the same line as can be 
-seen in the code snippet bellow. Note that while the example bellow gives identical results this writing style is not
-encouraged as it reduces the readability of the code. 
+The code snippet above is an example for a script where functions are separated by a line, and functions are called 
+sequentially. This can also be achived by separating the functions with semicolon (`;`). 
+The example bellow gives identical results to the previous one however this writing style reduces the readability of the 
+code and is therefore discouraged. 
 
 ```{r syntax 1a}
 
-#An example of poor code
+#An example of poor style
 1+1;print(j)
 
 ```
@@ -330,9 +330,10 @@ Print(j)
 
 <br>
 
-The print function only accepts one argument, however some functions in R accept multiple arguments. The code bellow 
-calls the function c, c concatenates similar variables in R into one variable. When more than one 
-argument is used, the arguments should be separated by a comma (`,`). 
+The `print()` function only accepts one argument, however some functions in R accept multiple arguments. The code bellow 
+calls the function `c()`, which concatenates similar variables in R into one variable. When more than one 
+argument is used, the arguments should be separated by a comma (`,`) unless it is an irregular function e.g. mathematical 
+and logical operators. 
 
 ```{r syntax 2}
 #Spoiler for the order of operations in R
@@ -351,7 +352,7 @@ print( paste(j,k, sep = ";") )
 ```
 
 
-### **Asking for help**{-}
+### **Seeking help**{-}
 
 So how can you tell which or how many arguments does a function accept? Well, the RStudio text editor offers a 
 glimpse of the arguments as you write the function but the proper way to do is is to call the function documentation.
@@ -387,7 +388,7 @@ pasted terms is a white space.
 
 <br>
 
-#### **Extended search**{-}
+#### **Extended help search**{-}
 
 Sometimes the documentation for a function is not found in the environment you loaded (we will get to libraries of 
 functions extending the capabilities of R later in this tutorial), in order to perform an extended search of all 
@@ -395,7 +396,7 @@ libraries installed on your computer use double question mark (`??`).
 
 <br>
 
-**Quick R exercise:**
+### **Quick R exercise - basic syntax:**{-}
 
 1. The previous code snippets provided a good example of the order of operation in R when nesting functions. Look at the code bellow, what do you think the order of operation is? Which function will run firs? Which will run second, which will run third?
 
@@ -419,7 +420,8 @@ The example code above includes indentation however, unlike in other programming
 ***
 
 <br>
-## **Expanding R's capabilities by installing additional function packages**{-}
+
+### **Expanding R's capabilities by installing additional function packages**{-}
 
 The R language includes an extensive array of functions. Those are known as base R, or core R functions. However, 
 sometimes developers will write R functions that enhance R's capabilities beyond the scope of the basic core 
@@ -432,12 +434,20 @@ capabilities of R.
 
 There are several repositories that store R packages, here we will go over 3 of them.
 
-1. **The CRAN repository:**
+1. **The CRAN repository**
 
-The [CRAN repository](https://cran.r-project.org/web/packages/available_packages_by_name.html) is the main repository for R packages. It is maintained and rigorously curated by the R foundation and currently contains over 15K packages. The scope of these packages is very broad and they can enhance R capabilities in anything from graphical representation of data, to genomic analysis, to development of web applications. Each of the packages featured in the CRAN repository contains documentations including a manual with a list of all functions included in the package and examples for how to use them. Some contain workflows. 
+The [CRAN repository](https://cran.r-project.org/web/packages/available_packages_by_name.html) is the main repository for R
+packages. It is maintained and rigorously curated by the R foundation and currently contains over 15K packages. The scope
+of these packages is very broad and they can enhance R capabilities in anything from graphical representation of data, to
+genomic analysis, to development of web applications. Each of the packages featured in the CRAN repository contains
+documentations including a manual with a list of all functions included in the package and examples for how to use them.
+Some contain workflows. 
 
-To install a package from the CRAN repository use the function install.packages, note that  install.packages doesn't load the package. If you want to call functions from within this package you need to load it using the function library (). 
-Alternatively you can use "::" which allows you to call the function without load the package that contains it. This may also be used if you loaded two packages that contain a function with similar name, or if a function from one package is masking another.
+To install a package from the CRAN repository use the function install.packages, note that  install.packages doesn't load
+the package. If you want to call functions from within this package you need to load it using the function library (). 
+Alternatively you can use "::" which allows you to call the function without load the package that contains it. This may
+also be used if you loaded two packages that contain a function with similar name, or if a function from one package is
+masking another.
 
 ```{r, eval = FALSE, echo = TRUE, results = 'hide',message=FALSE}
 
@@ -452,7 +462,12 @@ x::function.x()
 
 2. **Bioconductor:**
 
-[Bioconductor]() is a repository for packages designed for handle and analyse high throughput biological data (e.g. omics, flow cytometry, etc.). Contains over 1800 packages, however not all packages aimed at analyzing high throughput biological data are published in Bioconductor since it requires the variables to be stored in an object with specialized structure (S4 object). The packages are curated by the Bioconductor project for open source bioinformatic software. Each Bioconductor package contains at least one vignette, a document that provides a task-oriented description of package functionality. Most also contains a manual with example SOPs.  
+[Bioconductor](http://www.bioconductor.org/) is a repository for packages designed for handle and analyse high throughput 
+biological data (e.g. omics, flow cytometry, etc.). Contains over 1800 packages, however not all packages aimed at 
+analyzing high throughput biological data are published in Bioconductor since it requires the variables to be stored in an 
+object with specialized structure (S4 object). The packages are curated by the Bioconductor project for open source 
+bioinformatic software. Each Bioconductor package contains at least one vignette, a document that provides a task-oriented 
+description of package functionality. Most also contains a manual with example SOPs.  
 
 3. **GitHub:**
 
