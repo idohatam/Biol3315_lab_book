@@ -846,7 +846,7 @@ nchar(char.vec)
 #just like with numerical vectors it is possible to subset by value
 char.vec[char.vec=="a"]
 
-#or rplace a value
+#or replace a value
 char.vec[char.vec=="a"] <- "a2"
 
 ```
@@ -855,7 +855,7 @@ char.vec[char.vec=="a"] <- "a2"
 
 ***
 
-#####**Quick R exercise - character vectors:**{-}
+##### **Quick R exercise - character vectors:**{-}
 
 1. Use R to calculate the total number of character in char.vec (avoid hard coding)
 
