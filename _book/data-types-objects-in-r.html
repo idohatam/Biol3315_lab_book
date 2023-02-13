@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Data types (objects) in R | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="Chapter 1 Data types (objects) in R | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Data types (objects) in R | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Data types (objects) in R | Biology 3315 Molecular Evolution and Phylogenetics" />
+  
+  
+  
+
+<meta name="author" content="Dr. Ido Hatam" />
+
+
+<meta name="date" content="2023-02-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"/>
+<link rel="next" href="summary-exercise-lab1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>An introduction to the lab</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-the-most-out-of-the-lab"><i class="fa fa-check"></i><strong>How to get the most out of the lab</strong></a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>0.1</b> Render book</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>0.2</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><i class="fa fa-check"></i><strong>Lab 1 introduction to the R programming language and the R studio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#learning-objectives"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#getting-started"><i class="fa fa-check"></i><strong>Getting started</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#what-is-r"><i class="fa fa-check"></i><strong>What is R?</strong></a></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#why-use-r"><i class="fa fa-check"></i><strong>Why use R?</strong></a></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#downloading-and-installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><strong>Downloading and installing R and RStudio desktop</strong></a></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#the-r-interpreter"><i class="fa fa-check"></i><strong>The R interpreter</strong></a></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#the-rstudio-ide"><i class="fa fa-check"></i><strong>The RStudio IDE</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#programming-in-r---the-basics"><i class="fa fa-check"></i><strong>Programming in R - the basics</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#r-language-and-syntax"><i class="fa fa-check"></i><strong>R language and syntax</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#variable-assignment-in-r---vs---vs"><i class="fa fa-check"></i><b>0.3</b> <strong>Variable assignment in R (&lt;- vs -&gt; vs =)</strong></a></li>
+<li class="chapter" data-level="0.4" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html#rules-for-variable-naming-in-r"><i class="fa fa-check"></i><b>0.4</b> <strong>Rules for variable naming in R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html"><i class="fa fa-check"></i><b>1</b> <strong>Data types (objects) in R</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#atomic-vectors"><i class="fa fa-check"></i><b>1.1</b> <strong>“Atomic” vectors</strong></a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#numeric-vectors-double-and-integer"><i class="fa fa-check"></i><b>1.1.1</b> <strong>Numeric vectors (double and integer):</strong></a></li>
+<li class="chapter" data-level="1.1.2" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#indexing-and-subseting-numeric-vectors"><i class="fa fa-check"></i><b>1.1.2</b> <strong>Indexing and subseting numeric vectors</strong></a></li>
+<li class="chapter" data-level="1.1.3" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#character-vectors"><i class="fa fa-check"></i><b>1.1.3</b> <strong>Character vectors:</strong></a></li>
+<li class="chapter" data-level="1.1.4" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#logical-vectors"><i class="fa fa-check"></i><b>1.1.4</b> <strong>Logical vectors:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#checking-and-coercing"><i class="fa fa-check"></i><b>1.2</b> <strong>Checking and coercing</strong></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-class-function"><i class="fa fa-check"></i><b>1.2.1</b> <strong>The class function</strong></a></li>
+<li class="chapter" data-level="1.2.2" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-is.x-function-family"><i class="fa fa-check"></i><b>1.2.2</b> <strong>The is.x function family</strong></a></li>
+<li class="chapter" data-level="1.2.3" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-as.x-function-family"><i class="fa fa-check"></i><b>1.2.3</b> <strong>The as.x function family</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#factors---vectors-evil-cousins"><i class="fa fa-check"></i><b>1.3</b> <strong>Factors - vectors’ evil cousins</strong></a></li>
+<li class="chapter" data-level="1.4" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#matrices"><i class="fa fa-check"></i><b>1.4</b> <strong>Matrices</strong></a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-matrices"><i class="fa fa-check"></i><b>1.4.1</b> <strong>Working with matrices</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists"><i class="fa fa-check"></i><b>1.5</b> <strong>Lists</strong></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-lists"><i class="fa fa-check"></i><b>1.5.1</b> <strong>Working with lists</strong></a></li>
+<li class="chapter" data-level="1.5.2" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists-and-the-operator"><i class="fa fa-check"></i><b>1.5.2</b> <strong>Lists and the $ operator</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#data.frames"><i class="fa fa-check"></i><b>1.6</b> <strong>data.frames</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="summary-exercise-lab1.html"><a href="summary-exercise-lab1.html"><i class="fa fa-check"></i><b>2</b> <strong>Summary exercise Lab1</strong></a></li>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-types-objects-in-r" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> <strong>Data types (objects) in R</strong><a href="data-types-objects-in-r.html#data-types-objects-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The R language has multiple classes of data types often referred to as objects, though R is not an object oriented
+programming language per se. Those include but not limited to vectors, lists, matrices, and data.frames. Each of
+these is optimized to handle either single or multidimensional information and is part of what makes R such a
+powerful tool in handling, analyzing, and representing data. This part will go over the commonly used data types in
+R.</p>
+<div id="atomic-vectors" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> <strong>“Atomic” vectors</strong><a href="data-types-objects-in-r.html#atomic-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Atomic vectors are probably the most basic form of data class in R. Similar to lists in python, they contain a
+sequence of elements. In fact, the output from all the functions used in this tutorial so far were vectors with one
+element. That is the reason [1] was displayed next to the output, to denote the first element in the vector. In R,
+each atomic vector class is capable of only storing information of the same type. There are four main classes of
+atomic vectors in R, this part will detail them and how to work with them.</p>
+<div id="numeric-vectors-double-and-integer" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> <strong>Numeric vectors (double and integer):</strong><a href="data-types-objects-in-r.html#numeric-vectors-double-and-integer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Numeric vectors store elements that are numbers, R has two common classes of numeric vectors: double (double precision <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">folating point numbers</a>) and integer.</p>
+<p>The easiest way to create a numeric vector is using the function c which you have already encountered.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb43-1"><a href="data-types-objects-in-r.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#double</span></span>
+<span id="cb43-2"><a href="data-types-objects-in-r.html#cb43-2" aria-hidden="true" tabindex="-1"></a>dub.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb43-3"><a href="data-types-objects-in-r.html#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="data-types-objects-in-r.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#integer</span></span>
+<span id="cb43-5"><a href="data-types-objects-in-r.html#cb43-5" aria-hidden="true" tabindex="-1"></a>int.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(1L,2L,3L)</span>
+<span id="cb43-6"><a href="data-types-objects-in-r.html#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="data-types-objects-in-r.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">#alt way to get an interger sequence, : tells R to get all natural numbers between 1 and 3 </span></span>
+<span id="cb43-8"><a href="data-types-objects-in-r.html#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="data-types-objects-in-r.html#cb43-9" aria-hidden="true" tabindex="-1"></a>int.vec2 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb43-10"><a href="data-types-objects-in-r.html#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="data-types-objects-in-r.html#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="data-types-objects-in-r.html#cb43-12" aria-hidden="true" tabindex="-1"></a>dub.vec</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb45-1"><a href="data-types-objects-in-r.html#cb45-1" aria-hidden="true" tabindex="-1"></a>int.vec</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb47-1"><a href="data-types-objects-in-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note this is one way of comparing variables in R</span></span>
+<span id="cb47-2"><a href="data-types-objects-in-r.html#cb47-2" aria-hidden="true" tabindex="-1"></a>dub.vec <span class="sc">==</span> int.vec</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE</code></pre>
+<p>Because the snippet above uses <a href="https://en.wikipedia.org/wiki/Natural_number">natural numbers</a>, the output of the two
+vectors is pretty much identical (as demonstrated by the is.equal operator “==”). Furthermore, as will be detailed
+later, regardless of the type of numbers used, R will automatically convert classes of numeric vectors when needed.
+However, sometimes it might behoove you know whether a vector contains floats or integers. The RStudio global
+environment pane will denote if a vector is a number or integer, however a more R way to do it is to use the function
+typeof().</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb49-1"><a href="data-types-objects-in-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(dub.vec)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb51-1"><a href="data-types-objects-in-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(int.vec)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>Working with numerical vectors is pretty straightforward, R allows you to perform mathematical operations on them,
+sum them and even concatenate them. When concatenating an integer and double to a single vector R will coarse it to
+double. This is because coercing a float to integer will result in dropping the float (i.e. 4.99 will be coerced to 4
+you can try it using as.integer(4.99) ). Therefore coercing to double is less restrictive.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb53-1"><a href="data-types-objects-in-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#concatenating vactors plus a bonus example of nesting functions. </span></span>
+<span id="cb53-2"><a href="data-types-objects-in-r.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note that you can use the assign operator within a function, that&#39;s one of the differences </span></span>
+<span id="cb53-3"><a href="data-types-objects-in-r.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co">#between it and using &quot;=&quot; .</span></span>
+<span id="cb53-4"><a href="data-types-objects-in-r.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(num.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(dub.vec,int.vec))</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb55-1"><a href="data-types-objects-in-r.html#cb55-1" aria-hidden="true" tabindex="-1"></a>num.vec</span></code></pre></div>
+<pre><code>## [1] 1 2 3 1 2 3</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb57-1"><a href="data-types-objects-in-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#note how when performing a mathematical operation on a vector it is perfomed individually on all</span></span>
+<span id="cb57-2"><a href="data-types-objects-in-r.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co">#the ellements of the vector, negating the need to use a for loop. Flanking the operation with () serves as a call for the newly created variable.</span></span>
+<span id="cb57-3"><a href="data-types-objects-in-r.html#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="data-types-objects-in-r.html#cb57-4" aria-hidden="true" tabindex="-1"></a>(sq.num.vec <span class="ot">&lt;-</span> num.vec<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1 4 9 1 4 9</code></pre>
+<p><br></p>
+</div>
+<div id="indexing-and-subseting-numeric-vectors" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> <strong>Indexing and subseting numeric vectors</strong><a href="data-types-objects-in-r.html#indexing-and-subseting-numeric-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R makes it easy to index, access and subset every element of a numeric vector, this is done using the square brackets. One thing to note is that unlike non-math programming language (looking at you python), R starts indexing at 1 and not at 0.</p>
+<p>In the example below, I used the function rnorm to generate a vector of 100 random numbers normally distributed around a mean of 45 (which would probably be the average for this course) and a standard deviation of 18.
+<br></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb59-1"><a href="data-types-objects-in-r.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note how I didn&#39;t specefy the arguments, R knows to match them </span></span>
+<span id="cb59-2"><a href="data-types-objects-in-r.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co">#you just have to make sure you write them in the correct order.</span></span>
+<span id="cb59-3"><a href="data-types-objects-in-r.html#cb59-3" aria-hidden="true" tabindex="-1"></a>this.course.avarage <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">45</span>, <span class="dv">18</span>),<span class="dv">2</span>)</span>
+<span id="cb59-4"><a href="data-types-objects-in-r.html#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="data-types-objects-in-r.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co">#We can see if our vector is indeed 100 elements long using the function length</span></span>
+<span id="cb59-6"><a href="data-types-objects-in-r.html#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="data-types-objects-in-r.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(this.course.avarage)</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb61-1"><a href="data-types-objects-in-r.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Head lets you glimps the first n elements in a variable, default is 6 (tail is for last)</span></span>
+<span id="cb61-2"><a href="data-types-objects-in-r.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(this.course.avarage)</span></code></pre></div>
+<pre><code>## [1] 52.56 48.78 27.51 48.26 56.07 35.72</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb63-1"><a href="data-types-objects-in-r.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can access any element on the vector using the square brackets[]</span></span>
+<span id="cb63-2"><a href="data-types-objects-in-r.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lets acces the first 10 elements in the vector</span></span>
+<span id="cb63-3"><a href="data-types-objects-in-r.html#cb63-3" aria-hidden="true" tabindex="-1"></a>this.course.avarage[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>##  [1] 52.56 48.78 27.51 48.26 56.07 35.72 38.72 28.25 28.19  7.64</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb65-1"><a href="data-types-objects-in-r.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can also replace them with whatever it is you want, lets replace the first 10 elements with a copy of the last 10 elements.</span></span>
+<span id="cb65-2"><a href="data-types-objects-in-r.html#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="data-types-objects-in-r.html#cb65-3" aria-hidden="true" tabindex="-1"></a>this.course.avarage[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span> this.course.avarage[<span class="dv">91</span><span class="sc">:</span><span class="dv">100</span>]</span>
+<span id="cb65-4"><a href="data-types-objects-in-r.html#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="data-types-objects-in-r.html#cb65-5" aria-hidden="true" tabindex="-1"></a>this.course.avarage[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>##  [1] 31.50 58.02 41.13 66.14 38.63 43.22 37.26 26.80 48.99 45.74</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb67-1"><a href="data-types-objects-in-r.html#cb67-1" aria-hidden="true" tabindex="-1"></a>this.course.avarage[<span class="dv">91</span><span class="sc">:</span><span class="dv">100</span>]</span></code></pre></div>
+<pre><code>##  [1] 31.50 58.02 41.13 66.14 38.63 43.22 37.26 26.80 48.99 45.74</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb69-1"><a href="data-types-objects-in-r.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(this.course.avarage)</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb71-1"><a href="data-types-objects-in-r.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#note that indexing and subseting works in reverse order too</span></span>
+<span id="cb71-2"><a href="data-types-objects-in-r.html#cb71-2" aria-hidden="true" tabindex="-1"></a>another.course.avarage <span class="ot">&lt;-</span> <span class="fu">c</span>(this.course.avarage[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],this.course.avarage[<span class="dv">25</span><span class="sc">:</span><span class="dv">20</span>])</span>
+<span id="cb71-3"><a href="data-types-objects-in-r.html#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="data-types-objects-in-r.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co">#What would the length of this vector be?</span></span>
+<span id="cb71-5"><a href="data-types-objects-in-r.html#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="data-types-objects-in-r.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Another great aspect of vectors is that they allow you to change only a subset values without resorting to conditional statments (if else)</span></span>
+<span id="cb71-7"><a href="data-types-objects-in-r.html#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-8"><a href="data-types-objects-in-r.html#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s creat a new vector</span></span>
+<span id="cb71-9"><a href="data-types-objects-in-r.html#cb71-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-10"><a href="data-types-objects-in-r.html#cb71-10" aria-hidden="true" tabindex="-1"></a>another.course.avarage2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">100</span>,<span class="at">mean=</span><span class="dv">75</span>,<span class="at">sd=</span><span class="dv">5</span>)</span>
+<span id="cb71-11"><a href="data-types-objects-in-r.html#cb71-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-12"><a href="data-types-objects-in-r.html#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s access only marks higher than the avarage</span></span>
+<span id="cb71-13"><a href="data-types-objects-in-r.html#cb71-13" aria-hidden="true" tabindex="-1"></a>another.course.avarage2[another.course.avarage2<span class="sc">&gt;</span><span class="dv">75</span>]</span></code></pre></div>
+<pre><code>##  [1] 81.46901 75.00238 76.96370 76.96957 78.06822 76.50234 88.55284 83.02663
+##  [9] 83.50904 83.83538 78.22319 82.12435 79.42002 78.50179 78.17700 78.46425
+## [17] 78.49235 78.02019 77.68180 76.67622 78.56982 77.24894 83.10980 76.84952
+## [25] 76.81645 83.51502 76.03354 75.83781 82.82300 82.39754 80.02583 80.65055
+## [33] 77.99224 79.05087 79.49243 76.26299 77.34445 83.87769 77.79908 77.93342
+## [41] 78.07681 78.36602 75.96372 77.23397 80.79706 82.33672 78.09517 76.35537
+## [49] 79.67813 80.25138</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb73-1"><a href="data-types-objects-in-r.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lets change anything equal to or grater than the 75 precentile to 100</span></span>
+<span id="cb73-2"><a href="data-types-objects-in-r.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this can be done using the quantile function and subseting the 3 element of the vector it produces which it the 75 precentile</span></span>
+<span id="cb73-3"><a href="data-types-objects-in-r.html#cb73-3" aria-hidden="true" tabindex="-1"></a>another.course.avarage2[another.course.avarage2 <span class="sc">&gt;=</span> <span class="fu">quantile</span>(another.course.avarage2)[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb73-4"><a href="data-types-objects-in-r.html#cb73-4" aria-hidden="true" tabindex="-1"></a>another.course.avarage2[another.course.avarage2<span class="sc">==</span><span class="dv">100</span>]</span></code></pre></div>
+<pre><code>##  [1] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+## [20] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+## [39] 100 100 100 100 100 100 100 100 100 100 100 100</code></pre>
+<p><br></p>
+<hr />
+<blockquote>
+<p><strong>Quick note on reproducibility</strong></p>
+</blockquote>
+<blockquote>
+<p>Note that the numbers generated by the code snippet above will change every time you run it.
+This is due to the way random numbers (more accurately <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudorandom numbers</a>) are generated by “random” number generating
+algorithms.
+If you want to make sure that your code is reproducible you need to set the <a href="https://en.wikipedia.org/wiki/Random_seed">seed</a> that initializes the pseudorandom number generating algorithm rather than allowing it to be set randomly.
+You can do it by incorporating the function set.seed() before you generate numbers, you can use any integer between
+the brackets.</p>
+</blockquote>
+<hr />
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Use the function seq to create a numeric vector of all the natural numbers between 1 and 10.
+If you are unsure of how to use seq, use the help function.</p></li>
+<li><p>What type of a numeric vector is the vector you created?</p></li>
+<li><p>Create another numeric vector of 10 random elements between 1 and 10 using the function runif()</p></li>
+<li><p>What type of a numeric vector did it create?</p></li>
+<li><p>Create a third vector by multiplying your first vector by the second vector</p></li>
+<li><p>Call the new vector, what can you tell of the order of operations when multiplying vectors in R?</p></li>
+<li><p>Replace the 7th element of the first vector, the 8th element of the second vector and the 1st element of the third vector.</p></li>
+<li><p>Create a new vector with the final element being -8, the first element being the 7th element of the third vector, the second element being the 5th element of the first vector and the third element being the first element of the</p></li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+<div id="character-vectors" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> <strong>Character vectors:</strong><a href="data-types-objects-in-r.html#character-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Character vectors only store elements that are characters. These could be letters,numbers, or characters. In order for any of those to count as a character it needs to be flanked by double quotation mark (e.g “j”).</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb75-1"><a href="data-types-objects-in-r.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Here is how you create a character vector</span></span>
+<span id="cb75-2"><a href="data-types-objects-in-r.html#cb75-2" aria-hidden="true" tabindex="-1"></a>char.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;abcd&quot;</span>)</span>
+<span id="cb75-3"><a href="data-types-objects-in-r.html#cb75-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="data-types-objects-in-r.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Note the length of this vector is 4, the length of each string of characters doesn&#39;t impact the </span></span>
+<span id="cb75-5"><a href="data-types-objects-in-r.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="co">#length of the vector</span></span>
+<span id="cb75-6"><a href="data-types-objects-in-r.html#cb75-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-7"><a href="data-types-objects-in-r.html#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(char.vec)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb77-1"><a href="data-types-objects-in-r.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Character vectors can contain numbers too</span></span>
+<span id="cb77-2"><a href="data-types-objects-in-r.html#cb77-2" aria-hidden="true" tabindex="-1"></a>char.vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>,<span class="st">&quot;3&quot;</span>)</span>
+<span id="cb77-3"><a href="data-types-objects-in-r.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(char.vec2)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb79-1"><a href="data-types-objects-in-r.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tip, R can convert this to a numeric vector</span></span>
+<span id="cb79-2"><a href="data-types-objects-in-r.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co">#There is an as.x function for almost every data type in R </span></span>
+<span id="cb79-3"><a href="data-types-objects-in-r.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co">#(e.g. as.numeric, as.double, as.character, etc.)</span></span>
+<span id="cb79-4"><a href="data-types-objects-in-r.html#cb79-4" aria-hidden="true" tabindex="-1"></a>char.vec2b <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(char.vec2)</span>
+<span id="cb79-5"><a href="data-types-objects-in-r.html#cb79-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-6"><a href="data-types-objects-in-r.html#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="co">#When concatenating a character and a numeric vector, R will coerce the numeric vector to character.</span></span>
+<span id="cb79-7"><a href="data-types-objects-in-r.html#cb79-7" aria-hidden="true" tabindex="-1"></a>char.vec3 <span class="ot">&lt;-</span> <span class="fu">c</span>(char.vec2,int.vec)</span>
+<span id="cb79-8"><a href="data-types-objects-in-r.html#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(char.vec3)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb81-1"><a href="data-types-objects-in-r.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#alternatively you can use the class, class will not differentiate </span></span>
+<span id="cb81-2"><a href="data-types-objects-in-r.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co">#between the different numeric vectors but will between the different types of vectors</span></span>
+<span id="cb81-3"><a href="data-types-objects-in-r.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(char.vec3)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb83-1"><a href="data-types-objects-in-r.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If you need to generate a sequence of letters from a-z</span></span>
+<span id="cb83-2"><a href="data-types-objects-in-r.html#cb83-2" aria-hidden="true" tabindex="-1"></a>char.vec4 <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span></code></pre></div>
+<p>Indexing character vectors is done similarly to numeric vectors</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb84-1"><a href="data-types-objects-in-r.html#cb84-1" aria-hidden="true" tabindex="-1"></a>char.vec[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb86-1"><a href="data-types-objects-in-r.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co">#replacing the first element</span></span>
+<span id="cb86-2"><a href="data-types-objects-in-r.html#cb86-2" aria-hidden="true" tabindex="-1"></a>char.vec[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;aa&quot;</span></span>
+<span id="cb86-3"><a href="data-types-objects-in-r.html#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="data-types-objects-in-r.html#cb86-4" aria-hidden="true" tabindex="-1"></a>char.vec[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;aa&quot;</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb88-1"><a href="data-types-objects-in-r.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adding a fourth element</span></span>
+<span id="cb88-2"><a href="data-types-objects-in-r.html#cb88-2" aria-hidden="true" tabindex="-1"></a>char.vec[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Fourth&quot;</span></span>
+<span id="cb88-3"><a href="data-types-objects-in-r.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="data-types-objects-in-r.html#cb88-4" aria-hidden="true" tabindex="-1"></a>char.vec[<span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Fourth&quot;</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb90-1"><a href="data-types-objects-in-r.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To count the number of characters in each of the strings you can use the function nchar</span></span>
+<span id="cb90-2"><a href="data-types-objects-in-r.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(char.vec)</span></code></pre></div>
+<pre><code>## [1] 2 3 4 6</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb92-1"><a href="data-types-objects-in-r.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#just like with numerical vercots it is possible to subset by value</span></span>
+<span id="cb92-2"><a href="data-types-objects-in-r.html#cb92-2" aria-hidden="true" tabindex="-1"></a>char.vec[char.vec<span class="sc">==</span><span class="st">&quot;a&quot;</span>]</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb94-1"><a href="data-types-objects-in-r.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or rplace a value</span></span>
+<span id="cb94-2"><a href="data-types-objects-in-r.html#cb94-2" aria-hidden="true" tabindex="-1"></a>char.vec[char.vec<span class="sc">==</span><span class="st">&quot;a&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;a2&quot;</span></span></code></pre></div>
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Use R to calculate the total number of character in char.vec (avoid hard coding)</p></li>
+<li><p>Use indexing to change the 4th character in the string occupying the 4th element in the vector char.vec with the letter “B”, no hard coding. Did it work?</p></li>
+</ol>
+<hr />
+<p><br></p>
+<blockquote>
+<p><strong>A note on working with strings in R</strong></p>
+<p>As you notice in the exercise, indexing a character vector is not the same as indexing the strings that make each
+element of the vector. This does not mean that strings are immutable, R has a lot of tools in its arsenal geared
+towards manipulating strings. While the future labs will deal with handling biological strings, this is a good
+opportunity to look at how R handles strings in general.
+Base R has functions such as grep, substring and gsup that work the same way grep in bash works, however, I find the
+stringr package much more useful and intuitive.
+You can download a cheatsheet guide to stringer <a href="https://rstudio.com/resources/cheatsheets/">here</a></p>
+<p>Lets look at an example for the capabilities of stringer</p>
+</blockquote>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb95-1"><a href="data-types-objects-in-r.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load the package you can install it from the cran repo with install.packages</span></span>
+<span id="cb95-2"><a href="data-types-objects-in-r.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb95-3"><a href="data-types-objects-in-r.html#cb95-3" aria-hidden="true" tabindex="-1"></a>borring <span class="ot">&lt;-</span> <span class="st">&quot;It was the best of times it was the worst of time&quot;</span></span>
+<span id="cb95-4"><a href="data-types-objects-in-r.html#cb95-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-5"><a href="data-types-objects-in-r.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="co">#count the number of characters</span></span>
+<span id="cb95-6"><a href="data-types-objects-in-r.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(borring)</span></code></pre></div>
+<pre><code>## [1] 49</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb97-1"><a href="data-types-objects-in-r.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co">#split the string in boring to several elelements after every space</span></span>
+<span id="cb97-2"><a href="data-types-objects-in-r.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="co">#the indexing here is for a list, we will discuss lists later in this lab</span></span>
+<span id="cb97-3"><a href="data-types-objects-in-r.html#cb97-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="data-types-objects-in-r.html#cb97-4" aria-hidden="true" tabindex="-1"></a>borring2 <span class="ot">&lt;-</span> <span class="fu">str_split</span>(borring, <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]] <span class="co">#note how whitespace is reffered to </span></span>
+<span id="cb97-5"><a href="data-types-objects-in-r.html#cb97-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="data-types-objects-in-r.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="co">#replace a part of a string, lets correct the typo at the end of the sentence to times</span></span>
+<span id="cb97-7"><a href="data-types-objects-in-r.html#cb97-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-8"><a href="data-types-objects-in-r.html#cb97-8" aria-hidden="true" tabindex="-1"></a>borring <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(borring, <span class="st">&quot;time$&quot;</span>, <span class="st">&quot;times&quot;</span>) <span class="co">#$ is a regular expression that matches the end of the string, otherwise it would just replace the first time occurrence</span></span>
+<span id="cb97-9"><a href="data-types-objects-in-r.html#cb97-9" aria-hidden="true" tabindex="-1"></a>borring</span></code></pre></div>
+<pre><code>## [1] &quot;It was the best of times it was the worst of times&quot;</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb99-1"><a href="data-types-objects-in-r.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How many times does the word it appear in the string? </span></span>
+<span id="cb99-2"><a href="data-types-objects-in-r.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that R is case sensitive, (?i) searches in a case insensitive way (another regular expression) </span></span>
+<span id="cb99-3"><a href="data-types-objects-in-r.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="data-types-objects-in-r.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(borring, <span class="st">&quot;(?i)it&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<blockquote>
+
+</blockquote>
+<hr />
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise:</strong></p>
+<p>Now lets do something a bit biological
+Download the stringr cheatsheet and run the following code that will generate a string of 100 nucleotides.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb101-1"><a href="data-types-objects-in-r.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co">#four bases</span></span>
+<span id="cb101-2"><a href="data-types-objects-in-r.html#cb101-2" aria-hidden="true" tabindex="-1"></a>bases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;T&quot;</span>,<span class="st">&quot;G&quot;</span>,<span class="st">&quot;C&quot;</span>)</span>
+<span id="cb101-3"><a href="data-types-objects-in-r.html#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-4"><a href="data-types-objects-in-r.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="co">#note seting seeds</span></span>
+<span id="cb101-5"><a href="data-types-objects-in-r.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb101-6"><a href="data-types-objects-in-r.html#cb101-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-7"><a href="data-types-objects-in-r.html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Using sample let&#39;s generate a random sequence of 10000 nucleotieds, slightly larger than the avarage genome size of RNA viruses.</span></span>
+<span id="cb101-8"><a href="data-types-objects-in-r.html#cb101-8" aria-hidden="true" tabindex="-1"></a>dna <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">sample</span>(bases,<span class="dv">10000</span>, <span class="at">replace =</span> T), <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Use stringr to calculate the %GC of this string</li>
+<li>Use stringer to find out how many times do the codons ATG and TAG appear in the string?</li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+<div id="logical-vectors" class="section level3 hasAnchor" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> <strong>Logical vectors:</strong><a href="data-types-objects-in-r.html#logical-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Logical vectors (or Boolean vectors) contain binary elements, i.e. true or false or 1 and 0.
+They are the result of logical operators that compare variables. Due to their binary nature, R treats them like
+numeric vectors (double to be exact). Logical vectors can be indexed as any other vector.
+The example snippet bellow shows the result of a logical operator on the vector this.class.average.
+The operator will evaluate each element of the vector and determine whether this element is larger than 55. If the
+element is larger than the result will be TRUE and if it is not the result will be false.</p>
+<p><br></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb102-1"><a href="data-types-objects-in-r.html#cb102-1" aria-hidden="true" tabindex="-1"></a>log.vec <span class="ot">&lt;-</span> this.course.avarage <span class="sc">&gt;</span> <span class="dv">55</span></span>
+<span id="cb102-2"><a href="data-types-objects-in-r.html#cb102-2" aria-hidden="true" tabindex="-1"></a>log.vec</span></code></pre></div>
+<pre><code>##   [1] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+##  [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [25] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [37] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE
+##  [49] FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
+##  [61] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+##  [73] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE
+##  [85] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
+##  [97] FALSE FALSE FALSE FALSE</code></pre>
+<p><br></p>
+<p>You can use logical vectors to index and subset types of vectors using the which function.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb104-1"><a href="data-types-objects-in-r.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">which</span>(this.course.avarage <span class="sc">&gt;</span> <span class="dv">50</span>))</span></code></pre></div>
+<pre><code>## [1]  2  4 11 14 16 26</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb106-1"><a href="data-types-objects-in-r.html#cb106-1" aria-hidden="true" tabindex="-1"></a>passed.the.course <span class="ot">&lt;-</span> this.course.avarage[<span class="fu">which</span>(this.course.avarage <span class="sc">&gt;</span> <span class="dv">50</span>)]</span>
+<span id="cb106-2"><a href="data-types-objects-in-r.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="data-types-objects-in-r.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(passed.the.course)</span></code></pre></div>
+<pre><code>## [1] 33</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb108-1"><a href="data-types-objects-in-r.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ofcours you can also use the subset function do echive the same results</span></span>
+<span id="cb108-2"><a href="data-types-objects-in-r.html#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-3"><a href="data-types-objects-in-r.html#cb108-3" aria-hidden="true" tabindex="-1"></a>passed.the.course2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(this.course.avarage, this.course.avarage <span class="sc">&gt;</span><span class="dv">50</span>)</span>
+<span id="cb108-4"><a href="data-types-objects-in-r.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(passed.the.course2)</span></code></pre></div>
+<pre><code>## [1] 33</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb110-1"><a href="data-types-objects-in-r.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lets compare the two vectors using a logical operator, the result of this will be a logical vector</span></span>
+<span id="cb110-2"><a href="data-types-objects-in-r.html#cb110-2" aria-hidden="true" tabindex="-1"></a>passed.the.course <span class="sc">==</span> passed.the.course2</span></code></pre></div>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [31] TRUE TRUE TRUE</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb112-1"><a href="data-types-objects-in-r.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#alternatively you can ask R which positions between the two vectors are not the same</span></span>
+<span id="cb112-2"><a href="data-types-objects-in-r.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(passed.the.course <span class="sc">!=</span> passed.the.course2)</span></code></pre></div>
+<pre><code>## integer(0)</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="checking-and-coercing" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> <strong>Checking and coercing</strong><a href="data-types-objects-in-r.html#checking-and-coercing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-class-function" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> <strong>The class function</strong><a href="data-types-objects-in-r.html#the-class-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The class function lets you know what type of object a particular variable is.
+It is useful since some packages (especially those from bioconductor) import data as variables containing more than
+one type of objects.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb114-1"><a href="data-types-objects-in-r.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dna)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="the-is.x-function-family" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> <strong>The is.x function family</strong><a href="data-types-objects-in-r.html#the-is.x-function-family" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The is.x function family is another option to query for the type of a variable.
+The output of any of these functions is a logical vector with the length of 1.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb116-1"><a href="data-types-objects-in-r.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#is a variable an atomic vector?</span></span>
+<span id="cb116-2"><a href="data-types-objects-in-r.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.atomic</span>(passed.the.course)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb118-1"><a href="data-types-objects-in-r.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note logical vectors are also numeric</span></span>
+<span id="cb118-2"><a href="data-types-objects-in-r.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(passed.the.course)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb120-1"><a href="data-types-objects-in-r.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(passed.the.course)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb122-1"><a href="data-types-objects-in-r.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(passed.the.course)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb124-1"><a href="data-types-objects-in-r.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(passed.the.course)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+</div>
+<div id="the-as.x-function-family" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> <strong>The as.x function family</strong><a href="data-types-objects-in-r.html#the-as.x-function-family" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R variables can be coerced to another data type, depending of restriction.
+This can be done using an as.x function. There is an as.x for every data type in R.
+Here are some examples</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb126-1"><a href="data-types-objects-in-r.html#cb126-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb126-2"><a href="data-types-objects-in-r.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(numbers)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb128-1"><a href="data-types-objects-in-r.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb130-1"><a href="data-types-objects-in-r.html#cb130-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">as.character</span>(numbers)</span>
+<span id="cb130-2"><a href="data-types-objects-in-r.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb132-1"><a href="data-types-objects-in-r.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lets see what happens when a character vector is coersed to numeric</span></span>
+<span id="cb132-2"><a href="data-types-objects-in-r.html#cb132-2" aria-hidden="true" tabindex="-1"></a>lets <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise</strong></p>
+<p>1.Try coercing numbers back to a numeric vector and than use the sum function to sum it, is it possible?</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Create a logical vector of 6 elements and coerce it to an integer vector, what happens</p></li>
+<li><p>Create sequence of 10 numbers from 3.5-4.5, coerce the double vector to an integer, what happened?</p></li>
+<li><p>What is the difference between is.numeric and is.integer?</p></li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="factors---vectors-evil-cousins" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> <strong>Factors - vectors’ evil cousins</strong><a href="data-types-objects-in-r.html#factors---vectors-evil-cousins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Factors are special of integer vectors containing only predefined values. It has two values, the elements of the
+vector and the levels. Levels are the defined set of values allowed in the vector.
+While vectors are useful for certain type of tasks, e.g. when you know exactly what values are expected in a
+data-set, often times this is not the case. When working with R factors are actually pretty common since most of
+BaseR data importation functions coerce vectors into factors, therefore it is worth while to dedicated a few minute
+to familiarize yourself with them.</p>
+<p>The snippet bellow includes a data-set of the quality of each season of game of thrones. There are three possible values</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb133-1"><a href="data-types-objects-in-r.html#cb133-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Terrible&quot;</span>,<span class="dv">7</span>), <span class="st">&quot;Thank god that series is over&quot;</span>)</span>
+<span id="cb133-2"><a href="data-types-objects-in-r.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="data-types-objects-in-r.html#cb133-3" aria-hidden="true" tabindex="-1"></a>seasons_of_GoT <span class="ot">&lt;-</span> <span class="fu">factor</span>(b, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Terrible&quot;</span>, <span class="st">&quot;Thank god that series is over&quot;</span>, <span class="st">&quot;Great&quot;</span>))</span>
+<span id="cb133-4"><a href="data-types-objects-in-r.html#cb133-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-5"><a href="data-types-objects-in-r.html#cb133-5" aria-hidden="true" tabindex="-1"></a>seasons_of_GoT</span></code></pre></div>
+<pre><code>## [1] Terrible                      Terrible                     
+## [3] Terrible                      Terrible                     
+## [5] Terrible                      Terrible                     
+## [7] Terrible                      Thank god that series is over
+## Levels: Terrible Thank god that series is over Great</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb135-1"><a href="data-types-objects-in-r.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(seasons_of_GoT)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb137-1"><a href="data-types-objects-in-r.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(seasons_of_GoT)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb139-1"><a href="data-types-objects-in-r.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To edit the levels of a factor use the level function, e.g. great is not a real option for a GoT season</span></span>
+<span id="cb139-2"><a href="data-types-objects-in-r.html#cb139-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-3"><a href="data-types-objects-in-r.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(seasons_of_GoT) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Terrible&quot;</span>, <span class="st">&quot;Thank god that series is over&quot;</span>, <span class="st">&quot;Extra terrible&quot;</span>)</span></code></pre></div>
+<p>It is worth noting the while factors are integers the values they contain are treated as characters. When coercing a
+factor back to an atomic vector, it is necessary to coerce it first to a character. Otherwise the vector will contain
+the number of available levels rather than the elements of the factor.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb140-1"><a href="data-types-objects-in-r.html#cb140-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb140-2"><a href="data-types-objects-in-r.html#cb140-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="data-types-objects-in-r.html#cb140-3" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(a, <span class="at">levels =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">19</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
+<span id="cb140-4"><a href="data-types-objects-in-r.html#cb140-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-5"><a href="data-types-objects-in-r.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb142-1"><a href="data-types-objects-in-r.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a2)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb144-1"><a href="data-types-objects-in-r.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a2)</span></code></pre></div>
+<pre><code>## Error in Summary.factor(structure(1:11, levels = c(&quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, : &#39;sum&#39; not meaningful for factors</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb146-1"><a href="data-types-objects-in-r.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)</span></code></pre></div>
+<pre><code>## [1] 110</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb148-1"><a href="data-types-objects-in-r.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to coerce the factor to a numeric vector you have to pass through as.character otherwise it will use the number of levels.</span></span>
+<span id="cb148-2"><a href="data-types-objects-in-r.html#cb148-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-3"><a href="data-types-objects-in-r.html#cb148-3" aria-hidden="true" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(a2)</span>
+<span id="cb148-4"><a href="data-types-objects-in-r.html#cb148-4" aria-hidden="true" tabindex="-1"></a>a4 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(a2))</span>
+<span id="cb148-5"><a href="data-types-objects-in-r.html#cb148-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-6"><a href="data-types-objects-in-r.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="co">#level 1-11</span></span>
+<span id="cb148-7"><a href="data-types-objects-in-r.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(a3,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb150-1"><a href="data-types-objects-in-r.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co">#elements 1-11</span></span>
+<span id="cb150-2"><a href="data-types-objects-in-r.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(a4,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb152-1"><a href="data-types-objects-in-r.html#cb152-1" aria-hidden="true" tabindex="-1"></a>a<span class="sc">==</span>a4</span></code></pre></div>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div id="matrices" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> <strong>Matrices</strong><a href="data-types-objects-in-r.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matrices are two dimensional vectors, which is a fancy way of saying that a matrix is a tabulated vector. Because one
+can think of a matrix as a vector folded into a table, matrices only contain elements of the same type (e.g. only
+integer, only characters, etc).</p>
+<p>The code snippet bellow uses the function dim to change the dimensions of the vector.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb154-1"><a href="data-types-objects-in-r.html#cb154-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">3.5</span>, <span class="fl">4.6</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb154-2"><a href="data-types-objects-in-r.html#cb154-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-3"><a href="data-types-objects-in-r.html#cb154-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mat)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb156-1"><a href="data-types-objects-in-r.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Coers the vector into a matrix by changing its dimantion (i.e. adding collumns and rows)</span></span>
+<span id="cb156-2"><a href="data-types-objects-in-r.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="co">#When chaning dimentions the order is rows,columns (here 4 rows, 3 columns)</span></span>
+<span id="cb156-3"><a href="data-types-objects-in-r.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb156-4"><a href="data-types-objects-in-r.html#cb156-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="data-types-objects-in-r.html#cb156-5" aria-hidden="true" tabindex="-1"></a>mat</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  3.5  3.9  4.3
+## [2,]  3.6  4.0  4.4
+## [3,]  3.7  4.1  4.5
+## [4,]  3.8  4.2  4.6</code></pre>
+<p>Note how the vector is folded into a two dimensional vector from top to bottom in each column.
+This essentially converts each column and each row to a vector.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="figs/matrix.png" alt="R matrix, each row and each column are vectors" width="80%" />
+<p class="caption">
+Figure 1.1: R matrix, each row and each column are vectors
+</p>
+</div>
+<p><br></p>
+<p>We can also use the class and is.x function to inspect the column and the matrix as a whole and see that it is indeed
+both a vector and made of vectors.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb158-1"><a href="data-types-objects-in-r.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat)</span></code></pre></div>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb160-1"><a href="data-types-objects-in-r.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat[<span class="dv">1</span>,])</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb162-1"><a href="data-types-objects-in-r.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat[,<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb164-1"><a href="data-types-objects-in-r.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(mat)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb166-1"><a href="data-types-objects-in-r.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.atomic</span>(mat)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb168-1"><a href="data-types-objects-in-r.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.atomic</span>(mat[<span class="dv">1</span>,])</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise</strong></p>
+<p>There are several R functions that can be used to generate a matrix.</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a numeric vector of 10 elements, use the matrix function to convert is to a matrix with 5 rows and two columns, what happens when the argument byrow is set to TRUE?</p></li>
+<li><p>Create a character vector of 10 element use the function cbind to bind it with the vector from the previous question. Are the vectors columns or rows? What happens when you use the function rbind?</p></li>
+<li><p>Use the typeof function on one of the matrices from question 2, what type of data does this matrix contain, what does it tell you about the coercion of data type within a matrix?</p></li>
+</ol>
+<hr />
+<p><br></p>
+<div id="working-with-matrices" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> <strong>Working with matrices</strong><a href="data-types-objects-in-r.html#working-with-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A matrix is basically a vector with two dimensions when a matrix is indexed like a vector, i.e.
+matrix[n]. By default, when a matrix is indexed in that manor R will return the value found on the
+nth position of the original vector (see snippet bellow).
+One of R strength is that it allows to also index and access any combination of columns and rows,
+not just individual elements. This is done similar to accessing a vector only the positions of the
+rows and columns are separated by a comma, e.g. matrix[row,column]. This form of indexing allows to
+subset specific rows and columns from the matrix, as demonstrated in the snippet bellow.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb170-1"><a href="data-types-objects-in-r.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mat[5] will output the element occupaing the fifth position of the vector used to construct the</span></span>
+<span id="cb170-2"><a href="data-types-objects-in-r.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co">#matrix i.e. 3.9</span></span>
+<span id="cb170-3"><a href="data-types-objects-in-r.html#cb170-3" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] 3.9</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb172-1"><a href="data-types-objects-in-r.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mat[,1] will output the first column of the matrix</span></span>
+<span id="cb172-2"><a href="data-types-objects-in-r.html#cb172-2" aria-hidden="true" tabindex="-1"></a>mat[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 3.5 3.6 3.7 3.8</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb174-1"><a href="data-types-objects-in-r.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mat[,2:3] will output the 2nd and 3rd columns of the matrix </span></span>
+<span id="cb174-2"><a href="data-types-objects-in-r.html#cb174-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-3"><a href="data-types-objects-in-r.html#cb174-3" aria-hidden="true" tabindex="-1"></a>mat[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]  3.9  4.3
+## [2,]  4.0  4.4
+## [3,]  4.1  4.5
+## [4,]  4.2  4.6</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb176-1"><a href="data-types-objects-in-r.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mat[1,] will output the first row of the matrix</span></span>
+<span id="cb176-2"><a href="data-types-objects-in-r.html#cb176-2" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>## [1] 3.5 3.9 4.3</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb178-1"><a href="data-types-objects-in-r.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mat[1:2,] will output the first 2 rows of the matrix</span></span>
+<span id="cb178-2"><a href="data-types-objects-in-r.html#cb178-2" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  3.5  3.9  4.3
+## [2,]  3.6  4.0  4.4</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb180-1"><a href="data-types-objects-in-r.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mat[1:2,1:2] will subset the first two rows and columns of the matrix</span></span>
+<span id="cb180-2"><a href="data-types-objects-in-r.html#cb180-2" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]  3.5  3.9
+## [2,]  3.6  4.0</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb182-1"><a href="data-types-objects-in-r.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The rows and colums of a matrix can be named, so that the vactors have meaningfull names.</span></span>
+<span id="cb182-2"><a href="data-types-objects-in-r.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This is done using the function colnames and rownames</span></span>
+<span id="cb182-3"><a href="data-types-objects-in-r.html#cb182-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-4"><a href="data-types-objects-in-r.html#cb182-4" aria-hidden="true" tabindex="-1"></a>stud_mrks <span class="ot">&lt;-</span> mat</span>
+<span id="cb182-5"><a href="data-types-objects-in-r.html#cb182-5" aria-hidden="true" tabindex="-1"></a>rn <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Class1&quot;</span>,<span class="st">&quot;Class2&quot;</span>,<span class="st">&quot;Class3&quot;</span>,<span class="st">&quot;Class4&quot;</span>)</span>
+<span id="cb182-6"><a href="data-types-objects-in-r.html#cb182-6" aria-hidden="true" tabindex="-1"></a>cn <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Student1&quot;</span>,<span class="st">&quot;Student2&quot;</span>,<span class="st">&quot;Student3&quot;</span>)</span>
+<span id="cb182-7"><a href="data-types-objects-in-r.html#cb182-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(stud_mrks) <span class="ot">&lt;-</span> rn</span>
+<span id="cb182-8"><a href="data-types-objects-in-r.html#cb182-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stud_mrks) <span class="ot">&lt;-</span> cn</span>
+<span id="cb182-9"><a href="data-types-objects-in-r.html#cb182-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-10"><a href="data-types-objects-in-r.html#cb182-10" aria-hidden="true" tabindex="-1"></a>stud_mrks</span></code></pre></div>
+<pre><code>##        Student1 Student2 Student3
+## Class1      3.5      3.9      4.3
+## Class2      3.6      4.0      4.4
+## Class3      3.7      4.1      4.5
+## Class4      3.8      4.2      4.6</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb184-1"><a href="data-types-objects-in-r.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The names can be used to index the matrix, note the use of comma.</span></span>
+<span id="cb184-2"><a href="data-types-objects-in-r.html#cb184-2" aria-hidden="true" tabindex="-1"></a>stud_mrks[<span class="st">&quot;Class1&quot;</span>,]</span></code></pre></div>
+<pre><code>## Student1 Student2 Student3 
+##      3.5      3.9      4.3</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb186-1"><a href="data-types-objects-in-r.html#cb186-1" aria-hidden="true" tabindex="-1"></a>stud_mrks[,<span class="st">&quot;Student1&quot;</span>]</span></code></pre></div>
+<pre><code>## Class1 Class2 Class3 Class4 
+##    3.5    3.6    3.7    3.8</code></pre>
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Assign the matrix mat to the variable mat_bs and replace the first row of mat_bs with A,B,C</p></li>
+<li><p>Replace the 4th element in the matrix mat_bs with 1000</p></li>
+<li><p>Assign the 3rd column of the matrix mat_bs the the vector v_bs</p></li>
+<li><p>Use the function t to transform the matrix mat_bs, how many rows does it have now?</p></li>
+</ol>
+<hr />
+<p><br></p>
+<p>One of R’s greatest strength is the ability to perform tasks on a matrix as a whole, negating the need to use a loop
+every time an operation is needed to be done on several columns.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb188-1"><a href="data-types-objects-in-r.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s generate a new matrix, this time with matrix function</span></span>
+<span id="cb188-2"><a href="data-types-objects-in-r.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co">#byrow, fill the matrix by rows</span></span>
+<span id="cb188-3"><a href="data-types-objects-in-r.html#cb188-3" aria-hidden="true" tabindex="-1"></a>mat2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,<span class="dv">100</span>,<span class="at">replace=</span>F),<span class="at">nrow =</span> <span class="dv">10</span>,<span class="at">ncol =</span> <span class="dv">10</span>,<span class="at">byrow =</span> T)</span>
+<span id="cb188-4"><a href="data-types-objects-in-r.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mat2)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]  859  449  110  675  232  893  619  974  271   630
+## [2,]  531  621  753  366  157  866  135  705   21   769
+## [3,]  886  990   98  823  586  411  150  783  776   382
+## [4,]  937  652  540  327  239  741  951   46  681   842
+## [5,]  903  670  947  446  785  661   53  646   12   113
+## [6,]   25  538  433  763  227  622   71  173  521   762</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb190-1"><a href="data-types-objects-in-r.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co">#When handling data, there is sometimes a need to transform it.</span></span>
+<span id="cb190-2"><a href="data-types-objects-in-r.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Log transformation is a common one. R&#39;s handling of matrices allows to do it without resorting to a for loop.</span></span>
+<span id="cb190-3"><a href="data-types-objects-in-r.html#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that I am copying the matrix because I still want to use the original</span></span>
+<span id="cb190-4"><a href="data-types-objects-in-r.html#cb190-4" aria-hidden="true" tabindex="-1"></a>mat2_log <span class="ot">&lt;-</span> <span class="fu">log10</span>(mat2)</span>
+<span id="cb190-5"><a href="data-types-objects-in-r.html#cb190-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mat2_log)</span></code></pre></div>
+<pre><code>##          [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+## [1,] 2.933993 2.652246 2.041393 2.829304 2.365488 2.950851 2.791691 2.988559
+## [2,] 2.725095 2.793092 2.876795 2.563481 2.195900 2.937518 2.130334 2.848189
+## [3,] 2.947434 2.995635 1.991226 2.915400 2.767898 2.613842 2.176091 2.893762
+## [4,] 2.971740 2.814248 2.732394 2.514548 2.378398 2.869818 2.978181 1.662758
+## [5,] 2.955688 2.826075 2.976350 2.649335 2.894870 2.820201 1.724276 2.810233
+## [6,] 1.397940 2.730782 2.636488 2.882525 2.356026 2.793790 1.851258 2.238046
+##          [,9]    [,10]
+## [1,] 2.432969 2.799341
+## [2,] 1.322219 2.885926
+## [3,] 2.889862 2.582063
+## [4,] 2.833147 2.925312
+## [5,] 1.079181 2.053078
+## [6,] 2.716838 2.881955</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb192-1"><a href="data-types-objects-in-r.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Another common transformation is to calculate the proportion of value in the column or raw (often referred to as normalizing the data). R makes it easy to normalize matrices by rows or columns.</span></span>
+<span id="cb192-2"><a href="data-types-objects-in-r.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="co">#All that&#39;s needed to do is to divide the matrix by the sum of its columns or rows</span></span>
+<span id="cb192-3"><a href="data-types-objects-in-r.html#cb192-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-4"><a href="data-types-objects-in-r.html#cb192-4" aria-hidden="true" tabindex="-1"></a>mat2_freq_row <span class="ot">&lt;-</span> mat2<span class="sc">/</span><span class="fu">rowSums</span>(mat2)</span>
+<span id="cb192-5"><a href="data-types-objects-in-r.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mat2_freq_row)</span></code></pre></div>
+<pre><code>##             [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+## [1,] 0.150385154 0.07860644 0.01925770 0.11817227 0.04061625 0.15633754
+## [2,] 0.107839155 0.12611698 0.15292445 0.07432981 0.03188465 0.17587327
+## [3,] 0.150552251 0.16822430 0.01665251 0.13984707 0.09957519 0.06983857
+## [4,] 0.157320349 0.10946944 0.09066488 0.05490262 0.04012760 0.12441236
+## [5,] 0.172459893 0.12796028 0.18086325 0.08517953 0.14992361 0.12624141
+## [6,] 0.006045949 0.13010883 0.10471584 0.18452237 0.05489722 0.15042322
+##            [,7]        [,8]        [,9]      [,10]
+## [1,] 0.10836835 0.170518207 0.047443978 0.11029412
+## [2,] 0.02741673 0.143176279 0.004264825 0.15617384
+## [3,] 0.02548853 0.133050127 0.131860663 0.06491079
+## [4,] 0.15967092 0.007723304 0.114338482 0.14137005
+## [5,] 0.01012223 0.123376623 0.002291826 0.02158136
+## [6,] 0.01717050 0.041837969 0.125997582 0.18428053</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb194-1"><a href="data-types-objects-in-r.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rowSums should be 1</span></span>
+<span id="cb194-2"><a href="data-types-objects-in-r.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(mat2_freq_row)</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb196-1"><a href="data-types-objects-in-r.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co">#When normalizing by column it is impossible to just use the &quot;/&quot; operator, due to the way R stores matrices. Need to use the sweep function. This is not an issue when normalizing by rows.</span></span>
+<span id="cb196-2"><a href="data-types-objects-in-r.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="co">#use ?sweep to see which each of the arguments means.</span></span>
+<span id="cb196-3"><a href="data-types-objects-in-r.html#cb196-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-4"><a href="data-types-objects-in-r.html#cb196-4" aria-hidden="true" tabindex="-1"></a>mat2_freq_columns <span class="ot">&lt;-</span> <span class="fu">sweep</span>(mat2,<span class="dv">2</span>,<span class="fu">colSums</span>(mat2),<span class="st">&quot;/&quot;</span>)</span>
+<span id="cb196-5"><a href="data-types-objects-in-r.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mat2_freq_columns)</span></code></pre></div>
+<pre><code>##             [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+## [1,] 0.141492341 0.07405575 0.01941405 0.12525515 0.04458109 0.11777895
+## [2,] 0.087464998 0.10242454 0.13289799 0.06791613 0.03016910 0.11421788
+## [3,] 0.145939713 0.16328550 0.01729615 0.15271850 0.11260569 0.05420733
+## [4,] 0.154340306 0.10753752 0.09530533 0.06067916 0.04592621 0.09773147
+## [5,] 0.148739911 0.11050635 0.16713731 0.08276118 0.15084550 0.08718016
+## [6,] 0.004117938 0.08873495 0.07642076 0.14158471 0.04362029 0.08203640
+##            [,7]        [,8]        [,9]      [,10]
+## [1,] 0.16027965 0.204407135 0.057684121 0.10607846
+## [2,] 0.03495598 0.147953830 0.004469987 0.12948308
+## [3,] 0.03883998 0.164323190 0.165176671 0.06432059
+## [4,] 0.24624547 0.009653725 0.144955300 0.14177471
+## [5,] 0.01372346 0.135571878 0.002554278 0.01902677
+## [6,] 0.01838426 0.036306401 0.110898255 0.12830443</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb198-1"><a href="data-types-objects-in-r.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If everything worked out the sum of each column should be 1 now</span></span>
+<span id="cb198-2"><a href="data-types-objects-in-r.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(mat2_freq_columns)</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb200-1"><a href="data-types-objects-in-r.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Just like vectors it is also possible to preform mathematical operations on two matrices</span></span>
+<span id="cb200-2"><a href="data-types-objects-in-r.html#cb200-2" aria-hidden="true" tabindex="-1"></a>mat2_mlt <span class="ot">&lt;-</span> mat2_freq_columns<span class="sc">*</span>mat2_log</span>
+<span id="cb200-3"><a href="data-types-objects-in-r.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mat2_mlt)</span></code></pre></div>
+<pre><code>##            [,1]      [,2]       [,3]      [,4]       [,5]      [,6]       [,7]
+## [1,] 0.41513756 0.1964141 0.03963170 0.3543849 0.10545604 0.3475482 0.44745119
+## [2,] 0.23835039 0.2860811 0.38232026 0.1741017 0.06624832 0.3355171 0.07446791
+## [3,] 0.43014763 0.4891438 0.03444055 0.4452355 0.31168102 0.1416894 0.08451934
+## [4,] 0.45865920 0.3026372 0.26041169 0.1525806 0.10923080 0.2804716 0.73336346
+## [5,] 0.43962873 0.3122992 0.49745913 0.2192621 0.43667807 0.2458656 0.02366303
+## [6,] 0.00575663 0.2423158 0.20148240 0.4081214 0.10277054 0.2291925 0.03403401
+##            [,8]        [,9]      [,10]
+## [1,] 0.61088278 0.140343695 0.29694975
+## [2,] 0.42140049 0.005910303 0.37367863
+## [3,] 0.47551216 0.477337739 0.16607985
+## [4,] 0.01605181 0.410679690 0.41473527
+## [5,] 0.38098850 0.002756529 0.03906346
+## [6,] 0.08125540 0.301292561 0.36976759</code></pre>
+<p>Because matrices are tables but behave like vectors, operating on them is memory efficient and many R packages use
+them as a preferred object.</p>
+</div>
+</div>
+<div id="lists" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> <strong>Lists</strong><a href="data-types-objects-in-r.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A list is a multidimensional vector, which is a fancy way of saying that a list is a vector that can house any R
+object as an element.
+The elements of a list are independent of each other, making it a great object to store the output of function that
+handle data. For example some functions from the stringer package output their result as lists. Especially those with
+_all suffix.</p>
+<p>The code snippet bellow demonstrate how to create lists, as always there is more than one way to obtain your goal.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb202-1"><a href="data-types-objects-in-r.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating an empty list of 10 elements</span></span>
+<span id="cb202-2"><a href="data-types-objects-in-r.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Because a list is basically a vector of elements, it is possible to creat it using the vector function</span></span>
+<span id="cb202-3"><a href="data-types-objects-in-r.html#cb202-3" aria-hidden="true" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb202-4"><a href="data-types-objects-in-r.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(list1)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb204-1"><a href="data-types-objects-in-r.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(list1)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb206-1"><a href="data-types-objects-in-r.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.atomic</span>(list1) <span class="co">#why is it not atomic?</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb208-1"><a href="data-types-objects-in-r.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list1,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb210-1"><a href="data-types-objects-in-r.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a list by using the list function</span></span>
+<span id="cb210-2"><a href="data-types-objects-in-r.html#cb210-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">1000</span>,<span class="dv">100</span>,<span class="at">replace =</span> F),<span class="at">ncol =</span> <span class="dv">2</span>),</span>
+<span id="cb210-3"><a href="data-types-objects-in-r.html#cb210-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">100</span>,<span class="at">by=</span><span class="dv">2</span>),<span class="fu">rep</span>(<span class="dv">10</span>,<span class="dv">50</span>)),<span class="fu">c</span>(<span class="st">&quot;Category1&quot;</span>,<span class="st">&quot;Category2&quot;</span>),list1,</span>
+<span id="cb210-4"><a href="data-types-objects-in-r.html#cb210-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Cat&quot;</span>,<span class="st">&quot;Dog&quot;</span>,<span class="st">&quot;Cat&quot;</span>,<span class="st">&quot;Mouse&quot;</span>)) )</span></code></pre></div>
+<div id="working-with-lists" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> <strong>Working with lists</strong><a href="data-types-objects-in-r.html#working-with-lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The previous snippet demonstrated that lists can store any type of R object, even other lists.
+As mentioned, the elements of a list are independent of each other and in order to modify them they need to be
+accessed individually.
+Since lists are vectors, each element can be inspected, like one would inspect a vector.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb211-1"><a href="data-types-objects-in-r.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Inspecting the 3rd element of list2</span></span>
+<span id="cb211-2"><a href="data-types-objects-in-r.html#cb211-2" aria-hidden="true" tabindex="-1"></a>list2[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Category1&quot; &quot;Category2&quot;</code></pre>
+<p>However, indexing a list like a vector does not allow you to modify the element</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb213-1"><a href="data-types-objects-in-r.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note how the head function is unable to truncate the element to its first 2 componenets</span></span>
+<span id="cb213-2"><a href="data-types-objects-in-r.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list2[<span class="dv">5</span>],<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] Cat   Dog   Cat   Mouse
+## Levels: Cat Dog Mouse</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb215-1"><a href="data-types-objects-in-r.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note how indexing like a vector does not allow you to subset the element itself</span></span>
+<span id="cb215-2"><a href="data-types-objects-in-r.html#cb215-2" aria-hidden="true" tabindex="-1"></a>list2[<span class="dv">5</span>][<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] Cat   Dog   Cat   Mouse
+## Levels: Cat Dog Mouse</code></pre>
+<p>In case you noticed, when using the head function on a list each element is sounded by double square brackets ( [[ ).
+When subseting a list with [, it will always return another list. Think of it elements one on a character vector
+where each element is a string. You can see each string even replace them but can’t modify them. In order to access
+and modify an element of the list [[ have to be used.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb217-1"><a href="data-types-objects-in-r.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subseting the last element of list2 and assigning it to the first element of list1</span></span>
+<span id="cb217-2"><a href="data-types-objects-in-r.html#cb217-2" aria-hidden="true" tabindex="-1"></a>list1[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> list2[[<span class="dv">5</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb217-3"><a href="data-types-objects-in-r.html#cb217-3" aria-hidden="true" tabindex="-1"></a>list1[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] Cat Dog Cat
+## Levels: Cat Dog Mouse</code></pre>
+</div>
+<div id="lists-and-the-operator" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> <strong>Lists and the $ operator</strong><a href="data-types-objects-in-r.html#lists-and-the-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>$ is an operator that can be thought of as the equivalent of [[ ]], therefore it can be used to access elements of a list. However, in order to use it the elements must be named first.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb219-1"><a href="data-types-objects-in-r.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Are the elements of list2 named?</span></span>
+<span id="cb219-2"><a href="data-types-objects-in-r.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(list2)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb221-1"><a href="data-types-objects-in-r.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Naming the elements of the list</span></span>
+<span id="cb221-2"><a href="data-types-objects-in-r.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(list2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sample1&quot;</span>,<span class="st">&quot;Sample2&quot;</span>,<span class="st">&quot;Categories&quot;</span>,<span class="st">&quot;Nested_list&quot;</span>,<span class="st">&quot;Pets&quot;</span>)</span>
+<span id="cb221-3"><a href="data-types-objects-in-r.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="data-types-objects-in-r.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(list2)</span></code></pre></div>
+<pre><code>## [1] &quot;Sample1&quot;     &quot;Sample2&quot;     &quot;Categories&quot;  &quot;Nested_list&quot; &quot;Pets&quot;</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb223-1"><a href="data-types-objects-in-r.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Accessing the list using $, note how rstudio autocompletes the elements</span></span>
+<span id="cb223-2"><a href="data-types-objects-in-r.html#cb223-2" aria-hidden="true" tabindex="-1"></a>list2<span class="sc">$</span>Categories</span></code></pre></div>
+<pre><code>## [1] &quot;Category1&quot; &quot;Category2&quot;</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb225-1"><a href="data-types-objects-in-r.html#cb225-1" aria-hidden="true" tabindex="-1"></a>list2<span class="sc">$</span>Categories[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Category2&quot;</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb227-1"><a href="data-types-objects-in-r.html#cb227-1" aria-hidden="true" tabindex="-1"></a>list2<span class="sc">$</span>Sample2[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb229-1"><a href="data-types-objects-in-r.html#cb229-1" aria-hidden="true" tabindex="-1"></a>list2<span class="sc">$</span>Sample2[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">11</span></span>
+<span id="cb229-2"><a href="data-types-objects-in-r.html#cb229-2" aria-hidden="true" tabindex="-1"></a>list2<span class="sc">$</span>Sample2[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p><br></p>
+<hr />
+<p><strong>Quick R exercise</strong></p>
+<p>Let’s wrap up working with lists with the following exercise:</p>
+<ol style="list-style-type: decimal">
+<li>Change the values of the 10th raw in sample2 to 7 and 5</li>
+<li>Log10 transform Sample2 and assign it to the first element of list1</li>
+<li>Name the first element of list1 “S2_log”</li>
+<li>Use sweep to normalize Sample1 by dividing it by the sum of its columns, assign it to the 2nd element of list1 and name is S1_norm</li>
+<li>Create a list called list3 that contains only the first 2 elements of list1</li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="data.frames" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> <strong>data.frames</strong><a href="data-types-objects-in-r.html#data.frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data frames are a commonly used objects in R especially in data preparation and analysis.
+Data frames are a special case of a list containing vectors of equal length as element, giving it a rectangular shape. The vectors make up the columns of the dataframe.</p>
+<p>Let’s create a datafram or two</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb231-1"><a href="data-types-objects-in-r.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># datafeames can be created by using the data.frame function</span></span>
+<span id="cb231-2"><a href="data-types-objects-in-r.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that by default strings are coereced to factors, which can be annoying</span></span>
+<span id="cb231-3"><a href="data-types-objects-in-r.html#cb231-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>), </span>
+<span id="cb231-4"><a href="data-types-objects-in-r.html#cb231-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Y =</span> <span class="fu">seq</span>(<span class="dv">100</span>,<span class="dv">1000</span>, <span class="at">by =</span> <span class="dv">100</span>),</span>
+<span id="cb231-5"><a href="data-types-objects-in-r.html#cb231-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Z =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb231-6"><a href="data-types-objects-in-r.html#cb231-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-7"><a href="data-types-objects-in-r.html#cb231-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Each column is an independent vector, that&#39;s why columns X and Y can be numeric and Z a character.</span></span>
+<span id="cb231-8"><a href="data-types-objects-in-r.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df1)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    10 obs. of  3 variables:
+##  $ X: num  1 2 3 4 5 6 7 8 9 10
+##  $ Y: num  100 200 300 400 500 600 700 800 900 1000
+##  $ Z: chr  &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; ...</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb233-1"><a href="data-types-objects-in-r.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="co"># It is also possible to coerce a matrix to a dataframe</span></span>
+<span id="cb233-2"><a href="data-types-objects-in-r.html#cb233-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-3"><a href="data-types-objects-in-r.html#cb233-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mat2)</span>
+<span id="cb233-4"><a href="data-types-objects-in-r.html#cb233-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb233-5"><a href="data-types-objects-in-r.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="co">#let&#39;s see what a dataframe looks like</span></span>
+<span id="cb233-6"><a href="data-types-objects-in-r.html#cb233-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##   X   Y Z
+## 1 1 100 A
+## 2 2 200 B
+## 3 3 300 C
+## 4 4 400 D</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb235-1"><a href="data-types-objects-in-r.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df2,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##    V1  V2  V3  V4  V5  V6  V7  V8  V9 V10
+## 1 859 449 110 675 232 893 619 974 271 630
+## 2 531 621 753 366 157 866 135 705  21 769
+## 3 886 990  98 823 586 411 150 783 776 382
+## 4 937 652 540 327 239 741 951  46 681 842</code></pre>
+<p>As can be seen in the output of the head function all the columns of the dataframes are named.
+This is an attribute of dataframes. The name of the columns can be accessed and changed with the function colnames. The nameless column to the left is not a real column, it is the name of each row. This can be accessed by the function rownames.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb237-1"><a href="data-types-objects-in-r.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df1)</span></code></pre></div>
+<pre><code>## [1] &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb239-1"><a href="data-types-objects-in-r.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df1)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Sample1&quot;</span></span>
+<span id="cb239-2"><a href="data-types-objects-in-r.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df1)</span></code></pre></div>
+<pre><code>## [1] &quot;Sample1&quot; &quot;Y&quot;       &quot;Z&quot;</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb241-1"><a href="data-types-objects-in-r.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">rownames</span>(df2),<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb243-1"><a href="data-types-objects-in-r.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(df2) <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df2)]</span>
+<span id="cb243-2"><a href="data-types-objects-in-r.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">rownames</span>(df2),<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
+<p>Dataframes behave both like a list and like matrix. Because the columns are named, they can be accessed by the $ operator. However just like matrices they can also be subset by [. Just like matrices, operations on dataframes can be vectorized.</p>
+<p>Let’s look at some examples of how to work with dataframes</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb245-1"><a href="data-types-objects-in-r.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co">#accesing a single column using the $ operator</span></span>
+<span id="cb245-2"><a href="data-types-objects-in-r.html#cb245-2" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>Sample1</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb247-1"><a href="data-types-objects-in-r.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co">#subseting a dataframe using []</span></span>
+<span id="cb247-2"><a href="data-types-objects-in-r.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="co">#If no commas are used this is like subseting a list </span></span>
+<span id="cb247-3"><a href="data-types-objects-in-r.html#cb247-3" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##    Sample1    Y
+## 1        1  100
+## 2        2  200
+## 3        3  300
+## 4        4  400
+## 5        5  500
+## 6        6  600
+## 7        7  700
+## 8        8  800
+## 9        9  900
+## 10      10 1000</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb249-1"><a href="data-types-objects-in-r.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Like a matrix (i.e. 2D)</span></span>
+<span id="cb249-2"><a href="data-types-objects-in-r.html#cb249-2" aria-hidden="true" tabindex="-1"></a>df1[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb251-1"><a href="data-types-objects-in-r.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First 3 rows, and first 2 columns</span></span>
+<span id="cb251-2"><a href="data-types-objects-in-r.html#cb251-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##   Sample1   Y
+## 1       1 100
+## 2       2 200
+## 3       3 300</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb253-1"><a href="data-types-objects-in-r.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding a column to the dataframe</span></span>
+<span id="cb253-2"><a href="data-types-objects-in-r.html#cb253-2" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>New_column <span class="ot">&lt;-</span> df2<span class="sc">$</span>V1</span>
+<span id="cb253-3"><a href="data-types-objects-in-r.html#cb253-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-4"><a href="data-types-objects-in-r.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="co">#adding a new row to a dataframe</span></span>
+<span id="cb253-5"><a href="data-types-objects-in-r.html#cb253-5" aria-hidden="true" tabindex="-1"></a>df1[<span class="fu">nrow</span>(df1)<span class="sc">+</span><span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb253-6"><a href="data-types-objects-in-r.html#cb253-6" aria-hidden="true" tabindex="-1"></a>df1[<span class="fu">nrow</span>(df1),]</span></code></pre></div>
+<pre><code>##    Sample1 Y Z New_column
+## 11       1 1 1          1</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb255-1"><a href="data-types-objects-in-r.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Natural log transformation of a dataframe</span></span>
+<span id="cb255-2"><a href="data-types-objects-in-r.html#cb255-2" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> <span class="fu">log</span>(df2)</span>
+<span id="cb255-3"><a href="data-types-objects-in-r.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df3,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##         V1       V2       V3       V4       V5       V6       V7       V8
+## A 6.755769 6.107023 4.700480 6.514713 5.446737 6.794587 6.428105 6.881411
+## B 6.274762 6.431331 6.624065 5.902633 5.056246 6.763885 4.905275 6.558198
+## C 6.786717 6.897705 4.584967 6.712956 6.373320 6.018593 5.010635 6.663133
+##         V9      V10
+## A 5.602119 6.445720
+## B 3.044522 6.645091
+## C 6.654153 5.945421</code></pre>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-exercise-lab1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-lab1_intro_to_R_pt1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
