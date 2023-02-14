@@ -435,7 +435,7 @@ X <- f3(f2(f1(x))) where the order in which the function run is inside out.
 This sort of writing, while concise, makes the code hard to read. The Tydiverse employs a piping operator %>%, colloquially
 referred to as an "and then" operator
 
-x %>% f1() is equivalent to f1(x) and x %>% f1(y) is the equivalent of f1(x,y).
+x `%>%` f1() is equivalent to f1(x) and x `%>%` f1(y) is the equivalent of f1(x,y).
 
 ```{r piping}
 
@@ -666,8 +666,8 @@ z
 df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
 
 #ifelse can be chaind, either as sequenctial funcation or within the first function.
-#NULL is a filler in case one condition is not met 
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NULL)) %>%
+#NAis a filler in case one condition is not met 
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
   #If test is false keep current value
   mutate(Temp = if_else(Elevation == "Sea level", 15, Temp)) %>%
   mutate(Temp = if_else(Elevation == "Low", 25, Temp))
@@ -679,7 +679,7 @@ df2 <- df2 %>% select(-Temp)
 
 #Note in second if_else, if_else is chaind in the false argument.
 #This will not work with the first one since mutate needs to create the Temp column first
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NULL)) %>%
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
   mutate(Temp = if_else(Elevation == "Sea level", 15, 
                         if_else(Elevation == "Low", 25, Temp))) 
 
