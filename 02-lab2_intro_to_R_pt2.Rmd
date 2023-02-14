@@ -246,7 +246,7 @@ R allows you to export non-tabulated files as well, the following snippet demons
 
 ```{r export txt files}
 #Let's write the first 12 lines of the book as text file
-#Note that if you were writeing into an exsiting file you could use the argument append = T and R would add lines insted of writing over the file.
+#Note that if you were writing into an existing file you could use the argument append = T and R would add lines insted of writing over the file.
 
 write(book.lines[1:12], file = "book.txt", append = F)
 
