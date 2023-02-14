@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>0.1 Setup | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="0.1 Setup | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="0.1 Setup | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="0.1 Setup | Biology 3315 Molecular Evolution and Phylogenetics" />
+  
+  
+  
+
+<meta name="author" content="Dr. Ido Hatam" />
+
+
+<meta name="date" content="2023-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="learning-objectives-1.html"/>
+<link rel="next" href="importing-and-exporting-data-in-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.27/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Biol 3315 lab manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>An introduction to the lab</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-get-the-most-out-of-the-lab.html"><a href="how-to-get-the-most-out-of-the-lab.html"><i class="fa fa-check"></i><strong>How to get the most out of the lab</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><i class="fa fa-check"></i><strong>Lab 1 introduction to the R programming language and the R studio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><strong>Getting started</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#what-is-r"><i class="fa fa-check"></i><strong>What is R?</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#why-use-r"><i class="fa fa-check"></i><strong>Why use R?</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#downloading-and-installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><strong>Downloading and installing R and RStudio desktop</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-r-interpreter"><i class="fa fa-check"></i><strong>The R interpreter</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#short-console-exercise"><i class="fa fa-check"></i><strong>Short console exercise</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-rstudio-ide"><i class="fa fa-check"></i><strong>The RStudio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-text-editor-pane"><i class="fa fa-check"></i><strong>The text editor pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-console-pane"><i class="fa fa-check"></i><strong>The console pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-global-environment-pane"><i class="fa fa-check"></i><strong>The global environment pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-output-pane"><i class="fa fa-check"></i><strong>The output pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#short-exercise-in-rstudio"><i class="fa fa-check"></i><strong>Short exercise in RStudio</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html"><i class="fa fa-check"></i><strong>Programming in R - the basics</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#r-language-and-syntax"><i class="fa fa-check"></i><strong>R language and syntax</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#seeking-help"><i class="fa fa-check"></i><strong>Seeking help</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#extended-help-search"><i class="fa fa-check"></i><strong>Extended help search</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#quick-r-exercise---basic-syntax"><i class="fa fa-check"></i><strong>Quick R exercise - basic syntax:</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#expanding-rs-capabilities-by-installing-additional-function-packages"><i class="fa fa-check"></i><strong>Expanding R’s capabilities by installing additional function packages</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#quick-r-exercise---installing-and-loading-packages"><i class="fa fa-check"></i><strong>Quick R exercise - installing and loading packages</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#variable-assignment-in-r---vs---vs"><i class="fa fa-check"></i><strong>Variable assignment in R (<code>&lt;-</code> vs <code>-&gt;</code> vs <code>=</code>)</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#rules-for-variable-naming-in-r"><i class="fa fa-check"></i><strong>Rules for variable naming in R</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html"><i class="fa fa-check"></i><strong>Data types (objects) in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#atomic-vectors"><i class="fa fa-check"></i><strong>“Atomic” vectors</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#numeric-vectors-double-and-integer"><i class="fa fa-check"></i><strong>Numeric vectors (double and integer)</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#indexing-and-subseting-numeric-vectors"><i class="fa fa-check"></i><strong>Indexing and subseting numeric vectors</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---indexing-and-subseting"><i class="fa fa-check"></i><strong>Quick R exercise - indexing and subseting:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#character-vectors"><i class="fa fa-check"></i><strong>Character vectors:</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---character-vectors"><i class="fa fa-check"></i><strong>Quick R exercise - character vectors:</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---strings"><i class="fa fa-check"></i><strong>Quick R exercise - strings:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#logical-vectors"><i class="fa fa-check"></i><strong>Logical vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#checking-and-coercing"><i class="fa fa-check"></i><strong>Checking and coercing</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-class-function"><i class="fa fa-check"></i><strong>The class function</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-is.x-function-family"><i class="fa fa-check"></i><strong>The is.x function family</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-as.x-function-family"><i class="fa fa-check"></i><strong>The as.x function family</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---checking-and-coercing"><i class="fa fa-check"></i><strong>Quick R exercise - checking and coercing</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#factors---vectors-evil-cousins"><i class="fa fa-check"></i><strong>Factors - vectors’ evil cousins</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#matrices"><i class="fa fa-check"></i><strong>Matrices</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---matrices-1"><i class="fa fa-check"></i><strong>Quick R exercise - matrices 1</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-matrices"><i class="fa fa-check"></i><strong>Working with matrices</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---matrices-2"><i class="fa fa-check"></i><strong>Quick R exercise - matrices 2</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists"><i class="fa fa-check"></i><strong>Lists</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-lists"><i class="fa fa-check"></i><strong>Working with lists</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists-and-the-operator"><i class="fa fa-check"></i><strong>Lists and the $ operator</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---lists"><i class="fa fa-check"></i><strong>Quick R exercise - lists</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#data-frames"><i class="fa fa-check"></i><strong>Data frames</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary-exercise-lab1.html"><a href="summary-exercise-lab1.html"><i class="fa fa-check"></i><strong>Summary exercise Lab1</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-2-data-manipulation-and-presentation-in-r.html"><a href="lab-2-data-manipulation-and-presentation-in-r.html"><i class="fa fa-check"></i><strong>Lab 2 data manipulation and presentation in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
+<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>0.1</b> <strong>Setup</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html"><i class="fa fa-check"></i><strong>Importing and exporting data in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.csv"><i class="fa fa-check"></i><strong>read.csv</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.table"><i class="fa fa-check"></i><strong>read.table</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#reading-non-tabulated-text-files"><i class="fa fa-check"></i><strong>Reading non-tabulated text files</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---working-with-strings-from-non-tabulated-data"><i class="fa fa-check"></i><strong>Quick R exercise - working with strings from non-tabulated data</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-tabulated-data"><i class="fa fa-check"></i><strong>Exporting tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exportin-non-tabulated-data"><i class="fa fa-check"></i><strong>Exportin non-tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---data-exportation"><i class="fa fa-check"></i><strong>Quick R exercise - data exportation</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html"><i class="fa fa-check"></i><strong>(Tidy) Data manipulation in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#tidy-data-in-r"><i class="fa fa-check"></i><strong>Tidy data in R</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse"><i class="fa fa-check"></i><strong>Subseting columns and rows using base R and tidyverse</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using %&gt;% (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#conditional-statements-and-iterations"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><strong>Functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#constructing-a-function"><i class="fa fa-check"></i><strong>Constructing a function</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html"><i class="fa fa-check"></i><strong>Plotting your data</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#potting-data-with-the-ggplot2-package"><i class="fa fa-check"></i><strong>Potting data with the ggplot2 package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#basic-ggplot2-plot"><i class="fa fa-check"></i><strong>Basic ggplot2 plot</strong></a></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#exporting-plots"><i class="fa fa-check"></i><strong>Exporting plots</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary-exercise-lab-2.html"><a href="summary-exercise-lab-2.html"><i class="fa fa-check"></i><strong>Summary exercise lab 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>1</b> Parts</a></li>
+<li class="chapter" data-level="2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>2</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>2.1</b> Footnotes</a></li>
+<li class="chapter" data-level="2.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>2.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>3</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>3.1</b> Equations</a></li>
+<li class="chapter" data-level="3.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>3.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="3.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>3.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>4</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>4.1</b> Publishing</a></li>
+<li class="chapter" data-level="4.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>4.2</b> 404 pages</a></li>
+<li class="chapter" data-level="4.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>4.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>5</b> <strong>Lab 8</strong></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="setup" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> <strong>Setup</strong><a href="setup.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As part of this lab you will learn how to import, export, manipulate and present data in R.
+You will also learn how to use loops and conditional statements to control the flow of your script.
+Lastly you will learn how to write costume (user-defined) functions.</p>
+<p>As part of this lab you will use some packages belonging to the <a href="https://www.tidyverse.org">Tidyverse</a> package family (the
+link has more useful information). Tydiverse packages are geared towards data importation, manipulation, and presentation.
+They all use standardized grammar and philosophy that make the code more streamlined and readable. Stringer, which you have
+already used, is part of the Tidyverse packages.</p>
+<p>It is possible to install packages belonging to the tidyverse individually, however all Tidyverse packages can also be
+installed using a wrapper package called…tidyverse. Before you start this lab, use the code bellow to install and load
+the tidyverse package.
+Installing the</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setup.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb1-2"><a href="setup.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<hr />
+<blockquote>
+<p><strong>Note: even if you installed all tidyverse packages using <code>install.packages("tidyverse")</code>, tidyverse packages such as</strong>
+<strong><code>dplyr</code> can still be loaded individually</strong></p>
+</blockquote>
+<hr />
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="learning-objectives-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importing-and-exporting-data-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-lab2_intro_to_R_pt2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Programming in R - the basics | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="Programming in R - the basics | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Programming in R - the basics | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Programming in R - the basics | Biology 3315 Molecular Evolution and Phylogenetics" />
+  
+  
+  
+
+<meta name="author" content="Dr. Ido Hatam" />
+
+
+<meta name="date" content="2023-02-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="getting-started.html"/>
+<link rel="next" href="data-types-objects-in-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>An introduction to the lab</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-get-the-most-out-of-the-lab.html"><a href="how-to-get-the-most-out-of-the-lab.html"><i class="fa fa-check"></i><strong>How to get the most out of the lab</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><i class="fa fa-check"></i><strong>Lab 1 introduction to the R programming language and the R studio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><strong>Getting started</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#what-is-r"><i class="fa fa-check"></i><strong>What is R?</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#why-use-r"><i class="fa fa-check"></i><strong>Why use R?</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#downloading-and-installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><strong>Downloading and installing R and RStudio desktop</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-r-interpreter"><i class="fa fa-check"></i><strong>The R interpreter</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#short-console-exercise"><i class="fa fa-check"></i><strong>Short console exercise</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-rstudio-ide"><i class="fa fa-check"></i><strong>The RStudio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-text-editor-pane"><i class="fa fa-check"></i><strong>The text editor pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-console-pane"><i class="fa fa-check"></i><strong>The console pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-global-environment-pane"><i class="fa fa-check"></i><strong>The global environment pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-output-pane"><i class="fa fa-check"></i><strong>The output pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#short-exercise-in-rstudio"><i class="fa fa-check"></i><strong>Short exercise in RStudio</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html"><i class="fa fa-check"></i><strong>Programming in R - the basics</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#r-language-and-syntax"><i class="fa fa-check"></i><strong>R language and syntax</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#seeking-help"><i class="fa fa-check"></i><strong>Seeking help</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#extended-help-search"><i class="fa fa-check"></i><strong>Extended help search</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#quick-r-exercise---basic-syntax"><i class="fa fa-check"></i><strong>Quick R exercise - basic syntax:</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#expanding-rs-capabilities-by-installing-additional-function-packages"><i class="fa fa-check"></i><strong>Expanding R’s capabilities by installing additional function packages</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#quick-r-exercise---installing-and-loading-packages"><i class="fa fa-check"></i><strong>Quick R exercise - installing and loading packages</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#variable-assignment-in-r---vs---vs"><i class="fa fa-check"></i><strong>Variable assignment in R (<code>&lt;-</code> vs <code>-&gt;</code> vs <code>=</code>)</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#rules-for-variable-naming-in-r"><i class="fa fa-check"></i><strong>Rules for variable naming in R</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html"><i class="fa fa-check"></i><strong>Data types (objects) in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#atomic-vectors"><i class="fa fa-check"></i><strong>“Atomic” vectors</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#numeric-vectors-double-and-integer"><i class="fa fa-check"></i><strong>Numeric vectors (double and integer)</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#indexing-and-subseting-numeric-vectors"><i class="fa fa-check"></i><strong>Indexing and subseting numeric vectors</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---indexing-and-subseting"><i class="fa fa-check"></i><strong>Quick R exercise - indexing and subseting:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#character-vectors"><i class="fa fa-check"></i><strong>Character vectors:</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---character-vectors"><i class="fa fa-check"></i><strong>Quick R exercise - character vectors:</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---strings"><i class="fa fa-check"></i><strong>Quick R exercise - strings:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#logical-vectors"><i class="fa fa-check"></i><strong>Logical vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#checking-and-coercing"><i class="fa fa-check"></i><strong>Checking and coercing</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-class-function"><i class="fa fa-check"></i><strong>The class function</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-is.x-function-family"><i class="fa fa-check"></i><strong>The is.x function family</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-as.x-function-family"><i class="fa fa-check"></i><strong>The as.x function family</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---checking-and-coercing"><i class="fa fa-check"></i><strong>Quick R exercise - checking and coercing</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#factors---vectors-evil-cousins"><i class="fa fa-check"></i><strong>Factors - vectors’ evil cousins</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#matrices"><i class="fa fa-check"></i><strong>Matrices</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---matrices-1"><i class="fa fa-check"></i><strong>Quick R exercise - matrices 1</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-matrices"><i class="fa fa-check"></i><strong>Working with matrices</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---matrices-2"><i class="fa fa-check"></i><strong>Quick R exercise - matrices 2</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists"><i class="fa fa-check"></i><strong>Lists</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-lists"><i class="fa fa-check"></i><strong>Working with lists</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists-and-the-operator"><i class="fa fa-check"></i><strong>Lists and the $ operator</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---lists"><i class="fa fa-check"></i><strong>Quick R exercise - lists</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#data-frames"><i class="fa fa-check"></i><strong>Data frames</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary-exercise-lab1.html"><a href="summary-exercise-lab1.html"><i class="fa fa-check"></i><strong>Summary exercise Lab1</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>1</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapters-and-sub-chapters.html"><a href="chapters-and-sub-chapters.html"><i class="fa fa-check"></i><b>1.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="1.2" data-path="captioned-figures-and-tables.html"><a href="captioned-figures-and-tables.html"><i class="fa fa-check"></i><b>1.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>2</b> Parts</a></li>
+<li class="chapter" data-level="3" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>3</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>3.1</b> Footnotes</a></li>
+<li class="chapter" data-level="3.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>3.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>4</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>4.1</b> Equations</a></li>
+<li class="chapter" data-level="4.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>4.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="4.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>4.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>5</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>5.1</b> Publishing</a></li>
+<li class="chapter" data-level="5.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>5.2</b> 404 pages</a></li>
+<li class="chapter" data-level="5.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>5.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="programming-in-r---the-basics" class="section level2 unnumbered hasAnchor">
+<h2><strong>Programming in R - the basics</strong><a href="programming-in-r---the-basics.html#programming-in-r---the-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="r-language-and-syntax" class="section level3 unnumbered hasAnchor">
+<h3><strong>R language and syntax</strong><a href="programming-in-r---the-basics.html#r-language-and-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R is an expression language with very simple syntax requiring that you list call-functions, in order to perform tasks
+on your data.</p>
+<p>The code snippit bellow calls two functions. The first function is mathematical operator <code>+</code>, which has an irregular
+function structure ( <a href="https://en.wikipedia.org/wiki/Infix_notation">infix function</a> if you’re interested) that tells
+R to sum two numbers.
+In this case, the arguments (the numbers needed to be summed) are placed on both side of the function (the <code>+</code> operator).
+These are referred to as left hand side (LHD) and right hand side (RHD) arguments.
+The second function is <code>print()</code> , which is a regular function. For regular functions R syntax
+requires that you write the arguments within the parenthesis that come after the function.</p>
+<p>The code snippit also includes hashed text (lines of text begining with <code>#</code>), hasing tells R to ignor the line.
+Hasing can be used to leave comments on the text.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb15-1"><a href="programming-in-r---the-basics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Calling an irregular function &lt;-- btw this is how you comment</span></span>
+<span id="cb15-2"><a href="programming-in-r---the-basics.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span></code></pre></div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb17-1"><a href="programming-in-r---the-basics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Calling a regular function</span></span>
+<span id="cb17-2"><a href="programming-in-r---the-basics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">print</span>(j)</span></code></pre></div>
+<pre><code>[1] &quot;Harry&quot;</code></pre>
+<p>The code snippet above is an example for a script where functions are separated by a line, and functions are called
+sequentially. This can also be achived by separating the functions with semicolon (<code>;</code>).
+The example bellow gives identical results to the previous one however this writing style reduces the readability of the
+code and is therefore discouraged.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb19-1"><a href="programming-in-r---the-basics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#An example of poor style</span></span>
+<span id="cb19-2"><a href="programming-in-r---the-basics.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>;<span class="fu">print</span>(j)</span></code></pre></div>
+<pre><code>[1] 2</code></pre>
+<pre><code>[1] &quot;Harry&quot;</code></pre>
+<p><br></p>
+<p>R is case sensitive, whenever a function is called one needs to make sure that
+both it and it’s arguments are written properly, otherwise the function will produce an error.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb22-1"><a href="programming-in-r---the-basics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Variable is capitalized</span></span>
+<span id="cb22-2"><a href="programming-in-r---the-basics.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">print</span>(J)</span></code></pre></div>
+<pre><code>Error in print(J): object &#39;J&#39; not found</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb24-1"><a href="programming-in-r---the-basics.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Function name is capitalized</span></span>
+<span id="cb24-2"><a href="programming-in-r---the-basics.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">Print</span>(j)</span></code></pre></div>
+<pre><code>Error in Print(j): could not find function &quot;Print&quot;</code></pre>
+<p><br></p>
+<p>The <code>print()</code> function only accepts one argument, however some functions in R accept multiple arguments. The code bellow
+calls the function <code>c()</code>, which concatenates similar variables in R into one variable. When more than one
+argument is used, the arguments should be separated by a comma (<code>,</code>) unless it is an irregular function e.g. mathematical
+and logical operators.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb26-1"><a href="programming-in-r---the-basics.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Spoiler for the order of operations in R</span></span>
+<span id="cb26-2"><a href="programming-in-r---the-basics.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">print</span>(<span class="fu">c</span>(j,k))</span></code></pre></div>
+<pre><code>[1] &quot;Harry&quot; &quot;Poter&quot;</code></pre>
+<p>Here is another example of a function that accepts more than one argument. The sep argument is an example of an
+argument that’s not a variable.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb28-1"><a href="programming-in-r---the-basics.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#j and k are variables, sep (short for separator) is not.</span></span>
+<span id="cb28-2"><a href="programming-in-r---the-basics.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb28-3"><a href="programming-in-r---the-basics.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">print</span>( <span class="fu">paste</span>(j,k, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) )</span></code></pre></div>
+<pre><code>[1] &quot;Harry;Poter&quot;</code></pre>
+</div>
+<div id="seeking-help" class="section level3 unnumbered hasAnchor">
+<h3><strong>Seeking help</strong><a href="programming-in-r---the-basics.html#seeking-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So how can you tell which or how many arguments does a function accept? Well, the RStudio text editor offers a
+glimpse of the arguments as you write the function but the proper way to do is is to call the function documentation.
+This is done by invoking the help function, which uses the <code>?</code> operator as seen in the code snippet below.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb30-1"><a href="programming-in-r---the-basics.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ?paste</span>
+<span id="cb30-2"><a href="programming-in-r---the-basics.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb30-3"><a href="programming-in-r---the-basics.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># This is equivalent of help(paste)</span></span>
+<span id="cb30-4"><a href="programming-in-r---the-basics.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#? is another irregular function that accepts a LHS argument</span></span></code></pre></div>
+<p>When running this code using RStudio, the help tab will be prompted and you will be able to see the paste function
+documentation. Arguments for the function are specified both under usage and arguments.
+Usage specify the arguments and informs the user of arguments with set values, for example the argument sep has a set
+value of ” “, which denotes white space. Often you would encounter arguments with a set value of NULL, this lets R
+know that for all intents and purposes the argument should be ignored unless value is specified by the user.<br />
+The arguments section provides an explanation regarding to the function of each of the arguments. For example the
+value sep is a character string that separates the terms being pasted. This means that the default separator for
+pasted terms is a white space.</p>
+<p><br></p>
+<hr />
+<blockquote>
+<p><strong>The … (dot dot dot) argument</strong></p>
+<p>The paste function also include the “…” argument, this is a special argument that matches any unspecified
+arguments and makes sure that the function accepts them if possible. Here, the underlying conditions is that any
+unspecified argument must be a vector (we will discuss what vectors are later in this tutorial).</p>
+</blockquote>
+<hr />
+<p><br></p>
+<div id="extended-help-search" class="section level4 unnumbered hasAnchor">
+<h4><strong>Extended help search</strong><a href="programming-in-r---the-basics.html#extended-help-search" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sometimes the documentation for a function is not found in the environment you loaded (we will get to libraries of
+functions extending the capabilities of R later in this tutorial), in order to perform an extended search of all
+libraries installed on your computer use double question mark (<code>??</code>).</p>
+<p><br></p>
+</div>
+</div>
+<div id="quick-r-exercise---basic-syntax" class="section level3 unnumbered hasAnchor">
+<h3><strong>Quick R exercise - basic syntax:</strong><a href="programming-in-r---the-basics.html#quick-r-exercise---basic-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>The previous code snippets provided a good example of the order of operation in R when nesting functions. Look at the code bellow, what do you think the order of operation is? Which function will run firs? Which will run second, which will run third?</li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb31-1"><a href="programming-in-r---the-basics.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">c</span>(j,k), </span>
+<span id="cb31-2"><a href="programming-in-r---the-basics.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="fu">c</span>(k,j), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>sum is a function in R. Can you find its purpose and how many arguments does it accept?</li>
+</ol>
+<p><br></p>
+<hr />
+<blockquote>
+<p><strong>A Note on indentation in R</strong></p>
+<p>The example code above includes indentation however, unlike in other programming languages, R does not require that you indent your code. Indentation is only used to make code more readable to humans, especially as it gets more complex. As you will learn, the flow of operations in the basic R is determined by parenthesis “()” when combining functions (e.g. the code above) and braces “{}” when writing costume functions and statements (an example of that is the Useless.function).</p>
+</blockquote>
+<hr />
+<p><br></p>
+</div>
+<div id="expanding-rs-capabilities-by-installing-additional-function-packages" class="section level3 unnumbered hasAnchor">
+<h3><strong>Expanding R’s capabilities by installing additional function packages</strong><a href="programming-in-r---the-basics.html#expanding-rs-capabilities-by-installing-additional-function-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The R language includes an extensive array of functions. Those are known as base R, or core R functions. However,
+sometimes developers will write R functions that enhance R’s capabilities beyond the scope of the basic core
+functions (e.g. enhanced graphical capabilities, faster and more efficient data manipulation, etc.) or functions
+designed for a specialized tasks which doesn’t concern most R users (e.g. population genetics, SQL integration etc.).</p>
+<p>Usually developers package their functions in what is known as function libraries, or packages, and publish them to
+the public. These packages can be downloaded and installed by R users, and the functions they contain expand the
+capabilities of R.</p>
+<p>There are several repositories that store R packages, here we will go over 3 of them.</p>
+<ol style="list-style-type: decimal">
+<li><strong>The CRAN repository</strong></li>
+</ol>
+<p>The <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN repository</a> is the main repository for R
+packages. It is maintained and rigorously curated by the R foundation and currently contains over 15K packages. The scope
+of these packages is very broad and they can enhance R capabilities in anything from graphical representation of data, to
+genomic analysis, to development of web applications. Each of the packages featured in the CRAN repository contains
+documentations including a manual with a list of all functions included in the package and examples for how to use them.
+Some contain workflows.</p>
+<p>To install a package from the CRAN repository use the function install.packages, note that install.packages doesn’t load
+the package. If you want to call functions from within this package you need to load it using the function library ().
+Alternatively you can use “::” which allows you to call the function without load the package that contains it. This may
+also be used if you loaded two packages that contain a function with similar name, or if a function from one package is
+masking another.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb32-1"><a href="programming-in-r---the-basics.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#note the use of &#39;&#39; around the argument in these functions, they will recognize the argument without the use of &#39; &#39; however it is considered good practice to write the code with them.</span></span>
+<span id="cb32-2"><a href="programming-in-r---the-basics.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb32-3"><a href="programming-in-r---the-basics.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&#39;x&#39;</span>)</span>
+<span id="cb32-4"><a href="programming-in-r---the-basics.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(<span class="st">&#39;x&#39;</span>)</span>
+<span id="cb32-5"><a href="programming-in-r---the-basics.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">::</span><span class="fu">function.x</span>()</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Bioconductor:</strong></li>
+</ol>
+<p><a href="http://www.bioconductor.org/">Bioconductor</a> is a repository for packages designed for handle and analyse high throughput
+biological data (e.g. omics, flow cytometry, etc.). Contains over 1800 packages, however not all packages aimed at
+analyzing high throughput biological data are published in Bioconductor since it requires the variables to be stored in an
+object with specialized structure (S4 object). The packages are curated by the Bioconductor project for open source
+bioinformatic software. Each Bioconductor package contains at least one vignette, a document that provides a task-oriented
+description of package functionality. Most also contains a manual with example SOPs.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>GitHub:</strong></li>
+</ol>
+<p>GitHab is basically a developer’s domain, and most if not all R packages are stored on GitHab at one point or another
+during the stage for their development. Most packages also have a GitHub version in addition to the CRAN or
+Bioconductor version. The version on GitHub is a developer version with capabilities absent from the official
+distribution of the package. Those versions are normally less stable as they are in the testing stage of the
+development. There is no curation of github packages, therefore documentation is patchy.</p>
+<p>Installing packages from Bioconductor and GitHub require additional package managers and have their own special
+installation functions. We will go over it during labs 3-4.</p>
+<p><br></p>
+<hr />
+</div>
+<div id="quick-r-exercise---installing-and-loading-packages" class="section level3 unnumbered hasAnchor">
+<h3><strong>Quick R exercise - installing and loading packages</strong><a href="programming-in-r---the-basics.html#quick-r-exercise---installing-and-loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Install the package vegan from the CRAN repository</p></li>
+<li><p>What is the purpose of this package?</p></li>
+<li><p>How many arguments does the anosim function from this package accepts, how many of them are variables?</p></li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+<div id="variable-assignment-in-r---vs---vs" class="section level3 unnumbered hasAnchor">
+<h3><strong>Variable assignment in R (<code>&lt;-</code> vs <code>-&gt;</code> vs <code>=</code>)</strong><a href="programming-in-r---the-basics.html#variable-assignment-in-r---vs---vs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R has three ways of assigning values to variables, two of them are leftwards and one rightwards.
+Leftwards assignment is the most common way to assign value to variables, this is similar to other programming language
+like python or C++. In R this is achieved by using the assign operator <code>&lt;-</code>, or alternatively similar to python and C++ by
+using the equal operator <code>=</code>.</p>
+<p>Leftwards assignment groups the values from right to left, therefore in the snippet bellow the value of the variable v will
+be 1 and the value of of variable v2 will also be 1 since it will get the value of variable v.</p>
+<p>While on the surface both methods work identically, beneath the surface they are quit different. <code>=</code> is primeraly used to
+assign value to function arguments and using it out of context may lead to unforseen errors. Therefore, the convention is
+to use <code>&lt;-</code> over <code>=</code>.</p>
+<p><br></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb33-1"><a href="programming-in-r---the-basics.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#This is leftwards assignment</span></span>
+<span id="cb33-2"><a href="programming-in-r---the-basics.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> v <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb33-3"><a href="programming-in-r---the-basics.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb33-4"><a href="programming-in-r---the-basics.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#This is an alternative leftwards assignment</span></span>
+<span id="cb33-5"><a href="programming-in-r---the-basics.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb33-6"><a href="programming-in-r---the-basics.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> v2 <span class="ot">=</span> v</span>
+<span id="cb33-7"><a href="programming-in-r---the-basics.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb33-8"><a href="programming-in-r---the-basics.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> v</span></code></pre></div>
+<pre><code>[1] 1</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb35-1"><a href="programming-in-r---the-basics.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> v2</span></code></pre></div>
+<pre><code>[1] 1</code></pre>
+<p><br></p>
+<p>Rightwards assignment works opposite to leftwards assignment. It uses the rightwards assign operator <code>-&gt;</code>, and groups
+everything left to right. Therefore, in the code snippet bellow, the value of variable v2 will now be 3. Note that
+rightwards assignment is discouraged and good coding practices dictate that all variables should be assigned using
+the leftwards method.</p>
+<p><br></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb37-1"><a href="programming-in-r---the-basics.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span> <span class="ot">-&gt;</span> v2</span>
+<span id="cb37-2"><a href="programming-in-r---the-basics.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb37-3"><a href="programming-in-r---the-basics.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> v</span></code></pre></div>
+<pre><code>[1] 1</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb39-1"><a href="programming-in-r---the-basics.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> v2</span></code></pre></div>
+<pre><code>[1] 3</code></pre>
+<p><br></p>
+<hr />
+<blockquote>
+<p><strong>A note on alliasing and R</strong></p>
+<p>The code above assigns the value of v to variable v2. Unlike python or java for example, this does not
+create an alias (creating an alternative name for a variable stored in memory) and there is no link between v and
+v2. Therefore, v2 can be modified withouth the risk of modefying the variable v as well.</p>
+</blockquote>
+<hr />
+<p><br></p>
+<div id="rules-for-variable-naming-in-r" class="section level4 unnumbered hasAnchor">
+<h4><strong>Rules for variable naming in R</strong><a href="programming-in-r---the-basics.html#rules-for-variable-naming-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Variable naming in R follows a few simple rules:</p>
+<ul>
+<li><p>Variable names must not be the same as R’s special characters or functions (except for c)</p></li>
+<li><p>Variable names must always start with a letter, however they may contain numbers and other characters</p></li>
+<li><p>Special characters must be escaped using ``, and it is recommended that they be avoided in general</p></li>
+<li><p>Variable names are case sensitive (but you already know that)</p></li>
+</ul>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-types-objects-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-lab1_intro_to_R_pt1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

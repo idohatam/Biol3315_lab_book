@@ -166,40 +166,6 @@ Use second-level and higher headings within chapters like: \texttt{\#\#\ A\ shor
 
 The \texttt{index.Rmd} file is required, and is also your first book chapter. It will be the homepage when you render the book.
 
-\hypertarget{render-book}{%
-\section{Render book}\label{render-book}}
-
-You can render the HTML version of this example book without changing anything:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Find the \textbf{Build} pane in the RStudio IDE, and
-\item
-  Click on \textbf{Build Book}, then select your output format, or select ``All formats'' if you'd like to use multiple formats from the same book source files.
-\end{enumerate}
-
-Or build the book from the R console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{render\_book}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-To render this example to PDF as a \texttt{bookdown::pdf\_book}, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
-
-\hypertarget{preview-book}{%
-\section{Preview book}\label{preview-book}}
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in ``Preview book'', or from the R console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{serve\_book}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide}{%
 \chapter*{\texorpdfstring{\textbf{Lab 1 introduction to the R programming language and the R studio IDE}}{Lab 1 introduction to the R programming language and the R studio IDE}}\label{lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide}}
 \addcontentsline{toc}{chapter}{\textbf{Lab 1 introduction to the R programming language and the R studio IDE}}
@@ -305,7 +271,7 @@ the operating system and the processing unit as the code runs.
 
 }
 
-\caption{The R console}\label{fig:unnamed-chunk-4}
+\caption{The R console}\label{fig:unnamed-chunk-2}
 \end{figure}
 
 The R console is an R interpreter with a very simple GUI. It allows you to write and run your code line by line just like you would in a terminal.
@@ -314,52 +280,52 @@ Console input and output:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1}\SpecialCharTok{+}\DecValTok{1}
+\SpecialCharTok{\textgreater{}} \DecValTok{1}\SpecialCharTok{+}\DecValTok{1}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+[1] 2
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{3}\SpecialCharTok{*}\DecValTok{3}
+\SpecialCharTok{\textgreater{}} \DecValTok{3}\SpecialCharTok{*}\DecValTok{3}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9
+[1] 9
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4}\SpecialCharTok{/}\DecValTok{2}
+\SpecialCharTok{\textgreater{}} \DecValTok{4}\SpecialCharTok{/}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+[1] 2
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}
+\SpecialCharTok{\textgreater{}} \DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 16
+[1] 16
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(}\StringTok{"Hello world"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{print}\NormalTok{(}\StringTok{"Hello world"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Hello world"
+[1] "Hello world"
 \end{verbatim}
 
 In the example code above\ldots{} something about the console interpreting white and in gray output\ldots{} Furthermore, the print function was called to print the famous ``Hello world'' combo no coding workshop is complete without.
@@ -374,9 +340,9 @@ Open the R console on your computer and run them.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{j }\OtherTok{\textless{}{-}} \StringTok{"Harry"}
-\NormalTok{k }\OtherTok{\textless{}{-}} \StringTok{"Poter"}
-\NormalTok{rowling }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{First\_name =}\NormalTok{ j,}\AttributeTok{Last\_name =}\NormalTok{ k)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ j }\OtherTok{\textless{}{-}} \StringTok{"Harry"}
+\SpecialCharTok{\textgreater{}}\NormalTok{ k }\OtherTok{\textless{}{-}} \StringTok{"Poter"}
+\SpecialCharTok{\textgreater{}}\NormalTok{ rowling }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{First\_name =}\NormalTok{ j,}\AttributeTok{Last\_name =}\NormalTok{ k)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -392,7 +358,7 @@ For example try running the following function is your console.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ls}\NormalTok{()}
+\SpecialCharTok{\textgreater{}} \FunctionTok{ls}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -447,7 +413,7 @@ scripts using tabs, just like your web browser.
 
 }
 
-\caption{The RStudio text editor}\label{fig:unnamed-chunk-6}
+\caption{The RStudio text editor}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 Using the text editor allows you to send code to the console line by line (or as chunks, by highlighting multiple
@@ -472,7 +438,7 @@ terminal (terminal tab) for system commands (we might use that).
 
 }
 
-\caption{The RStudio console}\label{fig:unnamed-chunk-7}
+\caption{The RStudio console}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \hypertarget{the-global-environment-pane}{%
@@ -531,44 +497,47 @@ Copy the following code to RStudio's text editor
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{j }\OtherTok{\textless{}{-}} \StringTok{"Harry"}
-\NormalTok{k }\OtherTok{\textless{}{-}} \StringTok{"Poter"}
-\NormalTok{rowling }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{First\_name =}\NormalTok{ j,}\AttributeTok{Last\_name =}\NormalTok{ k)}
-
-\FunctionTok{data}\NormalTok{(cars)}
-\NormalTok{car\_data }\OtherTok{\textless{}{-}}\NormalTok{ cars}
-\FunctionTok{plot}\NormalTok{(cars)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ j }\OtherTok{\textless{}{-}} \StringTok{"Harry"}
+\SpecialCharTok{\textgreater{}}\NormalTok{ k }\OtherTok{\textless{}{-}} \StringTok{"Poter"}
+\SpecialCharTok{\textgreater{}}\NormalTok{ rowling }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{First\_name =}\NormalTok{ j,}\AttributeTok{Last\_name =}\NormalTok{ k)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{data}\NormalTok{(cars)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ car\_data }\OtherTok{\textless{}{-}}\NormalTok{ cars}
+\SpecialCharTok{\textgreater{}} \FunctionTok{plot}\NormalTok{(cars)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Useless.function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x)\{}
-  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.numeric}\NormalTok{(x))\{}
-  \FunctionTok{print}\NormalTok{(}\StringTok{"This function is goddamn useless"}\NormalTok{)}
-\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
-    \FunctionTok{print}\NormalTok{(}\StringTok{"This function is goddamn useless"}\NormalTok{)}
-\NormalTok{  \}}
-\NormalTok{\}}
+\SpecialCharTok{\textgreater{}}\NormalTok{ Useless.function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x)\{}
+\SpecialCharTok{+}   \ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.numeric}\NormalTok{(x))\{}
+\SpecialCharTok{+}   \FunctionTok{print}\NormalTok{(}\StringTok{"This function is goddamn useless"}\NormalTok{)}
+\SpecialCharTok{+}\NormalTok{   \} }\ControlFlowTok{else}\NormalTok{ \{}
+\SpecialCharTok{+}     \FunctionTok{print}\NormalTok{(}\StringTok{"This function is goddamn useless"}\NormalTok{)}
+\SpecialCharTok{+}\NormalTok{   \}}
+\SpecialCharTok{+}\NormalTok{ \}}
 \end{Highlighting}
 \end{Shaded}
 
-Try writing the last line instead of copying and pasting it, did you notice how the editor completes the syntax for
-you as the function data.frame is called?
-
-Practice running it line by line, as a chunk, and sourcing it completely.
-
-What happens in the global environment when you ran the code?
-
-Are all called variables listed under the same category in the global environment pane?
-
-Can you tell how much memory is car\_data using?
-
-What happens when you press rowling?
-
-What do you see in the output pane?
-
-What happens when you call the rowling variable directly in the console?
+\begin{itemize}
+\item
+  Try writing the last line instead of copying and pasting it, did you notice how the editor completes the syntax for
+  you as the function data.frame is called?
+\item
+  Practice running it line by line, as a chunk, and sourcing it completely.
+\item
+  What happens in the global environment when you ran the code?
+\item
+  Are all called variables listed under the same category in the global environment pane?
+\item
+  Can you tell how much memory is car\_data using?
+\item
+  What happens when you press rowling?
+\item
+  What do you see in the output pane?
+\item
+  What happens when you call the rowling variable directly in the console?
+\end{itemize}
 
 \hypertarget{programming-in-r---the-basics}{%
 \section*{\texorpdfstring{\textbf{Programming in R - the basics}}{Programming in R - the basics}}\label{programming-in-r---the-basics}}
@@ -581,54 +550,57 @@ What happens when you call the rowling variable directly in the console?
 R is an expression language with very simple syntax requiring that you list call-functions, in order to perform tasks
 on your data.
 
-In the code bellow two functions were called, first is the mathematical operator +, this is somewhat of an irregular
+The code snippit bellow calls two functions. The first function is mathematical operator \texttt{+}, which has an irregular
 function structure ( \href{https://en.wikipedia.org/wiki/Infix_notation}{infix function} if you're interested) that tells
-R to sum the two numbers.
-In this case, the arguments (the numbers needed to be summed) are placed on both side of the function (again in this
-case the + operator). These are referred to as left hand side (LHD) and right hand side (RHD) arguments.
-The second function is the print function, which is a regular function, and R syntax
-requires that you write the arguments within parenthesis that come after the function.
+R to sum two numbers.
+In this case, the arguments (the numbers needed to be summed) are placed on both side of the function (the \texttt{+} operator).
+These are referred to as left hand side (LHD) and right hand side (RHD) arguments.
+The second function is \texttt{print()} , which is a regular function. For regular functions R syntax
+requires that you write the arguments within the parenthesis that come after the function.
+
+The code snippit also includes hashed text (lines of text begining with \texttt{\#}), hasing tells R to ignor the line.
+Hasing can be used to leave comments on the text.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Calling an irregular function \textless{}{-}{-} btw this is how you comment}
-\DecValTok{1}\SpecialCharTok{+}\DecValTok{1}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Calling an irregular function \textless{}{-}{-} btw this is how you comment}
+\ErrorTok{\textgreater{}} \DecValTok{1}\SpecialCharTok{+}\DecValTok{1}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+[1] 2
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Calling a regular function}
-\FunctionTok{print}\NormalTok{(j)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Calling a regular function}
+\ErrorTok{\textgreater{}} \FunctionTok{print}\NormalTok{(j)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Harry"
+[1] "Harry"
 \end{verbatim}
 
-The code snippet above is an example for a script where functions are separated by a line, and each function runs
-sequentially. Functions, however, can also be separated by a semicolon (;) and written in the same line as can be
-seen in the code snippet bellow. Note that while the example bellow gives identical results this writing style is not
-encouraged as it reduces the readability of the code.
+The code snippet above is an example for a script where functions are separated by a line, and functions are called
+sequentially. This can also be achived by separating the functions with semicolon (\texttt{;}).
+The example bellow gives identical results to the previous one however this writing style reduces the readability of the
+code and is therefore discouraged.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#An example of poor code}
-\DecValTok{1}\SpecialCharTok{+}\DecValTok{1}\NormalTok{;}\FunctionTok{print}\NormalTok{(j)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#An example of poor style}
+\ErrorTok{\textgreater{}} \DecValTok{1}\SpecialCharTok{+}\DecValTok{1}\NormalTok{;}\FunctionTok{print}\NormalTok{(j)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+[1] 2
 \end{verbatim}
 
 \begin{verbatim}
-## [1] "Harry"
+[1] "Harry"
 \end{verbatim}
 
 R is case sensitive, whenever a function is called one needs to make sure that
@@ -636,39 +608,40 @@ both it and it's arguments are written properly, otherwise the function will pro
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Variable is capitalized}
-\FunctionTok{print}\NormalTok{(J)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Variable is capitalized}
+\ErrorTok{\textgreater{}} \FunctionTok{print}\NormalTok{(J)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Error in print(J): object 'J' not found
+Error in print(J): object 'J' not found
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Function name is capitalized}
-\FunctionTok{Print}\NormalTok{(j)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Function name is capitalized}
+\ErrorTok{\textgreater{}} \FunctionTok{Print}\NormalTok{(j)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Error in Print(j): could not find function "Print"
+Error in Print(j): could not find function "Print"
 \end{verbatim}
 
-The print function only accepts one argument, however some functions in R accept multiple arguments. The code bellow
-calls the function c, c concatenates similar variables in R into one variable. When more than one
-argument is used, the arguments should be separated by a comma (``,'').
+The \texttt{print()} function only accepts one argument, however some functions in R accept multiple arguments. The code bellow
+calls the function \texttt{c()}, which concatenates similar variables in R into one variable. When more than one
+argument is used, the arguments should be separated by a comma (\texttt{,}) unless it is an irregular function e.g.~mathematical
+and logical operators.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Spoiler for the order of operations in R}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{c}\NormalTok{(j,k))}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Spoiler for the order of operations in R}
+\ErrorTok{\textgreater{}} \FunctionTok{print}\NormalTok{(}\FunctionTok{c}\NormalTok{(j,k))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Harry" "Poter"
+[1] "Harry" "Poter"
 \end{verbatim}
 
 Here is another example of a function that accepts more than one argument. The sep argument is an example of an
@@ -676,26 +649,30 @@ argument that's not a variable.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#j and k are variables, sep (short for separator) is not.}
-
-\FunctionTok{print}\NormalTok{( }\FunctionTok{paste}\NormalTok{(j,k, }\AttributeTok{sep =} \StringTok{";"}\NormalTok{) )}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#j and k are variables, sep (short for separator) is not.}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{print}\NormalTok{( }\FunctionTok{paste}\NormalTok{(j,k, }\AttributeTok{sep =} \StringTok{";"}\NormalTok{) )}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Harry;Poter"
+[1] "Harry;Poter"
 \end{verbatim}
+
+\hypertarget{seeking-help}{%
+\subsection*{\texorpdfstring{\textbf{Seeking help}}{Seeking help}}\label{seeking-help}}
+\addcontentsline{toc}{subsection}{\textbf{Seeking help}}
 
 So how can you tell which or how many arguments does a function accept? Well, the RStudio text editor offers a
 glimpse of the arguments as you write the function but the proper way to do is is to call the function documentation.
-This is done by invoking the help function, which uses the ? operator as seen in the code snippet below.
+This is done by invoking the help function, which uses the \texttt{?} operator as seen in the code snippet below.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{?paste}
-
-\CommentTok{\# This is equivalent of help(paste)}
-\CommentTok{\#? is another irregular function that accepts a LHS argument}
+\SpecialCharTok{\textgreater{}}\NormalTok{ ?paste}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\# This is equivalent of help(paste)}
+\ErrorTok{\textgreater{}} \CommentTok{\#? is another irregular function that accepts a LHS argument}
 \end{Highlighting}
 \end{Shaded}
 
@@ -720,13 +697,17 @@ unspecified argument must be a vector (we will discuss what vectors are later in
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Extended search}
+\hypertarget{extended-help-search}{%
+\subsubsection*{\texorpdfstring{\textbf{Extended help search}}{Extended help search}}\label{extended-help-search}}
+\addcontentsline{toc}{subsubsection}{\textbf{Extended help search}}
 
 Sometimes the documentation for a function is not found in the environment you loaded (we will get to libraries of
 functions extending the capabilities of R later in this tutorial), in order to perform an extended search of all
-libraries installed on your computer use double question mark (``??'').
+libraries installed on your computer use double question mark (\texttt{??}).
 
-\textbf{Quick R exercise:}
+\hypertarget{quick-r-exercise---basic-syntax}{%
+\subsection*{\texorpdfstring{\textbf{Quick R exercise - basic syntax:}}{Quick R exercise - basic syntax:}}\label{quick-r-exercise---basic-syntax}}
+\addcontentsline{toc}{subsection}{\textbf{Quick R exercise - basic syntax:}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -737,8 +718,8 @@ libraries installed on your computer use double question mark (``??'').
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\FunctionTok{c}\NormalTok{(j,k), }
-            \FunctionTok{c}\NormalTok{(k,j), }\AttributeTok{sep =} \StringTok{" "}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\FunctionTok{c}\NormalTok{(j,k), }
+\SpecialCharTok{+}             \FunctionTok{c}\NormalTok{(k,j), }\AttributeTok{sep =} \StringTok{" "}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -760,7 +741,9 @@ The example code above includes indentation however, unlike in other programming
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\#\# \textbf{Expanding R's capabilities by installing additional function packages}
+\hypertarget{expanding-rs-capabilities-by-installing-additional-function-packages}{%
+\subsection*{\texorpdfstring{\textbf{Expanding R's capabilities by installing additional function packages}}{Expanding R's capabilities by installing additional function packages}}\label{expanding-rs-capabilities-by-installing-additional-function-packages}}
+\addcontentsline{toc}{subsection}{\textbf{Expanding R's capabilities by installing additional function packages}}
 
 The R language includes an extensive array of functions. Those are known as base R, or core R functions. However,
 sometimes developers will write R functions that enhance R's capabilities beyond the scope of the basic core
@@ -777,21 +760,29 @@ There are several repositories that store R packages, here we will go over 3 of 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{The CRAN repository:}
+  \textbf{The CRAN repository}
 \end{enumerate}
 
-The \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{CRAN repository} is the main repository for R packages. It is maintained and rigorously curated by the R foundation and currently contains over 15K packages. The scope of these packages is very broad and they can enhance R capabilities in anything from graphical representation of data, to genomic analysis, to development of web applications. Each of the packages featured in the CRAN repository contains documentations including a manual with a list of all functions included in the package and examples for how to use them. Some contain workflows.
+The \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{CRAN repository} is the main repository for R
+packages. It is maintained and rigorously curated by the R foundation and currently contains over 15K packages. The scope
+of these packages is very broad and they can enhance R capabilities in anything from graphical representation of data, to
+genomic analysis, to development of web applications. Each of the packages featured in the CRAN repository contains
+documentations including a manual with a list of all functions included in the package and examples for how to use them.
+Some contain workflows.
 
-To install a package from the CRAN repository use the function install.packages, note that install.packages doesn't load the package. If you want to call functions from within this package you need to load it using the function library ().
-Alternatively you can use ``::'' which allows you to call the function without load the package that contains it. This may also be used if you loaded two packages that contain a function with similar name, or if a function from one package is masking another.
+To install a package from the CRAN repository use the function install.packages, note that install.packages doesn't load
+the package. If you want to call functions from within this package you need to load it using the function library ().
+Alternatively you can use ``::'' which allows you to call the function without load the package that contains it. This may
+also be used if you loaded two packages that contain a function with similar name, or if a function from one package is
+masking another.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#note the use of \textquotesingle{}\textquotesingle{} around the argument in these functions, they will recognize the argument without the use of \textquotesingle{} \textquotesingle{} however it is considered good practice to write the code with them.}
-
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
-\NormalTok{x}\SpecialCharTok{::}\FunctionTok{function.x}\NormalTok{()}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#note the use of \textquotesingle{}\textquotesingle{} around the argument in these functions, they will recognize the argument without the use of \textquotesingle{} \textquotesingle{} however it is considered good practice to write the code with them.}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{install.packages}\NormalTok{(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ x}\SpecialCharTok{::}\FunctionTok{function.x}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -803,7 +794,12 @@ Alternatively you can use ``::'' which allows you to call the function without l
   \textbf{Bioconductor:}
 \end{enumerate}
 
-\href{}{Bioconductor} is a repository for packages designed for handle and analyse high throughput biological data (e.g.~omics, flow cytometry, etc.). Contains over 1800 packages, however not all packages aimed at analyzing high throughput biological data are published in Bioconductor since it requires the variables to be stored in an object with specialized structure (S4 object). The packages are curated by the Bioconductor project for open source bioinformatic software. Each Bioconductor package contains at least one vignette, a document that provides a task-oriented description of package functionality. Most also contains a manual with example SOPs.
+\href{http://www.bioconductor.org/}{Bioconductor} is a repository for packages designed for handle and analyse high throughput
+biological data (e.g.~omics, flow cytometry, etc.). Contains over 1800 packages, however not all packages aimed at
+analyzing high throughput biological data are published in Bioconductor since it requires the variables to be stored in an
+object with specialized structure (S4 object). The packages are curated by the Bioconductor project for open source
+bioinformatic software. Each Bioconductor package contains at least one vignette, a document that provides a task-oriented
+description of package functionality. Most also contains a manual with example SOPs.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -824,7 +820,9 @@ installation functions. We will go over it during labs 3-4.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise}
+\hypertarget{quick-r-exercise---installing-and-loading-packages}{%
+\subsection*{\texorpdfstring{\textbf{Quick R exercise - installing and loading packages}}{Quick R exercise - installing and loading packages}}\label{quick-r-exercise---installing-and-loading-packages}}
+\addcontentsline{toc}{subsection}{\textbf{Quick R exercise - installing and loading packages}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -839,67 +837,73 @@ installation functions. We will go over it during labs 3-4.
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{variable-assignment-in-r---vs---vs}{%
-\section{\texorpdfstring{\textbf{Variable assignment in R (\textless- vs -\textgreater{} vs =)}}{Variable assignment in R (\textless- vs -\textgreater{} vs =)}}\label{variable-assignment-in-r---vs---vs}}
+\subsection*{\texorpdfstring{\textbf{Variable assignment in R (\texttt{\textless{}-} vs \texttt{-\textgreater{}} vs \texttt{=})}}{Variable assignment in R (\textless- vs -\textgreater{} vs =)}}\label{variable-assignment-in-r---vs---vs}}
+\addcontentsline{toc}{subsection}{\textbf{Variable assignment in R (\texttt{\textless{}-} vs \texttt{-\textgreater{}} vs \texttt{=})}}
 
 R has three ways of assigning values to variables, two of them are leftwards and one rightwards.
-Leftwards assignment is the most common way to assign value to variables, this is similar to other programming language like python or C++. In R this is achieved by using the assign operator ``\textless-'', or alternatively similar to python and C++ by using the equal operator ``=''.
+Leftwards assignment is the most common way to assign value to variables, this is similar to other programming language
+like python or C++. In R this is achieved by using the assign operator \texttt{\textless{}-}, or alternatively similar to python and C++ by
+using the equal operator \texttt{=}.
 
-Leftwards assignment groups the values from right to left, therefore in the snippet bellow the value of the variable v will be 1 and the value of of variable v2 will also be 1 since it will get the value of variable v.
+Leftwards assignment groups the values from right to left, therefore in the snippet bellow the value of the variable v will
+be 1 and the value of of variable v2 will also be 1 since it will get the value of variable v.
 
-While on the surface both methods work identically, beneath the surface they are quit different and using ``='' may lead to errors . Therefore, the convention is to always use ``\textless-'' over ``=''.
+While on the surface both methods work identically, beneath the surface they are quit different. \texttt{=} is primeraly used to
+assign value to function arguments and using it out of context may lead to unforseen errors. Therefore, the convention is
+to use \texttt{\textless{}-} over \texttt{=}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#This is leftwards assignment}
-\NormalTok{v }\OtherTok{\textless{}{-}} \DecValTok{1}
-
-\CommentTok{\#This is an alternative leftwards assignment}
-
-\NormalTok{v2 }\OtherTok{=}\NormalTok{ v}
-
-\NormalTok{v}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#This is leftwards assignment}
+\ErrorTok{\textgreater{}}\NormalTok{ v }\OtherTok{\textless{}{-}} \DecValTok{1}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#This is an alternative leftwards assignment}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ v2 }\OtherTok{=}\NormalTok{ v}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ v}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+[1] 1
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{v2}
+\SpecialCharTok{\textgreater{}}\NormalTok{ v2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+[1] 1
 \end{verbatim}
 
-Rightwards assignment works opposite to leftwards assignment. It uses the rightwards assign operator ``-\textgreater{}'', and groups
+Rightwards assignment works opposite to leftwards assignment. It uses the rightwards assign operator \texttt{-\textgreater{}}, and groups
 everything left to right. Therefore, in the code snippet bellow, the value of variable v2 will now be 3. Note that
 rightwards assignment is discouraged and good coding practices dictate that all variables should be assigned using
 the leftwards method.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{3} \OtherTok{{-}\textgreater{}}\NormalTok{ v2}
-
-\NormalTok{v}
+\SpecialCharTok{\textgreater{}} \DecValTok{3} \OtherTok{{-}\textgreater{}}\NormalTok{ v2}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ v}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+[1] 1
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{v2}
+\SpecialCharTok{\textgreater{}}\NormalTok{ v2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3
+[1] 3
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -907,16 +911,16 @@ the leftwards method.
 \begin{quote}
 \textbf{A note on alliasing and R}
 
-While the code above assigns the value of v to variable v2. Unlike in python or java for example, this does not
+The code above assigns the value of v to variable v2. Unlike python or java for example, this does not
 create an alias (creating an alternative name for a variable stored in memory) and there is no link between v and
-v2. v2 can be assigned a different value or be edited by upending more values to it or modifying the original value
-and v1 will not be affected.
+v2. Therefore, v2 can be modified withouth the risk of modefying the variable v as well.
 \end{quote}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{rules-for-variable-naming-in-r}{%
-\section{\texorpdfstring{\textbf{Rules for variable naming in R}}{Rules for variable naming in R}}\label{rules-for-variable-naming-in-r}}
+\subsubsection*{\texorpdfstring{\textbf{Rules for variable naming in R}}{Rules for variable naming in R}}\label{rules-for-variable-naming-in-r}}
+\addcontentsline{toc}{subsubsection}{\textbf{Rules for variable naming in R}}
 
 Variable naming in R follows a few simple rules:
 
@@ -932,7 +936,8 @@ Variable naming in R follows a few simple rules:
 \end{itemize}
 
 \hypertarget{data-types-objects-in-r}{%
-\chapter{\texorpdfstring{\textbf{Data types (objects) in R}}{Data types (objects) in R}}\label{data-types-objects-in-r}}
+\section*{\texorpdfstring{\textbf{Data types (objects) in R}}{Data types (objects) in R}}\label{data-types-objects-in-r}}
+\addcontentsline{toc}{section}{\textbf{Data types (objects) in R}}
 
 The R language has multiple classes of data types often referred to as objects, though R is not an object oriented
 programming language per se. Those include but not limited to vectors, lists, matrices, and data.frames. Each of
@@ -941,7 +946,8 @@ powerful tool in handling, analyzing, and representing data. This part will go o
 R.
 
 \hypertarget{atomic-vectors}{%
-\section{\texorpdfstring{\textbf{``Atomic'' vectors}}{``Atomic'' vectors}}\label{atomic-vectors}}
+\subsection*{\texorpdfstring{\textbf{``Atomic'' vectors}}{``Atomic'' vectors}}\label{atomic-vectors}}
+\addcontentsline{toc}{subsection}{\textbf{``Atomic'' vectors}}
 
 Atomic vectors are probably the most basic form of data class in R. Similar to lists in python, they contain a
 sequence of elements. In fact, the output from all the functions used in this tutorial so far were vectors with one
@@ -950,243 +956,297 @@ each atomic vector class is capable of only storing information of the same type
 atomic vectors in R, this part will detail them and how to work with them.
 
 \hypertarget{numeric-vectors-double-and-integer}{%
-\subsection{\texorpdfstring{\textbf{Numeric vectors (double and integer):}}{Numeric vectors (double and integer):}}\label{numeric-vectors-double-and-integer}}
+\subsubsection*{\texorpdfstring{\textbf{Numeric vectors (double and integer)}}{Numeric vectors (double and integer)}}\label{numeric-vectors-double-and-integer}}
+\addcontentsline{toc}{subsubsection}{\textbf{Numeric vectors (double and integer)}}
 
-Numeric vectors store elements that are numbers, R has two common classes of numeric vectors: double (double precision \href{https://en.wikipedia.org/wiki/Floating-point_arithmetic}{folating point numbers}) and integer.
+Numeric vectors store elements that are numbers, R has two common classes of numeric vectors: doubles (double precision
+\href{https://en.wikipedia.org/wiki/Floating-point_arithmetic}{folating point numbers}) and integers.
 
-The easiest way to create a numeric vector is using the function c which you have already encountered.
+Let's make some:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#double}
-\NormalTok{dub.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
-
-\CommentTok{\#integer}
-\NormalTok{int.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(1L,2L,3L)}
-
-\CommentTok{\#alt way to get an interger sequence, : tells R to get all natural numbers between 1 and 3 }
-
-\NormalTok{int.vec2 }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
-
-
-\NormalTok{dub.vec}
+\SpecialCharTok{\textgreater{}}\NormalTok{ dbl }\OtherTok{\textless{}{-}} \FloatTok{1.5}
+\SpecialCharTok{\textgreater{}}\NormalTok{ dbl}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 2 3
+[1] 1.5
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{int.vec}
+\SpecialCharTok{\textgreater{}}\NormalTok{ int }\OtherTok{\textless{}{-}}\NormalTok{ 1L}
+\SpecialCharTok{\textgreater{}}\NormalTok{ int}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 2 3
+[1] 1
+\end{verbatim}
+
+Ok, that was cheating. What if you actually want to create a vector with multiple elements?
+The easiest way to do that (or any other type of atomic vector) is using the function \texttt{c()} which you have already
+encountered.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#double}
+\ErrorTok{\textgreater{}}\NormalTok{ dub.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#integer}
+\ErrorTok{\textgreater{}}\NormalTok{ int.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(1L,2L,3L)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#alt way to get an interger sequence, : tells R to get all natural numbers between 1 and 3 }
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ int.vec2 }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ dub.vec}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 2 3
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Note this is one way of comparing variables in R}
-\NormalTok{dub.vec }\SpecialCharTok{==}\NormalTok{ int.vec}
+\SpecialCharTok{\textgreater{}}\NormalTok{ int.vec}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE TRUE TRUE
+[1] 1 2 3
 \end{verbatim}
 
-Because the snippet above uses \href{https://en.wikipedia.org/wiki/Natural_number}{natural numbers}, the output of the two
-vectors is pretty much identical (as demonstrated by the is.equal operator ``==''). Furthermore, as will be detailed
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}}\NormalTok{ int.vec2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Note this is one way of comparing variables in R}
+\ErrorTok{\textgreater{}}\NormalTok{ dub.vec }\SpecialCharTok{==}\NormalTok{ int.vec}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE TRUE TRUE
+\end{verbatim}
+
+The snippet above uses \href{https://en.wikipedia.org/wiki/Natural_number}{natural numbers}, the output of the two
+vectors is pretty much identical (as demonstrated by the is.equal operator \texttt{==}). Furthermore, as will be detailed
 later, regardless of the type of numbers used, R will automatically convert classes of numeric vectors when needed.
 However, sometimes it might behoove you know whether a vector contains floats or integers. The RStudio global
 environment pane will denote if a vector is a number or integer, however a more R way to do it is to use the function
-typeof().
+\texttt{typeof()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{typeof}\NormalTok{(dub.vec)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(dub.vec)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "double"
+[1] "double"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{typeof}\NormalTok{(int.vec)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(int.vec)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "integer"
+[1] "integer"
 \end{verbatim}
 
-Working with numerical vectors is pretty straightforward, R allows you to perform mathematical operations on them,
+Working with numerical vectors is straightforward, R allows you to perform mathematical operations on them,
 sum them and even concatenate them. When concatenating an integer and double to a single vector R will coarse it to
 double. This is because coercing a float to integer will result in dropping the float (i.e.~4.99 will be coerced to 4
 you can try it using as.integer(4.99) ). Therefore coercing to double is less restrictive.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#concatenating vactors plus a bonus example of nesting functions. }
-\CommentTok{\#note that you can use the assign operator within a function, that\textquotesingle{}s one of the differences }
-\CommentTok{\#between it and using "=" .}
-\FunctionTok{typeof}\NormalTok{(num.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(dub.vec,int.vec))}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#concatenating vactors plus a bonus example of nesting functions. }
+\ErrorTok{\textgreater{}} \CommentTok{\#note that you can use the assign operator within a function, that\textquotesingle{}s one of the differences }
+\ErrorTok{\textgreater{}} \CommentTok{\#between it and using "=" .}
+\ErrorTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(num.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(dub.vec,int.vec))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "double"
+[1] "double"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{num.vec}
+\SpecialCharTok{\textgreater{}}\NormalTok{ num.vec}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 2 3 1 2 3
+[1] 1 2 3 1 2 3
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#note how when performing a mathematical operation on a vector it is perfomed individually on all}
-\CommentTok{\#the ellements of the vector, negating the need to use a for loop. Flanking the operation with () serves as a call for the newly created variable.}
-
-\NormalTok{(sq.num.vec }\OtherTok{\textless{}{-}}\NormalTok{ num.vec}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#note how when performing a mathematical operation on a vector it is perfomed individually on all}
+\ErrorTok{\textgreater{}} \CommentTok{\#the ellements of the vector, negating the need to use a for loop. Flanking the operation with () serves as a call for the newly created variable.}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ (sq.num.vec }\OtherTok{\textless{}{-}}\NormalTok{ num.vec}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 4 9 1 4 9
+[1] 1 4 9 1 4 9
 \end{verbatim}
 
 \hypertarget{indexing-and-subseting-numeric-vectors}{%
-\subsection{\texorpdfstring{\textbf{Indexing and subseting numeric vectors}}{Indexing and subseting numeric vectors}}\label{indexing-and-subseting-numeric-vectors}}
+\paragraph*{\texorpdfstring{\textbf{Indexing and subseting numeric vectors}}{Indexing and subseting numeric vectors}}\label{indexing-and-subseting-numeric-vectors}}
+\addcontentsline{toc}{paragraph}{\textbf{Indexing and subseting numeric vectors}}
 
-R makes it easy to index, access and subset every element of a numeric vector, this is done using the square brackets. One thing to note is that unlike non-math programming language (looking at you python), R starts indexing at 1 and not at 0.
+R makes it easy to index, access and subset every element of a numeric vector using the square brackets \texttt{{[}}. One
+thing to note is that unlike other programming language (looking at you python), R starts indexing at 1 and not at 0.
 
-In the example below, I used the function rnorm to generate a vector of 100 random numbers normally distributed around a mean of 45 (which would probably be the average for this course) and a standard deviation of 18.
+In the example below, I used the function \texttt{rnorm()} to generate a vector of 100 random numbers normally distributed around
+a mean of 45 (which would probably be this course's average) and a standard deviation of 18.
+Note that I didn't list the arguments for \texttt{rnorm()}, if arguments are not specified R assumes your input is in the order
+defaulted by the function you call.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Note how I didn\textquotesingle{}t specefy the arguments, R knows to match them }
-\CommentTok{\#you just have to make sure you write them in the correct order.}
-\NormalTok{this.course.avarage }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{18}\NormalTok{),}\DecValTok{2}\NormalTok{)}
-
-\CommentTok{\#We can see if our vector is indeed 100 elements long using the function length}
-
-\FunctionTok{length}\NormalTok{(this.course.avarage)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Note how I didn\textquotesingle{}t specify the arguments, R knows to match them }
+\ErrorTok{\textgreater{}} \CommentTok{\#you just have to make sure you write them in the correct order.}
+\ErrorTok{\textgreater{}}\NormalTok{ this.course.avarage }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{18}\NormalTok{),}\DecValTok{2}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#We can see if our vector is indeed 100 elements long using the function length}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{length}\NormalTok{(this.course.avarage)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 100
+[1] 100
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Head lets you glimps the first n elements in a variable, default is 6 (tail is for last)}
-\FunctionTok{head}\NormalTok{(this.course.avarage)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Head lets you glimpse the first n elements in a variable, default is 6 (tail is for last)}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(this.course.avarage)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 56.68 38.81 42.88 27.53 44.56 44.18
+[1] 55.63 70.74 46.14 54.55 37.09 18.52
+\end{verbatim}
+
+OK, you made a vector now what?
+As mentioned above, elements along the vector can be accessed (sometimes referred to as indexed) using the \texttt{{[}{]}}.
+Vectors are mutable meaning that accessing elements allows you to modify them.
+The following code is an example of how.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#let\textquotesingle{}s access the first 10 elements in the vector.}
+\ErrorTok{\textgreater{}}\NormalTok{ this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 55.63 70.74 46.14 54.55 37.09 18.52 75.74 53.68 37.29 47.65
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#You can access any element on the vector using the square brackets[]}
-\CommentTok{\#lets acces the first 10 elements in the vector}
-\NormalTok{this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#You can also replace them with whatever it is you want. }
+\ErrorTok{\textgreater{}} \CommentTok{\#Let\textquotesingle{}s replace the first 10 elements with a copy of the last 10 elements.}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ this.course.avarage[}\DecValTok{91}\SpecialCharTok{:}\DecValTok{100}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Did it work?}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 56.68 38.81 42.88 27.53 44.56 44.18 32.01 83.74 47.82 33.47
+ [1] 41.51 58.84 42.42 37.44 73.20 33.47 58.75 26.77 30.44 56.61
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#You can also replace them with whatever it is you want, lets replace the first 10 elements with a copy of the last 10 elements.}
-
-\NormalTok{this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ this.course.avarage[}\DecValTok{91}\SpecialCharTok{:}\DecValTok{100}\NormalTok{]}
-
-\NormalTok{this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ this.course.avarage[}\DecValTok{91}\SpecialCharTok{:}\DecValTok{100}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 20.87 39.93 78.75 38.11 30.94 47.42 29.13 58.48 37.08 30.92
+ [1] 41.51 58.84 42.42 37.44 73.20 33.47 58.75 26.77 30.44 56.61
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{this.course.avarage[}\DecValTok{91}\SpecialCharTok{:}\DecValTok{100}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Did we replace or just increased the size of the vector? }
+\ErrorTok{\textgreater{}} \FunctionTok{length}\NormalTok{(this.course.avarage)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 20.87 39.93 78.75 38.11 30.94 47.42 29.13 58.48 37.08 30.92
+[1] 100
+\end{verbatim}
+
+Let's look at another example of indexing, were we subset a vector in reverse and modify using some conditions without
+resorting to conditional statements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#note that indexing and subseting works in reverse order too}
+\ErrorTok{\textgreater{}}\NormalTok{ another.course.avarage }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{],this.course.avarage[}\DecValTok{25}\SpecialCharTok{:}\DecValTok{20}\NormalTok{])}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#What would the length of this vector be?}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Another great aspect of vectors is that they allow you to change only a subset values without resorting to conditional statements (if else)}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Let\textquotesingle{}s create a new vector}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ another.course.avarage2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{100}\NormalTok{,}\AttributeTok{mean=}\DecValTok{75}\NormalTok{,}\AttributeTok{sd=}\DecValTok{5}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Let\textquotesingle{}s access only marks higher than the avarage}
+\ErrorTok{\textgreater{}}\NormalTok{ another.course.avarage2[another.course.avarage2}\SpecialCharTok{\textgreater{}}\DecValTok{75}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 77.86762 83.67366 77.63294 77.49356 77.64779 80.49451 75.60915 84.27786
+ [9] 80.15926 79.93986 78.59264 82.41114 78.60995 76.54949 77.42665 75.35348
+[17] 76.30133 79.13636 80.85885 78.36407 77.96290 76.65210 80.75706 80.90959
+[25] 82.90016 82.49072 75.03349 75.61420 77.27623 82.99201 78.59076 79.79772
+[33] 76.88908 77.56748 81.05216 76.25810 85.80128 75.69248 78.32324 84.80004
+[41] 80.22270 75.61953 79.65478 78.61940 79.54729 76.13486 81.10263
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{length}\NormalTok{(this.course.avarage)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#lets change anything equal to or grater than the 75 percentile to 100}
+\ErrorTok{\textgreater{}} \CommentTok{\#this can be done using the quantile function and subseting the 3 element of the vector it produces which it the 75 percentile}
+\ErrorTok{\textgreater{}}\NormalTok{ another.course.avarage2[another.course.avarage2 }\SpecialCharTok{\textgreater{}=} \FunctionTok{quantile}\NormalTok{(another.course.avarage2)[}\DecValTok{3}\NormalTok{]] }\OtherTok{\textless{}{-}} \DecValTok{100}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ another.course.avarage2[another.course.avarage2}\SpecialCharTok{==}\DecValTok{100}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 100
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#note that indexing and subseting works in reverse order too}
-\NormalTok{another.course.avarage }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(this.course.avarage[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{],this.course.avarage[}\DecValTok{25}\SpecialCharTok{:}\DecValTok{20}\NormalTok{])}
-
-\CommentTok{\#What would the length of this vector be?}
-
-\CommentTok{\#Another great aspect of vectors is that they allow you to change only a subset values without resorting to conditional statments (if else)}
-
-\CommentTok{\#Let\textquotesingle{}s creat a new vector}
-
-\NormalTok{another.course.avarage2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{100}\NormalTok{,}\AttributeTok{mean=}\DecValTok{75}\NormalTok{,}\AttributeTok{sd=}\DecValTok{5}\NormalTok{)}
-
-\CommentTok{\#Let\textquotesingle{}s access only marks higher than the avarage}
-\NormalTok{another.course.avarage2[another.course.avarage2}\SpecialCharTok{\textgreater{}}\DecValTok{75}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 81.27745 79.55160 80.81661 76.64541 75.34353 76.35146 77.95521 76.45099
-##  [9] 77.63120 75.42647 78.75686 76.72255 78.22906 77.39144 76.51825 79.00782
-## [17] 75.10254 80.13483 76.92792 78.93757 75.03633 77.77138 80.27029 75.78761
-## [25] 77.19454 76.01650 79.29591 76.71471 80.53481 75.44010 79.22238 78.87174
-## [33] 78.51537 79.22241 82.96653 85.46386 80.72279 75.92532 76.69970 78.86211
-## [41] 77.66545 84.69615 75.12735 79.38274 82.17418 78.42267 76.76462 80.89843
-## [49] 76.14911 77.37502 77.05470
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#lets change anything equal to or grater than the 75 precentile to 100}
-\CommentTok{\#this can be done using the quantile function and subseting the 3 element of the vector it produces which it the 75 precentile}
-\NormalTok{another.course.avarage2[another.course.avarage2 }\SpecialCharTok{\textgreater{}=} \FunctionTok{quantile}\NormalTok{(another.course.avarage2)[}\DecValTok{3}\NormalTok{]] }\OtherTok{\textless{}{-}} \DecValTok{100}
-\NormalTok{another.course.avarage2[another.course.avarage2}\SpecialCharTok{==}\DecValTok{100}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
-## [20] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
-## [39] 100 100 100 100 100 100 100 100 100 100 100 100
+ [1] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+[20] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+[39] 100 100 100 100 100 100 100 100 100 100 100 100
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -1208,7 +1268,9 @@ the brackets.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise:}
+\hypertarget{quick-r-exercise---indexing-and-subseting}{%
+\paragraph*{\texorpdfstring{\textbf{Quick R exercise - indexing and subseting:}}{Quick R exercise - indexing and subseting:}}\label{quick-r-exercise---indexing-and-subseting}}
+\addcontentsline{toc}{paragraph}{\textbf{Quick R exercise - indexing and subseting:}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1234,144 +1296,146 @@ the brackets.
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{character-vectors}{%
-\subsection{\texorpdfstring{\textbf{Character vectors:}}{Character vectors:}}\label{character-vectors}}
+\subsubsection*{\texorpdfstring{\textbf{Character vectors:}}{Character vectors:}}\label{character-vectors}}
+\addcontentsline{toc}{subsubsection}{\textbf{Character vectors:}}
 
-Character vectors only store elements that are characters. These could be letters,numbers, or characters. In order for any of those to count as a character it needs to be flanked by double quotation mark (e.g ``j'').
+Character vectors only store elements that are characters. These could be letters,numbers, or characters. In order for any
+of those to count as a character they needs to be flanked by double quotation mark (e.g \texttt{"j"}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Here is how you create a character vector}
-\NormalTok{char.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"abc"}\NormalTok{,}\StringTok{"abcd"}\NormalTok{)}
-
-\CommentTok{\#Note the length of this vector is 4, the length of each string of characters doesn\textquotesingle{}t impact the }
-\CommentTok{\#length of the vector}
-
-\FunctionTok{length}\NormalTok{(char.vec)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Here is how you create a character vector}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"abc"}\NormalTok{,}\StringTok{"abcd"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Note the length of this vector is 4, the length of each string of characters doesn\textquotesingle{}t impact the }
+\ErrorTok{\textgreater{}} \CommentTok{\#length of the vector}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{length}\NormalTok{(char.vec)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3
+[1] 3
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Character vectors can contain numbers too}
-\NormalTok{char.vec2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{)}
-\FunctionTok{typeof}\NormalTok{(char.vec2)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Character vectors can contain numbers too}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(char.vec2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "character"
+[1] "character"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Tip, R can convert this to a numeric vector}
-\CommentTok{\#There is an as.x function for almost every data type in R }
-\CommentTok{\#(e.g. as.numeric, as.double, as.character, etc.)}
-\NormalTok{char.vec2b }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(char.vec2)}
-
-\CommentTok{\#When concatenating a character and a numeric vector, R will coerce the numeric vector to character.}
-\NormalTok{char.vec3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(char.vec2,int.vec)}
-\FunctionTok{typeof}\NormalTok{(char.vec3)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Tip, R can convert(coerce) this to a numeric vector}
+\ErrorTok{\textgreater{}} \CommentTok{\#There is an as.x function for almost every data type in R }
+\ErrorTok{\textgreater{}} \CommentTok{\#(e.g. as.numeric, as.double, as.character, etc.)}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec2b }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(char.vec2)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#When concatenating a character and a numeric vector, R will coerce the numeric vector to character.}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(char.vec2,int.vec)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(char.vec3)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "character"
+[1] "character"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#alternatively you can use the class, class will not differentiate }
-\CommentTok{\#between the different numeric vectors but will between the different types of vectors}
-\FunctionTok{class}\NormalTok{(char.vec3)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#alternatively you can use the class, class will not differentiate }
+\ErrorTok{\textgreater{}} \CommentTok{\#between the different numeric vectors but will between the different types of vectors}
+\ErrorTok{\textgreater{}} \FunctionTok{class}\NormalTok{(char.vec3)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "character"
+[1] "character"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#If you need to generate a sequence of letters from a{-}z}
-\NormalTok{char.vec4 }\OtherTok{\textless{}{-}}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#If you need to generate a sequence of letters from a{-}z}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec4 }\OtherTok{\textless{}{-}}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
-Indexing character vectors is done similarly to numeric vectors
+Indexing character vectors is done similarly to numeric vectors.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{char.vec[}\DecValTok{1}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "a"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#replacing the first element}
-\NormalTok{char.vec[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"aa"}
-
-\NormalTok{char.vec[}\DecValTok{1}\NormalTok{]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ char.vec[}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "aa"
+[1] "a"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#adding a fourth element}
-\NormalTok{char.vec[}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Fourth"}
-
-\NormalTok{char.vec[}\DecValTok{4}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#replacing the first element}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"aa"}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec[}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Fourth"
+[1] "aa"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#To count the number of characters in each of the strings you can use the function nchar}
-\FunctionTok{nchar}\NormalTok{(char.vec)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#adding a fourth element}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec[}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Fourth"}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec[}\DecValTok{4}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2 3 4 6
+[1] "Fourth"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#just like with numerical vercots it is possible to subset by value}
-\NormalTok{char.vec[char.vec}\SpecialCharTok{==}\StringTok{"a"}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#To count the number of characters in each of the strings you can use the function nchar}
+\ErrorTok{\textgreater{}} \FunctionTok{nchar}\NormalTok{(char.vec)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## character(0)
+[1] 2 3 4 6
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#or rplace a value}
-\NormalTok{char.vec[char.vec}\SpecialCharTok{==}\StringTok{"a"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"a2"}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#just like with numerical vectors it is possible to subset by value}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec[char.vec}\SpecialCharTok{==}\StringTok{"a"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+character(0)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#or rplace a value}
+\ErrorTok{\textgreater{}}\NormalTok{ char.vec[char.vec}\SpecialCharTok{==}\StringTok{"a"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"a2"}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise:}
+\#\#\#\#\#\textbf{Quick R exercise - character vectors:}\{-\}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1399,48 +1463,48 @@ Lets look at an example for the capabilities of stringer
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#load the package you can install it from the cran repo with install.packages}
-\FunctionTok{library}\NormalTok{(stringr)}
-\NormalTok{borring }\OtherTok{\textless{}{-}} \StringTok{"It was the best of times it was the worst of time"}
-
-\CommentTok{\#count the number of characters}
-\FunctionTok{str\_count}\NormalTok{(borring)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#load the package you can install it from the cran repo with install.packages}
+\ErrorTok{\textgreater{}} \FunctionTok{library}\NormalTok{(stringr)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ borring }\OtherTok{\textless{}{-}} \StringTok{"It was the best of times it was the worst of time"}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#count the number of characters}
+\ErrorTok{\textgreater{}} \FunctionTok{str\_count}\NormalTok{(borring)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49
+[1] 49
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#split the string in boring to several elelements after every space}
-\CommentTok{\#the indexing here is for a list, we will discuss lists later in this lab}
-
-\NormalTok{borring2 }\OtherTok{\textless{}{-}} \FunctionTok{str\_split}\NormalTok{(borring, }\StringTok{" "}\NormalTok{)[[}\DecValTok{1}\NormalTok{]] }\CommentTok{\#note how whitespace is reffered to }
-
-\CommentTok{\#replace a part of a string, lets correct the typo at the end of the sentence to times}
-
-\NormalTok{borring }\OtherTok{\textless{}{-}} \FunctionTok{str\_replace}\NormalTok{(borring, }\StringTok{"time$"}\NormalTok{, }\StringTok{"times"}\NormalTok{) }\CommentTok{\#$ is a regular expression that matches the end of the string, otherwise it would just replace the first time occurrence}
-\NormalTok{borring}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#split the string in boring to several elements after every space}
+\ErrorTok{\textgreater{}} \CommentTok{\#the indexing here is for a list, we will discuss lists later in this lab}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ borring2 }\OtherTok{\textless{}{-}} \FunctionTok{str\_split}\NormalTok{(borring, }\StringTok{" "}\NormalTok{)[[}\DecValTok{1}\NormalTok{]] }\CommentTok{\#note how white space is referred to }
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#replace a part of a string, lets correct the typo at the end of the sentence to times}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ borring }\OtherTok{\textless{}{-}} \FunctionTok{str\_replace}\NormalTok{(borring, }\StringTok{"time$"}\NormalTok{, }\StringTok{"times"}\NormalTok{) }\CommentTok{\#$ is a regular expression that matches the end of the string, otherwise it would just replace the first time occurrence}
+\SpecialCharTok{\textgreater{}}\NormalTok{ borring}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "It was the best of times it was the worst of times"
+[1] "It was the best of times it was the worst of times"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#How many times does the word it appear in the string? }
-\CommentTok{\#Note that R is case sensitive, (?i) searches in a case insensitive way (another regular expression) }
-
-\FunctionTok{str\_count}\NormalTok{(borring, }\StringTok{"(?i)it"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#How many times does the word it appear in the string? }
+\ErrorTok{\textgreater{}} \CommentTok{\#Note that R is case sensitive, (?i) searches in a case insensitive way (another regular expression) }
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{str\_count}\NormalTok{(borring, }\StringTok{"(?i)it"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+[1] 2
 \end{verbatim}
 
 \begin{quote}
@@ -1450,21 +1514,23 @@ Lets look at an example for the capabilities of stringer
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise:}
+\hypertarget{quick-r-exercise---strings}{%
+\paragraph*{\texorpdfstring{\textbf{Quick R exercise - strings:}}{Quick R exercise - strings:}}\label{quick-r-exercise---strings}}
+\addcontentsline{toc}{paragraph}{\textbf{Quick R exercise - strings:}}
 
 Now lets do something a bit biological
 Download the stringr cheatsheet and run the following code that will generate a string of 100 nucleotides.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#four bases}
-\NormalTok{bases }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"T"}\NormalTok{,}\StringTok{"G"}\NormalTok{,}\StringTok{"C"}\NormalTok{)}
-
-\CommentTok{\#note seting seeds}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{12}\NormalTok{)}
-
-\CommentTok{\#Using sample let\textquotesingle{}s generate a random sequence of 10000 nucleotieds, slightly larger than the avarage genome size of RNA viruses.}
-\NormalTok{dna }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\FunctionTok{sample}\NormalTok{(bases,}\DecValTok{10000}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T), }\AttributeTok{collapse =} \StringTok{""}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#four bases}
+\ErrorTok{\textgreater{}}\NormalTok{ bases }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"T"}\NormalTok{,}\StringTok{"G"}\NormalTok{,}\StringTok{"C"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#note seting seeds}
+\ErrorTok{\textgreater{}} \FunctionTok{set.seed}\NormalTok{(}\DecValTok{12}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Using sample let\textquotesingle{}s generate a random sequence of 10000 nucleotieds, slightly larger than the avarage genome size of RNA viruses.}
+\ErrorTok{\textgreater{}}\NormalTok{ dna }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\FunctionTok{sample}\NormalTok{(bases,}\DecValTok{10000}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T), }\AttributeTok{collapse =} \StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1474,13 +1540,14 @@ Download the stringr cheatsheet and run the following code that will generate a 
 \item
   Use stringr to calculate the \%GC of this string
 \item
-  Use stringer to find out how many times do the codons ATG and TAG appear in the string?
+  Use stringr to find out how many times do the codons ATG and TAG appear in the string?
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{logical-vectors}{%
-\subsection{\texorpdfstring{\textbf{Logical vectors:}}{Logical vectors:}}\label{logical-vectors}}
+\subsubsection*{\texorpdfstring{\textbf{Logical vectors}}{Logical vectors}}\label{logical-vectors}}
+\addcontentsline{toc}{subsubsection}{\textbf{Logical vectors}}
 
 Logical vectors (or Boolean vectors) contain binary elements, i.e.~true or false or 1 and 0.
 They are the result of logical operators that compare variables. Due to their binary nature, R treats them like
@@ -1491,164 +1558,174 @@ element is larger than the result will be TRUE and if it is not the result will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{log.vec }\OtherTok{\textless{}{-}}\NormalTok{ this.course.avarage }\SpecialCharTok{\textgreater{}} \DecValTok{55}
-\NormalTok{log.vec}
+\SpecialCharTok{\textgreater{}}\NormalTok{ log.vec }\OtherTok{\textless{}{-}}\NormalTok{ this.course.avarage }\SpecialCharTok{\textgreater{}} \DecValTok{55}
+\SpecialCharTok{\textgreater{}}\NormalTok{ log.vec}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-##  [13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE
-##  [25] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-##  [37] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-##  [49]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
-##  [61]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-##  [73] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-##  [85]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-##  [97] FALSE  TRUE FALSE FALSE
+  [1] FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+ [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [25] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [37] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE
+ [49] FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+ [61] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+ [73]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+ [85]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
+ [97]  TRUE FALSE FALSE  TRUE
 \end{verbatim}
 
 You can use logical vectors to index and subset types of vectors using the which function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{(}\FunctionTok{which}\NormalTok{(this.course.avarage }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#The which function tells you the position of elements fulfill a condition (give an answer of TRUE)}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(}\FunctionTok{which}\NormalTok{(this.course.avarage }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  3  8 15 16 17 18
+[1]  2  5  7 10 12 15
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{passed.the.course }\OtherTok{\textless{}{-}}\NormalTok{ this.course.avarage[}\FunctionTok{which}\NormalTok{(this.course.avarage }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{)]}
-
-\FunctionTok{length}\NormalTok{(passed.the.course)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Can use it to subset only the elements that do}
+\ErrorTok{\textgreater{}} \CommentTok{\#Here, asking R to subset only the elements larger than 50}
+\ErrorTok{\textgreater{}}\NormalTok{ passed.the.course }\OtherTok{\textless{}{-}}\NormalTok{ this.course.avarage[}\FunctionTok{which}\NormalTok{(this.course.avarage }\SpecialCharTok{\textgreater{}} \DecValTok{50}\NormalTok{)]}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{length}\NormalTok{(passed.the.course)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 40
+[1] 42
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#ofcours you can also use the subset function do echive the same results}
-
-\NormalTok{passed.the.course2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(this.course.avarage, this.course.avarage }\SpecialCharTok{\textgreater{}}\DecValTok{50}\NormalTok{)}
-\FunctionTok{length}\NormalTok{(passed.the.course2)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#of course you can also use the subset function do achieve the same results}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ passed.the.course2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(this.course.avarage, this.course.avarage }\SpecialCharTok{\textgreater{}}\DecValTok{50}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{length}\NormalTok{(passed.the.course2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 40
+[1] 42
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Lets compare the two vectors using a logical operator, the result of this will be a logical vector}
-\NormalTok{passed.the.course }\SpecialCharTok{==}\NormalTok{ passed.the.course2}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Lets compare the two vectors using a logical operator, the result of this will be a logical vector}
+\ErrorTok{\textgreater{}}\NormalTok{ passed.the.course }\SpecialCharTok{==}\NormalTok{ passed.the.course2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-## [31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+ [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#alternatively you can ask R which positions between the two vectors are not the same}
-\FunctionTok{which}\NormalTok{(passed.the.course }\SpecialCharTok{!=}\NormalTok{ passed.the.course2)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#alternatively you can ask R which positions between the two vectors are not the same}
+\ErrorTok{\textgreater{}} \FunctionTok{which}\NormalTok{(passed.the.course }\SpecialCharTok{!=}\NormalTok{ passed.the.course2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## integer(0)
+integer(0)
 \end{verbatim}
 
 \hypertarget{checking-and-coercing}{%
-\section{\texorpdfstring{\textbf{Checking and coercing}}{Checking and coercing}}\label{checking-and-coercing}}
+\subsection*{\texorpdfstring{\textbf{Checking and coercing}}{Checking and coercing}}\label{checking-and-coercing}}
+\addcontentsline{toc}{subsection}{\textbf{Checking and coercing}}
+
+Before we continue with data types in R, lets have a look at how we can tell which is which and how
+do we convert (coerce) variable from one data type to another.
 
 \hypertarget{the-class-function}{%
-\subsection{\texorpdfstring{\textbf{The class function}}{The class function}}\label{the-class-function}}
+\subsubsection*{\texorpdfstring{\textbf{The class function}}{The class function}}\label{the-class-function}}
+\addcontentsline{toc}{subsubsection}{\textbf{The class function}}
 
-The class function lets you know what type of object a particular variable is.
+The \texttt{class()} function lets you know what class of data type does a particular variable belong to.
 It is useful since some packages (especially those from bioconductor) import data as variables containing more than
 one type of objects.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(dna)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(dna)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "character"
+[1] "character"
 \end{verbatim}
 
 \hypertarget{the-is.x-function-family}{%
-\subsection{\texorpdfstring{\textbf{The is.x function family}}{The is.x function family}}\label{the-is.x-function-family}}
+\subsubsection*{\texorpdfstring{\textbf{The is.x function family}}{The is.x function family}}\label{the-is.x-function-family}}
+\addcontentsline{toc}{subsubsection}{\textbf{The is.x function family}}
 
 The is.x function family is another option to query for the type of a variable.
 The output of any of these functions is a logical vector with the length of 1.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#is a variable an atomic vector?}
-\FunctionTok{is.atomic}\NormalTok{(passed.the.course)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#is a variable an atomic vector?}
+\ErrorTok{\textgreater{}} \FunctionTok{is.atomic}\NormalTok{(passed.the.course)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+[1] TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Note logical vectors are also numeric}
-\FunctionTok{is.numeric}\NormalTok{(passed.the.course)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Note logical vectors are also numeric}
+\ErrorTok{\textgreater{}} \FunctionTok{is.numeric}\NormalTok{(passed.the.course)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+[1] TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.character}\NormalTok{(passed.the.course)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.character}\NormalTok{(passed.the.course)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] FALSE
+[1] FALSE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.logical}\NormalTok{(passed.the.course)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.logical}\NormalTok{(passed.the.course)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] FALSE
+[1] FALSE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{typeof}\NormalTok{(passed.the.course)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(passed.the.course)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "double"
+[1] "double"
 \end{verbatim}
 
 \hypertarget{the-as.x-function-family}{%
-\subsection{\texorpdfstring{\textbf{The as.x function family}}{The as.x function family}}\label{the-as.x-function-family}}
+\subsubsection*{\texorpdfstring{\textbf{The as.x function family}}{The as.x function family}}\label{the-as.x-function-family}}
+\addcontentsline{toc}{subsubsection}{\textbf{The as.x function family}}
 
 R variables can be coerced to another data type, depending of restriction.
 This can be done using an as.x function. There is an as.x for every data type in R.
@@ -1656,46 +1733,48 @@ Here are some examples
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{numbers }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{100}\NormalTok{, }\AttributeTok{by =} \DecValTok{5}\NormalTok{)}
-\FunctionTok{typeof}\NormalTok{(numbers)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ numbers }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{100}\NormalTok{, }\AttributeTok{by =} \DecValTok{5}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(numbers)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "double"
+[1] "double"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(numbers)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(numbers)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "numeric"
+[1] "numeric"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{numbers }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(numbers)}
-\FunctionTok{class}\NormalTok{(numbers)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ numbers }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(numbers)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(numbers)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "character"
+[1] "character"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#lets see what happens when a character vector is coersed to numeric}
-\NormalTok{lets }\OtherTok{\textless{}{-}}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#lets see what happens when a character vector is coersed to numeric}
+\ErrorTok{\textgreater{}}\NormalTok{ lets }\OtherTok{\textless{}{-}}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise}
+\hypertarget{quick-r-exercise---checking-and-coercing}{%
+\subsubsection*{\texorpdfstring{\textbf{Quick R exercise - checking and coercing}}{Quick R exercise - checking and coercing}}\label{quick-r-exercise---checking-and-coercing}}
+\addcontentsline{toc}{subsubsection}{\textbf{Quick R exercise - checking and coercing}}
 
 1.Try coercing numbers back to a numeric vector and than use the sum function to sum it, is it possible?
 
@@ -1713,12 +1792,13 @@ Here are some examples
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{factors---vectors-evil-cousins}{%
-\section{\texorpdfstring{\textbf{Factors - vectors' evil cousins}}{Factors - vectors' evil cousins}}\label{factors---vectors-evil-cousins}}
+\subsection*{\texorpdfstring{\textbf{Factors - vectors' evil cousins}}{Factors - vectors' evil cousins}}\label{factors---vectors-evil-cousins}}
+\addcontentsline{toc}{subsection}{\textbf{Factors - vectors' evil cousins}}
 
-Factors are special of integer vectors containing only predefined values. It has two values, the elements of the
-vector and the levels. Levels are the defined set of values allowed in the vector.
-While vectors are useful for certain type of tasks, e.g.~when you know exactly what values are expected in a
-data-set, often times this is not the case. When working with R factors are actually pretty common since most of
+Factors are special case of integer vectors containing only predefined values. Factors are comprised of to value sets, the
+elements of the vector and the levels. Levels are the defined set of values (or categories) allowed in the vector.
+While factors are useful for certain type of tasks, e.g.~when you know exactly what value categories are expected in a
+data-set, often times this is not the case. When working with R, factors are actually pretty common since most of
 BaseR data importation functions coerce vectors into factors, therefore it is worth while to dedicated a few minute
 to familiarize yourself with them.
 
@@ -1726,47 +1806,50 @@ The snippet bellow includes a data-set of the quality of each season of game of 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Terrible"}\NormalTok{,}\DecValTok{7}\NormalTok{), }\StringTok{"Thank god that series is over"}\NormalTok{)}
-
-\NormalTok{seasons\_of\_GoT }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(b, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Terrible"}\NormalTok{, }\StringTok{"Thank god that series is over"}\NormalTok{, }\StringTok{"Great"}\NormalTok{))}
-
-\NormalTok{seasons\_of\_GoT}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Let\textquotesingle{}s create a character vector with 8 elements}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Terrible"}\NormalTok{,}\DecValTok{7}\NormalTok{), }\StringTok{"Thank god that series is over"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Coerce it into a factor}
+\ErrorTok{\textgreater{}}\NormalTok{ seasons\_of\_GoT }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(b, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Terrible"}\NormalTok{, }\StringTok{"Thank god that series is over"}\NormalTok{, }\StringTok{"Great"}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ seasons\_of\_GoT}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] Terrible                      Terrible                     
-## [3] Terrible                      Terrible                     
-## [5] Terrible                      Terrible                     
-## [7] Terrible                      Thank god that series is over
-## Levels: Terrible Thank god that series is over Great
+[1] Terrible                      Terrible                     
+[3] Terrible                      Terrible                     
+[5] Terrible                      Terrible                     
+[7] Terrible                      Thank god that series is over
+Levels: Terrible Thank god that series is over Great
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{typeof}\NormalTok{(seasons\_of\_GoT)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(seasons\_of\_GoT)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "integer"
+[1] "integer"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(seasons\_of\_GoT)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(seasons\_of\_GoT)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "factor"
+[1] "factor"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#To edit the levels of a factor use the level function, e.g. great is not a real option for a GoT season}
-
-\FunctionTok{levels}\NormalTok{(seasons\_of\_GoT) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Terrible"}\NormalTok{, }\StringTok{"Thank god that series is over"}\NormalTok{, }\StringTok{"Extra terrible"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#To edit the levels of a factor use the level function, e.g. great is not a real option for a GoT season}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{levels}\NormalTok{(seasons\_of\_GoT) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Terrible"}\NormalTok{, }\StringTok{"Thank god that series is over"}\NormalTok{, }\StringTok{"Extra terrible"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1776,122 +1859,123 @@ the number of available levels rather than the elements of the factor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)}
-
-\NormalTok{a2 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(a, }\AttributeTok{levels =} \FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{19}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{))}
-
-\FunctionTok{typeof}\NormalTok{(a)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ a }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ a2 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(a, }\AttributeTok{levels =} \FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{19}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(a)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "double"
+[1] "double"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{typeof}\NormalTok{(a2)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{typeof}\NormalTok{(a2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "integer"
+[1] "integer"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(a2)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{sum}\NormalTok{(a2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Error in Summary.factor(structure(1:11, levels = c("5", "6", "7", "8", : 'sum' not meaningful for factors
+Error in Summary.factor(structure(1:11, levels = c("5", "6", "7", "8", : 'sum' not meaningful for factors
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(a)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{sum}\NormalTok{(a)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 110
+[1] 110
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#to coerce the factor to a numeric vector you have to pass through as.character otherwise it will use the number of levels.}
-
-\NormalTok{a3 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(a2)}
-\NormalTok{a4 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(a2))}
-
-\CommentTok{\#level 1{-}11}
-\FunctionTok{head}\NormalTok{(a3,}\DecValTok{4}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#to coerce the factor to a numeric vector you have to pass through as.character otherwise it will use the number of levels.}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ a3 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(a2)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ a4 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(a2))}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#level 1{-}11}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(a3,}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 2 3 4
+[1] 1 2 3 4
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#elements 1{-}11}
-\FunctionTok{head}\NormalTok{(a4,}\DecValTok{4}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#elements 1{-}11}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(a4,}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5 6 7 8
+[1] 5 6 7 8
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{a}\SpecialCharTok{==}\NormalTok{a4}
+\SpecialCharTok{\textgreater{}}\NormalTok{ a}\SpecialCharTok{==}\NormalTok{a4}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+ [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 \end{verbatim}
 
 \hypertarget{matrices}{%
-\section{\texorpdfstring{\textbf{Matrices}}{Matrices}}\label{matrices}}
+\subsection*{\texorpdfstring{\textbf{Matrices}}{Matrices}}\label{matrices}}
+\addcontentsline{toc}{subsection}{\textbf{Matrices}}
 
-Matrices are two dimensional vectors, which is a fancy way of saying that a matrix is a tabulated vector. Because one
-can think of a matrix as a vector folded into a table, matrices only contain elements of the same type (e.g.~only
+Matrices are two dimensional vectors, which is a fancy way of saying that a matrix is a tabulated vector. Because a matrix
+is essentially a linear vector folded into a table, matrices only contain elements of the same data type (e.g.~only
 integer, only characters, etc).
 
 The code snippet bellow uses the function dim to change the dimensions of the vector.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mat }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{3.5}\NormalTok{, }\FloatTok{4.6}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
-
-\FunctionTok{dim}\NormalTok{(mat)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ mat }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{3.5}\NormalTok{, }\FloatTok{4.6}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{dim}\NormalTok{(mat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## NULL
+NULL
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Coers the vector into a matrix by changing its dimantion (i.e. adding collumns and rows)}
-\CommentTok{\#When chaning dimentions the order is rows,columns (here 4 rows, 3 columns)}
-\FunctionTok{dim}\NormalTok{(mat) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{)}
-
-\NormalTok{mat}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Coerce the vector into a matrix by changing its dimensions (i.e. adding columns and rows)}
+\ErrorTok{\textgreater{}} \CommentTok{\#When changing dimensions the order is rows,columns (here 4 rows, 3 columns)}
+\ErrorTok{\textgreater{}} \FunctionTok{dim}\NormalTok{(mat) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ mat}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      [,1] [,2] [,3]
-## [1,]  3.5  3.9  4.3
-## [2,]  3.6  4.0  4.4
-## [3,]  3.7  4.1  4.5
-## [4,]  3.8  4.2  4.6
+     [,1] [,2] [,3]
+[1,]  3.5  3.9  4.3
+[2,]  3.6  4.0  4.4
+[3,]  3.7  4.1  4.5
+[4,]  3.8  4.2  4.6
 \end{verbatim}
 
 Note how the vector is folded into a two dimensional vector from top to bottom in each column.
@@ -1903,7 +1987,7 @@ This essentially converts each column and each row to a vector.
 
 }
 
-\caption{R matrix, each row and each column are vectors}\label{fig:unnamed-chunk-11}
+\caption{R matrix, each row and each column are vectors}(\#fig:mi )
 \end{figure}
 
 We can also use the class and is.x function to inspect the column and the matrix as a whole and see that it is indeed
@@ -1911,218 +1995,226 @@ both a vector and made of vectors.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(mat)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(mat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "matrix" "array"
+[1] "matrix" "array" 
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(mat[}\DecValTok{1}\NormalTok{,])}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(mat[}\DecValTok{1}\NormalTok{,])}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "numeric"
+[1] "numeric"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(mat[,}\DecValTok{1}\NormalTok{])}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(mat[,}\DecValTok{1}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "numeric"
+[1] "numeric"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.numeric}\NormalTok{(mat)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.numeric}\NormalTok{(mat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+[1] TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.atomic}\NormalTok{(mat)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.atomic}\NormalTok{(mat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+[1] TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.atomic}\NormalTok{(mat[}\DecValTok{1}\NormalTok{,])}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.atomic}\NormalTok{(mat[}\DecValTok{1}\NormalTok{,])}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+[1] TRUE
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise}
+\hypertarget{quick-r-exercise---matrices-1}{%
+\subsubsection*{\texorpdfstring{\textbf{Quick R exercise - matrices 1}}{Quick R exercise - matrices 1}}\label{quick-r-exercise---matrices-1}}
+\addcontentsline{toc}{subsubsection}{\textbf{Quick R exercise - matrices 1}}
 
 There are several R functions that can be used to generate a matrix.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Create a numeric vector of 10 elements, use the matrix function to convert is to a matrix with 5 rows and two columns, what happens when the argument byrow is set to TRUE?
+  Create a numeric vector of 10 elements, use the matrix function to convert is to a matrix with 5 rows and two columns, what happens when the argument \texttt{byrow} is set to TRUE?
 \item
-  Create a character vector of 10 element use the function cbind to bind it with the vector from the previous question. Are the vectors columns or rows? What happens when you use the function rbind?
+  Create a character vector of 10 element use the function \texttt{cbind()} to bind it with the vector from the previous question. Are the vectors columns or rows? What happens when you use the function \texttt{rbind()}?
 \item
-  Use the typeof function on one of the matrices from question 2, what type of data does this matrix contain, what does it tell you about the coercion of data type within a matrix?
+  Use the \texttt{typeof()} function on one of the matrices from question 2, what type of data does this matrix contain, what does it tell you about the coercion of data type within a matrix?
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{working-with-matrices}{%
-\subsection{\texorpdfstring{\textbf{Working with matrices}}{Working with matrices}}\label{working-with-matrices}}
+\subsubsection*{\texorpdfstring{\textbf{Working with matrices}}{Working with matrices}}\label{working-with-matrices}}
+\addcontentsline{toc}{subsubsection}{\textbf{Working with matrices}}
 
 A matrix is basically a vector with two dimensions when a matrix is indexed like a vector, i.e.
-matrix{[}n{]}. By default, when a matrix is indexed in that manor R will return the value found on the
+using \texttt{{[}}. By default, when a matrix is indexed using \texttt{{[}} R will return the value found on the
 nth position of the original vector (see snippet bellow).
 One of R strength is that it allows to also index and access any combination of columns and rows,
 not just individual elements. This is done similar to accessing a vector only the positions of the
-rows and columns are separated by a comma, e.g.~matrix{[}row,column{]}. This form of indexing allows to
-subset specific rows and columns from the matrix, as demonstrated in the snippet bellow.
+rows and columns are separated by a comma, i.e.~matrix{[}row,column{]}. This form of indexing allows to
+subset specific rows and columns from the matrix,the following snippet demonstrates how.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Mat[5] will output the element occupaing the fifth position of the vector used to construct the}
-\CommentTok{\#matrix i.e. 3.9}
-\NormalTok{mat[}\DecValTok{5}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Mat[5] will output the element occupying the fifth position of the vector used to construct the}
+\ErrorTok{\textgreater{}} \CommentTok{\#matrix i.e. 3.9}
+\ErrorTok{\textgreater{}}\NormalTok{ mat[}\DecValTok{5}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.9
+[1] 3.9
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Mat[,1] will output the first column of the matrix}
-\NormalTok{mat[,}\DecValTok{1}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Mat[,1] will output the first column of the matrix}
+\ErrorTok{\textgreater{}}\NormalTok{ mat[,}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.5 3.6 3.7 3.8
+[1] 3.5 3.6 3.7 3.8
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#mat[,2:3] will output the 2nd and 3rd columns of the matrix }
-
-\NormalTok{mat[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#mat[,2:3] will output the 2nd and 3rd columns of the matrix }
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ mat[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      [,1] [,2]
-## [1,]  3.9  4.3
-## [2,]  4.0  4.4
-## [3,]  4.1  4.5
-## [4,]  4.2  4.6
+     [,1] [,2]
+[1,]  3.9  4.3
+[2,]  4.0  4.4
+[3,]  4.1  4.5
+[4,]  4.2  4.6
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#mat[1,] will output the first row of the matrix}
-\NormalTok{mat[}\DecValTok{1}\NormalTok{,]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#mat[1,] will output the first row of the matrix}
+\ErrorTok{\textgreater{}}\NormalTok{ mat[}\DecValTok{1}\NormalTok{,]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.5 3.9 4.3
+[1] 3.5 3.9 4.3
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#mat[1:2,] will output the first 2 rows of the matrix}
-\NormalTok{mat[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#mat[1:2,] will output the first 2 rows of the matrix}
+\ErrorTok{\textgreater{}}\NormalTok{ mat[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      [,1] [,2] [,3]
-## [1,]  3.5  3.9  4.3
-## [2,]  3.6  4.0  4.4
+     [,1] [,2] [,3]
+[1,]  3.5  3.9  4.3
+[2,]  3.6  4.0  4.4
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#mat[1:2,1:2] will subset the first two rows and columns of the matrix}
-\NormalTok{mat[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#mat[1:2,1:2] will subset the first two rows and columns of the matrix}
+\ErrorTok{\textgreater{}}\NormalTok{ mat[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      [,1] [,2]
-## [1,]  3.5  3.9
-## [2,]  3.6  4.0
+     [,1] [,2]
+[1,]  3.5  3.9
+[2,]  3.6  4.0
+\end{verbatim}
+
+It is possible to name the rows and columns of a matrix, once named the names can be used to index and subset the matrix.
+The code snippet bellow shows how to achieve this using the \texttt{colnames()} and \texttt{rownames()} functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#The rows and columns of a matrix can be named, so that the vectors have meaningful names.}
+\ErrorTok{\textgreater{}} \CommentTok{\#This is done using the functions colnames and rownames}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ stud\_mrks }\OtherTok{\textless{}{-}}\NormalTok{ mat}
+\SpecialCharTok{\textgreater{}}\NormalTok{ rn }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Class1"}\NormalTok{,}\StringTok{"Class2"}\NormalTok{,}\StringTok{"Class3"}\NormalTok{,}\StringTok{"Class4"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ cn }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Student1"}\NormalTok{,}\StringTok{"Student2"}\NormalTok{,}\StringTok{"Student3"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{rownames}\NormalTok{(stud\_mrks) }\OtherTok{\textless{}{-}}\NormalTok{ rn}
+\SpecialCharTok{\textgreater{}} \FunctionTok{colnames}\NormalTok{(stud\_mrks) }\OtherTok{\textless{}{-}}\NormalTok{ cn}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ stud\_mrks}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       Student1 Student2 Student3
+Class1      3.5      3.9      4.3
+Class2      3.6      4.0      4.4
+Class3      3.7      4.1      4.5
+Class4      3.8      4.2      4.6
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#The rows and colums of a matrix can be named, so that the vactors have meaningfull names.}
-\CommentTok{\#This is done using the function colnames and rownames}
-
-\NormalTok{stud\_mrks }\OtherTok{\textless{}{-}}\NormalTok{ mat}
-\NormalTok{rn }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Class1"}\NormalTok{,}\StringTok{"Class2"}\NormalTok{,}\StringTok{"Class3"}\NormalTok{,}\StringTok{"Class4"}\NormalTok{)}
-\NormalTok{cn }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Student1"}\NormalTok{,}\StringTok{"Student2"}\NormalTok{,}\StringTok{"Student3"}\NormalTok{)}
-\FunctionTok{rownames}\NormalTok{(stud\_mrks) }\OtherTok{\textless{}{-}}\NormalTok{ rn}
-\FunctionTok{colnames}\NormalTok{(stud\_mrks) }\OtherTok{\textless{}{-}}\NormalTok{ cn}
-
-\NormalTok{stud\_mrks}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#The names can be used to index the matrix, note the use of comma.}
+\ErrorTok{\textgreater{}}\NormalTok{ stud\_mrks[}\StringTok{"Class1"}\NormalTok{,]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##        Student1 Student2 Student3
-## Class1      3.5      3.9      4.3
-## Class2      3.6      4.0      4.4
-## Class3      3.7      4.1      4.5
-## Class4      3.8      4.2      4.6
+Student1 Student2 Student3 
+     3.5      3.9      4.3 
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#The names can be used to index the matrix, note the use of comma.}
-\NormalTok{stud\_mrks[}\StringTok{"Class1"}\NormalTok{,]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ stud\_mrks[,}\StringTok{"Student1"}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Student1 Student2 Student3 
-##      3.5      3.9      4.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{stud\_mrks[,}\StringTok{"Student1"}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Class1 Class2 Class3 Class4 
-##    3.5    3.6    3.7    3.8
+Class1 Class2 Class3 Class4 
+   3.5    3.6    3.7    3.8 
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise}
+\hypertarget{quick-r-exercise---matrices-2}{%
+\paragraph*{\texorpdfstring{\textbf{Quick R exercise - matrices 2}}{Quick R exercise - matrices 2}}\label{quick-r-exercise---matrices-2}}
+\addcontentsline{toc}{paragraph}{\textbf{Quick R exercise - matrices 2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2143,226 +2235,228 @@ every time an operation is needed to be done on several columns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Let\textquotesingle{}s generate a new matrix, this time with matrix function}
-\CommentTok{\#byrow, fill the matrix by rows}
-\NormalTok{mat2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{replace=}\NormalTok{F),}\AttributeTok{nrow =} \DecValTok{10}\NormalTok{,}\AttributeTok{ncol =} \DecValTok{10}\NormalTok{,}\AttributeTok{byrow =}\NormalTok{ T)}
-\FunctionTok{head}\NormalTok{(mat2)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Let\textquotesingle{}s generate a new matrix, this time with matrix function}
+\ErrorTok{\textgreater{}} \CommentTok{\#byrow, fill the matrix by rows}
+\ErrorTok{\textgreater{}}\NormalTok{ mat2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{replace=}\NormalTok{F),}\AttributeTok{nrow =} \DecValTok{10}\NormalTok{,}\AttributeTok{ncol =} \DecValTok{10}\NormalTok{,}\AttributeTok{byrow =}\NormalTok{ T)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mat2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-## [1,]  859  449  110  675  232  893  619  974  271   630
-## [2,]  531  621  753  366  157  866  135  705   21   769
-## [3,]  886  990   98  823  586  411  150  783  776   382
-## [4,]  937  652  540  327  239  741  951   46  681   842
-## [5,]  903  670  947  446  785  661   53  646   12   113
-## [6,]   25  538  433  763  227  622   71  173  521   762
+     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+[1,]  859  449  110  675  232  893  619  974  271   630
+[2,]  531  621  753  366  157  866  135  705   21   769
+[3,]  886  990   98  823  586  411  150  783  776   382
+[4,]  937  652  540  327  239  741  951   46  681   842
+[5,]  903  670  947  446  785  661   53  646   12   113
+[6,]   25  538  433  763  227  622   71  173  521   762
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#When handling data, there is sometimes a need to transform it.}
-\CommentTok{\#Log transformation is a common one. R\textquotesingle{}s handling of matrices allows to do it without resorting to a for loop.}
-\CommentTok{\#Note that I am copying the matrix because I still want to use the original}
-\NormalTok{mat2\_log }\OtherTok{\textless{}{-}} \FunctionTok{log10}\NormalTok{(mat2)}
-\FunctionTok{head}\NormalTok{(mat2\_log)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#When handling data, there is sometimes a need to transform it.}
+\ErrorTok{\textgreater{}} \CommentTok{\#Log transformation is a common one. R\textquotesingle{}s handling of matrices allows to do it without resorting to a for loop.}
+\ErrorTok{\textgreater{}} \CommentTok{\#Note that I am copying the matrix because I still want to use the original}
+\ErrorTok{\textgreater{}}\NormalTok{ mat2\_log }\OtherTok{\textless{}{-}} \FunctionTok{log10}\NormalTok{(mat2)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mat2\_log)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
-## [1,] 2.933993 2.652246 2.041393 2.829304 2.365488 2.950851 2.791691 2.988559
-## [2,] 2.725095 2.793092 2.876795 2.563481 2.195900 2.937518 2.130334 2.848189
-## [3,] 2.947434 2.995635 1.991226 2.915400 2.767898 2.613842 2.176091 2.893762
-## [4,] 2.971740 2.814248 2.732394 2.514548 2.378398 2.869818 2.978181 1.662758
-## [5,] 2.955688 2.826075 2.976350 2.649335 2.894870 2.820201 1.724276 2.810233
-## [6,] 1.397940 2.730782 2.636488 2.882525 2.356026 2.793790 1.851258 2.238046
-##          [,9]    [,10]
-## [1,] 2.432969 2.799341
-## [2,] 1.322219 2.885926
-## [3,] 2.889862 2.582063
-## [4,] 2.833147 2.925312
-## [5,] 1.079181 2.053078
-## [6,] 2.716838 2.881955
+         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+[1,] 2.933993 2.652246 2.041393 2.829304 2.365488 2.950851 2.791691 2.988559
+[2,] 2.725095 2.793092 2.876795 2.563481 2.195900 2.937518 2.130334 2.848189
+[3,] 2.947434 2.995635 1.991226 2.915400 2.767898 2.613842 2.176091 2.893762
+[4,] 2.971740 2.814248 2.732394 2.514548 2.378398 2.869818 2.978181 1.662758
+[5,] 2.955688 2.826075 2.976350 2.649335 2.894870 2.820201 1.724276 2.810233
+[6,] 1.397940 2.730782 2.636488 2.882525 2.356026 2.793790 1.851258 2.238046
+         [,9]    [,10]
+[1,] 2.432969 2.799341
+[2,] 1.322219 2.885926
+[3,] 2.889862 2.582063
+[4,] 2.833147 2.925312
+[5,] 1.079181 2.053078
+[6,] 2.716838 2.881955
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Another common transformation is to calculate the proportion of value in the column or raw (often referred to as normalizing the data). R makes it easy to normalize matrices by rows or columns.}
-\CommentTok{\#All that\textquotesingle{}s needed to do is to divide the matrix by the sum of its columns or rows}
-
-\NormalTok{mat2\_freq\_row }\OtherTok{\textless{}{-}}\NormalTok{ mat2}\SpecialCharTok{/}\FunctionTok{rowSums}\NormalTok{(mat2)}
-\FunctionTok{head}\NormalTok{(mat2\_freq\_row)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Another common transformation is to calculate the proportion of value in the column or raw (often referred to as normalizing the data). R makes it easy to normalize matrices by rows or columns.}
+\ErrorTok{\textgreater{}} \CommentTok{\#All that\textquotesingle{}s needed to do is to divide the matrix by the sum of its columns or rows}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ mat2\_freq\_row }\OtherTok{\textless{}{-}}\NormalTok{ mat2}\SpecialCharTok{/}\FunctionTok{rowSums}\NormalTok{(mat2)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mat2\_freq\_row)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##             [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
-## [1,] 0.150385154 0.07860644 0.01925770 0.11817227 0.04061625 0.15633754
-## [2,] 0.107839155 0.12611698 0.15292445 0.07432981 0.03188465 0.17587327
-## [3,] 0.150552251 0.16822430 0.01665251 0.13984707 0.09957519 0.06983857
-## [4,] 0.157320349 0.10946944 0.09066488 0.05490262 0.04012760 0.12441236
-## [5,] 0.172459893 0.12796028 0.18086325 0.08517953 0.14992361 0.12624141
-## [6,] 0.006045949 0.13010883 0.10471584 0.18452237 0.05489722 0.15042322
-##            [,7]        [,8]        [,9]      [,10]
-## [1,] 0.10836835 0.170518207 0.047443978 0.11029412
-## [2,] 0.02741673 0.143176279 0.004264825 0.15617384
-## [3,] 0.02548853 0.133050127 0.131860663 0.06491079
-## [4,] 0.15967092 0.007723304 0.114338482 0.14137005
-## [5,] 0.01012223 0.123376623 0.002291826 0.02158136
-## [6,] 0.01717050 0.041837969 0.125997582 0.18428053
+            [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+[1,] 0.150385154 0.07860644 0.01925770 0.11817227 0.04061625 0.15633754
+[2,] 0.107839155 0.12611698 0.15292445 0.07432981 0.03188465 0.17587327
+[3,] 0.150552251 0.16822430 0.01665251 0.13984707 0.09957519 0.06983857
+[4,] 0.157320349 0.10946944 0.09066488 0.05490262 0.04012760 0.12441236
+[5,] 0.172459893 0.12796028 0.18086325 0.08517953 0.14992361 0.12624141
+[6,] 0.006045949 0.13010883 0.10471584 0.18452237 0.05489722 0.15042322
+           [,7]        [,8]        [,9]      [,10]
+[1,] 0.10836835 0.170518207 0.047443978 0.11029412
+[2,] 0.02741673 0.143176279 0.004264825 0.15617384
+[3,] 0.02548853 0.133050127 0.131860663 0.06491079
+[4,] 0.15967092 0.007723304 0.114338482 0.14137005
+[5,] 0.01012223 0.123376623 0.002291826 0.02158136
+[6,] 0.01717050 0.041837969 0.125997582 0.18428053
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#rowSums should be 1}
-\FunctionTok{rowSums}\NormalTok{(mat2\_freq\_row)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#rowSums should be 1}
+\ErrorTok{\textgreater{}} \FunctionTok{rowSums}\NormalTok{(mat2\_freq\_row)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 1 1 1 1 1 1 1 1
+ [1] 1 1 1 1 1 1 1 1 1 1
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#When normalizing by column it is impossible to just use the "/" operator, due to the way R stores matrices. Need to use the sweep function. This is not an issue when normalizing by rows.}
-\CommentTok{\#use ?sweep to see which each of the arguments means.}
-
-\NormalTok{mat2\_freq\_columns }\OtherTok{\textless{}{-}} \FunctionTok{sweep}\NormalTok{(mat2,}\DecValTok{2}\NormalTok{,}\FunctionTok{colSums}\NormalTok{(mat2),}\StringTok{"/"}\NormalTok{)}
-\FunctionTok{head}\NormalTok{(mat2\_freq\_columns)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#When normalizing by column it is impossible to just use the "/" operator, due to the way R stores matrices. Need to use the sweep function. This is not an issue when normalizing by rows.}
+\ErrorTok{\textgreater{}} \CommentTok{\#use ?sweep to see which each of the arguments means.}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ mat2\_freq\_columns }\OtherTok{\textless{}{-}} \FunctionTok{sweep}\NormalTok{(mat2,}\DecValTok{2}\NormalTok{,}\FunctionTok{colSums}\NormalTok{(mat2),}\StringTok{"/"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mat2\_freq\_columns)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##             [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
-## [1,] 0.141492341 0.07405575 0.01941405 0.12525515 0.04458109 0.11777895
-## [2,] 0.087464998 0.10242454 0.13289799 0.06791613 0.03016910 0.11421788
-## [3,] 0.145939713 0.16328550 0.01729615 0.15271850 0.11260569 0.05420733
-## [4,] 0.154340306 0.10753752 0.09530533 0.06067916 0.04592621 0.09773147
-## [5,] 0.148739911 0.11050635 0.16713731 0.08276118 0.15084550 0.08718016
-## [6,] 0.004117938 0.08873495 0.07642076 0.14158471 0.04362029 0.08203640
-##            [,7]        [,8]        [,9]      [,10]
-## [1,] 0.16027965 0.204407135 0.057684121 0.10607846
-## [2,] 0.03495598 0.147953830 0.004469987 0.12948308
-## [3,] 0.03883998 0.164323190 0.165176671 0.06432059
-## [4,] 0.24624547 0.009653725 0.144955300 0.14177471
-## [5,] 0.01372346 0.135571878 0.002554278 0.01902677
-## [6,] 0.01838426 0.036306401 0.110898255 0.12830443
+            [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+[1,] 0.141492341 0.07405575 0.01941405 0.12525515 0.04458109 0.11777895
+[2,] 0.087464998 0.10242454 0.13289799 0.06791613 0.03016910 0.11421788
+[3,] 0.145939713 0.16328550 0.01729615 0.15271850 0.11260569 0.05420733
+[4,] 0.154340306 0.10753752 0.09530533 0.06067916 0.04592621 0.09773147
+[5,] 0.148739911 0.11050635 0.16713731 0.08276118 0.15084550 0.08718016
+[6,] 0.004117938 0.08873495 0.07642076 0.14158471 0.04362029 0.08203640
+           [,7]        [,8]        [,9]      [,10]
+[1,] 0.16027965 0.204407135 0.057684121 0.10607846
+[2,] 0.03495598 0.147953830 0.004469987 0.12948308
+[3,] 0.03883998 0.164323190 0.165176671 0.06432059
+[4,] 0.24624547 0.009653725 0.144955300 0.14177471
+[5,] 0.01372346 0.135571878 0.002554278 0.01902677
+[6,] 0.01838426 0.036306401 0.110898255 0.12830443
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#If everything worked out the sum of each column should be 1 now}
-\FunctionTok{colSums}\NormalTok{(mat2\_freq\_columns)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#If everything worked out the sum of each column should be 1 now}
+\ErrorTok{\textgreater{}} \FunctionTok{colSums}\NormalTok{(mat2\_freq\_columns)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 1 1 1 1 1 1 1 1
+ [1] 1 1 1 1 1 1 1 1 1 1
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Just like vectors it is also possible to preform mathematical operations on two matrices}
-\NormalTok{mat2\_mlt }\OtherTok{\textless{}{-}}\NormalTok{ mat2\_freq\_columns}\SpecialCharTok{*}\NormalTok{mat2\_log}
-\FunctionTok{head}\NormalTok{(mat2\_mlt)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Just like vectors it is also possible to preform mathematical operations on two matrices}
+\ErrorTok{\textgreater{}}\NormalTok{ mat2\_mlt }\OtherTok{\textless{}{-}}\NormalTok{ mat2\_freq\_columns}\SpecialCharTok{*}\NormalTok{mat2\_log}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(mat2\_mlt)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]      [,2]       [,3]      [,4]       [,5]      [,6]       [,7]
-## [1,] 0.41513756 0.1964141 0.03963170 0.3543849 0.10545604 0.3475482 0.44745119
-## [2,] 0.23835039 0.2860811 0.38232026 0.1741017 0.06624832 0.3355171 0.07446791
-## [3,] 0.43014763 0.4891438 0.03444055 0.4452355 0.31168102 0.1416894 0.08451934
-## [4,] 0.45865920 0.3026372 0.26041169 0.1525806 0.10923080 0.2804716 0.73336346
-## [5,] 0.43962873 0.3122992 0.49745913 0.2192621 0.43667807 0.2458656 0.02366303
-## [6,] 0.00575663 0.2423158 0.20148240 0.4081214 0.10277054 0.2291925 0.03403401
-##            [,8]        [,9]      [,10]
-## [1,] 0.61088278 0.140343695 0.29694975
-## [2,] 0.42140049 0.005910303 0.37367863
-## [3,] 0.47551216 0.477337739 0.16607985
-## [4,] 0.01605181 0.410679690 0.41473527
-## [5,] 0.38098850 0.002756529 0.03906346
-## [6,] 0.08125540 0.301292561 0.36976759
+           [,1]      [,2]       [,3]      [,4]       [,5]      [,6]       [,7]
+[1,] 0.41513756 0.1964141 0.03963170 0.3543849 0.10545604 0.3475482 0.44745119
+[2,] 0.23835039 0.2860811 0.38232026 0.1741017 0.06624832 0.3355171 0.07446791
+[3,] 0.43014763 0.4891438 0.03444055 0.4452355 0.31168102 0.1416894 0.08451934
+[4,] 0.45865920 0.3026372 0.26041169 0.1525806 0.10923080 0.2804716 0.73336346
+[5,] 0.43962873 0.3122992 0.49745913 0.2192621 0.43667807 0.2458656 0.02366303
+[6,] 0.00575663 0.2423158 0.20148240 0.4081214 0.10277054 0.2291925 0.03403401
+           [,8]        [,9]      [,10]
+[1,] 0.61088278 0.140343695 0.29694975
+[2,] 0.42140049 0.005910303 0.37367863
+[3,] 0.47551216 0.477337739 0.16607985
+[4,] 0.01605181 0.410679690 0.41473527
+[5,] 0.38098850 0.002756529 0.03906346
+[6,] 0.08125540 0.301292561 0.36976759
 \end{verbatim}
 
 Because matrices are tables but behave like vectors, operating on them is memory efficient and many R packages use
 them as a preferred object.
 
 \hypertarget{lists}{%
-\section{\texorpdfstring{\textbf{Lists}}{Lists}}\label{lists}}
+\subsection*{\texorpdfstring{\textbf{Lists}}{Lists}}\label{lists}}
+\addcontentsline{toc}{subsection}{\textbf{Lists}}
 
 A list is a multidimensional vector, which is a fancy way of saying that a list is a vector that can house any R
-object as an element.
-The elements of a list are independent of each other, making it a great object to store the output of function that
-handle data. For example some functions from the stringer package output their result as lists. Especially those with
+object as an element (e.g.~other vectors, matrices and even other lists).
+The elements of a list are independent of each other, making it a great container to store the output of functions that
+handle data. For example, some functions from the stringer package output their result as lists, especially those with
 \_all suffix.
 
 The code snippet bellow demonstrate how to create lists, as always there is more than one way to obtain your goal.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#creating an empty list of 10 elements}
-\CommentTok{\#Because a list is basically a vector of elements, it is possible to creat it using the vector function}
-\NormalTok{list1 }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\AttributeTok{mode =} \StringTok{"list"}\NormalTok{, }\AttributeTok{length =} \DecValTok{10}\NormalTok{)}
-\FunctionTok{class}\NormalTok{(list1)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#creating an empty list of 10 elements}
+\ErrorTok{\textgreater{}} \CommentTok{\#Because a list is basically a vector of elements, it is possible to creat it using the vector function}
+\ErrorTok{\textgreater{}}\NormalTok{ list1 }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\AttributeTok{mode =} \StringTok{"list"}\NormalTok{, }\AttributeTok{length =} \DecValTok{10}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{class}\NormalTok{(list1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "list"
+[1] "list"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.vector}\NormalTok{(list1)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.vector}\NormalTok{(list1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+[1] TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{is.atomic}\NormalTok{(list1) }\CommentTok{\#why is it not atomic?}
+\SpecialCharTok{\textgreater{}} \FunctionTok{is.atomic}\NormalTok{(list1) }\CommentTok{\#why is it not atomic?}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] FALSE
+[1] FALSE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{(list1,}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(list1,}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-## NULL
-## 
-## [[2]]
-## NULL
-## 
-## [[3]]
-## NULL
+[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Creating a list by using the list function}
-\NormalTok{list2 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\DecValTok{10}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{replace =}\NormalTok{ F),}\AttributeTok{ncol =} \DecValTok{2}\NormalTok{),}
-                    \FunctionTok{cbind}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{by=}\DecValTok{2}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{50}\NormalTok{)),}\FunctionTok{c}\NormalTok{(}\StringTok{"Category1"}\NormalTok{,}\StringTok{"Category2"}\NormalTok{),list1,}
-              \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Cat"}\NormalTok{,}\StringTok{"Dog"}\NormalTok{,}\StringTok{"Cat"}\NormalTok{,}\StringTok{"Mouse"}\NormalTok{)) )}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Creating a list by using the list function}
+\ErrorTok{\textgreater{}}\NormalTok{ list2 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\DecValTok{10}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{replace =}\NormalTok{ F),}\AttributeTok{ncol =} \DecValTok{2}\NormalTok{),}
+\SpecialCharTok{+}                     \FunctionTok{cbind}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{100}\NormalTok{,}\AttributeTok{by=}\DecValTok{2}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{50}\NormalTok{)),}\FunctionTok{c}\NormalTok{(}\StringTok{"Category1"}\NormalTok{,}\StringTok{"Category2"}\NormalTok{),list1,}
+\SpecialCharTok{+}               \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Cat"}\NormalTok{,}\StringTok{"Dog"}\NormalTok{,}\StringTok{"Cat"}\NormalTok{,}\StringTok{"Mouse"}\NormalTok{)) )}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{working-with-lists}{%
-\subsection{\texorpdfstring{\textbf{Working with lists}}{Working with lists}}\label{working-with-lists}}
+\subsubsection*{\texorpdfstring{\textbf{Working with lists}}{Working with lists}}\label{working-with-lists}}
+\addcontentsline{toc}{subsubsection}{\textbf{Working with lists}}
 
 The previous snippet demonstrated that lists can store any type of R object, even other lists.
 As mentioned, the elements of a list are independent of each other and in order to modify them they need to be
@@ -2371,137 +2465,140 @@ Since lists are vectors, each element can be inspected, like one would inspect a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Inspecting the 3rd element of list2}
-\NormalTok{list2[}\DecValTok{3}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Inspecting the 3rd element of list2}
+\ErrorTok{\textgreater{}}\NormalTok{ list2[}\DecValTok{3}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-## [1] "Category1" "Category2"
+[[1]]
+[1] "Category1" "Category2"
 \end{verbatim}
 
 However, indexing a list like a vector does not allow you to modify the element
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Note how the head function is unable to truncate the element to its first 2 componenets}
-\FunctionTok{head}\NormalTok{(list2[}\DecValTok{5}\NormalTok{],}\DecValTok{2}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Note how the head function is unable to truncate the element to its first 2 components}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(list2[}\DecValTok{5}\NormalTok{],}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-## [1] Cat   Dog   Cat   Mouse
-## Levels: Cat Dog Mouse
+[[1]]
+[1] Cat   Dog   Cat   Mouse
+Levels: Cat Dog Mouse
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Note how indexing like a vector does not allow you to subset the element itself}
-\NormalTok{list2[}\DecValTok{5}\NormalTok{][}\DecValTok{1}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Note how indexing like a vector does not allow you to subset the element itself}
+\ErrorTok{\textgreater{}}\NormalTok{ list2[}\DecValTok{5}\NormalTok{][}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-## [1] Cat   Dog   Cat   Mouse
-## Levels: Cat Dog Mouse
+[[1]]
+[1] Cat   Dog   Cat   Mouse
+Levels: Cat Dog Mouse
 \end{verbatim}
 
-In case you noticed, when using the head function on a list each element is sounded by double square brackets ( {[}{[} ).
-When subseting a list with {[}, it will always return another list. Think of it elements one on a character vector
-where each element is a string. You can see each string even replace them but can't modify them. In order to access
-and modify an element of the list {[}{[} have to be used.
+In case you noticed, when using the \texttt{head()} function on a list each element is surrounded by double
+square brackets ( \texttt{{[}{[}} ). When subseting a list with \texttt{{[}}, it will always return another list. Think of it elements one on a
+character vector where each element is a string. You can see each string even replace them but can't modify them. In order
+to access and modify an element of the list \texttt{{[}{[}} have to be used.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Subseting the last element of list2 and assigning it to the first element of list1}
-\NormalTok{list1[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ list2[[}\DecValTok{5}\NormalTok{]][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
-\NormalTok{list1[}\DecValTok{1}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Subseting the last element of list2 and assigning it to the first element of list1}
+\ErrorTok{\textgreater{}}\NormalTok{ list1[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ list2[[}\DecValTok{5}\NormalTok{]][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ list1[}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-## [1] Cat Dog Cat
-## Levels: Cat Dog Mouse
+[[1]]
+[1] Cat Dog Cat
+Levels: Cat Dog Mouse
 \end{verbatim}
 
 \hypertarget{lists-and-the-operator}{%
-\subsection{\texorpdfstring{\textbf{Lists and the \$ operator}}{Lists and the \$ operator}}\label{lists-and-the-operator}}
+\subsubsection*{\texorpdfstring{\textbf{Lists and the \$ operator}}{Lists and the \$ operator}}\label{lists-and-the-operator}}
+\addcontentsline{toc}{subsubsection}{\textbf{Lists and the \$ operator}}
 
-\$ is an operator that can be thought of as the equivalent of {[}{[} {]}{]}, therefore it can be used to access elements of a list. However, in order to use it the elements must be named first.
+\texttt{\$} is an operator that can be thought of as the equivalent of \texttt{{[}{[}\ {]}{]}}, therefore it can be used to access elements of a list. However, in order to use it the elements must be named first.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Are the elements of list2 named?}
-\FunctionTok{names}\NormalTok{(list2)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Are the elements of list2 named?}
+\ErrorTok{\textgreater{}} \FunctionTok{names}\NormalTok{(list2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## NULL
+NULL
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Naming the elements of the list}
-\FunctionTok{names}\NormalTok{(list2) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Sample1"}\NormalTok{,}\StringTok{"Sample2"}\NormalTok{,}\StringTok{"Categories"}\NormalTok{,}\StringTok{"Nested\_list"}\NormalTok{,}\StringTok{"Pets"}\NormalTok{)}
-
-\FunctionTok{names}\NormalTok{(list2)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Naming the elements of the list}
+\ErrorTok{\textgreater{}} \FunctionTok{names}\NormalTok{(list2) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Sample1"}\NormalTok{,}\StringTok{"Sample2"}\NormalTok{,}\StringTok{"Categories"}\NormalTok{,}\StringTok{"Nested\_list"}\NormalTok{,}\StringTok{"Pets"}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \FunctionTok{names}\NormalTok{(list2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Sample1"     "Sample2"     "Categories"  "Nested_list" "Pets"
+[1] "Sample1"     "Sample2"     "Categories"  "Nested_list" "Pets"       
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Accessing the list using $, note how rstudio autocompletes the elements}
-\NormalTok{list2}\SpecialCharTok{$}\NormalTok{Categories}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Accessing the list using $, note how rstudio autocompletes the elements}
+\ErrorTok{\textgreater{}}\NormalTok{ list2}\SpecialCharTok{$}\NormalTok{Categories}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Category1" "Category2"
+[1] "Category1" "Category2"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{list2}\SpecialCharTok{$}\NormalTok{Categories[}\DecValTok{2}\NormalTok{]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ list2}\SpecialCharTok{$}\NormalTok{Categories[}\DecValTok{2}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Category2"
+[1] "Category2"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{list2}\SpecialCharTok{$}\NormalTok{Sample2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ list2}\SpecialCharTok{$}\NormalTok{Sample2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10
+[1] 10
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{list2}\SpecialCharTok{$}\NormalTok{Sample2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{11}
-\NormalTok{list2}\SpecialCharTok{$}\NormalTok{Sample2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\SpecialCharTok{\textgreater{}}\NormalTok{ list2}\SpecialCharTok{$}\NormalTok{Sample2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{11}
+\SpecialCharTok{\textgreater{}}\NormalTok{ list2}\SpecialCharTok{$}\NormalTok{Sample2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 11
+[1] 11
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\textbf{Quick R exercise}
+\hypertarget{quick-r-exercise---lists}{%
+\subsubsection*{\texorpdfstring{\textbf{Quick R exercise - lists}}{Quick R exercise - lists}}\label{quick-r-exercise---lists}}
+\addcontentsline{toc}{subsubsection}{\textbf{Quick R exercise - lists}}
 
 Let's wrap up working with lists with the following exercise:
 
@@ -2522,216 +2619,226 @@ Let's wrap up working with lists with the following exercise:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{data.frames}{%
-\section{\texorpdfstring{\textbf{data.frames}}{data.frames}}\label{data.frames}}
+\hypertarget{data-frames}{%
+\subsection*{\texorpdfstring{\textbf{Data frames}}{Data frames}}\label{data-frames}}
+\addcontentsline{toc}{subsection}{\textbf{Data frames}}
 
-Data frames are a commonly used objects in R especially in data preparation and analysis.
-Data frames are a special case of a list containing vectors of equal length as element, giving it a rectangular shape. The vectors make up the columns of the dataframe.
+Data frames are a commonly used objects in R, especially in data preparation and analysis.
+Data frames are a special case of a list containing vectors of equal length as element, giving it a rectangular shape. The
+vectors make up the columns of the data frame.
 
-Let's create a datafram or two
+Let's create a data frame or two
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# datafeames can be created by using the data.frame function}
-\CommentTok{\#Note that by default strings are coereced to factors, which can be annoying}
-\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{X =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{), }
-                  \AttributeTok{Y =} \FunctionTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{1000}\NormalTok{, }\AttributeTok{by =} \DecValTok{100}\NormalTok{),}
-                  \AttributeTok{Z =}\NormalTok{ LETTERS[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{], }\AttributeTok{stringsAsFactors =}\NormalTok{ F)}
-
-\CommentTok{\#Each column is an independent vector, that\textquotesingle{}s why columns X and Y can be numeric and Z a character.}
-\FunctionTok{str}\NormalTok{(df1)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# data frames can be created by using the data.frame function}
+\ErrorTok{\textgreater{}} \CommentTok{\#Note that by default strings are coerced to factors, which can be annoying}
+\ErrorTok{\textgreater{}} \CommentTok{\#Can avoid be using stringsAsFActors=FALSE}
+\ErrorTok{\textgreater{}}\NormalTok{ df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{X =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{1}\NormalTok{), }
+\SpecialCharTok{+}                   \AttributeTok{Y =} \FunctionTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{1000}\NormalTok{, }\AttributeTok{by =} \DecValTok{100}\NormalTok{),}
+\SpecialCharTok{+}                   \AttributeTok{Z =}\NormalTok{ LETTERS[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{], }\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#Each column is an independent vector, that\textquotesingle{}s why columns X and Y can be numeric and Z a character.}
+\ErrorTok{\textgreater{}} \FunctionTok{str}\NormalTok{(df1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    10 obs. of  3 variables:
-##  $ X: num  1 2 3 4 5 6 7 8 9 10
-##  $ Y: num  100 200 300 400 500 600 700 800 900 1000
-##  $ Z: chr  "A" "B" "C" "D" ...
+'data.frame':   10 obs. of  3 variables:
+ $ X: num  1 2 3 4 5 6 7 8 9 10
+ $ Y: num  100 200 300 400 500 600 700 800 900 1000
+ $ Z: chr  "A" "B" "C" "D" ...
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# It is also possible to coerce a matrix to a dataframe}
-
-\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(mat2)}
-
-\CommentTok{\#let\textquotesingle{}s see what a dataframe looks like}
-\FunctionTok{head}\NormalTok{(df1,}\DecValTok{4}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\# It is also possible to coerce a matrix to a data frame and vice versa}
+\ErrorTok{\textgreater{}} 
+\ErrorTok{\textgreater{}}\NormalTok{ df2 }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(mat2)}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#let\textquotesingle{}s see what a data frame looks like}
+\ErrorTok{\textgreater{}} \FunctionTok{head}\NormalTok{(df1,}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   X   Y Z
-## 1 1 100 A
-## 2 2 200 B
-## 3 3 300 C
-## 4 4 400 D
+  X   Y Z
+1 1 100 A
+2 2 200 B
+3 3 300 C
+4 4 400 D
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{(df2,}\DecValTok{4}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(df2,}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    V1  V2  V3  V4  V5  V6  V7  V8  V9 V10
-## 1 859 449 110 675 232 893 619 974 271 630
-## 2 531 621 753 366 157 866 135 705  21 769
-## 3 886 990  98 823 586 411 150 783 776 382
-## 4 937 652 540 327 239 741 951  46 681 842
+   V1  V2  V3  V4  V5  V6  V7  V8  V9 V10
+1 859 449 110 675 232 893 619 974 271 630
+2 531 621 753 366 157 866 135 705  21 769
+3 886 990  98 823 586 411 150 783 776 382
+4 937 652 540 327 239 741 951  46 681 842
 \end{verbatim}
 
-As can be seen in the output of the head function all the columns of the dataframes are named.
-This is an attribute of dataframes. The name of the columns can be accessed and changed with the function colnames. The nameless column to the left is not a real column, it is the name of each row. This can be accessed by the function rownames.
+As can be seen in the output of the head function all columns of the data frame are named.
+This is an attribute of data frames. The name of the columns can be accessed and changed with the function \texttt{colnames()}.
+The nameless column to the left is not a real column, it is the name of each row. This can be accessed by the function
+\texttt{rownames()}. The row names is an identifying column, giving a unique ID to each row, similar to the identity column in
+SQL.However, unlike SQL it does not have to hold a numeric value so long as the values are uniqe (i.e.~rows with duplicate
+names are not allowed)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{colnames}\NormalTok{(df1)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{colnames}\NormalTok{(df1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "X" "Y" "Z"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{colnames}\NormalTok{(df1)[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Sample1"}
-\FunctionTok{colnames}\NormalTok{(df1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Sample1" "Y"       "Z"
+[1] "X" "Y" "Z"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{(}\FunctionTok{rownames}\NormalTok{(df2),}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{colnames}\NormalTok{(df1)[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Sample1"}
+\SpecialCharTok{\textgreater{}} \FunctionTok{colnames}\NormalTok{(df1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "1" "2" "3"
+[1] "Sample1" "Y"       "Z"      
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{rownames}\NormalTok{(df2) }\OtherTok{\textless{}{-}}\NormalTok{ LETTERS[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(df2)]}
-\FunctionTok{head}\NormalTok{(}\FunctionTok{rownames}\NormalTok{(df2),}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(}\FunctionTok{rownames}\NormalTok{(df2),}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "A" "B" "C"
-\end{verbatim}
-
-Dataframes behave both like a list and like matrix. Because the columns are named, they can be accessed by the \$ operator. However just like matrices they can also be subset by {[}. Just like matrices, operations on dataframes can be vectorized.
-
-Let's look at some examples of how to work with dataframes
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#accesing a single column using the $ operator}
-\NormalTok{df1}\SpecialCharTok{$}\NormalTok{Sample1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  1  2  3  4  5  6  7  8  9 10
+[1] "1" "2" "3"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#subseting a dataframe using []}
-\CommentTok{\#If no commas are used this is like subseting a list }
-\NormalTok{df1[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \FunctionTok{rownames}\NormalTok{(df2) }\OtherTok{\textless{}{-}}\NormalTok{ LETTERS[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(df2)]}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(}\FunctionTok{rownames}\NormalTok{(df2),}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    Sample1    Y
-## 1        1  100
-## 2        2  200
-## 3        3  300
-## 4        4  400
-## 5        5  500
-## 6        6  600
-## 7        7  700
-## 8        8  800
-## 9        9  900
-## 10      10 1000
+[1] "A" "B" "C"
+\end{verbatim}
+
+Data frames behave both like a list and like matrix. Because the columns are named, they can be accessed by the \texttt{\$}
+operator. However, just like matrices they can also be subset by \texttt{{[}} and operations on data frames can be vectorized.
+
+Let's look at some examples of how to work with data frames.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#accessing a single column using the $ operator}
+\ErrorTok{\textgreater{}}\NormalTok{ df1}\SpecialCharTok{$}\NormalTok{Sample1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  1  2  3  4  5  6  7  8  9 10
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Like a matrix (i.e. 2D)}
-\NormalTok{df1[,}\DecValTok{1}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#subseting a data frame using []}
+\ErrorTok{\textgreater{}} \CommentTok{\#If no commas are used this is like subseting a list }
+\ErrorTok{\textgreater{}}\NormalTok{ df1[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  1  2  3  4  5  6  7  8  9 10
+   Sample1    Y
+1        1  100
+2        2  200
+3        3  300
+4        4  400
+5        5  500
+6        6  600
+7        7  700
+8        8  800
+9        9  900
+10      10 1000
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#First 3 rows, and first 2 columns}
-\NormalTok{df1[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Like a matrix (i.e. 2D)}
+\ErrorTok{\textgreater{}}\NormalTok{ df1[,}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   Sample1   Y
-## 1       1 100
-## 2       2 200
-## 3       3 300
+ [1]  1  2  3  4  5  6  7  8  9 10
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Adding a column to the dataframe}
-\NormalTok{df1}\SpecialCharTok{$}\NormalTok{New\_column }\OtherTok{\textless{}{-}}\NormalTok{ df2}\SpecialCharTok{$}\NormalTok{V1}
-
-\CommentTok{\#adding a new row to a dataframe}
-\NormalTok{df1[}\FunctionTok{nrow}\NormalTok{(df1)}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
-\NormalTok{df1[}\FunctionTok{nrow}\NormalTok{(df1),]}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#First 3 rows, and first 2 columns}
+\ErrorTok{\textgreater{}}\NormalTok{ df1[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    Sample1 Y Z New_column
-## 11       1 1 1          1
+  Sample1   Y
+1       1 100
+2       2 200
+3       3 300
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Natural log transformation of a dataframe}
-\NormalTok{df3 }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(df2)}
-\FunctionTok{head}\NormalTok{(df3,}\DecValTok{3}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Adding a column to the data frame}
+\ErrorTok{\textgreater{}}\NormalTok{ df1}\SpecialCharTok{$}\NormalTok{New\_column }\OtherTok{\textless{}{-}}\NormalTok{ df2}\SpecialCharTok{$}\NormalTok{V1}
+\SpecialCharTok{\textgreater{}} 
+\ErrorTok{\textgreater{}} \CommentTok{\#adding a new row to a data frame}
+\ErrorTok{\textgreater{}}\NormalTok{ df1[}\FunctionTok{nrow}\NormalTok{(df1)}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ df1[}\FunctionTok{nrow}\NormalTok{(df1),]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##         V1       V2       V3       V4       V5       V6       V7       V8
-## A 6.755769 6.107023 4.700480 6.514713 5.446737 6.794587 6.428105 6.881411
-## B 6.274762 6.431331 6.624065 5.902633 5.056246 6.763885 4.905275 6.558198
-## C 6.786717 6.897705 4.584967 6.712956 6.373320 6.018593 5.010635 6.663133
-##         V9      V10
-## A 5.602119 6.445720
-## B 3.044522 6.645091
-## C 6.654153 5.945421
+   Sample1 Y Z New_column
+11       1 1 1          1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\textgreater{}} \CommentTok{\#Natural log transformation of a data frame}
+\ErrorTok{\textgreater{}}\NormalTok{ df3 }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(df2)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{head}\NormalTok{(df3,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        V1       V2       V3       V4       V5       V6       V7       V8
+A 6.755769 6.107023 4.700480 6.514713 5.446737 6.794587 6.428105 6.881411
+B 6.274762 6.431331 6.624065 5.902633 5.056246 6.763885 4.905275 6.558198
+C 6.786717 6.897705 4.584967 6.712956 6.373320 6.018593 5.010635 6.663133
+        V9      V10
+A 5.602119 6.445720
+B 3.044522 6.645091
+C 6.654153 5.945421
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{summary-exercise-lab1}{%
-\chapter{\texorpdfstring{\textbf{Summary exercise Lab1}}{Summary exercise Lab1}}\label{summary-exercise-lab1}}
+\section*{\texorpdfstring{\textbf{Summary exercise Lab1}}{Summary exercise Lab1}}\label{summary-exercise-lab1}}
+\addcontentsline{toc}{section}{\textbf{Summary exercise Lab1}}
 
 Start a script file in RStudio name it 3315\_lab1\_yourinitials.R
-You will submit this script and output file if applicable to D2l submission folder by Tue Sept 20 23:59.
+You will submit this script and output file if applicable to D2l submission folder.
+Check your course outline for submission deadline.
 
 \textbf{1.} Create a vector containing the string ``How much wood would a woodchuck chuck if a woodchuck could chuck wood? He would chuck, he would, as much as he could, and chuck as much wood
 As a woodchuck would if a woodchuck could chuck wood''
@@ -2810,8 +2917,8 @@ See Figure \ref{fig:nice-fig}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\SpecialCharTok{\textgreater{}} \FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
+\SpecialCharTok{\textgreater{}} \FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2828,10 +2935,10 @@ Don't miss Table \ref{tab:nice-tab}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
+\SpecialCharTok{\textgreater{}}\NormalTok{ knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+\SpecialCharTok{+}   \FunctionTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
+\SpecialCharTok{+}   \AttributeTok{booktabs =} \ConstantTok{TRUE}
+\SpecialCharTok{+}\NormalTok{ )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2950,7 +3057,7 @@ Or use:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
+\SpecialCharTok{\textgreater{}}\NormalTok{ ?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
 \end{Highlighting}
 \end{Shaded}
 
