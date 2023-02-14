@@ -6,7 +6,6 @@ options(knitr.duplicate.label = "allow")
 
 # **Lab 2 data manipulation and presentation in R**{-}
 
-<br>
 
 ## **Learning objectives**{-} 
 
@@ -59,14 +58,15 @@ library("tidyverse")
 ```
 
 ```{r load packages, echo=FALSE,message=FALSE,warning=FALSE,include=FALSE}
-library(tidyverse)
+library("tidyverse")
 library("DT")
 
 ```
 
 ***
 
->**Note: even if you installed the tidyverse packages using the tidyverse package tidyverse packages such as dplyr can still be loaded individually**
+>**Note: even if you installed all tidyverse packages using `install.packages("tidyverse")`, tidyverse packages such as** 
+>**`dplyr` can still be loaded individually**
 
 ***
 
@@ -139,13 +139,13 @@ can be used to read txt files so long as the sep argument is correct.
 
 ```{r read.table1}
 
-#sep = '\t' means tab delamination
+#sep = '\t' means tab delimited
 df1b <- read.table("lab2_files/practice2.txt", sep = '\t', header = T, 
                    row.names = 1, stringsAsFactors = F)
 
 class(df1b)
 
-#are they identicle?
+#are they identical?
 df1 == df1b
 
 
@@ -155,21 +155,21 @@ df1 == df1b
 
 >**A note about funky files and funky R behavior**
 >
->As bioinformaticians, often times you will be asked to analyze data that you did not create. If the columns contain 
+>As bioinformaticians, you will be asked to analyze data that you did not generate. If the columns contain 
 >characters that R recognizes as special characters, it might lead to errors in the delimitation process when importing the
 >file. `read.table()` and all private cases of it, has a quote argument that help circumvent these errors by ignoring 
 specified characters. 
 This [blog post](https://biowize.wordpress.com/2013/10/08/quotation-marks-and-rs-read-table-function/) has a great example 
->of how to use the quote argument in read.table.
+>of how to use the quote argument in `read.table()`.
 
 ***
 
 ### **Reading non-tabulated text files**{-}
 
 As bioinformaticians you will be required to work with non-tabulated file formats. A great example of this are text files, 
-where information is stored as lines of strings. [FASTA format](https://en.wikipedia.org/wiki/FASTA_format), a standard 
-for handling sequence data (will be covered in labs 3 and 4) is in fact a text file with lines as strings of sequences.
-
+where information is stored as lines of strings. The [FASTA file format](https://en.wikipedia.org/wiki/FASTA_format), a 
+standard for handling sequence data (will be covered in labs 3 and 4) is in fact a text file with lines as strings of 
+sequences.
 Base R has some built-in functions to import non-tabulated text files. The snippet bellow demonstrates how read a text file
 from the Gutenberg organisation. Just like with `read.csv()`, you can use it to read files locally as well.
 
@@ -192,7 +192,7 @@ is.atomic(book.lines)
 book.lines[7]
 length(book.lines[7])
 
-#We can use the lenth function to inspect how many lines are in the file
+#We can use the length function to inspect how many lines of text are in the file
 length(book.lines)
 
 ```
@@ -205,20 +205,26 @@ length(book.lines)
 
 3. What is the title of the book you imported to R?
 
-### **Exporting files**{-}
+### **Exporting tabulated data**{-}
 
-There are many ways to export data from R as files. In many cases you would be required to export tabulated data from R. To
-do so you can use the write.csv function (yes it is a private case of write.table function).
+There are many ways to export data from R. In many cases you would be required to export tabulated data, and base R has an 
+array of functions to handle the task. A convenient one is `write.csv()` function (yes it is a private case of 
+`write.table()` function) which will export tabulated data as a CSV file. The tidyverse version is `write_csv()`, which 
+works similarly however don't confuse them. 
+Let's look at an example, the code snippet bellow will generate a 100X100 data frame, which will get exported as a csv 
+file.
+The snippet demonstrates once more the order of opperation
 
 ```{r write.csv}
 
-#Let's generate a 100X100 dataframe which we will export out of R
 
-#First let's generate the row names vector
-#The paste function will generate a vecor of 100 consecutive elements Site1 - Site 100
+#First let's generate the row names
+#The paste function will generate a vector of 100 consecutive elements, Site1 - Site 100
 #Note that I am not using a loop for that, the vectorization in R saves on a lot of iterations
 
 sites <- paste("Site", seq(1,100, by=1), sep = "")
+
+#Similarly l
 
 cols <- paste("species", seq(1,100, by = 1), sep = "")
 
@@ -238,6 +244,10 @@ write.csv(da.df, file = "practice3.csv", row.names = T)
 
 ```
 
+>
+
+###
+
 R allows you to export non-tabulated files as well, the following snippet demonstrates how to export non-tabulated data as a txt file. In future labs you will export other file types as well. 
 
 ```{r export txt files}
@@ -248,13 +258,13 @@ write(book.lines[1:12], file = "book.txt", append = F)
 
 ```
 
-**Quick R exercise**
+### **Quick R exercise - data exportation**{-}
 
 1. Generate 3 strings and house each of them in a vector
 
 2. Add the 3 strings as new lines at the end of book.txt 
 
-## **Manipulating your data**{-}
+## **(Tidy) Data manipulation in R**{-}
 
 R has some powerful tools allowing you to manipulate and modify data. We have already gone over some of them. For example, 
 you have learned several ways to subset objects, you have learned that almost any data type in R can be coerced to any 
@@ -771,7 +781,7 @@ for (i in seq_along(files)) {
 
 ***
 
-## **Functions**
+## **Functions**{-}
 
 If you remember, R lets users write customized functions.
 
@@ -786,7 +796,7 @@ As a student it also pays to know how write functions in R. If you find yourself
 same analysis in different labs (say chemistry and physics), write a pipeline that generates the
 graphs and tables you need. 
 
-**Constructing a function**
+### **Constructing a function**{-}
 
 The function structure is function(arguments){operations done on functions}. 
 The arguments require input from the user, but they can have default values e.g.
@@ -891,13 +901,15 @@ imp.data <- function(Pattern= ".csv", Path = getwd(), Recursive = FALSE){
 
 ***
 
-**A note on the function environment**
-
-The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the intermediate variables created by the function they need to be exported using the <<- operator. The <<- operator is variable assignment operator similar to <- only it exports variables to the global environment.
+> **A note on the function environment**
+>
+>The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the
+>intermediate variables created by the function they need to be exported using the <<- operator. The <<- operator is
+>variable assignment operator similar to <- only it exports variables to the global environment.
 
 ***
 
-## **Plotting your data**
+## **Plotting your data**{-}
 
 R has a basic function to graph data, this is done with the plot function.
 Here is an example of a scatter plot using the plot function.
