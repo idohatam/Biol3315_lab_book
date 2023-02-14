@@ -238,9 +238,9 @@ write.csv(da.df, file = "practice3.csv", row.names = T)
 
 ```
 
->esport xsl xslx
+>export xls xlsx files
 
-### **Exportin non-tabulated data**{-}
+### **Exporting non-tabulated data**{-}
 
 R allows you to export non-tabulated files as well, the following snippet demonstrates how to export non-tabulated data as a txt file. In future labs you will export other file types as well. 
 
