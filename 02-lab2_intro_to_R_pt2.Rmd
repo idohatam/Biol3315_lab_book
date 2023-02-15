@@ -207,10 +207,8 @@ array of functions to handle the task. A convenient one is `write.csv()` functio
 works similarly however don't confuse them. 
 Let's look at an example, the code snippet bellow will generate a 100X100 data frame, which will get exported as a csv 
 file.
-The snippet demonstrates once more the order of opperation
 
 ```{r write.csv}
-
 
 #First let's generate the row names
 #The paste function will generate a vector of 100 consecutive elements, Site1 - Site 100
@@ -218,25 +216,27 @@ The snippet demonstrates once more the order of opperation
 
 sites <- paste("Site", seq(1,100, by=1), sep = "")
 
-#Similarly l
+#Similarly let's generate a vector that will house the names of the columns
 
 cols <- paste("species", seq(1,100, by = 1), sep = "")
 
-#Now lets generate the numbers, here I am cheating and using the replicate function
-#It is a function that acts as a for loop, we will see some more of these function when we discuss itereations
+#Now lets generate the numbers, here I am cheating and using the replicate function.
+#It is a function that acts as a for loop, we will see some more of these function when we discuss iterations.
 #The replicate function will create a list with 100 elements each is a vector of a 100 random numbers
 
 da <- replicate(100, sample(1:10000,100,replace = T), simplify = F)
 
-#Now lets turn is to a dataframe, Reduce binds all the vectors as columns (again cheating and usig a function that acts as a for loop)
+#Now lets turn is to a data frame, Reduce binds all the vectors as columns (again cheating and using a function that acts as a for loop)
 da.df <- as.data.frame(Reduce(f=cbind, da),row.names = sites)
 names(da.df) <- cols
-
-#Now we are ready to export the dataframe as a csv file
-
-write.csv(da.df, file = "practice3.csv", row.names = T)
-
 ```
+
+Now that you made the data frame you can export it using `write.csv()`
+
+```{r wcsv, eval=FALSE}
+write.csv(da.df, file = "practice3.csv", row.names = T)
+```
+
 
 ***
 
@@ -247,9 +247,10 @@ write.csv(da.df, file = "practice3.csv", row.names = T)
 
 ### **Exporting non-tabulated data**{-}
 
-R allows you to export non-tabulated files as well, the following snippet demonstrates how to export non-tabulated data as a txt file. In future labs you will export other file types as well. 
+R allows you to export non-tabulated files as well, the following snippet demonstrates how to export non-tabulated data as a txt file. In 
+future labs you will export other file types as well. 
 
-```{r export txt files}
+```{r export txt files, eval=FALSE}
 #Let's write the first 12 lines of the book as text file
 #Note that if you were writing into an existing file you could use the argument append = T and R would add lines insted of writing over the file.
 
@@ -290,53 +291,72 @@ As always, there are some great cheatsheets for data manipulation using Tidyvers
 
 ### **A tidy re-imagining of the data frame**{-}
 
-As mentioned, the tidyverse is an assortment of packages designed to tidy and streamline data analysis and code writing in 
+As mentioned, the tidyverse is an assortment of packages designed for tidying up and streamlining data analysis and code writing in 
 R. As you will see the tidyverse redesigned several basic consents in R, including data structure such as factors (via the 
 `forcats` package) and data frames via the tibble package. 
-Tibbles are the default format of tabulated data for many tidy data importation packages.
+Tibbles are the default format of tabulated data for many tidyverse packages.
 What are tibbles? Tibbles are first and foremost data frames. Lets see an example using readr's `read_csv()` function.
-
+When importing a csv file using `read_csv()` we get a tibble, rather than a data frame. 
 ```{r read_csv, message=FALSE,warning=FALSE}
 df1_tbl <- readr::read_csv(file ="lab2_files/practice2.csv")
 class(df1_tbl)
 head(df1_tbl)
 ```
-As you can see, tibbles print pretty similar to data frames and belong to the same class, which brings the following 
-question.
+
+As you can see, tibbles belong to the same class as data frames, they print similarly but not identically to data frames. Which brings the 
+following question.
 
 #### **Why use tibbles?**{-}
 
 There are several advantages to using tibbles, which are linked to the differences between them and traditional data 
 frames. 
-Tibbles are designed to handle larger data sets, which is why when we call them (lets look at that code again) they print 
+Tibbles are designed to handle larger data sets, which is why when we call them (lets look at that code again) they print slightly 
 differently.
 
 ```{r tib vs df1}
+#Calling a data frame
 df1
+#Calling a tibble
 df1_tbl
-
 ```
-Note how when calling a tibble, it specifies its dimensions and the class of each column. if we were dealing with a larger 
+
+Note how when calling a tibble, it specifies its dimensions and the class of data for each column. if we were dealing with a larger 
 data set the tibble would only print the first 10 rows and the columns to not overload the console. If you noticed another 
-difference, don't worry we will deal with it soon.
-Tibbles work great with the glimpse function that help inspect the data.
+difference, I haven't mentioned don't worry, you are not losing it, we will deal with it soon.
+Tibbles work great with the glimpse function that help inspect large data sets.
 
 ```{r glimpse}
 glimpse(df1_tbl)
 ```
-Tibbles are stricter than data frames in the sense that tibbles do not convert data types when created, for example you don't need to worry about it converting your character columns to factors.
+
+Tibbles are stricter than data frames in the sense that tibbles do not convert data types when created, for example you don't need to worry 
+about it converting your character columns to factors. This makes them more memory efficient and faster to work with. s
 
 Another fundamental difference between tibbles and data frames is that tibbles can be subset via piping....
-Oh wait you don't know about those yet...
+Oh wait you don't know about piping yet...
 
 #### **Even the tidyverse can get messy sometimes**{-}
 
 A guiding principle of tidy data is that every line of tabulated information should have a unique identifier (similar to 
-SQL). In base R the row names act as a unique identifier for each row, as every row has a unique value. However, base R's 
-approach allows you to store metadata (descriptive information about your data) in your row names as well. 
-For example, the row name from `df1` you generated by importing the file practice2.csv has site names as row names. 
-Tidyveres shares the same philosophy as SQLl and it does not view row names as a place to store descriptive data. 
-This is not a big deal, it just requires that you assign the row names to a column.
+SQL). In base R the row names act as a unique identifier for each row, as every row has a unique value. However, as you already know, base 
+R's approach allows you to store metadata (descriptive information about your data) in your row names as well.
+For example, the row name from `df1` you generated by importing the file practice2.csv has site names as row names.
+
+```{r show rn}
+df1
+```
+
+Which brings us to the other difference you might have noticed when printing df1_tbl, the row name was now the first column of the data 
+frame. This is because tidyveres shares the same philosophy as SQL and it does not view the row names as a place to store descriptive info. 
+
+```{r show rn2}
+
+df1_tbl
+
+df1_tbl <- as_tibble(df1)
+df1_tbl
+
+```
 
 
 ```{r the tibble rn, eval=FALSE}
@@ -351,7 +371,7 @@ df1_tbl <- as_tibble(df1, rownames = NA)
 DT::datatable(df1_tbl)
 ```
 
-
+So where's the problem?
 
 The code snippet bellow will introduce you to a tidyverse function that will allow you copy the row names as a 
 column, I will also compare it to a non-tidyverse approach
@@ -471,20 +491,21 @@ df2
 
 
 
-### **Streamlining data manipulation using %>% (pip)operator**{-}
+### **Streamlining data manipulation using `%>%` (pip)operator**{-}
 
 So far we have gone through two ways of sequentially running through functions.
 
 1. Line by line
 
-2. Chaining functions using brackets
+2. Chaining functions using brackets eg:
 
-X <- f3(f2(f1(x))) where the order in which the function run is inside out.
+X <- f3(f2(f1(x))) where the order in which the function run is inside out, i.e. f1(x) f2(output of f1), 
 
 This sort of writing, while concise, makes the code hard to read. The Tidyverse employs a piping operator %>%, colloquially
 referred to as an "and then" operator
 
-x `%>%` f1() is equivalent to f1(x) and x `%>%` f1(y) is the equivalent of f1(x,y).
+x `%>%` f1() is equivalent to f1(x) and x `%>%` f1(y) is the equivalent of f1(x,y) where y is an argument of f1().
+This allows the user to chain functions from left to right on a variable that was specified at the left hand side of the pipe. 
 
 ```{r piping}
 
@@ -494,8 +515,8 @@ da.df3 <- select(da.df2, 11:15)
 
 da.df3 <- da.df2 %>% select(11:15)
 
-#bonus subseting with a pipe, note that the dot (.) is a place holder for 
-#the data frame at the beging of the pipe
+#bonus subseting the species13 column with a pipe, note that the dot (.) is a place holder for 
+#the data frame at the begining of the pipe
 df.df2.s13 <- da.df2 %>% .$species13 
 
 ```
@@ -504,8 +525,7 @@ As bonus
 
 The piping operator can be used to chain functions sequentially, from left to right allowing for a more readable code.
 
-```{r}
-
+```{r mod}
 #chaining functions, functions run from left to right on da.df2
 #I am cheating here since you don't know what modify is, 
 #though it is pretty self explanatory.
@@ -516,8 +536,8 @@ da.df3 <- da.df2 %>% select(1, 5:13) %>% filter(species11 > 50) %>%
 
 ***
 
->**A note about piping:**
-> The `%>%` operator is part of a series of pipes [magrittr package](https://data-and-the-world.onrender.com/posts/magrittr-pipes/)
+>**A note about pipes:**
+> The `%>%` operator is part of a series of pipes [magrittr package](https://data-and-the-world.onrender.com/posts/magrittr-pipes/).
 >Base R offeres pipes as well `|>`, however it is slighly less useable than `%>%`.
 >I still encourage you to try using it. 
 
