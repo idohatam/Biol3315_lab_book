@@ -238,7 +238,12 @@ write.csv(da.df, file = "practice3.csv", row.names = T)
 
 ```
 
->export xls xlsx files
+***
+
+>CSV is a common file format for tabulated data; however, there are noumerous R packages
+>e.g. `readr` that allow to export tabulated data from R as xls or xlsx files.
+
+***
 
 ### **Exporting non-tabulated data**{-}
 
