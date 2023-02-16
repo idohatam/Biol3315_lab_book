@@ -774,8 +774,7 @@ df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
 df2
 ```
 
-```{r if_else df, echo=FALSE, warning=FALSE,message=FALSE}
-#If elevation is high temp is -7 else temp is 10
+```{r if_else df2, echo=FALSE, warning=FALSE,message=FALSE}
 
 df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
 DT::datatable(df2)
@@ -786,10 +785,12 @@ The previous example only had one condition, if the elevation is high, temp is -
 What if your data has more granularity, e.g. what if sea level and low elevation has a different temperature?
 It is possible to chain multiple `ifelse()` statement sequentially, in that case it is important to add a filler FALSE
 to the first test. Here I use NA and not a number, since that would make it easy to check whether something was missed as it would contain 
-an NA. 
+an NA. Note that for the first iteration I am using `ifelse()` andn not the dplyr `if_else()` because the latter is type specific and will 
+throw an error if using input not of the same type (e.g. double and logical). This is anbother good demonstration of the diferences between 
+base R and tidyverse approach to handling data. 
 
 ```{r multiple ifelse1, eval=FALSE}
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
+df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7, NA)) %>%
   #If test is false keep current value
   mutate(Temp = if_else(Elevation == "Sea level", 15, Temp)) %>%
   mutate(Temp = if_else(Elevation == "Low", 25, Temp))
@@ -800,7 +801,7 @@ df2
 ```{r multiple ifelse1b, echo=FALSE, message=FALSE,warning=FALSE}
 #ifelse can be chaind, either as sequenctial funcation or within the first function.
 #NAis a filler in case one condition is not met 
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
+df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7, NA)) %>%
   #If test is false keep current value
   mutate(Temp = if_else(Elevation == "Sea level", 15, Temp)) %>%
   mutate(Temp = if_else(Elevation == "Low", 25, Temp))
@@ -813,7 +814,7 @@ Alternatively, it is possible to use the `if_else()` function as
 ```{r multiple ifelse2, eval=FALSE}
 #Note in second if_else, if_else is chaind in the false argument.
 #This will not work with the first one since mutate needs to create the Temp column first
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7.5, NA)) %>%
+df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7.5, NA)) %>%
   mutate(Temp = if_else(Elevation == "Sea level", 15.5, 
                         if_else(Elevation == "Low", 25.5, Temp))) 
 
@@ -821,7 +822,7 @@ df2
 ```
 
 ```{r multiple ifelse2b, echol=FALSE, message=FALSE, warning=FALSE}
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7.5, NA)) %>%
+df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7.5, NA)) %>%
   mutate(Temp = if_else(Elevation == "Sea level", 15.5, 
                         if_else(Elevation == "Low", 25.5, Temp))) 
 
@@ -992,16 +993,18 @@ even other functions. Arguments require input from the user, but they can have d
 function(arg1=5, arg2 = NA, arg3) { do something}. In this example arg1 and arg2 have default
 values (and are vectors). They can be changed by the user, but if there is no input from the user the function will
 use the default value. If the function is intended to return a value is should have some sort of an output function like, `print()`.
-If the function is intended to output a variable (e.g. a list, a data frame, a matrix, etc..) as it's final product, that variable should be outputed 
+If the function is intended to output a variable (e.g. a list, a data frame, a matrix, etc..) as it's final product, that variable should be
+outputed using the `return()` function.
 
-Lets look at two functions as an example, the first one is very simple the second a bit more complex. 
+Lets look at two functions as an example, the first one is very simple the second a bit more complex.
+Neither are of any consequence, therefore the `return()` function was not used.
 
 ```{r function1}
 
 #How to construct a function
 
 #Assign a function to a variable, set the arguments
-#Decide what the function does whith the arguments
+#Decide what the function does with the arguments
 
 print_x <- function(x){
   print("All this function does is print x")
@@ -1060,11 +1063,16 @@ Now that we have played around with some useless functions, lets write a practic
 When you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are a 
 great way to automate your work and keep in a reproducible. 
 
-In this exampl,e we will write a function that imports csv files,log transforms them and store them in a list. This is a very straight 
-forward and simple function, however, its capabilities can be expended to perform other tasks.
+The following example, demonstrates how write a function that imports csv files,log transforms them and store them in a list. 
+This is a very straight forward and simple function, however, its capabilities can be expended to perform other tasks.
+For example, you could replace read.csv with `read.table` or `read_table()` to generalize it, or add a conditional statement so that it 
+might also be used to read non-tabulated data like fasta files.
 The following function uses the function `getwd()` as the default argument for the function variable Path.
 Path would be used as the variable that directs the function to the directory you would like to iterate over.
 Use `?getwd` or just call `getwd()` in the console to figure out what its output is.
+This is a useful function, that's used to output `return()`
+Note that `return()` tells R that this is the end of the function and R will disregard any code within the function that comes after 
+`return()` was called.
 
 ```{r practical function}
 #Note that I am giving each argument a default value
@@ -1086,9 +1094,10 @@ imp.data <- function(Pattern= ".csv", Path = getwd(), Recursive = FALSE){
 }
 ```
 
-To use this custom made function 
+`imp.data()` can be used like any other function. 
 
 ```{r use your illusion, eval=FALSE}
+#Note that to catch the list outputed by the function, I assign it to a variable.
 csv.list <- imp.data(Path = "/the/folder/i/chose")
 
 ```
@@ -1117,25 +1126,29 @@ plot(x=df2$NH4,y=df2$CO2, xlab = "NH4", ylab = "CO2", main = "A scatter plot")
 
 ```
 
-As you can see the resulting graph is...OK. Luckily the tidyverse has a package that makes plotting graphs in R a whole lot better. 
+As you can see the resulting graph is...OK, however, the tidyverse has a package that makes plotting graphs in R a whole lot better. 
 
 
 ### **Potting data with the ggplot2 package**{-}
 
-The ggplot2 is a part of the Tidyverse packages. It's strength is that it allows to build graphs layer by layer based on the [grammer of graphics](https://vita.had.co.nz/papers/layered-grammar.pdf).
+The ggplot2 package is a part of the Tidyverse packages. It's strength is that it allows to build graphs layer by layer based on the 
+[grammer of graphics](https://vita.had.co.nz/papers/layered-grammar.pdf).
 
 All plots generated by ggplot2 require the same three components:
 
-* A data set
-* A list of coordinates
+* A data set (usually a data frame or a matrix)
+* A list of coordinates (usually a set of vectors (columns) from the data set)
 * [geoms](https://ggplot2.tidyverse.org/reference/) - a set of marks that determines the geometry of the plot (e.g. box-plot, scatter plot)
+
+Note that on top of these three components you could add multiple other components, for example themes that indicate what would your plot 
+look like. (e.g. black and white or collored plot, what would the background look like, should it have grid lines, etc..)
 
 As always ggplot2 has a great [cheetsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
 
 
 #### **Basic ggplot2 plot**{-}
 
-The plotting function in the ggplot2 package is ggplot, every plot starts with it.
+The plotting function in the ggplot2 package is `ggplot()`, every plot starts with it.
 In it you specify the data set the plot will use as well as the x and y coordinates.
 On top of the basic information you add geoms, i.e. what graph element to add.
 Elements of the graphs are added using the + sign.
@@ -1145,15 +1158,17 @@ Here is an example of a basic box plot
 
 ```{r ggplot1}
 
-#ggplot works best with long tables, lets first convert df2 and log transform so that the diferences in values between chaicals will not be huge
+#ggplot works best with long tables, lets first convert df2 and log transform it 
+#so that the differences in values between chemicals will not be huge.
 
 df3l <- df2 %>% gather(key = Parameters, value = Concentration, 3:6) %>%
   mutate(Concentration = log10(Concentration))
 
 #Lets generate the box plot.
 #First start with ggplot and specify which data to use.
-#The axis are specefied under the aes argument.
+#The axis are specified under the aes (stands for aesthetics) argument.
 plot1 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
+  #Now let's add the geom
   geom_boxplot()
 
 plot1
@@ -1173,10 +1188,14 @@ For example overlay each observation (i.e. observation from each site) on the bo
 
 plot2 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   geom_boxplot()+
+  #overlay geom_jitter
   geom_jitter(aes(color = Contamination_level))
 
 plot2
 
+#Alternatively you can just add an extra layer to the previous plot
+
+plot1 + geom_jitter(aes(color = Contamination_level))
 
 ```
 
@@ -1191,6 +1210,11 @@ plot3 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   facet_wrap(~Elevation)
 
 plot3
+
+#Alternatively
+
+plot1 + geom_jitter(aes(color = Contamination_level)) +
+  facet_wrap(~Elevation)
 
 
 ```
