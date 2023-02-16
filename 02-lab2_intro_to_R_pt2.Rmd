@@ -985,11 +985,14 @@ graphs and tables you need.
 
 ### **Constructing a function**{-}
 
-The function structure is function(arguments){operations done on functions}. 
-The arguments require input from the user, but they can have default values e.g.
+The function structure is function(arguments){operations done on functions}.
+Arguments can be though of as R variables that would be called only in the function environment, and are independent of the global 
+environment. They are assigned values using the `=` operator, and can hold any R data type just like variables in the global environment, 
+even other functions. Arguments require input from the user, but they can have default values e.g.
 function(arg1=5, arg2 = NA, arg3) { do something}. In this example arg1 and arg2 have default
-values. They can be changed by the user, but if there is no input from the user the function will
-use the default value. If the function is intended to return a value 
+values (and are vectors). They can be changed by the user, but if there is no input from the user the function will
+use the default value. If the function is intended to return a value is should have some sort of an output function like, `print()`.
+If the function is intended to output a variable (e.g. a list, a data frame, a matrix, etc..) as it's final product, that variable should be outputed 
 
 Lets look at two functions as an example, the first one is very simple the second a bit more complex. 
 
@@ -1054,40 +1057,51 @@ Lottery_nums(7)
 ***
 
 Now that we have played around with some useless functions, lets write a practical function.
-As I mentioned, when you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are great to automate that in a reproducible manner. 
+When you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are a 
+great way to automate your work and keep in a reproducible. 
 
-In this example we will write a function that imports csv files,log transforms them and store them in a list. This is a very straight forward function, and its capabilities can be expended to perform other tasks.
-
+In this exampl,e we will write a function that imports csv files,log transforms them and store them in a list. This is a very straight 
+forward and simple function, however, its capabilities can be expended to perform other tasks.
+The following function uses the function `getwd()` as the default argument for the function variable Path.
+Path would be used as the variable that directs the function to the directory you would like to iterate over.
+Use `?getwd` or just call `getwd()` in the console to figure out what its output is.
 
 ```{r practical function}
 #Note that I am giving each argument a default value
 
 imp.data <- function(Pattern= ".csv", Path = getwd(), Recursive = FALSE){
-  
+  #note, this function uses other R functions
   files <- dir(path = Path, recursive = Recursive, pattern = Pattern)
   i = 1
   f_list <- vector(mode = "list", length = length(files))
-  
+  #No escaping the loop this time
   for (i in seq_along(files)) {
     f_list[[i]] <- log10(read.csv(file = files[i], row.names = 1, stringsAsFactors = F) )
     
   }
   names(f_list) <- files
   
-  #Note return
+  #Note return will output the list and will terminate the function
   return(f_list)
-  
-  
 }
 ```
+
+To use this custom made function 
+
+```{r use your illusion, eval=FALSE}
+csv.list <- imp.data(Path = "/the/folder/i/chose")
+
+```
+
 
 ***
 
 > **A note on the function environment**
 >
 >The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the
->intermediate variables created by the function they need to be exported using the <<- operator. The <<- operator is
->variable assignment operator similar to <- only it exports variables to the global environment.
+>intermediate variables created by the function they need to be exported using the `<<-` operator. The `<<-` operator is
+>variable assignment operator similar to `<-` only it exports variables to the global environment.
+>It is considered bad practice to force a variable out of the function env. using `<<-`, idealy you should only use `return()` as the output >of custum functions 
 
 ***
 
