@@ -1,4 +1,4 @@
-```{r setup, include=FALSE}
+```{r setup lab1, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
 options(knitr.duplicate.label = "allow")
 

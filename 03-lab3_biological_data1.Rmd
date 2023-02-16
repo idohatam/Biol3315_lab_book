@@ -1,3 +1,9 @@
+```{r setup lab3, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+
+```
+
 # **Lab 3 handling of biological data in R - 1**{-}
 
 

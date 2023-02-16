@@ -1,3 +1,8 @@
+```{r setup lab2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+
+```
 
 # **Lab 2 data manipulation and presentation in R**{-}
 
