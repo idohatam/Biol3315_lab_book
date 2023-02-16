@@ -261,44 +261,48 @@ The FASTA format requires that the first line of each sequence will be a header,
 chromosome. Next are all the letters denoting nucleotides or amino acids with no spaces (basically 
 a string). Sequences in FASTA format are universally used by all sequence repositories and fasta 
 files (generally .fa or .fasta extensions though any txt file with the format will work) are 
-universally used. 
-Because FASTA files are essentially text files it is easy to import them to using the file and 
-readLines functions.
+universally used.
 
-```{r reading fasta files}
+Because FASTA files are essentially text files it is easy to import them to using the `file()` and 
+`readLines()` functions.
+
+```{r reading fasta files, warning=FALSE}
 #Let's import 
-nuc_fa <- readLines(file("practice_nuc.fa",open = "r"))
+nuc_fa <- readLines(file("https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_nuc.fa",open = "r"))
+```
 
+Now, let's inspect the file by calling the first 4 lines (or the first 4 elements in the vector `nuc_fa`).
+
+```{r inspect1}
+nuc_fa[1:4]
+```
+
+As you can see, sequences in the file are housed in multiple lines (or elements along the vector), e.g. line 2-4 still belong to sequence 1.
+So when does the first sequence end? Because the header will always be a separate line and header lines are denoted with a greater than 
+symbol `>`, it is easy to count how many sequences does a file contain and which line marks the beginning of a new sequence.
+
+Again we turn to a stringr function, in this case `str_which()` to find the lines denoting the beginning of each sequence, we can also use 
+the `length()` function to find how many elements are housed in the vector created, which would be equal to the number of sequences found in
+the fasta file. 
+
+```{r inspect2}
+(length(hdr <- str_which(nuc_fa, ">")))
 
 ```
 
-Now, let's inspect the file.
+Looks like the file contains 5 sequences, next we might ask what is the length of each sequence.
+Are the sequences of equal length, or not. This seem trivial, but later in your program you will see that this is a nice way to filter 
+sequences that, for various reasons, you might not be interested in from from downstream analysis.  
 
-```{r}
+The code snippet bellow shows a simple loop that does that, did you figure out why it uses a conditional statement? 
 
-#In this file each sequence is contained in multiple lines
-#As can be seen in this example, line 2-4 still belong to sequence 1 
-nuc_fa[1:4]
-
-#But when does the first sequence end?
-
-#Because the header will always be a seperate line, it is easy to count how many sequences are 
-#there in the file and which line denotes the begining of each of the sequence.
-
-#Let's use a shortcut to do that, and see that the file contains 5 sequences
-(length(hdr <- str_which(nuc_fa, ">")))
-
-#Now that we know the begining and the end line of each sequence we can gather some stats
-#Let's see how long is each sequence using an elegant for loop
-
-
+```{r seqstatloop}
+#Preping a vector to house the results of the for loop.
 #Note no hard coding, that way you can reuse this line even if the next file has more sequences.
 seq_length <- rep(0,length(hdr))
-i=1
-
 #The for loop
 for (i in seq_along(hdr)) {
-  #What is the role of this if else statment?
+  #What is the role of this if else statement?
   if(i<length(hdr)){
     seq_length[i] <- sum(nchar(nuc_fa[(hdr[i]+1):(hdr[i+1]-1)]))
   }else{ 
@@ -310,11 +314,12 @@ for (i in seq_along(hdr)) {
 #Let's get the stats on sequence length
 summary(seq_length)
 
-#We can see that the longest sequence is 786 nucleotides, and the shortest is 544 nucleotides.
-
-
-
 ```
+
+We can see that the longest sequence is 786 nucleotides, and the shortest is 544 nucleotides.
+
+
+### **Housing sequences, moving beyond simple vectors**{-}
 
 What if there is a need to perform more tasks with the sequences. For example, find ORFs, compile
 the reverse and complementary sequences, or align the sequences against each other, build a
@@ -327,7 +332,7 @@ Two possible ways to do it are:
 
 * House each of them in a list the name of each element will be the header and a second list would be the reverse complement sequence. The two lists could be merged as two nested lists 
 
-Both options will require a fair bit of code, let's see what does the dataframe option look like
+Both options will require a fair bit of code, let's see what does the data frame option look like.
 
 ```{r housing seqs in df, echo=T}
 
@@ -340,9 +345,6 @@ hdrs <- nuc_fa[hdr]
 #a vector to house the seqs
 
 sqs <- rep("H",length(hdr))
-
-
-
 
 # vector to house the reverse complement seqs
 sqs_rc <- sqs
@@ -357,7 +359,7 @@ for(i in seq_along(hdr)){
     sqs[i] <- paste(nuc_fa[(hdr[i]+1):(hdr[i+1]-1)], collapse = "")
     
     #Now I don't know about you, but I wrote the rev_comp function
-    #My function also makes sure to check if the string is split or not and split it if needed.
+    #My function also makes sure to check if the string is split or not and splits it if needed.
     
     sqs_rc[i] <- rev_comp(sqs[i])
     
@@ -371,18 +373,17 @@ for(i in seq_along(hdr)){
   
 }
 
-#Now let's bind the vectors as dataframe
+#Now let's bind the vectors as data frame
 
 df_sqs <- data.frame(hdrs, sqs,sqs_rc, stringsAsFactors = F)
 
-
 ```
 
-Now that the sequences are housed in a dataframe it is easy to get what we need from them.
+Now that the sequences are housed in a data frame it is easy to get what we need from them.
 
 ```{r something}
 
-#Calcuate
+#Calculate
 df_sqs <- df_sqs %>% mutate(Seq.len = nchar(sqs))
 
 #Get sequence stats
@@ -396,19 +397,19 @@ ATGs[[1]]
 
 ```
 
-Because data frames requires that all columns be of the same length, it is not very flexible and 
+Data frames requires that all columns be of the same length, it is not very flexible and 
 only allows to work with strings. The second option, working with lists, affords more flexibility since each element 
 of the list is independent of each other and can even be another list.
 Therefore, you could generate a set of nested lists where the outer list will house all other lists 
-and each nested list will contain the string and vectorizes sequences.
+and each nested list will contain the string and a vectorizes sequences.
 
-example:
+Here's an example of what a list structure might look like:
 
 List of all sequences (
 
-  List of sequence 1 (element one( string of sequence), element two(string of reverse complement),
-                      element 3 (character vector of sequence), element 4( character vector of
-                      reverse complement ))
+  List of sequence 1 (element one( string of sequence 1), element two(string of reverse complement of sequence 1),
+                      element 3 (character vector of sequence 1), element 4( character vector of
+                      reverse complement of sequence 1))
   .
   .
   .
