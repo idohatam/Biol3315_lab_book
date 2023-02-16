@@ -767,17 +767,24 @@ z
 `if_else()` can also be applied to data frames as can be seen in the snippet bellow.
 Note, that the code uses the tidyverse if_else but base R `ifelse()` would work equally well.
 
-```{r if_else df}
-
+```{r if_else df, eval=FALSE}
 #If elevation is high temp is -7 else temp is 10
 
 df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
+df2
+```
+
+```{r if_else df, echo=FALSE, warning=FALSE,message=FALSE}
+#If elevation is high temp is -7 else temp is 10
+
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
+DT::datatable(df2)
 ```
 
 
 The previous example only had one condition, if the elevation is high, temp is -7, else it is 10.
-What if your data has moregranularity, e.g. what if sea level and low elevation has a different temperature?
-It is possible to chain multiple `ifelse()` statment sequentially, in that case it is important to add a filler FALSE
+What if your data has more granularity, e.g. what if sea level and low elevation has a different temperature?
+It is possible to chain multiple `ifelse()` statement sequentially, in that case it is important to add a filler FALSE
 to the first test. Here I use NA and not a number, since that would make it easy to check whether something was missed as it would contain 
 an NA. 
 
@@ -801,28 +808,32 @@ df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
 DT::datatable(df2)
 ```
 
+Alternatively, it is possible to use the `if_else()` function as 
 
-```{r multiple ifelse2}
-#alternatively
-df2 <- df2 %>% select(-Temp)
-
+```{r multiple ifelse2, eval=FALSE}
 #Note in second if_else, if_else is chaind in the false argument.
 #This will not work with the first one since mutate needs to create the Temp column first
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
-  mutate(Temp = if_else(Elevation == "Sea level", 15, 
-                        if_else(Elevation == "Low", 25, Temp))) 
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7.5, NA)) %>%
+  mutate(Temp = if_else(Elevation == "Sea level", 15.5, 
+                        if_else(Elevation == "Low", 25.5, Temp))) 
 
 df2
-
 ```
 
+```{r multiple ifelse2b, echol=FALSE, message=FALSE, warning=FALSE}
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7.5, NA)) %>%
+  mutate(Temp = if_else(Elevation == "Sea level", 15.5, 
+                        if_else(Elevation == "Low", 25.5, Temp))) 
+
+DT::datatable(df2)
+```
 
 
 Chaining multiple if else statements can make the code very unreadable and clumsy.
 The `case_when()` function from the dplyr package acts as a multiple if else statements and accepts multiple test arguments.
 
 ```{r case_when, eval=FALSE}
-#Let's creat a new column called contamination_level and assign values based on NH4 concentrations
+#Let's create a new column called contamination_level and assign values based on NH4 concentrations
 
 
 df2 <- df2 %>% mutate(Contamination_level = case_when( NH4 > 8000 ~"Very high",
@@ -858,25 +869,25 @@ DT::datatable(df2)
 ### **Iterations**{-}
 
 As mentioned, R is pretty good at vectorized functions which negate the need for iterations.
-For example ifelse negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with functions such as summarize that iterate over an entire dataframe or replicate which can be used to to generate a list of multiple elements.
+For example ifelse negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with 
+functions such as summarize that iterate over an entire dataframe or replicate which can be used to to generate a list of multiple elements.
 
-These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration functions are compiled and efficient.
+These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration 
+functions are compiled and efficient.
 
-However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in R in my experience they are rarely used.
+However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in 
+R (pun intended) in my experience they are rarely used.
 
 The for loop has the following basic structure for(element in vector) { do something}.
 Normally a counting variable is used to subset elements while iterating over a vector
 If a counting variable is used than the vector is a range of numbers.
 
-Here is an example of a basic for loop
+Here is an example of a basic for loop, note that i is used as the counting variable and there is no need to declare it. 
 
 ```{r basic for loop}
 
 #Let's write a loop that picks lotomax numbers for you
 
-#First assign a counting variable
-
-i=1
 
 #Generating random numbers
 x <- sample(1:50, 8, replace = F)
@@ -889,7 +900,7 @@ for(i in seq_along(x)){
   print(paste("The",i, "number is:", x[i], sep = " "))
 }
 
-#Let's combine a conditional statment with the for loop and make a fancier number picker
+#Let's combine a conditional statement with the for loop and make a fancier number picker
 
 for(i in seq_along(x)){
   if(1<= i & i <8){
@@ -909,9 +920,12 @@ What would happen if set.seed(123) was the first line of the loop?
 
 ***
 
-The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use read.csv to import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an existing vector rather than add new elements to it for loops run faster.
+The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a 
+bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use read.csv to 
+import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an 
+existing vector rather than add new elements to it for loops run faster.
 
-```{r practical for loop}
+```{r practical for loop, eval=FALSE}
 
 #Create a vector with a list of all csv files in my foulder.
 #You can use the argument path = to change foulder. 
@@ -920,8 +934,6 @@ files <- dir(pattern = ".csv", recursive = F)
 
 lsfile <- vector(mode = "list", length = length(files))
 
-i = 1
-
 for (i in seq_along(files)) {
   lsfile[[i]] <- read.csv(file = files[i],row.names = 1, stringsAsFactors = F)
   names(lsfile)[[i]] <- paste(files[i])
@@ -929,6 +941,30 @@ for (i in seq_along(files)) {
 }  
   
 ```
+
+An alternative way to do it that's a bit more descriptive would be to use the acutall fill names by iterating over the elements of the files
+vectors rather than over the positions of the elements. 
+
+```{r practical loop2, eval=FALSE}
+files <- dir(pattern = ".csv", recursive = F)
+
+lsfile <- vector(mode = "list", length = length(files))
+
+#here I am declaring i
+i=1
+#Remember that the counting variable is basically, just what ever that's in the vector
+#In this case file is just the file names, btw it's not that R understand what file means
+#You could change file to pineapple and get the same result. 
+for (file in files) {
+  lsfile[[i]] <- read.csv(file = paste(file),row.names = 1, stringsAsFactors = F)
+  names(lsfile)[[i]] <- paste(file)
+  i <- i+1
+  
+}  
+
+
+```
+
 
 ***
 
@@ -1043,11 +1079,6 @@ imp.data <- function(Pattern= ".csv", Path = getwd(), Recursive = FALSE){
   
   
 }
-
-
-
-
-
 ```
 
 ***
