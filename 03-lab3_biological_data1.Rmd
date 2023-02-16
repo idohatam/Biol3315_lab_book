@@ -50,7 +50,7 @@ library("tidyverse")
 
 
 
-### **Installing packages from Bioconductor**
+### **Installing packages from Bioconductor**{-}
 
 [Bioconductor](https://bioconductor.org/) is a repository that stores R packages geared towards the
 analysis of biological data.
