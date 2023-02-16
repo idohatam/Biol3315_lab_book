@@ -3,10 +3,8 @@
 # **Handling of biological data in R - 1**{-}
 
 
-## **Learning objectives**{-}
+**Learning objectives**
 
-<details>
-  <summary>Click to expand</summary>
 __By the end of this lab you will be able to:__
 
 * Demonstrate the ability to install packages from Bioconductor
@@ -22,10 +20,6 @@ __By the end of this lab you will be able to:__
 * Demonstrate the ability to manipulate both multiple and single biological strings using tools from the Biostrings and seqinr packages
 
 * Demonstrate the ability to collect basic statistics of biological strings using tools from the Biostrings and seqinr package
-
-</details>
-
-***
 
 ## **The setup**{-}
 
@@ -48,7 +42,7 @@ lapply(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust",
 
 ```
 
- You should also load the Tydiverse packages
+You should also load the Tydiverse packages
 
 ```{r load tidyverse, eval=FALSE, echo = TRUE}
 
@@ -85,7 +79,7 @@ from the correct package. You can do that by specifying the package when calling
 e.g. `dplyr::summarise()`
 
 
-## **Working with biological strings using base R and the tidyverse**
+## **Working with biological strings using base R and the tidyverse**{-}
 
 You were introduced to strings during lab 1, and biological strings are no different than regular
 strings. Nucleotide sequences are comprised of up to 20 letters (ATCGU and letters that denote
@@ -106,23 +100,31 @@ sq1 <- paste(sample(nucs, 100,replace = T), collapse = "")
 
 #Str_count from stringr makes it easy to count the number of time each nucleotide appears in our sequence
 #Again, vectorization instead of loops
-reps <- str_count(sq1, nucs)
+(reps <- str_count(sq1, nucs))
+```
 
-#lets turn the vectors into a data frame
+Now lets convert it to a data frame.
 
+```{r dfstr, eval=FALSE}
 df <- tibble::tibble(Bases = nucs, Ocurances =reps)
 df
 ```
 
+```{r dfstr2, echo=FALSE}
+df <- tibble::tibble(Bases = nucs, Ocurances =reps)
+DT::datatable(df)
+```
 
+And plot.
 ```{r plot nbases}
 ggplot(df, aes(x=nucs, y=reps))+
   geom_bar(stat = "identity")
 ```
 
-
-It is relatively simple to find start and stop codons (first step in predicting ORFs), or convert
-the DNA sequence to RNA sequence.
+One more thing we can do with simple string operations is to figure out if there are any start or stop codons in 
+our sequence, which is the first step in predicting ORFs, or convert the DNA sequence to RNA sequence (and vice versa).
+In the code snippet bellow I use the `str_locate_all()` function from the stringr package to find all ATGs and TAAs in the string created 
+earlier. 
 
 ```{r start stop}
 #With ths stringr package it is simple to find all start and stop codons
@@ -131,26 +133,36 @@ the DNA sequence to RNA sequence.
 #Just one of the stop codons
 (stp <- str_locate_all(sq1, "TAA"))
 
-#From here you can write a loop calculating the length of characters from the first nucleotide of 
-#each start codon to the last nucleotide of every stop codon. Those who are divisable by 3 are open
-#reading frames. Will not do it here.
-
-#Stringer also makes it easy to convert between DNA and RNA
-
-sq1.rna <- str_replace_all(sq1, "T","U")
-
-str_sub(sq1, 1,10)
-str_sub(sq1.rna, 1,10)
-
 ```
 
-***
+From here you can write a loop calculating the length of characters from the first nucleotide of
+each start codon to the last nucleotide of every stop codon. Those who are dividable by 3 are potential open
+reading frames (why?). 
 
-**Quick R exercise**
+Stringr's `str_replace_all()` function makes it easy to convert DNA strings to RNA and vice versa.  
 
-1. Write a function that takes a nucleotide string summarizes the occurrence of each nucleotide into a table and graphs it.
+```{r dna 2 rna}
+sq1.rna <- str_replace_all(sq1, "T","U")
 
-***
+#Let's inspect the first 10 characters of each string, did it work?
+str_sub(sq1, 1,10)
+str_sub(sq1.rna, 1,10)
+```
+
+
+#### **Quick R exercise** {-}
+
+*   Write a function that takes a nucleotide string summarizes the occurrence of each nucleotide into a table and graphs it.
+
+Bonus - get the function to:
+
+*   Add a column to your data frame with the percent proportion of each nucleotide (right now you have absolute values)
+
+*   Convert the table to a long table format
+
+*   Plots 2 graphs (or 2 facets), one with absolute values, one with proportion
+
+
 
 Next let's see how to convert a sequence of nucleotides to its reverse and complementary sequence
 
@@ -199,10 +211,21 @@ str_locate(sq2c, "GTT") [1,]
 
 ***
 
-**Quick R exercise**
+### **Quick R exercise - basic string operations**{-}
 
-We will need to convert sequences to reverse complement again, based on the code snippet above
+1.    We will need to convert sequences to reverse complement again, based on the code snippet above
 Write a function that does so, name it rev_comp.
+
+2.   Bonus - Write a function that takes a nucleotide string summarizes the occurrence of each nucleotide into a table and graphs it.
+
+get the function to:
+
+*   Add a column to your data frame with the percent proportion of each nucleotide (right now you have absolute values)
+
+*   Convert the table to a long table format
+
+*   Plots 2 graphs (or 2 facets), one with absolute values, one with proportion
+
 
 ```{r rev_comp, echo=FALSE}
 
@@ -223,14 +246,12 @@ rev_comp <- function(x){
 ```
 
 
-***
+## **Importing and working with fasta files with base R**{-}
 
 Converting a string to its reverse and complement sequence adds a level of complexity because of
-the switch between strings to character vectors and back. This doesn't look too complex
-but as bioinformaticians you will never work with just one sequence, you will use fasta files with
-multiple sequences. Let's see how baseR handles those. 
-
-## **Importing and working with fasta files with base R**{-}
+the switch between strings to character vectors and back to string. This doesn't seem too complex
+but remember that as bioinformaticians you will never work with just one sequence, you will use fasta files with
+multiple (sometimes thousands) sequences. Let's see how base R handles those.
 
 First, what are FASTA files?
 
@@ -329,8 +350,6 @@ sqs_rc <- sqs
 #Now let's write a for loop to marge all lines of each sequence to one sequence and also produce 
 #the reverse complementary sequence
 
-i = 1
-
 for(i in seq_along(hdr)){
   
   if(i<length(hdr)){
@@ -405,7 +424,7 @@ it easier for you to work with them. Furthermore, now you know what it takes to 
 ones you will use. This understanding will serve you when you will be required to develop your own packages
 when you'll work as a bioinformaticion.
 
-## **Importing fasta files and working with biological strings using the Biostrings package**{-}
+## **The Biostrings package**{-}
 
 The first package we will deal with is Biostrings. As its name suggests, this is a package that 
 handles biological strings. It can handle DNA, RNA, and amino acid sequences and is also capable of
@@ -416,6 +435,7 @@ sequences.
 Biostrings utilizes a specialized class of  container to store strings called Xstring. Xstring is similar to a 
 character vector however, unlike a vector it can only house a single string.
 
+### **Basic biosting sub-classes and string operations**{-}
 The XString class has four sub classes:
 
 1. DNAstring - stores DNA sequences
@@ -536,6 +556,8 @@ str_replace(casain, "MYFNI","MYXGT")
 
 ```
 
+### **Basic Biostrings functions**{-}
+
 The Biostrings package has some useful functions with respect to sequence processing.
 Let's look at some of them.
 
@@ -613,7 +635,7 @@ ORFs?
 
 ***
 
-### **Working with multiple sequences using the XStringSet objects**{}
+### **Working with multiple sequences using the XStringSet objects**{-}
 
 As you know by now, bioinformaticians do not work with a single sequence rather with a lot of 
 sequences in parallel. Biostrings offers the class XStringSet, as a container for multiple 

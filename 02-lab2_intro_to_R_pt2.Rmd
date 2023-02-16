@@ -2,10 +2,8 @@
 # **Lab 2 data manipulation and presentation in R**{-}
 
 
-## **Learning objectives**{-} 
+**Learning objectives**
 
-<details>
-  <summary>Click to expand</summary>
 __By the end of this lab you will be able to:__
 
 
@@ -25,10 +23,8 @@ __By the end of this lab you will be able to:__
 
     + Demonstrate mastery of plotting using the ggplot package
   
-</details>
 
-
-## **Setup**{-}
+## **The setup**{-}
 
 
 As part of this lab you will learn how to import, export, manipulate and present data in R.
