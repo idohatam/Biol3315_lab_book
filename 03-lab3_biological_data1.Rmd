@@ -1,6 +1,4 @@
-
-
-# **Handling of biological data in R - 1**{-}
+# **Lab 3 handling of biological data in R - 1**{-}
 
 
 **Learning objectives**
