@@ -30,7 +30,7 @@ __By the end of this lab you will be able to:__
 R has many tools to handle biological data and over the next couple of labs you will build the
 vocabulary needed to deal with sequences, statistical methods and objects, trees and dendrograms.
 
-```{r install packages, eval=FALSE, echo=TRUE}
+```{r install packages_lab3, eval=FALSE, echo=TRUE}
 install.packages(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust"))
 
 #lapply is part of the apply family of functions, one of those functions that act as a for loop
@@ -41,7 +41,7 @@ lapply(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust"),
 
 ```{r set libs, ecoh=FALSE,include=FALSE, message=FALSE,warning=FALSE}
 lapply(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust", 
-         "tidyverse", "Biostrings"), 
+         "tidyverse", "Biostrings","DT"), 
        library, character.only = TRUE)
 
 ```

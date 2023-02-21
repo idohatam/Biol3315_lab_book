@@ -37,9 +37,9 @@ R's basic data structures, mainly lists, provide very flexible containers to hou
 of information. As you will see, most non-bioconductor packages house their outputs in list form or
 at least as a list based object.
 
-For the purposes of this lab you will need to install and load the following packages.
+For the purposes of this lab you will need to install (if haven't already) and load the following packages.
 
-```{r packages, eval = FALSE, echo = TRUE}
+```{r packages_lab4, eval = FALSE, echo = TRUE}
 install.packages(c("vegan","ape","ggdendro","seqinr"))
 
 #lapply is part of the apply family of functions, one of those functions that act as a for loop
@@ -48,11 +48,11 @@ lapply(c("vegan","ape","ggdendro","seqinr",
 
 ```
 
-```{r packages2, echo = F, warning=FALSE, message=FALSE,results='hide', include=FALSE}
+```{r packages2_lab4, echo = FALSE, warning=FALSE, message=FALSE,results='hide', include=FALSE}
 
 #lapply is part of the apply family of functions, one of those functions that act as a for loop
 lapply(c("vegan","ape","ggdendro","seqinr",
-         "Biostrings", "tidyverse","ggrepel"),library, character.only = TRUE)
+         "Biostrings", "tidyverse","ggrepel","DT"),library, character.only = TRUE)
 
 
 ```
@@ -60,41 +60,49 @@ lapply(c("vegan","ape","ggdendro","seqinr",
 
 ## **Distances**{-}
 
-When handling biological data, distance measures also known as dissimilarity measures or indices 
-are useful in comparing multiple entities. These entities can be populations, environmental
-samples, gene sequences, genomes, expression data etc.
+When handling biological data distance measures, also known as dissimilarity measures or dissimilarity indices, 
+are useful in comparing multiple entities. These entities can be populations (think allele dynamics), environmental
+samples, gene sequences, genomes, gene expression data etc.
 In essence every time we draw a comparison, we ask the quantitative question how 
 much is X similar to Y or better yet how much are X and Y dissimilar.
 The degree of dissimilarity between X and Y can simply be represented as percent dissimilarity or
-might require more sophisticated mathematical transformation. The approach used to measure 
+might require a more sophisticated mathematical transformation. The approach used to measure 
 dissimilarities depends on the nature of the data, it's format and of course the question in need of answering.
 For example when performing a pairwise sequence alignment the alignment score can be thought of as
 a relative measure of the dissimilarity between the two sequences and can be expressed as percent of the maximal alignment score.
 
-When calculating distances between entities (e.g. populations) the data you work with can be tabulated (e.g. allele/genotype frequency/abundance table etc) or non tabulated (e.g. sequence alignment).
+When calculating distances between entities (e.g. populations) the data you work with can be tabulated, 
+e.g. allele/genotype frequency/abundance table etc or non tabulated e.g. sequence alignment.
 R can do both and the approaches are quite similar.  
 
 ### **Distance calculations with tabulated data**{-}
 
-BaseR is equipped to handle distance calculation with tabulated data. First let's generate data to
-work with by uploading the dune data-set that's part of the vegan package.
-This data-set contains the counts of 30 different plants
-(columns) in 20 different sites (rows). This would be similar to an allele/genotype/ gene
-expression frequency data-set, only much smaller making it great training tool for the purpose of
+Base R is equipped to handle distance calculation with tabulated data. First let's generate data to
+work with, by uploading the dune data-set. Dune is a part of the vegan package and it contains the counts of 30 different plants
+(columns) from 20 different sites (rows). This would be similar to an allele/genotype/ gene
+expression frequency data-set, only much smaller in scale, making it great training tool for the purpose of
 this lab.
 
 ```{r load dune}
-
 #Let's load the dune data set 
-
 data("dune")
+```
 
+As you already know, there are multiple forms to store tabulated data in R.
+Let's use the `class()` and `head()` function to figure out how dune is stored.
+
+```{r check_dune, eval=FALSE}
 #Now, lets figure out what we're dealing with
 class(dune)
-
 #Let's see how the table is structured
 head(dune)
+```
 
+```{r check_dune2, echo=FALSE}
+#Now, lets figure out what we're dealing with
+class(dune)
+#Let's see how the table is structured
+DT::datatable(head(dune))
 ```
 
 Note that the row names is made of numbers, it will make things clearer in the following steps if 
@@ -118,9 +126,9 @@ The previous code snippet contained some hard coding, can you think of two ways
 to make it less hard coded?
 
 ***
-
+#### **Using euclidean distances**{-}
 Next let's calculate the distance between each of the sites using the dist function from the stats
-package, which is part of baseR. When we calculate distances of tabulated data we are conducting a
+package, which is part of base R. When we calculate distances of tabulated data we are conducting a
 pairwise comparison of every row on the table to every other row, based on the values found in each
 of the columns. Rows with similar values in each column will receive a low score. The score represents distance, low 
 score = short distance meaning that they are not very dissimilar (or very similar). In the snippet bellow I am using 
@@ -159,19 +167,19 @@ typeof(dune.dist.euc)
 ```
 
 
-***
 
-**Quick R exercise**
+#### **Quick R exercise - working with dist objects**{-}
 
-1. Use the str function to study dune.dist.euc
+1. Use the `str()` function to study `dune.dist.euc`
 
-2. What attributes does it have? Which aspect of the output from the str function helps in 
+2. What attributes does it have? Which aspect of the output from the `str()` function helps in 
 reproducibility?
 
-3. Print elements number 1, 2, and 20 from dune.dist.euc, what does that tell you about the order 
+3. Print elements number 1, 2, and 20 from `dune.dist.euc`, what does that tell you about the order 
 elements are indexed in dist objects?
 
-***
+
+#### **Using asymmetrical distances**{-}
 
 Distance measures included in the dist functions are not necessarily designed to be used with 
 biological data, since most of them are symmetric. Symmetric dissimilarity measures regard double
@@ -186,11 +194,11 @@ an asymmetric measure. A measure that does not treat double absence and double p
 
 The R package vegan contains additional asymmetric dissimilarity measures such as Bray-Curtis.
 One of the contributes to the package is [Dr. Gavin Simpson](https://fromthebottomoftheheap.net/)
-a prof from the University of Regina, worth checking out if you are interested in ecological
+a prof from the University of Regina, worth checking out if you are interested in ecological and environmwental
 informatics 
 
 
-The snippet bellow uses the function vegdist, the vegan implementation of the dist function, with 
+The snippet bellow uses the function `vegdist()`, the vegan implementation of the dist function, with 
 [Bray-Curtis](https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity) as a dissimilarity index. 
 The function is run twice, with binary set to either T or F.
 When binary is set to T all values larger than 0 are converted to 1 and the rows are evaluated
@@ -199,29 +207,20 @@ just present but how much is present). These sort of measures are important in
 molecular evolution but also when analyzing omics data (and ecology of course). 
 
 ```{r vegdists}
-
-#Let's run vegdist
 dune.vd.bry <- vegdist(dune, method = "bray", binary = F)
 
 dune.vd.bry.bin <- vegdist(dune, method = "bray", binary = T)
-
 ```
 
-***
+#### **Quick R exercise - working with `vegdist()`**{-}
 
-**Quick R exercise**
+1. What class of objects does `vegdist()` output?
 
-1. What class of objects does vegdist output?
-
-2. Use the str function to explore dune.vd.bry
+2. Use the `str()` function to explore `dune.vd.bry`
 
 3. What will setting the arguments upper and diag to TRUE produce?
 
-4. What other distance indices does vegdist accepts under the method argument?
-
-
-***
-
+4. What other distance indices does `vegdist()` accepts under the method argument?
 
 ### **Two dimensional representation of distances**{-}
 
@@ -254,7 +253,7 @@ dune.bry.nmds <- metaMDS(dune.vd.bry)
 
 ```
 
-The function metaMDS can also call the vegdist function and perform the distance calculation.
+The function `metaMDS()` can also call the `vegdist()` function and perform the distance calculation.
 
 
 ```{r metaMDS2, results='hide'}
@@ -320,7 +319,7 @@ dune.bry.points <- as.data.frame(dune.bry.nmds$points) %>%
 
 **Quick R exercise**
 
-1. Use the head function to inspect each of the dataframes
+1. Use the head function to inspect each of the data frames
 
 2. Do you find it useful in deciphering the relationships between the samples? 
 
@@ -331,12 +330,11 @@ doesn't really help us understand which samples are more similar to one another.
 In order to do that we must plot the samples using a scatter plot. 
 Samples that appear close to each other in the plot, are more similar while distant samples are less similar.
 
-BaseR's plot function is a quick and dirty approach to generate scatter plot straight from the output
+Base R's plot function is a quick and dirty approach to generate scatter plot straight from the output
 list.
 
-```{r plot base}
+```{r plot nmds base}
 plot(dune.euc.nmds$points)
-
 
 ```
 
@@ -344,7 +342,7 @@ As always, base graphic is very spartan and not very informative. Let's use ggpl
 plot.
 
 
-```{r ggplot, fig.show='hide', collapse=TRUE}
+```{r nmds ggplot, fig.show='hide', collapse=TRUE}
 
 #geom_point produces a scatter plot
 p.euc <- ggplot(dune.euc.points, aes(x=MDS1, y = MDS2))+
