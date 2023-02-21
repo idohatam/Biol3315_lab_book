@@ -105,38 +105,41 @@ class(dune)
 DT::datatable(head(dune))
 ```
 
-Note that the row names is made of numbers, it will make things clearer in the following steps if 
-we modify samples names to be more meaningful. 
+Note that the row names contains only numbers, it will make things clearer in the following steps if 
+we modify samples names to be more meaningful. The code snippet bellow will use
+the function `rownames()` to add S to each row which will denote site/sample.
+In the `paste()` function I am asking R to generate a vector containing a sequence of S1-S20.
+Alternatively, we could have used the tidyverse approach and added a column with sample identifier.
+However, since we will be doing some calculations on the data in the data frame, it's easier to store the descriptive info in the row name than remembering to 
+remove said column prior to the distance calculations.  
 
-```{r modefy dune}
-#Let's add S to each row, denoting site or sample.
-#Reminder, R is case sensitive
-#Note that here I am asking paste to generate a vector with a sequence of numbers 1-20
-#Then paste S to each element in the vector with no space separation
-#then assign the new character vector S1-S20 to the rownames of the dataframe
+```{r modefy dune, eval=FALSE}
 rownames(dune) <- paste("S",1:20,sep = "")
+dune
+```
 
+```{r dune rn, echo=FALSE}
+rownames(dune) <- paste("S",1:20,sep = "")
+DT::datatable(dune)
 ```
 
 ***
-
-**Quick R exercise**
-
-The previous code snippet contained some hard coding, can you think of two ways
-to make it less hard coded?
+>Note that I have used some hard coding in the snippet above.
+>Can you think of waysto make it less hard coded?
 
 ***
-#### **Using euclidean distances**{-}
-Next let's calculate the distance between each of the sites using the dist function from the stats
+
+#### **Using symmetric distances**{-}
+
+Next let's calculate the distance between each of the sites using the `dist()` function from the stats
 package, which is part of base R. When we calculate distances of tabulated data we are conducting a
 pairwise comparison of every row on the table to every other row, based on the values found in each
 of the columns. Rows with similar values in each column will receive a low score. The score represents distance, low 
 score = short distance meaning that they are not very dissimilar (or very similar). In the snippet bellow I am using 
 [euclidean distance measure](https://en.wikipedia.org/wiki/Euclidean_distance) to calculate the distance between each 
-of the samples.
+of the samples. Euclidean distances are considered symmetrical, I will explain why in the next segment.
 
 ```{r dist}
-
 #Let's use the dist function to calculate the euclidean dist
 dune.dist.euc <- dist(dune, method = "euclidean")
 
@@ -144,17 +147,12 @@ dune.dist.euc <- dist(dune, method = "euclidean")
 class(dune.dist.euc)
 
 #Lets print is
-
 dune.dist.euc
-
-
-
 ```
 
 The output looks like a distance table from an old road atlas, and that's exactly how it is read.
-The distance between S1 and S2 is ~10.58, the distance between S1 and S12 is ~15.20, S1 is closer
-to S2 than S12 with respect to what species of plants are present in this site and their
-abundance.
+The distance between S1 and S2 is ~10.58, the distance between S1 and S12 is ~15.20, S1 is closer (or more similar, or less dissimilar)
+to S2 than to S12 with respect to what species of plants are present in these site.
 
 dist objects look like matrices but they are not, they are in fact oddly shaped numeric vectors.
 
@@ -163,7 +161,6 @@ dist objects look like matrices but they are not, they are in fact oddly shaped 
 is.atomic(dune.dist.euc)
 
 typeof(dune.dist.euc)
-
 ```
 
 
@@ -194,7 +191,7 @@ an asymmetric measure. A measure that does not treat double absence and double p
 
 The R package vegan contains additional asymmetric dissimilarity measures such as Bray-Curtis.
 One of the contributes to the package is [Dr. Gavin Simpson](https://fromthebottomoftheheap.net/)
-a prof from the University of Regina, worth checking out if you are interested in ecological and environmwental
+a prof from the University of Regina, worth checking out if you are interested in ecological and environmental
 informatics 
 
 
