@@ -221,24 +221,23 @@ dune.vd.bry.bin <- vegdist(dune, method = "bray", binary = T)
 
 ### **Two dimensional representation of distances**{-}
 
-Distance matrices (or vectors) are multidimensional, and as such it becomes harder to draw
+Distance matrices are multidimensional, and as such it becomes harder to draw
 meaningful conclusions from them as the number of rows in your original table increase.
+E.g. when working with a matrix of 3 rows and 3 columns is easier to understand compared with the one you are curtly working with which has 
+20rows and 20 columns. 
 
 Ordination technique such as NMDS are helpful in dimension reduction and can be used to represent
 the matrix in two dimensional space. We will not go into the details of ordination techniques in 
 this course, just use them. However, in general all of them try to represent the distance matrix
 accurately in as fewer dimensions as possible.
 
-The snippet bellow will use vegan's metaMDS with the default setting of 2 dimensions. The end 
-result of it will be each sample (line in the original dataframe) receiving two coordinates 
+The snippet bellow will use vegan's `metaMDS()` function with the default setting of 2 dimensions. The end 
+result of it will be each sample (line in the original dune data frame) receiving two coordinates 
 representing its location in two dimensional space and how it relates to every other sample.
+Note that I am using the function `set.seed()` and you should as well, make sure to use the same seed as I so that the figures will look the 
+same.
 
 ```{r metaMDS1, results='hide'}
-
-#Let's perform NMDS on the Bray-Curtis and the euclidean distances
-#NMDS is a randomized iterative proceed, so setting seed to make sure the figure at the end looks
-#the same for all of us.
-
 #nmds for the euclidean distance matrix
 set.seed(1)
 dune.euc.nmds <- metaMDS(dune.dist.euc)
@@ -249,7 +248,7 @@ dune.bry.nmds <- metaMDS(dune.vd.bry)
 ```
 
 The function `metaMDS()` can also call the `vegdist()` function and perform the distance calculation.
-Note that I am using the function `set.seed()` and you should as well. 
+Again, note that I am using the function `set.seed()` and you should as well.
 
 ```{r metaMDS2, results='hide'}
 
@@ -264,10 +263,7 @@ dune.bry.nmds2 <- metaMDS(dune, distance = "bray", binary=F)
 ```
 
 
-
-***
-
-**quick R exercise**
+#### **quick R exercise - the `metaMDS()` output**{-}
 
 1. What class of objects does dune.bry.nmds belong to?
 
@@ -280,23 +276,22 @@ dune.bry.nmds2 <- metaMDS(dune, distance = "bray", binary=F)
 5. What type of an object is the 3rd element of dune.bry.nmds?
 
 
-***
+#### **Manipulating the output of `metaMDS()`**
 
-If you completed the above exercise you saw that the output of metaMDS is essentially a list with
-35 elements. What each element represents is not that important for this lab but in general the
+If you completed the above exercise you saw that the output of `metaMDS()` is essentially a list with
+35 elements. What each element represents is not that important for this lab, but in general the
 list stores all the information needed to ensure the reproducibility of the output as well as
-quality measures letting you know how good your results are, from a statistical standpoint.
+quality measures letting you know how good is the output of `metaMDS()` from a statistical standpoint.
 
 For the sake of this lab we are interested in the coordinates of each sample and these are stored 
-in the element points. Points is a matrix with two column of coordinates. Let's extract it and turn
-it into a dataframe.
+in the element points. Points is a matrix with two column of coordinates (MDS1 and MDS2). 
+Let's extract it and turn it into a data frame.
 
 ```{r extract points}
 
-#extracting the points matrix as dataframe
-#turning the row names into a column, note that I am doing it the spartan way and not using the 
+#note that I am turning the rownames to columns the spartan way and not using the 
 #rownames_to_columns function from the dplyr package
-#You can choose which ever method you preffer 
+#You can choose which ever method you prefer 
 
 
 dune.euc.points <- as.data.frame(dune.euc.nmds$points) %>% 
@@ -310,15 +305,14 @@ dune.bry.points <- as.data.frame(dune.bry.nmds$points) %>%
 ```
 
 
-***
 
-**Quick R exercise**
+##### **Quick R exercise - inspecting the points data frame**{-}
 
 1. Use the head function to inspect each of the data frames
 
 2. Do you find it useful in deciphering the relationships between the samples? 
 
-***
+#### **Plotting the output of `metaMDS()`**
 
 The coordinates table might be simpler to look at compared to the distance matrix but it still
 doesn't really help us understand which samples are more similar to one another.
@@ -334,11 +328,10 @@ plot(dune.euc.nmds$points)
 ```
 
 As always, base graphic is very spartan and not very informative. Let's use ggplot2 to generate a more informative
-plot.
+plot. Note that I am using the regular expression `\n` inside `ggtitle()`, to denote a new line in the title.
 
 
 ```{r nmds ggplot, fig.show='hide', collapse=TRUE}
-
 #geom_point produces a scatter plot
 p.euc <- ggplot(dune.euc.points, aes(x=MDS1, y = MDS2))+
   geom_point(size=2)+
@@ -354,10 +347,6 @@ p.bry <- ggplot(dune.bry.points, aes(x=MDS1, y = MDS2))+
   ggtitle("NMDS Dune dataset\nBray-Curtis distances")
 
 p.bry
-
-
-
-
 ```
 
 ```{r prit p, echo=FALSE}
@@ -378,7 +367,7 @@ library(ggrepel)
 
 ```
 
-Now, let's use geom_text_repel to label each point with it's sample name and compare the output of 
+Now, let's use `geom_text_repel()` to label each point with it's sample name and compare the output of 
 the two measures.
 
 ```{r ggplot2, fig.show='hide', collapse=TRUE}
@@ -413,13 +402,14 @@ gridExtra::grid.arrange(p.euc2,p.bry2, ncol = 2)
 
 Now we have a plot we can use to compare the two distance indices. We can see that not only does each method result in
 a different configuration but also changes the way samples relate to each other. 
-For example, using euclidean distances sample S1 appears to be more similar to sample 7 than sample S2 is to sample 7.
+For example, using euclidean distances sample S1 appears to be more similar to sample 7 than sample S2 is to sample S7.
 However, this is not the case when using Bray-Curtis. 
 
 Dimension reduction and ordination techniques are great at visualizing the clustering of items into
-groups, especially if large number of samples are involved. This is very useful when comparing a
+groups, especially if large number of samples are involved. For example, when comparing a
 large number of populations with respect to allele or genotype dynamics or when studying transcription or expression
 patterns of a large number of individuals. 
+
 <br>
 
 ***
@@ -447,6 +437,8 @@ In most cases you will generate this sort of data in R (we will do that in lab #
 sometimes you will have to import such data. Both Biostrings and seqinr have 
 functions allowing them to read or accept alignment files or objects.
 
+#### **Reading multiple sequence alignments with Biostrings**{-}
+
 Let's first use Biostrings since the XString family of classes is very convenient to work with.
 
 ```{r biostrings msa}
@@ -459,9 +451,8 @@ al_bios <- readAAMultipleAlignment(
 
 ```
 
-***
 
-**Quick R exercise**
+##### **Quick R exercise - reading multiple sequence alignments with Biostrings**{-}
 
 1. What class is al_bios?
 
@@ -469,26 +460,27 @@ al_bios <- readAAMultipleAlignment(
 
 3. Subset the first 10 sequences in the alignment
 
-***
+#### **Reading mutltiple sequence alignments with seqinr**{-}
 
 Now let's do the same with the dedicated function from seqinr. Note that seqinr is not fussy and 
 will read any alignment with just one function, while Biostrings has a function for each type of
 sequence. Did I mention seqinr is spartan?
 
 ```{r seqinr msa}
-al_snr <- read.alignment(file = "practice_al.fa", format = "FASTA")
-
+al_snr <- read.alignment(
+  file = 
+    "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_al.fa", 
+  format = "FASTA")
 ```
 
-***
 
-**Quick R exercise**
+##### **Quick R exercise - reading multiple sequence alignments with seqinr**{-}
 
 1. What class of an object is al_snr?
 
 2. What type of an object is al_snr?
 
-***
+#### **Calculating distances based on multiple sequence alignments**{-}
 
 While seqinr's objects are less fancy than those of Biostrings, the seqinr package does have some
 nice perks. One of them is calculating the distances between the sequences compared using the
@@ -500,9 +492,8 @@ d_al_snr <- dist.alignment(al_snr)
 
 ```
 
-***
 
-**Quick R exercise**
+##### **Quick R exercise - `inspecting the dist.alignment()` output**{-}
 
 1. What class is d_al_snr?
 
@@ -510,7 +501,6 @@ d_al_snr <- dist.alignment(al_snr)
 
 3. Print d_al_snr, does it remind you of any other object you worked with during the current lab?
 
-***
 
 
 While it is possible to reflect the distance matrix resulting from the alignment using 
@@ -518,14 +508,15 @@ ordination techniques it is more useful to visualize them using hierarchical vis
 tools such as dedrograms and phylogenetic trees, which is what we will do next. 
 
 
-## **Dendrograms**{-}
+#### **Dendrograms - representing distances hierarchically**{-}
 
 BaseR has two classes of objects to house hierarchical information hclust and dendrogram.
 The end result of both is a dendrogram, a tree like graph where similar objects (samples, sequences,
 etc...) group together into clusters. Like 2D scatter plots, they are useful in fields outside 
 evolution and phylogenetics. 
 
-The hclust function performs hierarchical clustering of distance on the distance matrices you 
+##### **hclust objects**{-}
+The `hclust()` function performs hierarchical clustering of distance on the distance matrices you 
 generated earlier using an assortment of aglomerative clustering algorithms.
 We will not go into details of each clustering algorithm at this point, but will use this to study
 the structure of the hclast object.
@@ -549,21 +540,21 @@ typeof(hc)
 
 ```
 
-***
 
-**Quick R exercise**
+###### **Quick R exercise - working with `hclust()` output**{-}
 
 1. Use the str function to study hc
 
 2. Convert the distance matrices generated for the dune data-set to an hclust object
 
-***
+
+##### **dendrogram objects**{-}
 
 As you saw hc contains 7 elements. Merge, hight and order are used to specify the topology of the
 dendrogram, labels specify the label of each leaf, and the rest store information that helps with
 documentation and reproducibility.
 
-Class hclast can be converted to a class dendrogram using the as.dendrogram function.
+Class hclast can be converted to a class dendrogram using the `as.dendrogram()` function.
 
 ```{r convert to dendro}
 #Let's convert 
@@ -571,9 +562,8 @@ hcd <- as.dendrogram(hc)
 
 ```
 
-***
 
-**Quick R exercise**
+###### **Quick R exercise - working with dendrogram objects**{-}
 
 1. What type of an object is the variable hcd
 
@@ -588,7 +578,7 @@ class dendrogram? Which class stores more information?
 
 ***
 
-### **Plotting dendrograms**{-}
+#### **Plotting dendrograms using base R**{-}
 
 Both class hclust and class dendro can be plotted using baseR plot function. 
 This time the result is not that shabby.
@@ -623,39 +613,31 @@ any other sequence. The level of dissimilarity between them is denoted by the sc
 distance. Similarly both these sequences are equally distant from A7FP80, and both are the closest
 sequences to it.
 
-***
+From the figures we can see that the sequences cluster into at least two groups (left and right).
+In lab 6 (maybe) and in advanced courses (e.g. all the omics courses) we will use some statistical
+approaches to test what is the optimal number of groups that the leafes cluster too.
 
-**Quick R exercise**
+
+
+##### **Quick R exercise - plotting dendrograms with base R**
 
 1. Which sequences are the closest to the sequence A0A378D0M5?
 
 2. What is the level of dissimilarity between the group of 4 sequences to the left and the rest of
 the sequences?
 
-***
-
-From the figures we can see that the sequences cluster into at least two groups (left and right).
-In lab 6 (maybe) and in advanced courses (e.g. all the omics courses) we will use some statistical
-approaches to test what is the optimal number of groups that the leafs cluster too.
-
-
-
-***
-
-**Quick R exercise**
-
-1. Plot the class dendrogram (no need to plot class hclast) variables you prepared for the dune
+3. Plot the class dendrogram (no need to plot class hclast) variables you prepared for the dune
 data-set
 
-2. Do you notice any difference in the topology of the trees, order of branches between the one based on euclidean distances and the one based on non-binary Bray-Curtis distances?
+4. Do you notice any difference in the topology of the trees, order of branches between the one based on euclidean distances and the one based on non-binary Bray-Curtis distances?
 
-***
-
-In lab 6 and 7 we will use the package dendextend to directly compare the topology of the different
-trees and dendrograms we generate.
+>In lab 6 and 7 we will use the package dendextend to directly compare the topology of the different
+>trees and dendrograms we generate.
 
 
 #### **Plotting dendrograms with ggplot2**{-}
+
+##### **The ggdendro package**{-}
 
 ggdendro is a package the converts dendrogram class variable to a format that can be used by 
 ggplot2 to plot dendrograms. This can be very useful due to the flexibility ggplot2 offers in plot
@@ -664,7 +646,7 @@ and modified using other tidyverse packages such as dplyr and tidyr.
 
 
 Variables of class dendrogram can be converted to class dendro, the class type used by ggdendro,
-using the dendro_data function.
+using the `dendro_data()` function.
 
 ```{r ggd1}
 
@@ -677,9 +659,8 @@ class(hcggd)
 ```
 
 
-***
 
-**Quick R exercise**
+###### **Quick R exercise - the dendro_data output**{-}
 
 1. Use the str function to study hcggd
 
@@ -689,10 +670,9 @@ class(hcggd)
 
 4. What type of information do you think is stored segments?
 
-***
-
-ggdendro class variables, as you noticed, contain two important dataframes, segments and labels.
-The segment dataframe contains the topology of the tree, and consists of 4 columns.
+##### **ggplot2 and ggdendro**{-}
+ggdendro class variables, as you noticed, contain two important data frames, segments and labels.
+The segment data frame contains the topology of the tree, and consists of 4 columns.
 
 
 ```{r segments, echo=T}
@@ -706,7 +686,7 @@ x and xend denote the horizontal position of each branch of the tree (i.e. its c
 the x axis). y and yend denote the vertical positions of each branch of the tree (i.e. its
 coordinates along the y axis).
 
-The label dataframe contains the labels of each of the leaves (shocking I know), and consists of 3 columns.   
+The label data frame contains the labels of each of the leaves (shocking I know), and consists of 3 columns.   
 
 ```{r labels, echo=T}
 
@@ -716,24 +696,18 @@ head(hcggd$labels)
 
 
 x denote the position along the x axis and y denotes the position along the y axis which is always
-0. label contains...you got it. Now that we understand the structure of the dendro class we can  plot dendrograms with it using the ggplot2 package.
+0. label contains...you got it. Now that we understand the structure of the dendro class we can  plot dendrograms with it using the ggplot2 
+package. Note that in this case I am not specifying the x and y coordinates under `ggplot()` but rather under the individual geomes, because the coordinates have to be specified both for the segments and for the labels.
+Note too that I am using the labels dataframe as the `data` argument for `geom_text()`.
 
 
 ```{r ggd2}
-
-#Let's plot the dendrogram with ggplot2
-#The dendrogram has two parts, the segments which are basically lines starched between two points 
-#in two dimensional space, and the labels. 
-#That's why I did not specify the x and y coordinates in the initial ggplot call, but rather 
-#specified it for each of the geoms
 p <- ggplot(data = hcggd$segments) + 
-  #geom_segment draws the segments (branches/lines) of the dendrogram
   geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) + 
-  #geom_text adds a text layer to the plot, which are the leaves labels
-  #the angle argument sets the orientation of the text and the hjust makes sure that the 
-  #labels are justified horizontal
-  #within the aes y is set to y-0.01 so that the labels will be a bit further away from the tips of
-  #each leaf
+  #the angle argument sets the orientation of the text and the 
+  #hjust makes sure that the labels are justified horizontally
+  #within the aes y is set to y-0.01 so that the labels will be 
+  #a bit further away from the tips of each leaf
   geom_text(data = hcggd$labels, aes(x, y-0.01, label = label),
             hjust = 1, angle = 90, size = 4)+
   theme_bw(base_size = 16)+
@@ -753,7 +727,7 @@ p
 ```
 
 I sold you on the fact that ggplot makes things flexible and great but so far it looks more or less
-like baseR graphic. Lets see an example of that. 
+like base R graphic. Lets see an example of that. 
 As I mentioned, there are several mathematical methods (e.g. k-means clustering) that help calculate the optimal
 number of clusters produced by the hierarchical clustering. 
 
@@ -826,7 +800,7 @@ category a sample would be classified to you are performing supervised machine l
 <br>
 
 
-## **Phylogenetic trees**{}
+#### **Phylogenetic trees**{-}
 
 Phylogenetic trees are tree like graphs that not only denote relationship between each leaf on the
 x axis, but also include a time component on the y axis (i.e. junctions lower on the tree are
@@ -845,21 +819,19 @@ Because all tree like objects in R are stored as lists, it is easy to convert be
 them. The snippet bellow uses the as.phylo command to generate a phylo object 
 
 ```{r phylo1}
-
 hcp <- ape::as.phylo(hc)
 hcp
-
 ```
 
-***
 
-**Quick R exercise**
+##### **Quick R exercise - the as.phylo `outpout()`**{-}
 
-1. Explore the list outputted by as.phylo (hcp) which elements make up this list?
+1. Explore the list outputted by `as.phylo (hcp)` which elements make up this list?
 
 2. What class does each element belong to?
 
-***
+
+##### **Class phylo**{-}
 
 As you found out, hcp contains 4 elements. The matrix edge consists of two columns
 
@@ -900,14 +872,13 @@ elements include:
 
 
 
-### **Plotting phylogenetic trees**{-}
+##### **Plotting phylogenetic trees**{-}
 
 Plotting phylogenetic trees is straight forward using baseR. Examples include a node label element which contains labels of each branching point. 
 
 ```{r basep}
 
 plot(hcp)
-
 
 ```
 
@@ -928,7 +899,7 @@ following the workflow we used earlier.
 ## **Summary assignment**{-}
 
 Start a script file in RStudio name it 3315_lab4_yourinitials.R
-You will submit this script and output file if applicable to Brightspace by Tue October 18 23:59.
+You will submit this script and output file if applicable to Brightspace.
 
 **1.** Convert the distance matrices generated for the dune data-set (euclidean, and both Bray-Curtis) to an hclust object.
 
