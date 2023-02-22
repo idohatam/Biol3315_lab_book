@@ -276,7 +276,7 @@ dune.bry.nmds2 <- metaMDS(dune, distance = "bray", binary=F)
 5. What type of an object is the 3rd element of dune.bry.nmds?
 
 
-#### **Manipulating the output of `metaMDS()`**
+#### **Manipulating the output of `metaMDS()`**{-}
 
 If you completed the above exercise you saw that the output of `metaMDS()` is essentially a list with
 35 elements. What each element represents is not that important for this lab, but in general the
@@ -312,7 +312,7 @@ dune.bry.points <- as.data.frame(dune.bry.nmds$points) %>%
 
 2. Do you find it useful in deciphering the relationships between the samples? 
 
-#### **Plotting the output of `metaMDS()`**
+#### **Plotting the output of `metaMDS()`**{-}
 
 The coordinates table might be simpler to look at compared to the distance matrix but it still
 doesn't really help us understand which samples are more similar to one another.
@@ -619,7 +619,7 @@ approaches to test what is the optimal number of groups that the leafes cluster 
 
 
 
-##### **Quick R exercise - plotting dendrograms with base R**
+##### **Quick R exercise - plotting dendrograms with base R**{-}
 
 1. Which sequences are the closest to the sequence A0A378D0M5?
 
