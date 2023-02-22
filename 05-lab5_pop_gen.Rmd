@@ -1,30 +1,421 @@
-# Blocks
-
-## Equations
-
-Here is an equation.
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  (\#eq:binom)
-\end{equation} 
-
-You may refer to using `\@ref(eq:binom)`, like see Equation \@ref(eq:binom).
 
 
-## Theorems and proofs
+# **Lab 5 population genetics and selection in R**
 
-Labeled theorems can be referenced in text using `\@ref(thm:tri)`, for example, check out this smart theorem \@ref(thm:tri).
+<br>
 
-::: {.theorem #tri}
-For a right triangle, if $c$ denotes the *length* of the hypotenuse
-and $a$ and $b$ denote the lengths of the **other** two sides, we have
-$$a^2 + b^2 = c^2$$
-:::
+**Learning objectives** 
 
-Read more here <https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html>.
-
-## Callout blocks
+__By the end of this lab you will be able to:__
 
 
-The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html
+*	Collaborate writing code
+
+* Catch user input error
+
+* Control flow using break and next
+
+* Write custom functions performing statistical analysis
+
+* Write functions modeling selection scenarios 
+
+* Analyze population data
+
+</details>
+
+
+## **The concept**
+
+As bioinformaticians you will seldom work alone in your own brilliance. Most likely you will be a 
+part of a team developing tools/analysis pipelines for other scientists, or have to explain your 
+work to peers who are not bioinformaticians. Since we will not be using any new packages, this
+seems like a good change to develop team working skill to to gain some experience in tool 
+development.
+During this lab you will work in groups and will write functions designed to analyse population 
+data.
+
+Before you begin solving problems, since these functions will be written with the end user in mind,
+we will go over ways to catch user input errors and ways to control the flow of a function when a 
+solution is reached.
+
+### **Catching user input error**
+
+Sometimes, despite your best intentions, users will enter values to arguments which will result in
+your code crushing or will send R in to a tail spin (e.g. vector with negative values when log
+transforming). 
+
+R has a lot of tools for "defensive programming", I will go over two: `stop()` and `message()`.
+`stop()`, as its name implies, terminates the execution of the code if a deadly error was identified. In addition it prints an error message.
+
+`message()`, allows you to print a customized message alerting the user to whatever it is you choose to altrt them about.
+
+Let's look at how to use `stop()` and `message()` to catch user error.
+
+```{r catch user error1}
+
+#Let's write a very simple and useless function that takes a numeric vector 
+#sums it up and calculate the log of the sum
+
+Log_of_sum <- function(x){
+#If the user inputs anything that is not a numeric vector the function will 
+#not be able to run properly
+#It is possible to test whether the input is in the correct format using an if 
+#statement and an is.x function 
+  
+#If augment x is not numeric stop and print an error message explaining why was
+#the execution was stopped
+  
+  if(!is.numeric(x)){
+    stop("x is not a numeric vector")
+  }
+  
+#Remember that matrices are vectors too, therefore is.numeric will result 
+#in true for a numeric matrix as well
+  
+  if(is.matrix(x)){
+    
+#here we just send the user a message telling them the matrix was coerced to 
+#a one dimensional vector
+    
+    message("x was coerced to a one dimensional vector")
+    x <- c(x)
+    
+  }
+  
+#as always make sure your function returns a variable
+  
+  return(los <- log1p((sum(x))))
+}
+
+
+```
+
+Now - _drum roll_ - let's use the function and see the magic that is stop. 
+
+```{r catch user error2, error=TRUE}
+
+#First generate a character vector
+
+cv <- letters[1:5]
+
+Log_of_sum(cv)
+
+```
+
+Note the error message. 
+
+Now lets generate a matrix and get a message that it was coerced to a vector
+
+```{r catch user error3}
+#Why am I setting seed?
+set.seed(1)
+
+#Matrix with 2 columns 
+m <- matrix(sample(1:5000,10), ncol = 2)
+
+Log_of_sum(m)
+
+```
+
+***
+
+**Quick R exercise**
+
+A list is also a vector, what will happen if a list is used as a value for argument x in the 
+`Log_of_sum()` function?
+
+***
+
+### **Control of flow the break and next functions with-in for loops**
+
+Often times, it will be required to run a loop until certain condition (other than the loop
+condition) is met. However, it is not always known when will this condition be met. For example,
+when analyzing allele tables you have no way of knowing _a-priori_ at which generation will the
+population no longer be in equilibrium for a certain allele. The function `break()` will terminate the
+operation of a loop once an internal condition is satisfied.
+
+Alternatively, it will be required to skip an iteration step if a certain condition was not met. If
+we use the previous example, there is no way of knowing _a-priori_ if a population is no longer in HW
+equilibrium. The function `next()` will skip iteration steps until a condition is met. 
+
+The following code snippet demonstrates how to use `break()` and `next()` in a loop, within the context of
+a function environment. Note that `break()` will terminate a loop and will exit to a higher level
+environment. Within a function it will exit to the function environment and not to the global
+environment.
+
+```{r break and next1}
+
+#Let's write yet another in the long line of simple and useless functions
+
+#This function consists of two loops one prints something until it encounters an element equal to
+#to or larger than 100 and the second skips printing something until it encounters an element larger
+#than than or equal to 100. 
+
+bn <- function(x) {
+  
+  #conditional statement to catch input errors
+  if(!is.numeric(x)){
+    stop("x must be numeric")
+  }
+  
+  #Initializing the counting variable
+  
+  i=1
+  #setting up the loop condition
+  #Note that this loop will run first
+  for (i in seq_along(x) ) {
+    
+    #Seting up the break condition 
+    if( x[i] < 100) {
+      print ("This is loop1")
+    } else {
+      #Note that break will terminate the loop when encountering the first element that violates
+      #the condition. There could be other elements out there.
+      print(paste("loop 1 was terminated after",i,"iterations", sep = " "))
+      break
+    }
+    
+  }
+  
+  #Initializing the counting variable for the second loop
+  
+  i=1
+  #Setting up the loop condition
+  for (i in seq_along(x)) {
+    #Setting up the next condition
+    if(x[i]< 100){
+      
+      #Note that next will skip any element that meets the criterion
+      next
+    }else{
+      #If criterion not met, print something
+    print("This is loop2")}
+    
+  }
+  
+}
+
+
+```
+
+Let's see what the output of this function be with this random vector (why am I using a randomly generated vector?).
+
+```{r}
+#Why am I setting seed?
+set.seed(1)
+
+#Call the function bn
+bn(sample(1:110,60))
+
+
+```
+
+As mentioned, the `break()` function terminated the loop after the first element to violate the
+condition was encountered (the 23rd element of the vector). How many elements are there that do not
+violate the condition of loop 1?
+
+```{r}
+#Let's ask R how meany elements in the vector are smaller than 100
+
+set.seed(1)
+#Note at the use of square brakes, sub sample the vector for only elements smaller than 100
+
+length(sample(1:110,60)[sample(1:110,60)<100])
+```
+
+As you can see, `break()` skipped **_~half_** of the elements that met the condition.
+
+
+## **The assignment**
+
+Bellow are 3 problems you will have to solve in groups.
+The idea is that you work together to find the solution to each problem.
+Submit the scripts and any associated files as a group by Tue Nov 1^st^ 23:59.
+
+Each problem is worth 5 points
+
+* 1 point will go to commenting, make sure to comment properly each step in your function
+
+* If there is an attempt to solve the problem but no solution was made you will receive 2 additional marks on top of the marks for properly commenting the function
+
+* If a solution was reached you will receive four additional marks on top of the marks for properly commenting the function
+
+* If you feel that any of the members did not contribute at all to the assignment do not include their name and they will receive 0.
+
+* **Remember to include a code to load any external library you used in your functions (e.g. ggplot2)**
+
+* **Remember to make sure to test for correct input by user and to use `next()` and `break()` where appropriate**
+
+
+* For problems 2 and 3 assume population size is constant (i.e. does not change from generation to
+generation)!
+
+
+* Remember that Hardy Weinberg equation for 2 alleles is:
+
+  + Where p is the frequency of A~1~ and q is the frequency of A~2~
+
+$$p^2 \times 2pq \times q^2$$
+  
+* Remember that:
+
+$$\begin{align*}p+q = 1 \\p = 1-q\end{align*}$$
+
+
+### **Problem 1**
+
+Write a function that tests for Chi square goodness of fit.
+The purpose of this function is to be called by the other functions you will write in this assignment, 
+so keep testing for HW equilibrium in mind.
+
+Remember that the formula for Chi square goodness of fit is:
+
+$$\chi^2 = \sum_{i=1}^{k} \frac{(Obs - Exp)^2}{Exp}$$
+<br>
+
+Remember that the critical value needed to reject the null hypothesis that observed values do not
+differ significantly from the expected values is dependent on the number of categories you sum.
+This is expressed as degrees of freedom which is defined as:
+
+$$ df = n-1 $$
+Where n is the number of categories, in your case the number of genotypes.
+
+The critical value necessary to reject the null hypothesis can be retrieved using R's qchisq 
+function, you can call it within your function. 
+
+
+```{r getting them pvalues}
+
+#Critical value for Chi square goodness of fit test, the 0.95 percentile with 
+#1 - 3 degrees of freedom
+#Note at how the function receives the argument, this is the critical value for a p-value equal to or smaller than 
+#0.05, i.e. 5% probability to receive a larger Chi square value by chance.
+
+qchisq(0.95, df = 1:3)
+
+```
+
+Figure out how many arguments your function will receive,(e.g. expected value, observed values,
+significance level etc..). Remember that the test requires number of individuals rather than
+proportions/frequencies so plan to account for that with respect to user input. 
+What type of variable will each argument accept, and how will you test for correct input by the user. Think about 
+whether you want to assign a default value to any of the arguments.
+
+The function should return a list, which at minimum stores the following elements: 
+
+* The significance level 
+
+* The Chi square value
+
+* Number of degrees of freedom
+
+* Whether the null hypothesis is rejected or not
+
+Since you will have to use it in following functions think whether require an element that
+can be easily accessed by a conditional statement to ask if the null hypothesis was rejected.
+
+
+### **Problem 2**
+
+Write a function that simulates allele dynamics under positive selection of a recessive allele.
+
+Remember that the formula to calculate the change in q under this type of selection is:
+
+$$ \Delta{q} = \frac{pq^2s}{1+q^2s} $$
+
+The purpose of this function is to run through a selection scenario given initial q frequency and
+determine at what generation a population is no longer at HW equilibrium.
+
+At minimum the function should receive the initial proportion of q, the selection coefficient of 
+the recessive allele, significance level for Chi square test, number of generations, and the 
+population size.
+
+Think about What type of variable will each argument accept, and how will you test for correct
+input by the user. Think about whether you want to assign a default value to any of the arguments
+(e.g. set a default number of generations, or a default significance level for the Chi square test). 
+Lastly, think about how will you integrate the call of the Chi square function you wrote within 
+the function you are currently writing, given that it requires number of individuals rather than frequencies.
+
+
+The function should return a list with the following elements at minimum:
+
+* The initial frequency of q
+
+* The selection coefficient of the recessive allele
+
+* The population size
+
+* A dataframe with the columns for number of generations, frequency of q, frequency of p
+
+  + Feel free to add additional columns if you think it necessary
+
+* The generation in which the population is no longer in HW equilibrium
+
+* A line plot generated by ggplot2 showing the frequency of each allele over time
+
+  + The plot should include a vertical line that indicates the generation at which the population is no longer in equilibrium
+  
+  + The plot should include all generation inputted by the user even those past equilibrium
+  
+  + The plot should contain a descriptive title as well as axis titles
+  
+* The function should also output (print) the number of generations it took for the HW equilibrium to be
+disrupted (with a descriptive message)
+
+* The function should also output the plot generated by ggplot
+
+**Run this function with s = 0.01 and the following population size: 100, 1000, 10000**
+
+**Add this and the output plots to your submission** 
+
+**Did your result change with population size? If so, how?**
+
+
+### **Problem 3**
+
+Write a function that simulates allele dynamics under positive selection of co-dominant alleles.
+Remember that the formula to calculate the change in q under this type of selection is:
+
+$$ \Delta{q} = \frac{pqs}{1+2qs} $$
+
+The purpose of this function is to accept either a matrix or a dataframe with number of individuals
+per genotype, and determine if the population is under HW equilibrium. If not, determine if the
+allele dynamics fit the case of co-dominance. 
+
+The columns of the input table will be generation, A~1~A~1~, A~1~A~2~, A~2~A~2~.
+Make sure to leave a comment so that the user will know this. The function should also receive as arguments, 
+the selection coefficient and the significance level for a Chi square test.
+
+Think about What type of variable will each argument accept, and how will you test for correct
+input by the user. Think about whether you want to assign a default value to any of the arguments
+(e.g. default significance level). Lastly, think about how will you integrate the call of the Chi
+square function you wrote within your function, as you will need to call it twice here (hint calculate population size from the input table).
+
+
+
+
+The function should return a list with the following elements at minimum:
+
+* The input table
+
+* The selection coefficient
+
+* The generation in which HW equilibrium was disrupted
+
+  + If not, than state that it didn't
+  
+* The chi square value, the critical value, the degrees of freedom
+
+* Whether this is a co-dominance selection scenario
+
+The function should output (print) the following information:
+
+* Whether or not the population is in HW equilibrium
+
+* What generation was the equilibrium disrupted
+
+* Does the allele dynamics follow a co-dominance pattern
+
+**Download the population data from BrighSpace**
+
+**Run through your function and report output**
