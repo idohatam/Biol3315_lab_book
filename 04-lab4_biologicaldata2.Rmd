@@ -215,7 +215,7 @@ dune.vd.bry.bin <- vegdist(dune, method = "bray", binary = T)
 
 2. Use the `str()` function to explore `dune.vd.bry`
 
-3. What will setting the arguments upper and diag to TRUE produce?
+3. What will setting the arguments upper and diag to `TRUE` produce?
 
 4. What other distance indices does `vegdist()` accepts under the method argument?
 
@@ -246,12 +246,10 @@ dune.euc.nmds <- metaMDS(dune.dist.euc)
 #nmds for the Bray-Curtis distance matrix
 set.seed(1)
 dune.bry.nmds <- metaMDS(dune.vd.bry)
-
-
 ```
 
 The function `metaMDS()` can also call the `vegdist()` function and perform the distance calculation.
-
+Note that I am using the function `set.seed()` and you should as well. 
 
 ```{r metaMDS2, results='hide'}
 
