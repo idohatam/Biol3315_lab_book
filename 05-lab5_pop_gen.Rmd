@@ -219,7 +219,7 @@ length(sample(1:110,60)[sample(1:110,60)<100])
 As you can see, `break()` skipped **_~half_** of the elements that met the condition.
 
 
-## **The assignment**
+## **The assignment**{-}
 
 Bellow are 3 problems you will have to solve in groups.
 The idea is that you work together to find the solution to each problem.
