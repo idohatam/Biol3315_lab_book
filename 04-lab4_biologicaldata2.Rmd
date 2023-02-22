@@ -928,4 +928,3 @@ order of the samples.
   + Which functions would you have used to import each of the files you exported?
   
 **11.** Write a function that reads all csv files from a folder, log transforms them and uses metaMDS to perform NMDS on all files with binary bray as distance. Make sure that the results are all stored as element of a list (hint make sure that the list has the same number of elements as the number of files in the folder). Make sure that your function returns said list.
-
