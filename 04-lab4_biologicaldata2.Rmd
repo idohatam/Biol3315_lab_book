@@ -896,7 +896,7 @@ Plotting phylogentic trees using ggplot2 requires converting the phylo object to
 following the workflow we used earlier.
 
 
-## **Summary assignment**{-}
+## **Summary assignment lab 4**{-}
 
 Start a script file in RStudio name it 3315_lab4_yourinitials.R
 You will submit this script and output file if applicable to Brightspace.
