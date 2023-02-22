@@ -1,8 +1,5 @@
+# **Lab 5 population genetics and selection in R**{-}
 
-
-# **Lab 5 population genetics and selection in R**
-
-<br>
 
 **Learning objectives** 
 
@@ -24,7 +21,7 @@ __By the end of this lab you will be able to:__
 </details>
 
 
-## **The concept**
+## **The concept**{-}
 
 As bioinformaticians you will seldom work alone in your own brilliance. Most likely you will be a 
 part of a team developing tools/analysis pipelines for other scientists, or have to explain your 
@@ -38,7 +35,7 @@ Before you begin solving problems, since these functions will be written with th
 we will go over ways to catch user input errors and ways to control the flow of a function when a 
 solution is reached.
 
-### **Catching user input error**
+### **Catching user input error**{-}
 
 Sometimes, despite your best intentions, users will enter values to arguments which will result in
 your code crushing or will send R in to a tail spin (e.g. vector with negative values when log
@@ -126,7 +123,7 @@ A list is also a vector, what will happen if a list is used as a value for argum
 
 ***
 
-### **Control of flow the break and next functions with-in for loops**
+### **Control of flow the break and next functions with-in for loops**{-}
 
 Often times, it will be required to run a loop until certain condition (other than the loop
 condition) is met. However, it is not always known when will this condition be met. For example,
@@ -194,8 +191,6 @@ bn <- function(x) {
   }
   
 }
-
-
 ```
 
 Let's see what the output of this function be with this random vector (why am I using a randomly generated vector?).
@@ -206,8 +201,6 @@ set.seed(1)
 
 #Call the function bn
 bn(sample(1:110,60))
-
-
 ```
 
 As mentioned, the `break()` function terminated the loop after the first element to violate the
@@ -255,14 +248,14 @@ generation)!
 
   + Where p is the frequency of A~1~ and q is the frequency of A~2~
 
-$$p^2 \times 2pq \times q^2$$
+$$p^2 + 2pq + q^2$$
   
 * Remember that:
 
 $$\begin{align*}p+q = 1 \\p = 1-q\end{align*}$$
 
 
-### **Problem 1**
+### **Problem 1**{-}
 
 Write a function that tests for Chi square goodness of fit.
 The purpose of this function is to be called by the other functions you will write in this assignment, 
@@ -315,7 +308,7 @@ Since you will have to use it in following functions think whether require an el
 can be easily accessed by a conditional statement to ask if the null hypothesis was rejected.
 
 
-### **Problem 2**
+### **Problem 2**{-}
 
 Write a function that simulates allele dynamics under positive selection of a recessive allele.
 
@@ -371,7 +364,7 @@ disrupted (with a descriptive message)
 **Did your result change with population size? If so, how?**
 
 
-### **Problem 3**
+### **Problem 3**{-}
 
 Write a function that simulates allele dynamics under positive selection of co-dominant alleles.
 Remember that the formula to calculate the change in q under this type of selection is:
