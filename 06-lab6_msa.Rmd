@@ -1,31 +1,486 @@
-# Sharing your book
 
-## Publishing
-
-HTML books can be published online, see: https://bookdown.org/yihui/bookdown/publishing.html
-
-## 404 pages
-
-By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a `_404.Rmd` or `_404.md` file to your project root and use code and/or Markdown syntax.
-
-## Metadata for sharing
-
-Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the `index.Rmd` YAML. To setup, set the `url` for your book and the path to your `cover-image` file. Your book's `title` and `description` are also used.
-
-
-
-This `gitbook` uses the same social sharing data across all chapters in your book- all links shared will look the same.
-
-Specify your book's source repository on GitHub using the `edit` key under the configuration options in the `_output.yml` file, which allows users to suggest an edit by linking to a chapter's source file. 
-
-Read more about the features of this output format here:
-
-https://pkgs.rstudio.com/bookdown/reference/gitbook.html
-
-Or use:
-
-```{r eval=FALSE}
-?bookdown::gitbook
+```{r setup lab6, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
 ```
+# **Lab 6 studying the evolution of biological sequences in R**{-}
+
+**Learning objectives** 
+__By the end of this lab you will be able to:__
+
+
+*	Demonstrate the ability to load biological sequences into R
+
+* Perform dot-plot alignment using AA and nucleotide sequence
+
+* Analyze sequences for regions of homology based on dot-plot alignments
+
+* Perform global and local alignments using dynamic programming algorithms
+
+* Analyze regions of homology based on those alignments
+
+* Retrieve alignment scores
+
+* Export sequences to be used for homology search in BLAST
+
+* Perform multiple sequence alignment using the MSA package
+
+* Print multiple sequence alignments and identify conserved area and consensus sequence
+
+* Analyze differences in alignments with a tanglegram
+
+
+## **Sequence evolution - the setup**{-}
+
+The purpose of this lab is for you to get familiarized with methodologies used in the analysis of
+sequence similarity. To complete this lab, you will need to install the following packages: 
+
+1. denextend, a package which allows to compare dendrograms
+
+2. msa, a package for multiple sequence alignments
+
+3. ggmsa  plot MSAs with ggplot2
+
+
+****
+
+>**Note: that the assignment questions for this week are interspersed throughout the tutorial.
+They are itemized in the table of content so make sure you answer all of them.**
+
+***
+```{r packages lab 6, eval = FALSE, echo = TRUE}
+
+#Installing the package dendextend
+install.packages("dendextend")
+
+#Installing the package ggmsa
+BiocManager::install("ggmsa")
+
+#Installing the package mas from bioconductor
+BiocManager::install("msa")
+
+#lapply is part of the apply family of functions, one of those functions that act as a for loop
+lapply(c("vegan","ape","ggdendro","seqinr",
+         "Biostrings", "tidyverse","dendextend","msa","ggmsa"),library, character.only = TRUE)
+
+```
+
+
+```{r p2l6, echo=FALSE,message=FALSE,warning=FALSE, results='hide'}
+
+lapply(c("vegan","ape","ggdendro","seqinr",
+         "Biostrings", "tidyverse","dendextend","msa","ggmsa"),library, character.only = TRUE)
+
+```
+
+
+## **Pairwise alignment**{-}
+
+Lets begin the lab by conducting PW sequence alignments. To do so you will use two libraries you are already familiar 
+with, Biostrings and seqinr. You will perform a few types of multiple sequence alignments using several sequences.  
+
+### **Dot-plot alignment - nucleotide sequences**{-}
+
+A dot-plot alignment is a simple way to perform pairwise sequence alignment. 
+The purpose of this exercise is to grant you first hand experience working with
+dot-plot alignments, and understand their advantages and disadvantages.
+
+Let's examine how well dot-plot alignments work with nucleotide sequences. We will align
+three  16S rRNA genes. As you will notice the sequences are relatively long, and are not
+uniform in length, as well. 
+These sort of variation in data is a challenge you will face when 
+working with sequence data, what do you think is the source of these variations?
+
+
+```{r dotplot_nuc}
+#Get the list of reposetories
+ripos <- choosebank()
+
+#Get the 16srefseq repo
+bank <- choosebank(bank=ripos[str_which(ripos, "16s")], infobank = T)
+
+#Get archaeal sequences
+arch <- query( listname = "Archaea", query="sp=Archaea")
+
+#getting the 1st, 2nd and, 200th sequences, note that seqinr requires the sequences to be represented as character 
+#vectors, each character of the sequence is 1 element in the vector
+arch1 <- getSequence(arch$req[[1]])
+arch2 <- getSequence(arch$req[[2]])
+arch3 <- getSequence(arch$req[[200]])
+
+#closing the connection to the ripo list
+closebank()
+
+#Now, let's figure out how to work with the dotPlot function
+?dotPlot
+```
+
+#### **Question 1**{-}
+
+A. What is the length of each sequence, show your code - 1 mark?
+
+B. Run the dotPlot function to compare arch1 and arch3, and to compare arch2 and arch3 using the
+default settings. Could you identify an optimal alignment using the default settings? Show your
+code and attache the resulting figure from each alignment saved as PDF (you can export from the
+plot pane) 3 marks. 
+
+C. Run the same alignments with smoothed data, use word size of 50 letters, stringency of 30 and 
+make sure that the window progresses one position at a time. Could you identify an optimal
+alignment in any of the cases? Is there any apparent feature in any of the alignments?
+Show your code, attach the resulting figures as PDFs 3 marks
+
+***
+
+<br>
+
+### **Dot-plot alignment - nucleotide sequences**{-}
+
+Next, let's examine how well will a dot-plot alignment perform when inspecting AA sequences.
+Remember the AA sequences use 20 letter alphabet, which in theory should reduce spurious matching.
+
+To do that, first load the selA.fa file with `read.fasta()` from the seqinr package. 
+
+```{r dot_plotaa}
+#load selA using the read.fasta from seqinr
+selA <- read.fasta(file = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/selA.fa")
+
+#What class is this variable?
+class(selA)
+
+#How will you use it in subsequent functions?
+
+```
+
+#### **Question 2**{-}
+
+A. Use the `dotPlot()` function with default settings to compare the 1st and 5th sequences in selA, can you identify an alignment? 
+Show your code, include a PDF of the figure produced (2 marks)
+
+B. Now, smooth the sequences by selecting a window size of 10, stringency of 5, and a slide of one position, 
+did it improve the alignment? Show your code and attach a PDF of the resulting figure (2 marks)
+
+C. What happens if you change the window size to 60 and select and a stringency of 12? 
+What does it tell you about results obtained by this technique? Show your code and include a PDF of the figure produced (3 marks).
+
+
+### **Global PW alignment with NWA**{-}
+
+It's time to switch it up and use some fancier methods and fancier variable classes, yes it's time
+for some Biostrings and dynamic programming algorithms. 
+
+You will work with the [NWA](https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm) for global alignment. 
+First, it is necessary to convert the sequences used in the previous example to Biostrings class variables. 
+Furthermore remember that a sequence alignment using a dynamic programming algorithm receives an alignment score. 
+Therefore it is necessary to create a scoring matrix for the nucleotide sequences (what will you use to score AA 
+alignments?).
+
+Converting the nucleotide sequences to DNAStringSet is stright forwared.
+```{r NWA1}
+
+#Convert the nucleotide sequence to stringsets
+arch_strinS <- DNAStringSet(c(paste(arch1, collapse = ""), 
+                              paste(arch2,collapse = ""),paste(arch3, collapse = "")))
+
+
+```
+
+The following code snippet converts the selA seqs to an AAstringset. 
+The selA AA seqs are saved as a list, also they are lowercase since the substitution 
+metrics are uppercase need to correct for it. 
+Here, I chained a few `lapply()` functions to iterate over the list.
+The inner `lapply()` pastes the seqs as strings, the second `lapplay()` changes the case to upper, next we
+`unlist()` the list into a vector with the same number of elements as the list. Each element is a string that represents a sequence.
+
+
+```{r NWA2}
+selAset <- AAStringSet(unlist(lapply((lapply(selA, base::paste, collapse = "")),
+                                    stringr::str_to_upper), '[[',1))
+```
+
+Next, let's set up the scoring matrix for the alignment. matches get 1 point, mismatc penalties are set to -1.
+Remember that you need to load the scoring matrix that you will use for amino acid sequences.
+```{r NWA-score}
+nucsubmat <- nucleotideSubstitutionMatrix(match = 1, mismatch = -1,type = "DNA")
+#How would you load the protein substitution matrix?
+?substitution.matrices
+```
+
+
+Now you're all set up to run the function `pairwiseAlignment()` on the nucleotide sequences used for
+`dotPlot()`. Remember that you need to subset the XStringSet. Use -1 as penalty for opening and
+extending gaps. Make sure to use the correct substitution matrix. Store the resulting 
+`PairwiseAlignmentsSingleSubject` in a list (you should have two elements in the list).
+
+```{r yourturn, eval=FALSE}
+# Arguments for pairwiseAlignment
+?pairwiseAlignments
+```
+
+
+Similarly run pairwiseAlignment for the AA sequences from the previous example. Use the following
+scoring matrices: BLUSOM62, BLOSUM80, PAM120, PAM40. What do the numbering system for these
+matrices represent? Store these in a list (you should have 4 elements in the list).
+
+Did you notice how much faster is the NWA compared with a dot-plot alignment?
+
+```{r  NWAs, echo=F, results='hide', message=FALSE,warning=FALSE}
+
+
+ga <- pairwiseAlignment(arch_strinS[1],arch_strinS[3], 
+                        substitutionMatrix=nucsubmat, gapOpening = -1, gapExtension = -1,
+                        type = "global")
+ga
+
+
+ga2 <- pairwiseAlignment(selAset[1],selAset[2], substitutionMatrix="PAM40", gapOpening = 1,
+                         gapExtension = 1,type = "global")
+
+ga2
+
+```
+<br>
+
+***
+#### **Question 3 - NWA**{-}
+
+A. Show the code used for each alignment, make sure to comment (2 marks).
+
+B. Print the nucleotide alignments, What was the score for each of them? Would you expect any 
+alignment to have a negative score considering how conserved the 16S rRNA gene is (2 marks)?
+
+C. Print each of the AA alignments, did the trend in score agree between PAM and BLOSUM (1 mark)?
+
+
+***
+
+<br>
+
+### **Local PW alignment with SWA**{-}
+
+Now use `pairwiseAlignment()` to perform a local alignment using SWA. As before, make sure to store your your alignments in
+two lists.  
+
+```{r SWA, echo=F, results='hide'}
+la <- pairwiseAlignment(arch_strinS[1],arch_strinS[3], 
+                        substitutionMatrix=nucsubmat, gapOpening = -1, gapExtension = -1,
+                        type = "local")
+la
+
+
+la2 <- pairwiseAlignment(selAset[1],selAset[2], substitutionMatrix="PAM40", gapOpening = 1,
+                         gapExtension = 1,type = "local")
+
+la2
+```
+
+
+#### **Question 4 - SWA**{-}
+
+A. Show the code used for each alignment, make sure to comment (2 marks).
+
+B. What was the score and length of the local alignment between Arch1 and Arch3? What positions in Arch1 and Arch3 where aligned (remember that XString is an S4 object and should be subset using @ and not $). Show your code (3 marks).
+
+C. Run the sequence for Arch1 in nucleotide blast, is it actually an archaeal sequence? What species and genus did the top hit belong to. Include a screenshot of the description and graphic summary tabs. Tip, check the box for excluding uncultured organisms from the alignment (3 marks).
+
+D. What were the length of the AA alignment, did they change with different substitution matrices? Show your code (2 marks)
+
+
+## **MSA**{-}
+
+In this part you will perform MSA with the HBA and HBB sequences. You should download the four fasta files, two per gene, one for AA sequences and one for 
+nucleotied sequences.
+These files contain data-sets of hemoglobin A and hemoglobin B from several organisms. 
+As you can see the data-sets are quit messy, i.e. the headers are long and inconsistent, furthermore the HBB data-set contains two less organisms. Need to cleanup
+in order to compare alignments with dendextend.
+
+The snippet bellow shows how to cleanup the data-sets once loaded. You should make sure that the hba sets contain the same seqs as the hbb (hint think subseting 
+based on names).
+
+```{r msa1}
+
+#read files as XStringSet
+hba_n <- readDNAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA.fasta")
+hba_aa <- readAAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA_aa.fasta")
+
+#Note that for cleanup I am using functions from stringr, make sure to load it
+#Cleanup the names of the nucleotide sequcnes, spliting based on blank space 
+#result in a matrix, chossing the 2 and 3 column which include genus and species names
+#using apply to iterate over the columns and get a vector of names "Genus Sepcies"
+names(hba_n) <- apply(str_split_fixed(names(hba_n), pattern = " ",4)[,2:3],1,base::paste, 
+                      collapse = " ")
+
+#Here genus and species are srounded by [], using that to retrive tham \\ are used as escape #caracters ince [] have meaning in R syntax
+names(hba_aa) <- str_remove_all(str_split_fixed(names(hba_aa),pattern = "\\[", n=2)[,2],"\\]")
+
+
+```
+
+The `MUSCLE` implementation is a bit finicky with respect to names, so make sure to run over the naming scheme for all stringsets.
+Now that all the sets are clean it's time to perform MSAs.
+The function `msa()` can use `CLUSTALW`, `MUSCLE`, `CLUSTAL omega`, or `CLUSTAL 2.0`. You will only use `MUSCLE` 
+for the sake of this lab to keep things short. You will use the default setting which means `BLOSUM62` for AA alignments.
+
+Here are the functions that you will need to use for the next part.
+
+```{r msa1b, eval=FALSE}
+?msa()
+?msaConvert()
+?msaConsensusSequence()
+?dist.alignment()
+```
+
+
+You can also use the msa package [reference manual](http://www.bioconductor.org/packages/release/bioc/manuals/msa/man/msa.pdf)
+
+
+***
+
+>**Note: you will also need the HBB.fasta and HBB_aa_.fasta files. You can source those as well from my GitHub page.**
+
+***
+
+```{r msa2, echo=F, results='hide'}
+hba_n <- readDNAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA.fasta")
+hba_aa <- readAAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA_aa.fasta")
+hbb_n <- readDNAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBB.fasta")
+hbb_aa <- readAAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBB_aa.fasta")
+
+names(hba_n) <- apply(str_split_fixed(names(hba_n), pattern = " ",4)[,2:3],1,base::paste, 
+                      collapse = " ")
+
+
+names(hba_aa) <- str_remove_all(str_split_fixed(names(hba_aa),pattern = "\\[", n=2)[,2],"\\]")
+
+names(hbb_aa) <- str_remove_all(str_split_fixed(names(hbb_aa),pattern = "\\[", n=2)[,2],"\\]")
+
+
+hba_aa <- hba_aa[which(names(hbb_aa)%in%names(hba_n))]
+hba_n <- hba_n[which(names(hbb_aa)%in%names(hba_n))]
+hbb_aa <- hbb_aa[which(names(hbb_aa)%in%names(hba_n))]
+
+
+#alignment for hba
+hba_n_msa_c <- msa(hba_n,method = "ClustalW")
+
+hba_aa_msa_c <- msa(hba_aa,method = "ClustalW")
+hbb_aa_msa_c <- msa(hbb_aa,method = "ClustalW")
+
+hba_n_msa_m <- msa(hba_n,method = "Muscle")
+hba_aa_msa_m <- msa(hba_aa, method = "Muscle")
+#alignmant for hbb
+
+
+hbb_aa_msa_m <- msa(hbb_aa,method = "Muscle")
+
+
+hba_aa_sq_m <- msaConvert(hba_aa_msa_m,type="seqinr::alignment")
+hba_aa_sq_c <- msaConvert(hba_aa_msa_c,type="seqinr::alignment")
+
+hba_n_sq_m <- msaConvert(hba_n_msa_m,type="seqinr::alignment")
+hba_n_sq_c <- msaConvert(hba_n_msa_c,type="seqinr::alignment")
+
+hbb_aa_sq_m <- msaConvert(hbb_aa_msa_m,type="seqinr::alignment")
+
+hba_aa_sq_m_dist <- seqinr::dist.alignment(hba_aa_sq_m, "identity")
+hba_aa_sq_c_dist <- seqinr::dist.alignment(hba_aa_sq_m, "identity")
+
+hba_n_sq_m_dist <- seqinr::dist.alignment(hba_n_sq_m, "identity")
+hba_n_sq_c_dist <- seqinr::dist.alignment(hba_n_sq_m, "identity")
+
+hbb_aa_sq_m_dist <- seqinr::dist.alignment(hbb_aa_sq_m, "identity")
+
+hba_aa_sq_m_clust <- as.dendrogram(hclust(hba_aa_sq_m_dist, method = "average"))
+hba_aa_sq_c_clust <- as.dendrogram(hclust(hba_aa_sq_c_dist, method = "average"))
+
+hba_n_sq_m_clust <- as.dendrogram(hclust(hba_n_sq_m_dist, method = "average"))
+hba_n_sq_c_clust <- as.dendrogram(hclust(hba_n_sq_c_dist, method = "average"))
+
+hbb_aa_sq_m_clust <- as.dendrogram(hclust(hbb_aa_sq_m_dist, method = "average"))
+
+print(hbb_aa_msa_m, show = "complete")
+```
+
+As you have learned in lecture one advantage of performing multiple sequence alignment is the 
+ability to identify conserved domains and consensus sequences.
+You will use ggmsa to visualize only AA alignments, the nucleotide ones are to large to print.
+Interfacing with ggmsa requires a bit of a workaround, which is demonstrated in the snippet bellow.
+
+
+```{r ggmsa}
+
+#ggmsa accepts Biostrings class types (e.g XStringSet,AAMultipleAlignment, etc...)
+#XstringSet varibles are much more malleable than MultipleAlignment varibels 
+#First convers msa to an AAStringSet
+
+hba_aa_msa_ms <- AAStringSet(AAMultipleAlignment(hba_aa_msa_m))
+
+#Converting to a Biostrings element removes the concesus sequence, lets add it as the last sequence
+#To do so turning the concensus sequence to an AAStringSet and adding it as additional element to 
+#The AAStringSet generated above
+#note, no hard coding!
+hba_aa_msa_ms[length(hba_aa_msa_ms)+1] <- AAStringSet(msaConsensusSequence(hba_aa_msa_m))
+
+#Lastly, add the name
+names(hba_aa_msa_ms)[length(hba_aa_msa_ms)] <- "Consensus"
+
+#Looks good
+hba_aa_msa_ms[length(hba_aa_msa_ms)]
+
+#How to use the ggmsa function
+?ggmsa
+
+
+```
+
+<br>
+
+***
+
+### **Question 5**{-}
+
+A. Generate an MSA for each of the Stringsets for HBA and HBB show your code (1 mark)
+
+B. Save each alignment to your computer we will use them next lab (the best way is to convert to a Biostrings alignment set then to a StringSet), attache files (1 mark).
+
+C. Print consensus sequence for each alignment, which one worked better nucleotide or AA show your 
+code (2 marks)?
+
+D. Use ggmsa to print the AA alignments, print 50 positions at a time. Use Chemistry_AA as color argument. For each protein identify 1 position of radical change, why is it radical. Show your code, and attache the figures as PDF (use ggsave) (3 marks)
+
+E. Convert the alignment to a seqinr format and generate a distance matrix, show your code (2 
+marks)
+
+G. Cluster the matrices using UPGMA and convert to dendrogram show your code (2 marks)
+
+
+***
+
+<br>
+
+### **Dendextend**{-}
+
+Lastly lets compare the dendrograms using a tanglegram. Tanglegrams compare the tips of dendrograms with similar labels and find if the topology is different. You can now compare if the alignments cluster differently based on whether nucleotides or AA are used. You can also inspect the topology between HBA and HBB.
+
+```{r dext}
+#Tanglegrams can be very colorful the settings will remove color feel free to change.
+#This one comapres the alignments of HBA with CLUSTALW and MUSCLE, as you can see perform equally
+#well on small datasets.
+tanglegram(hba_aa_sq_c_clust,hba_aa_sq_m_clust, sort = TRUE, common_subtrees_color_lines = FALSE, highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
+```
+
+***
+
+<br>
+
+#### **Question 6**{-}
+
+A. Generate a tanglegram comparing the HBA alignment done with nuc and with AA, did you find any
+discrepancies with respect to membership in monophyletic groups? Show your code and attach the
+figures (2 marks)
+
+B. Perform the same analysis as in 6A for HBB (2 marks)
+
+C. Generate a tanglegram comparing the alignments done on AA sequence for HBA and HBB, did you find any discrepancies with respect to membership in monophyletic 
+groups? Show your code and attach the figures (2 marks) Keep this in mind when we will study actual gene trees.
 
 
