@@ -114,18 +114,14 @@ Log_of_sum(m)
 
 ```
 
-***
-
-**Quick R exercise**
+#### **Quick R exercise - catching errors**{-}
 
 A list is also a vector, what will happen if a list is used as a value for argument x in the 
 `Log_of_sum()` function?
 
-***
-
 ### **Control of flow the break and next functions with-in for loops**{-}
 
-Often times, it will be required to run a loop until certain condition (other than the loop
+Sometimes, it is required to run a loop until certain condition (other than the loop
 condition) is met. However, it is not always known when will this condition be met. For example,
 when analyzing allele tables you have no way of knowing _a-priori_ at which generation will the
 population no longer be in equilibrium for a certain allele. The function `break()` will terminate the
@@ -141,8 +137,6 @@ environment. Within a function it will exit to the function environment and not 
 environment.
 
 ```{r break and next1}
-
-#Let's write yet another in the long line of simple and useless functions
 
 #This function consists of two loops one prints something until it encounters an element equal to
 #to or larger than 100 and the second skips printing something until it encounters an element larger
@@ -383,9 +377,6 @@ Think about What type of variable will each argument accept, and how will you te
 input by the user. Think about whether you want to assign a default value to any of the arguments
 (e.g. default significance level). Lastly, think about how will you integrate the call of the Chi
 square function you wrote within your function, as you will need to call it twice here (hint calculate population size from the input table).
-
-
-
 
 The function should return a list with the following elements at minimum:
 
