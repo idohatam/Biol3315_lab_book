@@ -303,13 +303,14 @@ hba_n <- readDNAStringSet(filepath = "https://raw.githubusercontent.com/idohatam
 hba_aa <- readAAStringSet(filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA_aa.fasta")
 
 #Note that for cleanup I am using functions from stringr, make sure to load it
-#Cleanup the names of the nucleotide sequcnes, spliting based on blank space 
-#result in a matrix, chossing the 2 and 3 column which include genus and species names
-#using apply to iterate over the columns and get a vector of names "Genus Sepcies"
+#Cleanup the names of the nucleotide sequences, splitting based on blank space 
+#result in a matrix, choosing the 2 and 3 column which include genus and species names
+#using apply to iterate over the columns and get a vector of names "Genus Species"
 names(hba_n) <- apply(str_split_fixed(names(hba_n), pattern = " ",4)[,2:3],1,base::paste, 
                       collapse = " ")
 
-#Here genus and species are srounded by [], using that to retrive tham \\ are used as escape #caracters ince [] have meaning in R syntax
+#Here genus and species are surrounded by [], using that to retrieve them \\ are used as escape 
+#characters ince [] have meaning in R syntax
 names(hba_aa) <- str_remove_all(str_split_fixed(names(hba_aa),pattern = "\\[", n=2)[,2],"\\]")
 
 
