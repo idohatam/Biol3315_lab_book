@@ -23,14 +23,14 @@
 <meta name="author" content="Dr. Ido Hatam" />
 
 
-<meta name="date" content="2023-02-14" />
+<meta name="date" content="2023-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tidy-data-manipulation-in-r.html"/>
+<link rel="prev" href="conditional-statements-and-iterations.html"/>
 <link rel="next" href="plotting-your-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,7 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.27/datatables.js"></script>
 <link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -250,8 +250,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="lab-2-data-manipulation-and-presentation-in-r.html"><a href="lab-2-data-manipulation-and-presentation-in-r.html"><i class="fa fa-check"></i><strong>Lab 2 data manipulation and presentation in R</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
-<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>0.1</b> <strong>Setup</strong></a></li>
+<li class="chapter" data-level="" data-path="the-setup.html"><a href="the-setup.html"><i class="fa fa-check"></i><strong>The setup</strong></a></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html"><i class="fa fa-check"></i><strong>Importing and exporting data in R</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.csv"><i class="fa fa-check"></i><strong>read.csv</strong></a></li>
@@ -261,25 +260,37 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---working-with-strings-from-non-tabulated-data"><i class="fa fa-check"></i><strong>Quick R exercise - working with strings from non-tabulated data</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-tabulated-data"><i class="fa fa-check"></i><strong>Exporting tabulated data</strong></a></li>
-<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exportin-non-tabulated-data"><i class="fa fa-check"></i><strong>Exportin non-tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-non-tabulated-data"><i class="fa fa-check"></i><strong>Exporting non-tabulated data</strong></a></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---data-exportation"><i class="fa fa-check"></i><strong>Quick R exercise - data exportation</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html"><i class="fa fa-check"></i><strong>(Tidy) Data manipulation in R</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#tidy-data-in-r"><i class="fa fa-check"></i><strong>Tidy data in R</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#a-tidy-re-imagining-of-the-data-frame"><i class="fa fa-check"></i><strong>A tidy re-imagining of the data frame</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#why-use-tibbles"><i class="fa fa-check"></i><strong>Why use tibbles?</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#even-the-tidyverse-can-get-messy-sometimes"><i class="fa fa-check"></i><strong>Even the tidyverse can get messy sometimes</strong></a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse"><i class="fa fa-check"></i><strong>Subseting columns and rows using base R and tidyverse</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using %&gt;% (pip)operator</strong></a></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#conditional-statements-and-iterations"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using <code>%&gt;%</code> (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#adding-and-modifying-columns"><i class="fa fa-check"></i><strong>Adding and modifying columns</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#transforming-data-frames"><i class="fa fa-check"></i><strong>Transforming data frames</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
-<ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-1"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-2"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><strong>Functions</strong></a>
@@ -296,26 +307,60 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="summary-exercise-lab-2.html"><a href="summary-exercise-lab-2.html"><i class="fa fa-check"></i><strong>Summary exercise lab 2</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>1</b> Parts</a></li>
-<li class="chapter" data-level="2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>2</b> Footnotes and citations</a>
+<li class="chapter" data-level="" data-path="lab-3-handling-of-biological-data-in-r---1.html"><a href="lab-3-handling-of-biological-data-in-r---1.html"><i class="fa fa-check"></i><strong>Lab 3 handling of biological data in R - 1</strong></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>2.1</b> Footnotes</a></li>
-<li class="chapter" data-level="2.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>2.2</b> Citations</a></li>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html"><i class="fa fa-check"></i><strong>The setup</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html#installing-packages-from-bioconductor"><i class="fa fa-check"></i><strong>Installing packages from Bioconductor</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>3</b> Blocks</a>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><i class="fa fa-check"></i><strong>Working with biological strings using base R and the tidyverse</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>3.1</b> Equations</a></li>
-<li class="chapter" data-level="3.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>3.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="3.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>3.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise-3"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise---basic-string-operations"><i class="fa fa-check"></i><strong>Quick R exercise - basic string operations</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>4</b> Sharing your book</a>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html"><i class="fa fa-check"></i><strong>Importing and working with fasta files with base R</strong></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>4.1</b> Publishing</a></li>
-<li class="chapter" data-level="4.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>4.2</b> 404 pages</a></li>
-<li class="chapter" data-level="4.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>4.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html#housing-sequences-moving-beyond-simple-vectors"><i class="fa fa-check"></i><strong>Housing sequences, moving beyond simple vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html"><i class="fa fa-check"></i><strong>The Biostrings package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biosting-sub-classes"><i class="fa fa-check"></i><strong>Basic biosting sub-classes</strong></a></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biostrings-functions"><i class="fa fa-check"></i><strong>Basic Biostrings functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#quick-r-exercise---basic-biostrings-functions"><i class="fa fa-check"></i><strong>Quick R exercise - basic Biostrings functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#working-with-multiple-sequences-using-xstringset-objects"><i class="fa fa-check"></i><strong>Working with multiple sequences using XStringSet objects</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html"><i class="fa fa-check"></i><strong>Seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#data-importation-and-handling-with-seqinr"><i class="fa fa-check"></i><strong>Data importation and handling with seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#quick-r-exercise---sumerizing-seqinr-output"><i class="fa fa-check"></i><strong>Quick R exercise - sumerizing seqinr output</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.0.1" data-path="seqinr.html"><a href="seqinr.html#advanced-seqinr-functions"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Advanced seqinr functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exporting-sequence-elements.html"><a href="exporting-sequence-elements.html"><i class="fa fa-check"></i><strong>Exporting sequence elements</strong></a></li>
+<li class="chapter" data-level="" data-path="summary-exercise.html"><a href="summary-exercise.html"><i class="fa fa-check"></i><strong>Summary exercise:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>1</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>1.1</b> Footnotes</a></li>
+<li class="chapter" data-level="1.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>1.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>2</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>2.1</b> Equations</a></li>
+<li class="chapter" data-level="2.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>2.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="2.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>2.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>3</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>3.1</b> Publishing</a></li>
+<li class="chapter" data-level="3.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>3.2</b> 404 pages</a></li>
+<li class="chapter" data-level="3.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>3.3</b> Metadata for sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="5" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>5</b> <strong>Lab 8</strong></a></li>
+<li class="chapter" data-level="4" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>4</b> <strong>Lab 8</strong></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -351,102 +396,119 @@ graphs and tables you need.</p>
 <div id="constructing-a-function" class="section level3 unnumbered hasAnchor">
 <h3><strong>Constructing a function</strong><a href="functions.html#constructing-a-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The function structure is function(arguments){operations done on functions}.
-The arguments require input from the user, but they can have default values e.g.
+Arguments can be though of as R variables that would be called only in the function environment, and are independent of the global
+environment. They are assigned values using the <code>=</code> operator, and can hold any R data type just like variables in the global environment,
+even other functions. Arguments require input from the user, but they can have default values e.g.
 function(arg1=5, arg2 = NA, arg3) { do something}. In this example arg1 and arg2 have default
-values. They can be changed by the user, but if there is no input from the user the function will
-use the default value. If the function is intended to return a value</p>
-<p>Lets look at two functions as an example, the first one is very simple the second a bit more complex.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="functions.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How to construct a function</span></span>
-<span id="cb93-2"><a href="functions.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-3"><a href="functions.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Assign a function to a variable, set the arguments</span></span>
-<span id="cb93-4"><a href="functions.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Decide what the function does whith the arguments</span></span>
-<span id="cb93-5"><a href="functions.html#cb93-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-6"><a href="functions.html#cb93-6" aria-hidden="true" tabindex="-1"></a>print_x <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb93-7"><a href="functions.html#cb93-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;All this function does is print x&quot;</span>)</span>
-<span id="cb93-8"><a href="functions.html#cb93-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
-<span id="cb93-9"><a href="functions.html#cb93-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb93-10"><a href="functions.html#cb93-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-11"><a href="functions.html#cb93-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-12"><a href="functions.html#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s turn the for loop lotto number generator to a functions</span></span>
-<span id="cb93-13"><a href="functions.html#cb93-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-14"><a href="functions.html#cb93-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-15"><a href="functions.html#cb93-15" aria-hidden="true" tabindex="-1"></a>Lottery_nums <span class="ot">&lt;-</span> <span class="cf">function</span>(npicks){</span>
-<span id="cb93-16"><a href="functions.html#cb93-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Need round numbers</span></span>
-<span id="cb93-17"><a href="functions.html#cb93-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.integer</span>(npicks)</span>
-<span id="cb93-18"><a href="functions.html#cb93-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#If 8 picks lotomax else lotto 649</span></span>
-<span id="cb93-19"><a href="functions.html#cb93-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(npicks <span class="sc">==</span> <span class="dv">8</span>){</span>
-<span id="cb93-20"><a href="functions.html#cb93-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Here are your lotomax numbers:&quot;</span>)</span>
-<span id="cb93-21"><a href="functions.html#cb93-21" aria-hidden="true" tabindex="-1"></a>    i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb93-22"><a href="functions.html#cb93-22" aria-hidden="true" tabindex="-1"></a>    nums <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, npicks, <span class="at">replace =</span> F)</span>
-<span id="cb93-23"><a href="functions.html#cb93-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(nums) ){</span>
-<span id="cb93-24"><a href="functions.html#cb93-24" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> npicks){</span>
-<span id="cb93-25"><a href="functions.html#cb93-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb93-26"><a href="functions.html#cb93-26" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb93-27"><a href="functions.html#cb93-27" aria-hidden="true" tabindex="-1"></a>              }</span>
-<span id="cb93-28"><a href="functions.html#cb93-28" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb93-29"><a href="functions.html#cb93-29" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb93-30"><a href="functions.html#cb93-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>( npicks <span class="sc">==</span> <span class="dv">7</span>){</span>
-<span id="cb93-31"><a href="functions.html#cb93-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">&quot;Here are your lotto649 numbers&quot;</span>)</span>
-<span id="cb93-32"><a href="functions.html#cb93-32" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb93-33"><a href="functions.html#cb93-33" aria-hidden="true" tabindex="-1"></a>      i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb93-34"><a href="functions.html#cb93-34" aria-hidden="true" tabindex="-1"></a>      nums <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">49</span>, npicks, <span class="at">replace =</span> F)</span>
-<span id="cb93-35"><a href="functions.html#cb93-35" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(nums)){</span>
-<span id="cb93-36"><a href="functions.html#cb93-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(i <span class="sc">&gt;=</span><span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> npicks){</span>
-<span id="cb93-37"><a href="functions.html#cb93-37" aria-hidden="true" tabindex="-1"></a>          <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb93-38"><a href="functions.html#cb93-38" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb93-39"><a href="functions.html#cb93-39" aria-hidden="true" tabindex="-1"></a>              }</span>
-<span id="cb93-40"><a href="functions.html#cb93-40" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb93-41"><a href="functions.html#cb93-41" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb93-42"><a href="functions.html#cb93-42" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
-<span id="cb93-43"><a href="functions.html#cb93-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">&quot;npicks has to be either 7 or 8&quot;</span>)</span>
-<span id="cb93-44"><a href="functions.html#cb93-44" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb93-45"><a href="functions.html#cb93-45" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb93-46"><a href="functions.html#cb93-46" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb93-47"><a href="functions.html#cb93-47" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb93-48"><a href="functions.html#cb93-48" aria-hidden="true" tabindex="-1"></a> <span class="co">#Print disclamer </span></span>
-<span id="cb93-49"><a href="functions.html#cb93-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;This number picker does not increase the chances of winning nor does it encourage participating in lottery games&quot;</span>)</span>
-<span id="cb93-50"><a href="functions.html#cb93-50" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb93-51"><a href="functions.html#cb93-51" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb93-52"><a href="functions.html#cb93-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-53"><a href="functions.html#cb93-53" aria-hidden="true" tabindex="-1"></a><span class="fu">Lottery_nums</span>(<span class="dv">7</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Here are your lotto649 numbers&quot;
-## [1] &quot;The 1 number is: 6&quot;
-## [1] &quot;The 2 number is: 8&quot;
-## [1] &quot;The 3 number is: 13&quot;
-## [1] &quot;The 4 number is: 22&quot;
-## [1] &quot;The 5 number is: 15&quot;
-## [1] &quot;The 6 number is: 19&quot;
-## [1] &quot;The 7 number is: 9&quot;
-## [1] &quot;This number picker does not increase the chances of winning nor does it encourage participating in lottery games&quot;</code></pre>
+values (and are vectors). They can be changed by the user, but if there is no input from the user the function will
+use the default value. If the function is intended to return a value is should have some sort of an output function like, <code>print()</code>.
+If the function is intended to output a variable (e.g. a list, a data frame, a matrix, etc..) as it’s final product, that variable should be
+outputed using the <code>return()</code> function.</p>
+<p>Lets look at two functions as an example, the first one is very simple the second a bit more complex.
+Neither are of any consequence, therefore the <code>return()</code> function was not used.</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb370-1"><a href="functions.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#How to construct a function</span></span>
+<span id="cb370-2"><a href="functions.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb370-3"><a href="functions.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Assign a function to a variable, set the arguments</span></span>
+<span id="cb370-4"><a href="functions.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Decide what the function does with the arguments</span></span>
+<span id="cb370-5"><a href="functions.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb370-6"><a href="functions.html#cb370-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> print_x <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb370-7"><a href="functions.html#cb370-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="st">&quot;All this function does is print x&quot;</span>)</span>
+<span id="cb370-8"><a href="functions.html#cb370-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(x)</span>
+<span id="cb370-9"><a href="functions.html#cb370-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb370-10"><a href="functions.html#cb370-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb370-11"><a href="functions.html#cb370-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb370-12"><a href="functions.html#cb370-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Let&#39;s turn the for loop lotto number generator to a functions</span></span>
+<span id="cb370-13"><a href="functions.html#cb370-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb370-14"><a href="functions.html#cb370-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb370-15"><a href="functions.html#cb370-15" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Lottery_nums <span class="ot">&lt;-</span> <span class="cf">function</span>(npicks){</span>
+<span id="cb370-16"><a href="functions.html#cb370-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co">#Need round numbers</span></span>
+<span id="cb370-17"><a href="functions.html#cb370-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">as.integer</span>(npicks)</span>
+<span id="cb370-18"><a href="functions.html#cb370-18" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co">#If 8 picks lotomax else lotto 649</span></span>
+<span id="cb370-19"><a href="functions.html#cb370-19" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(npicks <span class="sc">==</span> <span class="dv">8</span>){</span>
+<span id="cb370-20"><a href="functions.html#cb370-20" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="fu">print</span>(<span class="st">&quot;Here are your lotomax numbers:&quot;</span>)</span>
+<span id="cb370-21"><a href="functions.html#cb370-21" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb370-22"><a href="functions.html#cb370-22" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     nums <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, npicks, <span class="at">replace =</span> F)</span>
+<span id="cb370-23"><a href="functions.html#cb370-23" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(nums) ){</span>
+<span id="cb370-24"><a href="functions.html#cb370-24" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> npicks){</span>
+<span id="cb370-25"><a href="functions.html#cb370-25" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb370-26"><a href="functions.html#cb370-26" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       } <span class="cf">else</span> {<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb370-27"><a href="functions.html#cb370-27" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               }</span>
+<span id="cb370-28"><a href="functions.html#cb370-28" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     }</span>
+<span id="cb370-29"><a href="functions.html#cb370-29" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   } <span class="cf">else</span> {</span>
+<span id="cb370-30"><a href="functions.html#cb370-30" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="cf">if</span>( npicks <span class="sc">==</span> <span class="dv">7</span>){</span>
+<span id="cb370-31"><a href="functions.html#cb370-31" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="fu">print</span>(<span class="st">&quot;Here are your lotto649 numbers&quot;</span>)</span>
+<span id="cb370-32"><a href="functions.html#cb370-32" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       </span>
+<span id="cb370-33"><a href="functions.html#cb370-33" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb370-34"><a href="functions.html#cb370-34" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       nums <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">49</span>, npicks, <span class="at">replace =</span> F)</span>
+<span id="cb370-35"><a href="functions.html#cb370-35" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(nums)){</span>
+<span id="cb370-36"><a href="functions.html#cb370-36" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="cf">if</span>(i <span class="sc">&gt;=</span><span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> npicks){</span>
+<span id="cb370-37"><a href="functions.html#cb370-37" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>           <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb370-38"><a href="functions.html#cb370-38" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         } <span class="cf">else</span> {<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, nums[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb370-39"><a href="functions.html#cb370-39" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>               }</span>
+<span id="cb370-40"><a href="functions.html#cb370-40" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       }</span>
+<span id="cb370-41"><a href="functions.html#cb370-41" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       </span>
+<span id="cb370-42"><a href="functions.html#cb370-42" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     } <span class="cf">else</span>{</span>
+<span id="cb370-43"><a href="functions.html#cb370-43" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="fu">print</span>(<span class="st">&quot;npicks has to be either 7 or 8&quot;</span>)</span>
+<span id="cb370-44"><a href="functions.html#cb370-44" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       </span>
+<span id="cb370-45"><a href="functions.html#cb370-45" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       }</span>
+<span id="cb370-46"><a href="functions.html#cb370-46" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     </span>
+<span id="cb370-47"><a href="functions.html#cb370-47" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   }</span>
+<span id="cb370-48"><a href="functions.html#cb370-48" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="co">#Print disclamer </span></span>
+<span id="cb370-49"><a href="functions.html#cb370-49" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="st">&quot;This number picker does not increase the chances of winning nor does it encourage participating in lottery games&quot;</span>)</span>
+<span id="cb370-50"><a href="functions.html#cb370-50" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   </span>
+<span id="cb370-51"><a href="functions.html#cb370-51" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb370-52"><a href="functions.html#cb370-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb370-53"><a href="functions.html#cb370-53" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">Lottery_nums</span>(<span class="dv">7</span>)</span></code></pre></div>
+<pre><code>[1] &quot;Here are your lotto649 numbers&quot;
+[1] &quot;The 1 number is: 42&quot;
+[1] &quot;The 2 number is: 14&quot;
+[1] &quot;The 3 number is: 13&quot;
+[1] &quot;The 4 number is: 36&quot;
+[1] &quot;The 5 number is: 4&quot;
+[1] &quot;The 6 number is: 15&quot;
+[1] &quot;The 7 number is: 27&quot;
+[1] &quot;This number picker does not increase the chances of winning nor does it encourage participating in lottery games&quot;</code></pre>
 <hr />
 <p>Now that we have played around with some useless functions, lets write a practical function.
-As I mentioned, when you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are great to automate that in a reproducible manner.</p>
-<p>In this example we will write a function that imports csv files,log transforms them and store them in a list. This is a very straight forward function, and its capabilities can be expended to perform other tasks.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="functions.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that I am giving each argument a default value</span></span>
-<span id="cb95-2"><a href="functions.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-3"><a href="functions.html#cb95-3" aria-hidden="true" tabindex="-1"></a>imp.data <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">Pattern=</span> <span class="st">&quot;.csv&quot;</span>, <span class="at">Path =</span> <span class="fu">getwd</span>(), <span class="at">Recursive =</span> <span class="cn">FALSE</span>){</span>
-<span id="cb95-4"><a href="functions.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb95-5"><a href="functions.html#cb95-5" aria-hidden="true" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">path =</span> Path, <span class="at">recursive =</span> Recursive, <span class="at">pattern =</span> Pattern)</span>
-<span id="cb95-6"><a href="functions.html#cb95-6" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb95-7"><a href="functions.html#cb95-7" aria-hidden="true" tabindex="-1"></a>  f_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(files))</span>
-<span id="cb95-8"><a href="functions.html#cb95-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb95-9"><a href="functions.html#cb95-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) {</span>
-<span id="cb95-10"><a href="functions.html#cb95-10" aria-hidden="true" tabindex="-1"></a>    f_list[[i]] <span class="ot">&lt;-</span> <span class="fu">log10</span>(<span class="fu">read.csv</span>(<span class="at">file =</span> files[i], <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">stringsAsFactors =</span> F) )</span>
-<span id="cb95-11"><a href="functions.html#cb95-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb95-12"><a href="functions.html#cb95-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb95-13"><a href="functions.html#cb95-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(f_list) <span class="ot">&lt;-</span> files</span>
-<span id="cb95-14"><a href="functions.html#cb95-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb95-15"><a href="functions.html#cb95-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Note return</span></span>
-<span id="cb95-16"><a href="functions.html#cb95-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(f_list)</span>
-<span id="cb95-17"><a href="functions.html#cb95-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb95-18"><a href="functions.html#cb95-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb95-19"><a href="functions.html#cb95-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+When you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are a
+great way to automate your work and keep in a reproducible.</p>
+<p>The following example, demonstrates how write a function that imports csv files,log transforms them and store them in a list.
+This is a very straight forward and simple function, however, its capabilities can be expended to perform other tasks.
+For example, you could replace read.csv with <code>read.table</code> or <code>read_table()</code> to generalize it, or add a conditional statement so that it
+might also be used to read non-tabulated data like fasta files.
+The following function uses the function <code>getwd()</code> as the default argument for the function variable Path.
+Path would be used as the variable that directs the function to the directory you would like to iterate over.
+Use <code>?getwd</code> or just call <code>getwd()</code> in the console to figure out what its output is.
+This is a useful function, that’s used to output <code>return()</code>
+Note that <code>return()</code> tells R that this is the end of the function and R will disregard any code within the function that comes after
+<code>return()</code> was called.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb372-1"><a href="functions.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Note that I am giving each argument a default value</span></span>
+<span id="cb372-2"><a href="functions.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb372-3"><a href="functions.html#cb372-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> imp.data <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">Pattern=</span> <span class="st">&quot;.csv&quot;</span>, <span class="at">Path =</span> <span class="fu">getwd</span>(), <span class="at">Recursive =</span> <span class="cn">FALSE</span>){</span>
+<span id="cb372-4"><a href="functions.html#cb372-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co">#note, this function uses other R functions</span></span>
+<span id="cb372-5"><a href="functions.html#cb372-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">path =</span> Path, <span class="at">recursive =</span> Recursive, <span class="at">pattern =</span> Pattern)</span>
+<span id="cb372-6"><a href="functions.html#cb372-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   i <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb372-7"><a href="functions.html#cb372-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   f_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(files))</span>
+<span id="cb372-8"><a href="functions.html#cb372-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co">#No escaping the loop this time</span></span>
+<span id="cb372-9"><a href="functions.html#cb372-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) {</span>
+<span id="cb372-10"><a href="functions.html#cb372-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     f_list[[i]] <span class="ot">&lt;-</span> <span class="fu">log10</span>(<span class="fu">read.csv</span>(<span class="at">file =</span> files[i], <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">stringsAsFactors =</span> F) )</span>
+<span id="cb372-11"><a href="functions.html#cb372-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     </span>
+<span id="cb372-12"><a href="functions.html#cb372-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   }</span>
+<span id="cb372-13"><a href="functions.html#cb372-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">names</span>(f_list) <span class="ot">&lt;-</span> files</span>
+<span id="cb372-14"><a href="functions.html#cb372-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   </span>
+<span id="cb372-15"><a href="functions.html#cb372-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co">#Note return will output the list and will terminate the function</span></span>
+<span id="cb372-16"><a href="functions.html#cb372-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">return</span>(f_list)</span>
+<span id="cb372-17"><a href="functions.html#cb372-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<p><code>imp.data()</code> can be used like any other function.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb373-1"><a href="functions.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Note that to catch the list outputed by the function, I assign it to a variable.</span></span>
+<span id="cb373-2"><a href="functions.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> csv.list <span class="ot">&lt;-</span> <span class="fu">imp.data</span>(<span class="at">Path =</span> <span class="st">&quot;/the/folder/i/chose&quot;</span>)</span></code></pre></div>
 <hr />
 <blockquote>
 <p><strong>A note on the function environment</strong></p>
 <p>The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the
-intermediate variables created by the function they need to be exported using the &lt;&lt;- operator. The &lt;&lt;- operator is
-variable assignment operator similar to &lt;- only it exports variables to the global environment.</p>
+intermediate variables created by the function they need to be exported using the <code>&lt;&lt;-</code> operator. The <code>&lt;&lt;-</code> operator is
+variable assignment operator similar to <code>&lt;-</code> only it exports variables to the global environment.
+It is considered bad practice to force a variable out of the function env. using <code>&lt;&lt;-</code>, idealy you should only use <code>return()</code> as the output &gt;of custum functions</p>
 </blockquote>
 <hr />
 </div>
@@ -456,7 +518,7 @@ variable assignment operator similar to &lt;- only it exports variables to the g
           </div>
         </div>
       </div>
-<a href="tidy-data-manipulation-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conditional-statements-and-iterations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="plotting-your-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -511,6 +573,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

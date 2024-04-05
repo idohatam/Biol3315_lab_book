@@ -1,3 +1,212 @@
+--- 
+title: "Biology 3315 Molecular Evolution and Phylogenetics"
+subtitle: "Lab manual"
+author: "Dr. Ido Hatam"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+site: bookdown::bookdown_site
+documentclass: book
+output:
+  bookdown::gitbook:
+    toc_depth: 6
+    split_by: section
+bibliography: [book.bib, packages.bib]
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# __An introduction to the lab__ {-}
+
+Placeholder
+
+
+## **How to get the most out of the lab** {-}
+
+<!--chapter:end:index.Rmd-->
+
+
+# **Lab 1 introduction to the R programming language and the R studio IDE** {-}
+
+Placeholder
+
+
+## **Getting started**{-}
+### **What is R?**{-}
+### **Why use R?**{-}
+### **Downloading and installing R and RStudio desktop**{-}
+### **The R interpreter**{-}
+#### **Short console exercise**{-}
+### **The RStudio IDE**{-} 
+#### **The text editor pane**{-}
+#### **The console pane**{-}
+#### **The global environment pane**{-}
+#### **The output pane**{-}
+#### **Short exercise in RStudio**{-}
+## **Programming in R - the basics**{-}
+### **R language and syntax**{-}
+### **Seeking help**{-}
+#### **Extended help search**{-}
+### **Quick R exercise - basic syntax:**{-}
+### **Expanding R's capabilities by installing additional function packages**{-}
+### **Quick R exercise - installing and loading packages**{-}
+### **Variable assignment in R (`<-` vs `->` vs `=`)**{-}
+#### **Rules for variable naming in R**{-}
+## **Data types (objects) in R**{-}
+### **"Atomic" vectors**{-}
+#### **Numeric vectors (double and integer)**{-}
+##### **Indexing and subseting numeric vectors**{-}
+##### **Quick R exercise - indexing and subseting:**{-}
+#### **Character vectors:**{-}
+##### **Quick R exercise - character vectors:**{-}
+##### **Quick R exercise - strings:**{-}
+#### **Logical vectors**{-}
+### **Checking and coercing**{-}
+#### **The class function**{-}
+#### **The is.x function family**{-}
+#### **The as.x function family**{-}
+#### **Quick R exercise - checking and coercing**{-}
+### **Factors - vectors' evil cousins**{-}
+### **Matrices**{-}
+#### **Quick R exercise - matrices 1**{-}
+#### **Working with matrices**{-}
+##### **Quick R exercise - matrices 2**{-}
+### **Lists**{-}
+#### **Working with lists**{-}
+#### **Lists and the $ operator**{-}
+#### **Quick R exercise - lists**{-}
+### **Data frames**{-}
+## **Summary exercise Lab1**{-}
+
+<!--chapter:end:01-lab1_intro_to_R_pt1.Rmd-->
+
+
+# **Lab 2 data manipulation and presentation in R**{-}
+
+Placeholder
+
+
+## **The setup**{-}
+## **Importing and exporting data in R**{-}
+### **read.csv**{-}
+### **read.table**{-}
+### **Reading non-tabulated text files**{-}
+#### **Quick R exercise - working with strings from non-tabulated data**{-}
+### **Exporting tabulated data**{-}
+### **Exporting non-tabulated data**{-}
+### **Quick R exercise - data exportation**{-}
+## **(Tidy) Data manipulation in R**{-}
+### **A tidy re-imagining of the data frame**{-}
+#### **Why use tibbles?**{-}
+#### **Even the tidyverse can get messy sometimes**{-}
+### **Subseting columns and rows using base R and tidyverse**{-}
+#### **Quick R exercise**{-}
+### **Streamlining data manipulation using `%>%` (pip)operator**{-}
+### **Adding and modifying columns**{-}
+### **Transforming data frames**{-}
+#### **Quick R exercise**{-}
+#### **Quick R exercise**{-}
+## **Conditional statements and iterations**{-}
+### **Conditional statements**{-}
+#### **Quick R exercise - data grouping and summerizing 2**{-}
+### **Iterations**{-}
+#### **Quick R exercise - pseudorandom numbers and loops**{-}
+## **Functions**{-}
+### **Constructing a function**{-}
+## **Plotting your data**{-}
+### **Potting data with the ggplot2 package**{-}
+#### **Basic ggplot2 plot**{-}
+#### **Exporting plots**{-}
+## **Summary exercise lab 2**{-}
+
+<!--chapter:end:02-lab2_intro_to_R_pt2.Rmd-->
+
+
+# **Lab 3 handling of biological data in R - 1**{-}
+
+Placeholder
+
+
+## **The setup**{-}
+### **Installing packages from Bioconductor**{-}
+## **Working with biological strings using base R and the tidyverse**{-}
+#### **Quick R exercise** {-}
+### **Quick R exercise - basic string operations**{-}
+## **Importing and working with fasta files with base R**{-}
+### **Housing sequences, moving beyond simple vectors**{-}
+## **The Biostrings package**{-}
+### **Basic biosting sub-classes**{-}
+### **Basic Biostrings functions**{-}
+#### **Quick R exercise - basic Biostrings functions**{-}
+### **Working with multiple sequences using XStringSet objects**{-}
+## **Seqinr**{-}
+### **Data importation and handling with seqinr**{-}
+#### **Quick R exercise - sumerizing seqinr output**{-}
+### **Advanced seqinr functions**
+## **Exporting sequence elements**{-}
+## **Summary exercise:**{-}
+
+<!--chapter:end:03-lab3_biological_data1.Rmd-->
+
+
+# **Lab 4 handling of biological data in R - 2**{-}
+
+Placeholder
+
+
+## **The setup**{-}
+## **Distances**{-}
+### **Distance calculations with tabulated data**{-}
+#### **Using symmetric distances**{-}
+#### **Quick R exercise - working with dist objects**{-}
+#### **Using asymmetrical distances**{-}
+#### **Quick R exercise - working with `vegdist()`**{-}
+### **Two dimensional representation of distances**{-}
+#### **quick R exercise - the `metaMDS()` output**{-}
+#### **Manipulating the output of `metaMDS()`**{-}
+##### **Quick R exercise - inspecting the points data frame**{-}
+#### **Plotting the output of `metaMDS()`**{-}
+### **Distances with non-tabulated data**{-}
+#### **Reading multiple sequence alignments with Biostrings**{-}
+##### **Quick R exercise - reading multiple sequence alignments with Biostrings**{-}
+#### **Reading mutltiple sequence alignments with seqinr**{-}
+##### **Quick R exercise - reading multiple sequence alignments with seqinr**{-}
+#### **Calculating distances based on multiple sequence alignments**{-}
+##### **Quick R exercise - `inspecting the dist.alignment()` output**{-}
+#### **Dendrograms - representing distances hierarchically**{-}
+##### **hclust objects**{-}
+###### **Quick R exercise - working with `hclust()` output**{-}
+##### **dendrogram objects**{-}
+###### **Quick R exercise - working with dendrogram objects**{-}
+#### **Plotting dendrograms using base R**{-}
+##### **Quick R exercise - plotting dendrograms with base R**{-}
+#### **Plotting dendrograms with ggplot2**{-}
+##### **The ggdendro package**{-}
+###### **Quick R exercise - the dendro_data output**{-}
+##### **ggplot2 and ggdendro**{-}
+#### **Phylogenetic trees**{-}
+##### **Quick R exercise - the as.phylo `outpout()`**{-}
+##### **Class phylo**{-}
+##### **Plotting phylogenetic trees**{-}
+## **Summary assignment lab 4**{-}
+
+<!--chapter:end:04-lab4_biologicaldata2.Rmd-->
+
+
+# **Lab 5 population genetics and selection in R**{-}
+
+Placeholder
+
+
+## **The concept**{-}
+### **Catching user input error**{-}
+#### **Quick R exercise - catching errors**{-}
+### **Control of flow the break and next functions with-in for loops**{-}
+## **The assignment**{-}
+### **Problem 1**{-}
+### **Problem 2**{-}
+### **Problem 3**{-}
+
+<!--chapter:end:05-lab5_pop_gen.Rmd-->
+
 # **Lab 6 studying the evolution of biological sequences in R**{-}
 
 **Learning objectives** 
@@ -479,4 +688,18 @@ B. Perform the same analysis as in 6A for HBB (2 marks)
 C. Generate a tanglegram comparing the alignments done on AA sequence for HBA and HBB, did you find any discrepancies with respect to membership in monophyletic 
 groups? Show your code and attach the figures (2 marks) Keep this in mind when we will study actual gene trees.
 
+
+
+<!--chapter:end:06-lab6_msa.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:07-lab7_trees.Rmd-->
+
+# **Lab 8**
+
+
+<!--chapter:end:08-lab8_genome_trees.Rmd-->
 

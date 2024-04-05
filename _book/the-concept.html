@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Biology 3315 Molecular Evolution and Phylogenetics</title>
-  <meta name="description" content="Page not found | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <title>The concept | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="The concept | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:title" content="The concept | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="twitter:title" content="The concept | Biology 3315 Molecular Evolution and Phylogenetics" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="lab-5-population-genetics-and-selection-in-r.html"/>
+<link rel="next" href="the-assignment.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -421,19 +421,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="the-concept" class="section level2 unnumbered hasAnchor">
+<h2><strong>The concept</strong><a href="the-concept.html#the-concept" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As bioinformaticians you will seldom work alone in your own brilliance. Most likely you will be a
+part of a team developing tools/analysis pipelines for other scientists, or have to explain your
+work to peers who are not bioinformaticians. Since we will not be using any new packages, this
+seems like a good change to develop team working skill to to gain some experience in tool
+development.
+During this lab you will work in groups and will write functions designed to analyse population
+data.</p>
+<p>Before you begin solving problems, since these functions will be written with the end user in mind,
+we will go over ways to catch user input errors and ways to control the flow of a function when a
+solution is reached.</p>
+<div id="catching-user-input-error" class="section level3 unnumbered hasAnchor">
+<h3><strong>Catching user input error</strong><a href="the-concept.html#catching-user-input-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes, despite your best intentions, users will enter values to arguments which will result in
+your code crushing or will send R in to a tail spin (e.g. vector with negative values when log
+transforming).</p>
+<p>R has a lot of tools for “defensive programming”, I will go over two: <code>stop()</code> and <code>message()</code>.
+<code>stop()</code>, as its name implies, terminates the execution of the code if a deadly error was identified. In addition it prints an error message.</p>
+<p><code>message()</code>, allows you to print a customized message alerting the user to whatever it is you choose to altrt them about.</p>
+<p>Let’s look at how to use <code>stop()</code> and <code>message()</code> to catch user error.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="the-concept.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s write a very simple and useless function that takes a numeric vector </span></span>
+<span id="cb1-2"><a href="the-concept.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#sums it up and calculate the log of the sum</span></span>
+<span id="cb1-3"><a href="the-concept.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="the-concept.html#cb1-4" aria-hidden="true" tabindex="-1"></a>Log_of_sum <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb1-5"><a href="the-concept.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#If the user inputs anything that is not a numeric vector the function will </span></span>
+<span id="cb1-6"><a href="the-concept.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#not be able to run properly</span></span>
+<span id="cb1-7"><a href="the-concept.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#It is possible to test whether the input is in the correct format using an if </span></span>
+<span id="cb1-8"><a href="the-concept.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#statement and an is.x function </span></span>
+<span id="cb1-9"><a href="the-concept.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-10"><a href="the-concept.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#If augment x is not numeric stop and print an error message explaining why was</span></span>
+<span id="cb1-11"><a href="the-concept.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#the execution was stopped</span></span>
+<span id="cb1-12"><a href="the-concept.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-13"><a href="the-concept.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)){</span>
+<span id="cb1-14"><a href="the-concept.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;x is not a numeric vector&quot;</span>)</span>
+<span id="cb1-15"><a href="the-concept.html#cb1-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-16"><a href="the-concept.html#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="the-concept.html#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Remember that matrices are vectors too, therefore is.numeric will result </span></span>
+<span id="cb1-18"><a href="the-concept.html#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#in true for a numeric matrix as well</span></span>
+<span id="cb1-19"><a href="the-concept.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-20"><a href="the-concept.html#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.matrix</span>(x)){</span>
+<span id="cb1-21"><a href="the-concept.html#cb1-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-22"><a href="the-concept.html#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#here we just send the user a message telling them the matrix was coerced to </span></span>
+<span id="cb1-23"><a href="the-concept.html#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#a one dimensional vector</span></span>
+<span id="cb1-24"><a href="the-concept.html#cb1-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-25"><a href="the-concept.html#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x was coerced to a one dimensional vector&quot;</span>)</span>
+<span id="cb1-26"><a href="the-concept.html#cb1-26" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">c</span>(x)</span>
+<span id="cb1-27"><a href="the-concept.html#cb1-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-28"><a href="the-concept.html#cb1-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-29"><a href="the-concept.html#cb1-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-30"><a href="the-concept.html#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#as always make sure your function returns a variable</span></span>
+<span id="cb1-31"><a href="the-concept.html#cb1-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-32"><a href="the-concept.html#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(los <span class="ot">&lt;-</span> <span class="fu">log1p</span>((<span class="fu">sum</span>(x))))</span>
+<span id="cb1-33"><a href="the-concept.html#cb1-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now - <em>drum roll</em> - let’s use the function and see the magic that is stop.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="the-concept.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First generate a character vector</span></span>
+<span id="cb2-2"><a href="the-concept.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="the-concept.html#cb2-3" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb2-4"><a href="the-concept.html#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="the-concept.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Log_of_sum</span>(cv)</span></code></pre></div>
+<pre><code>## Error in Log_of_sum(cv): x is not a numeric vector</code></pre>
+<p>Note the error message.</p>
+<p>Now lets generate a matrix and get a message that it was coerced to a vector</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-concept.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Why am I setting seed?</span></span>
+<span id="cb4-2"><a href="the-concept.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="the-concept.html#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="the-concept.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Matrix with 2 columns </span></span>
+<span id="cb4-5"><a href="the-concept.html#cb4-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>,<span class="dv">10</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb4-6"><a href="the-concept.html#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="the-concept.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Log_of_sum</span>(m)</span></code></pre></div>
+<pre><code>## x was coerced to a one dimensional vector</code></pre>
+<pre><code>## [1] 10.2464</code></pre>
+<hr />
+<p><strong>Quick R exercise</strong></p>
+<p>A list is also a vector, what will happen if a list is used as a value for argument x in the
+<code>Log_of_sum()</code> function?</p>
+<hr />
+</div>
+<div id="control-of-flow-the-break-and-next-functions-with-in-for-loops" class="section level3 unnumbered hasAnchor">
+<h3><strong>Control of flow the break and next functions with-in for loops</strong><a href="the-concept.html#control-of-flow-the-break-and-next-functions-with-in-for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Often times, it will be required to run a loop until certain condition (other than the loop
+condition) is met. However, it is not always known when will this condition be met. For example,
+when analyzing allele tables you have no way of knowing <em>a-priori</em> at which generation will the
+population no longer be in equilibrium for a certain allele. The function <code>break()</code> will terminate the
+operation of a loop once an internal condition is satisfied.</p>
+<p>Alternatively, it will be required to skip an iteration step if a certain condition was not met. If
+we use the previous example, there is no way of knowing <em>a-priori</em> if a population is no longer in HW
+equilibrium. The function <code>next()</code> will skip iteration steps until a condition is met.</p>
+<p>The following code snippet demonstrates how to use <code>break()</code> and <code>next()</code> in a loop, within the context of
+a function environment. Note that <code>break()</code> will terminate a loop and will exit to a higher level
+environment. Within a function it will exit to the function environment and not to the global
+environment.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-concept.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s write yet another in the long line of simple and useless functions</span></span>
+<span id="cb7-2"><a href="the-concept.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="the-concept.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#This function consists of two loops one prints something until it encounters an element equal to</span></span>
+<span id="cb7-4"><a href="the-concept.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#to or larger than 100 and the second skips printing something until it encounters an element larger</span></span>
+<span id="cb7-5"><a href="the-concept.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#than than or equal to 100. </span></span>
+<span id="cb7-6"><a href="the-concept.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="the-concept.html#cb7-7" aria-hidden="true" tabindex="-1"></a>bn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-8"><a href="the-concept.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-9"><a href="the-concept.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#conditional statement to catch input errors</span></span>
+<span id="cb7-10"><a href="the-concept.html#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)){</span>
+<span id="cb7-11"><a href="the-concept.html#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;x must be numeric&quot;</span>)</span>
+<span id="cb7-12"><a href="the-concept.html#cb7-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-13"><a href="the-concept.html#cb7-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-14"><a href="the-concept.html#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Initializing the counting variable</span></span>
+<span id="cb7-15"><a href="the-concept.html#cb7-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-16"><a href="the-concept.html#cb7-16" aria-hidden="true" tabindex="-1"></a>  i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb7-17"><a href="the-concept.html#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#setting up the loop condition</span></span>
+<span id="cb7-18"><a href="the-concept.html#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Note that this loop will run first</span></span>
+<span id="cb7-19"><a href="the-concept.html#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x) ) {</span>
+<span id="cb7-20"><a href="the-concept.html#cb7-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-21"><a href="the-concept.html#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Seting up the break condition </span></span>
+<span id="cb7-22"><a href="the-concept.html#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>( x[i] <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
+<span id="cb7-23"><a href="the-concept.html#cb7-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span> (<span class="st">&quot;This is loop1&quot;</span>)</span>
+<span id="cb7-24"><a href="the-concept.html#cb7-24" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb7-25"><a href="the-concept.html#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Note that break will terminate the loop when encountering the first element that violates</span></span>
+<span id="cb7-26"><a href="the-concept.html#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="co">#the condition. There could be other elements out there.</span></span>
+<span id="cb7-27"><a href="the-concept.html#cb7-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;loop 1 was terminated after&quot;</span>,i,<span class="st">&quot;iterations&quot;</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb7-28"><a href="the-concept.html#cb7-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb7-29"><a href="the-concept.html#cb7-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-30"><a href="the-concept.html#cb7-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-31"><a href="the-concept.html#cb7-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-32"><a href="the-concept.html#cb7-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-33"><a href="the-concept.html#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Initializing the counting variable for the second loop</span></span>
+<span id="cb7-34"><a href="the-concept.html#cb7-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-35"><a href="the-concept.html#cb7-35" aria-hidden="true" tabindex="-1"></a>  i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb7-36"><a href="the-concept.html#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Setting up the loop condition</span></span>
+<span id="cb7-37"><a href="the-concept.html#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) {</span>
+<span id="cb7-38"><a href="the-concept.html#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Setting up the next condition</span></span>
+<span id="cb7-39"><a href="the-concept.html#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(x[i]<span class="sc">&lt;</span> <span class="dv">100</span>){</span>
+<span id="cb7-40"><a href="the-concept.html#cb7-40" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-41"><a href="the-concept.html#cb7-41" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Note that next will skip any element that meets the criterion</span></span>
+<span id="cb7-42"><a href="the-concept.html#cb7-42" aria-hidden="true" tabindex="-1"></a>      <span class="cf">next</span></span>
+<span id="cb7-43"><a href="the-concept.html#cb7-43" aria-hidden="true" tabindex="-1"></a>    }<span class="cf">else</span>{</span>
+<span id="cb7-44"><a href="the-concept.html#cb7-44" aria-hidden="true" tabindex="-1"></a>      <span class="co">#If criterion not met, print something</span></span>
+<span id="cb7-45"><a href="the-concept.html#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;This is loop2&quot;</span>)}</span>
+<span id="cb7-46"><a href="the-concept.html#cb7-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-47"><a href="the-concept.html#cb7-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-48"><a href="the-concept.html#cb7-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-49"><a href="the-concept.html#cb7-49" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Let’s see what the output of this function be with this random vector (why am I using a randomly generated vector?).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-concept.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Why am I setting seed?</span></span>
+<span id="cb8-2"><a href="the-concept.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-3"><a href="the-concept.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="the-concept.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Call the function bn</span></span>
+<span id="cb8-5"><a href="the-concept.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bn</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">110</span>,<span class="dv">60</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;This is loop1&quot;
+## [1] &quot;loop 1 was terminated after 23 iterations&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;
+## [1] &quot;This is loop2&quot;</code></pre>
+<p>As mentioned, the <code>break()</code> function terminated the loop after the first element to violate the
+condition was encountered (the 23rd element of the vector). How many elements are there that do not
+violate the condition of loop 1?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-concept.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s ask R how meany elements in the vector are smaller than 100</span></span>
+<span id="cb10-2"><a href="the-concept.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="the-concept.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="the-concept.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Note at the use of square brakes, sub sample the vector for only elements smaller than 100</span></span>
+<span id="cb10-5"><a href="the-concept.html#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="the-concept.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">110</span>,<span class="dv">60</span>)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">110</span>,<span class="dv">60</span>)<span class="sc">&lt;</span><span class="dv">100</span>])</span></code></pre></div>
+<pre><code>## [1] 51</code></pre>
+<p>As you can see, <code>break()</code> skipped <strong><em>~half</em></strong> of the elements that met the condition.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="lab-5-population-genetics-and-selection-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-assignment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -464,7 +649,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-lab5_pop_gen.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started | Biology 3315 Molecular Evolution and Phylogenetics</title>
-  <meta name="description" content="Getting started | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <title>The setup | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="The setup | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:title" content="The setup | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="twitter:title" content="The setup | Biology 3315 Molecular Evolution and Phylogenetics" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="learning-objectives.html"/>
-<link rel="next" href="programming-in-r---the-basics.html"/>
+<link rel="prev" href="lab-2-data-manipulation-and-presentation-in-r.html"/>
+<link rel="next" href="importing-and-exporting-data-in-r.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -381,221 +381,35 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="getting-started" class="section level2 unnumbered hasAnchor">
-<h2><strong>Getting started</strong><a href="getting-started.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="what-is-r" class="section level3 unnumbered hasAnchor">
-<h3><strong>What is R?</strong><a href="getting-started.html#what-is-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>R is a free and open source programming language, operating as a <a href="http://www.gnu.org/">GUN project</a>. The R language is maintained and supported by the <a href="https://www.r-project.org/foundation/">R Foundation for Statistical Computing</a>.</p>
-<blockquote>
-<p>“R is a functional programming language and environment for statistical computing and graphics”</p>
-<p>— The R dev team</p>
-</blockquote>
-<p>R is best known as a programming language with strong capabilities of
-manipulation, exploration and statistical analysis of data from diverse
-types and sources. However, it also provides an environment for data
-handling, graphical representation of data as well as data reporting.
-R is a great platform for documentation and in fact this entire lab
-manual was written in R using the rmarkdown package.</p>
-</div>
-<div id="why-use-r" class="section level3 unnumbered hasAnchor">
-<h3><strong>Why use R?</strong><a href="getting-started.html#why-use-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Open source and free
-<ul>
-<li>Available on all major platform</li>
-</ul></li>
-<li>Large community of users and developers (over 2M users in academia, government, and industry)</li>
-<li>Thousands of open source packages aimed at the analysis of biological data in general and genomic and evolutionary data in particular</li>
-<li>Customizable and allows for the construction of pipelines</li>
-<li>Reproducible analysis</li>
-</ul>
-</div>
-<div id="downloading-and-installing-r-and-rstudio-desktop" class="section level3 unnumbered hasAnchor">
-<h3><strong>Downloading and installing R and RStudio desktop</strong><a href="getting-started.html#downloading-and-installing-r-and-rstudio-desktop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To download R, go to the <a href="https://cran.r-project.org/mirrors.html">R download page</a> select the SFU mirror then select your operating system and download and install both 32 and 64 bit versions.</p>
-<p>To download RStudio desktop, go to the <a href="https://posit.co/download/rstudio-desktop/">RStudio download page</a> and download the free RStudio desktop version.</p>
+<div id="the-setup" class="section level2 unnumbered hasAnchor">
+<h2><strong>The setup</strong><a href="the-setup.html#the-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As part of this lab you will learn how to import, export, manipulate and present data in R.
+You will also learn how to use loops and conditional statements to control the flow of your script.
+Lastly you will learn how to write costume (user-defined) functions.</p>
+<p>As part of this lab you will use some packages belonging to the <a href="https://www.tidyverse.org">Tidyverse</a> package family (the
+link has more useful information). Tydiverse packages are geared towards data importation, manipulation, and presentation.
+They all use standardized grammar and philosophy that make the code more streamlined and readable. Stringer, which you have
+already used, is part of the Tidyverse packages.</p>
+<p>It is possible to install packages belonging to the tidyverse individually, however all Tidyverse packages can also be
+installed using a wrapper package called…tidyverse. Before you start this lab, use the code bellow to install and load
+the tidyverse package.
+Installing the</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb261-1"><a href="the-setup.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb261-2"><a href="the-setup.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <hr />
 <blockquote>
-<p>Note that you must download and install both R and RStudio in order to be able to work with R in the RStudio IDE.
-Note that it is important that you have the most uptodate verssion of R, even if R is already installed on your computer
-make sure to update it. If using Windows you can use the <a href="https://github.com/talgalili/installr">installr package</a> to
-update R.</p>
+<p><strong>Note: even if you installed all tidyverse packages using <code>install.packages("tidyverse")</code>, tidyverse packages such as</strong>
+<strong><code>dplyr</code> can still be loaded individually</strong></p>
 </blockquote>
 <hr />
-<p><br></p>
-</div>
-<div id="the-r-interpreter" class="section level3 unnumbered hasAnchor">
-<h3><strong>The R interpreter</strong><a href="getting-started.html#the-r-interpreter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Generally speaking, R is an interpreted language, and it’s human readable code cannot be directly converted to machine code
-by the operating system. Therefore, it needs an interpreter to translate the human readable code to a format understood by
-the operating system and the processing unit as the code runs.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="figs/Rcons.png" alt="The R console" width="100%" />
-<p class="caption">
-Figure 0.1: The R console
-</p>
-</div>
-<p>The R console is an R interpreter with a very simple GUI. It allows you to write and run your code line by line just like you would in a terminal.</p>
-<p>Console input and output:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span></code></pre></div>
-<pre><code>[1] 2</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
-<pre><code>[1] 9</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>[1] 2</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb7-1"><a href="getting-started.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>[1] 16</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb9-1"><a href="getting-started.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
-<pre><code>[1] &quot;Hello world&quot;</code></pre>
-<p>In the example code above… something about the console interpreting white and in gray output… Furthermore, the print function was called to print the famous “Hello world” combo no coding workshop is complete without.</p>
-<p><br></p>
-<div id="short-console-exercise" class="section level4 unnumbered hasAnchor">
-<h4><strong>Short console exercise</strong><a href="getting-started.html#short-console-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Now let’s get you to work. The following lines of code will assign values to the variables “j”,“k”, and “rowling” (we will
-discuss variable assignment in R later in this lab).
-Open the R console on your computer and run them.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb11-1"><a href="getting-started.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> j <span class="ot">&lt;-</span> <span class="st">&quot;Harry&quot;</span></span>
-<span id="cb11-2"><a href="getting-started.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> k <span class="ot">&lt;-</span> <span class="st">&quot;Poter&quot;</span></span>
-<span id="cb11-3"><a href="getting-started.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rowling <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">First_name =</span> j,<span class="at">Last_name =</span> k)</span></code></pre></div>
-<p>Notice that no output was generated, since you only assigned values to some variables. You can get the interpreter to
-output the value of each variable by calling them in the console. Try it for each of them.
-As you can see, the variables are stored in memory. This is evident by the output generated when you called the
-variables in the console. Furthermore, without knowing too much R, you probably already guessed that not all
-variables are created equal and that there is some differences between rowling and the rest of the variables.
-However, the console doesn’t let one see immediately how many variables one stored in memory, nor does it let one see
-their names, memory allocation, type, etc. In order to see those using just the console you would have to call an
-array of functions.
-For example try running the following function is your console.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb12-1"><a href="getting-started.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ls</span>()</span></code></pre></div>
-<hr />
-<blockquote>
-<p>If you are familiar with UNIX based operating systems, you probably recognized that ls is short for list.
-When running the ls() function in the console, the the output will list all stored variables. But as you may
-notice, this is about all it does. You can also imagine that this is not the most efficient way to keep track of the
-variables you declare when working with more than a couple variables (which is sometimes required). In order to keep
-things streamlined and organized, it is advisable to work with an Integrated Development Environment (IDE), which
-allows you to have better control of code editing, variable storage, console output etc. R has several IDEs, however
-the most popular by far is RStudio.</p>
-</blockquote>
-<hr />
-</div>
-</div>
-<div id="the-rstudio-ide" class="section level3 unnumbered hasAnchor">
-<h3><strong>The RStudio IDE</strong><a href="getting-started.html#the-rstudio-ide" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As mentioned above, RStudio is an integrated development environment (IDE) for R. It is highly customizable but its
-default setting include four panes, a text editor pane, a console pane, a global environment pane, and an output
-pane.</p>
-<p><img src="figs/Rstudio1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><br></p>
-<p>Unlike the basic console GUI, RStudio allows you to mange and separate different R project (e.g. you could have a
-separate project for this course and and for a stats course).
-Another advantage of R studio is its integration of version control which include both Git and SVG. This will be
-beneficial if future course when you will be required to collaborate on projects.</p>
-<p><br></p>
-<div id="the-text-editor-pane" class="section level4 unnumbered hasAnchor">
-<h4><strong>The text editor pane</strong><a href="getting-started.html#the-text-editor-pane" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The text editor pane is found on the top left corner of the RStudio screen. The text editor allows you to edit code
-before sending it to the console. As shown in the figure below, there are some advantages of writing your code with
-the RStudio code editor. It auto-completes syntax, functions, and variables. The text editor also helps in code
-debugging by flagging lines with errors (marked by a red dot with an X). It also allows you to edit multiple
-scripts using tabs, just like your web browser.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="figs/texteditor.png" alt="The RStudio text editor" width="80%" />
-<p class="caption">
-Figure 0.2: The RStudio text editor
-</p>
-</div>
-<p><br></p>
-<p>Using the text editor allows you to send code to the console line by line (or as chunks, by highlighting multiple
-lines) by using a keyboard shortcut(command enter in mac-OS, Ctrl enter win and Linux).
-Alternatively this can also be done pressing the run button at the top left corner of the editor. The editor also
-allows you to source the entire script to the console by pressing the source button (the rightmost button).
-The text editor supports multiple languages(e.g. C++, python, SQL, etc…) if you fancy programming in a language
-other than R.</p>
-<p><br></p>
-</div>
-<div id="the-console-pane" class="section level4 unnumbered hasAnchor">
-<h4><strong>The console pane</strong><a href="getting-started.html#the-console-pane" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The console pane is found below the text editor.This is where code input and output resulting from the code can be
-seen. You can also write and run code directly at the console, just like when using the R interpreter GUI. The
-console allows you to manage multiple R jobs (we will not use that) through the job tab, as well as running a bash
-terminal (terminal tab) for system commands (we might use that).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="figs/console.png" alt="The RStudio console" width="80%" />
-<p class="caption">
-Figure 0.3: The RStudio console
-</p>
-</div>
-<p><br></p>
-</div>
-<div id="the-global-environment-pane" class="section level4 unnumbered hasAnchor">
-<h4><strong>The global environment pane</strong><a href="getting-started.html#the-global-environment-pane" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The global environment pane is found to the right of the text editor, this is where you can see all the variables you
-called. It will also tell you what type of variables they are and how much memory they use.</p>
-<p><img src="figs/globenv.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>The global environment pane also contains a history and a connection tab. The history tab saves all the lines of code
-ran through the console. It also allows you to resend lines of code back to the text editor which is very useful if
-you deleted them by accident instead of commenting them out. The connection tab allows you to connect RStudio to
-database servers (e.g. SQL (ODBC) or Spark, we will not use that).</p>
-<p><br></p>
-</div>
-<div id="the-output-pane" class="section level4 unnumbered hasAnchor">
-<h4><strong>The output pane</strong><a href="getting-started.html#the-output-pane" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The output pane is found bellow the global environment pane and is where graphical output will show up. Here you can
-scroll through as well as export all of the plots that you generated while analyzing data and running scripts.</p>
-<p><img src="figs/output.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>The output pane also includes a file tab which allows you to see all the files you exported as well as a help tab
-which allows you to brows through documentation with details of the functions you might want to run. The package tab
-helps you manage the R extension packages you might have installed and allows you to see which ones are loaded.</p>
-<p><br></p>
-<hr />
-<blockquote>
-<p>Note that each of these panes include tabs that were not included in this tutorial. However, they can be very
-useful and I encourage you to explore them as you learn to use RStudio.</p>
-</blockquote>
-<hr />
-<p><br/></p>
-</div>
-<div id="short-exercise-in-rstudio" class="section level4 unnumbered hasAnchor">
-<h4><strong>Short exercise in RStudio</strong><a href="getting-started.html#short-exercise-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Copy the following code to RStudio’s text editor</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb13-1"><a href="getting-started.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> j <span class="ot">&lt;-</span> <span class="st">&quot;Harry&quot;</span></span>
-<span id="cb13-2"><a href="getting-started.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> k <span class="ot">&lt;-</span> <span class="st">&quot;Poter&quot;</span></span>
-<span id="cb13-3"><a href="getting-started.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rowling <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">First_name =</span> j,<span class="at">Last_name =</span> k)</span>
-<span id="cb13-4"><a href="getting-started.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb13-5"><a href="getting-started.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">data</span>(cars)</span>
-<span id="cb13-6"><a href="getting-started.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> car_data <span class="ot">&lt;-</span> cars</span>
-<span id="cb13-7"><a href="getting-started.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(cars)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb14-1"><a href="getting-started.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Useless.function <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb14-2"><a href="getting-started.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="fu">is.numeric</span>(x)){</span>
-<span id="cb14-3"><a href="getting-started.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="st">&quot;This function is goddamn useless&quot;</span>)</span>
-<span id="cb14-4"><a href="getting-started.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   } <span class="cf">else</span> {</span>
-<span id="cb14-5"><a href="getting-started.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="fu">print</span>(<span class="st">&quot;This function is goddamn useless&quot;</span>)</span>
-<span id="cb14-6"><a href="getting-started.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   }</span>
-<span id="cb14-7"><a href="getting-started.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
-<p><br></p>
-<ul>
-<li><p>Try writing the last line instead of copying and pasting it, did you notice how the editor completes the syntax for
-you as the function data.frame is called?</p></li>
-<li><p>Practice running it line by line, as a chunk, and sourcing it completely.</p></li>
-<li><p>What happens in the global environment when you ran the code?</p></li>
-<li><p>Are all called variables listed under the same category in the global environment pane?</p></li>
-<li><p>Can you tell how much memory is car_data using?</p></li>
-<li><p>What happens when you press rowling?</p></li>
-<li><p>What do you see in the output pane?</p></li>
-<li><p>What happens when you call the rowling variable directly in the console?</p></li>
-</ul>
-<p><br></p>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="learning-objectives.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="programming-in-r---the-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-2-data-manipulation-and-presentation-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importing-and-exporting-data-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -626,7 +440,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-lab1_intro_to_R_pt1.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-lab2_intro_to_R_pt2.Rmd",
 "text": "Edit"
 },
 "history": {

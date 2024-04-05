@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.2 Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics</title>
-  <meta name="description" content="0.2 Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <title>Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.2 Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:title" content="Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.2 Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="twitter:title" content="Conditional statements and iterations | Biology 3315 Molecular Evolution and Phylogenetics" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Ido Hatam" />
 
 
-<meta name="date" content="2023-02-14" />
+<meta name="date" content="2023-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.27/datatables.js"></script>
 <link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -250,8 +250,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="lab-2-data-manipulation-and-presentation-in-r.html"><a href="lab-2-data-manipulation-and-presentation-in-r.html"><i class="fa fa-check"></i><strong>Lab 2 data manipulation and presentation in R</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
-<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>0.1</b> <strong>Setup</strong></a></li>
+<li class="chapter" data-level="" data-path="the-setup.html"><a href="the-setup.html"><i class="fa fa-check"></i><strong>The setup</strong></a></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html"><i class="fa fa-check"></i><strong>Importing and exporting data in R</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.csv"><i class="fa fa-check"></i><strong>read.csv</strong></a></li>
@@ -261,46 +260,107 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---working-with-strings-from-non-tabulated-data"><i class="fa fa-check"></i><strong>Quick R exercise - working with strings from non-tabulated data</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-tabulated-data"><i class="fa fa-check"></i><strong>Exporting tabulated data</strong></a></li>
-<li class="chapter" data-level="0.1.1" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#section"><i class="fa fa-check"></i><b>0.1.1</b> </a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-non-tabulated-data"><i class="fa fa-check"></i><strong>Exporting non-tabulated data</strong></a></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---data-exportation"><i class="fa fa-check"></i><strong>Quick R exercise - data exportation</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html"><i class="fa fa-check"></i><strong>(Tidy) Data manipulation in R</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#tidy-data-in-r"><i class="fa fa-check"></i><strong>Tidy data in R</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#a-tidy-re-imagining-of-the-data-frame"><i class="fa fa-check"></i><strong>A tidy re-imagining of the data frame</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#why-use-tibbles"><i class="fa fa-check"></i><strong>Why use tibbles?</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#even-the-tidyverse-can-get-messy-sometimes"><i class="fa fa-check"></i><strong>Even the tidyverse can get messy sometimes</strong></a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse"><i class="fa fa-check"></i><strong>Subseting columns and rows using base R and tidyverse</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using %&gt;% (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using <code>%&gt;%</code> (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#adding-and-modifying-columns"><i class="fa fa-check"></i><strong>Adding and modifying columns</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#transforming-data-frames"><i class="fa fa-check"></i><strong>Transforming data frames</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-1"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-2"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html"><i class="fa fa-check"></i><b>0.2</b> <strong>Conditional statements and iterations</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><strong>Functions</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#constructing-a-function"><i class="fa fa-check"></i><strong>Constructing a function</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html"><i class="fa fa-check"></i><strong>Plotting your data</strong></a></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html"><i class="fa fa-check"></i><strong>Plotting your data</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#potting-data-with-the-ggplot2-package"><i class="fa fa-check"></i><strong>Potting data with the ggplot2 package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#basic-ggplot2-plot"><i class="fa fa-check"></i><strong>Basic ggplot2 plot</strong></a></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#exporting-plots"><i class="fa fa-check"></i><strong>Exporting plots</strong></a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="summary-exercise-lab-2.html"><a href="summary-exercise-lab-2.html"><i class="fa fa-check"></i><strong>Summary exercise lab 2</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>1</b> Parts</a></li>
-<li class="chapter" data-level="2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>2</b> Footnotes and citations</a>
+<li class="chapter" data-level="" data-path="lab-3-handling-of-biological-data-in-r---1.html"><a href="lab-3-handling-of-biological-data-in-r---1.html"><i class="fa fa-check"></i><strong>Lab 3 handling of biological data in R - 1</strong></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>2.1</b> Footnotes</a></li>
-<li class="chapter" data-level="2.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>2.2</b> Citations</a></li>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html"><i class="fa fa-check"></i><strong>The setup</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html#installing-packages-from-bioconductor"><i class="fa fa-check"></i><strong>Installing packages from Bioconductor</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>3</b> Blocks</a>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><i class="fa fa-check"></i><strong>Working with biological strings using base R and the tidyverse</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>3.1</b> Equations</a></li>
-<li class="chapter" data-level="3.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>3.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="3.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>3.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise-3"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise---basic-string-operations"><i class="fa fa-check"></i><strong>Quick R exercise - basic string operations</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>4</b> Sharing your book</a>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html"><i class="fa fa-check"></i><strong>Importing and working with fasta files with base R</strong></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>4.1</b> Publishing</a></li>
-<li class="chapter" data-level="4.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>4.2</b> 404 pages</a></li>
-<li class="chapter" data-level="4.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>4.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html#housing-sequences-moving-beyond-simple-vectors"><i class="fa fa-check"></i><strong>Housing sequences, moving beyond simple vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html"><i class="fa fa-check"></i><strong>The Biostrings package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biosting-sub-classes"><i class="fa fa-check"></i><strong>Basic biosting sub-classes</strong></a></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biostrings-functions"><i class="fa fa-check"></i><strong>Basic Biostrings functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#quick-r-exercise---basic-biostrings-functions"><i class="fa fa-check"></i><strong>Quick R exercise - basic Biostrings functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#working-with-multiple-sequences-using-xstringset-objects"><i class="fa fa-check"></i><strong>Working with multiple sequences using XStringSet objects</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html"><i class="fa fa-check"></i><strong>Seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#data-importation-and-handling-with-seqinr"><i class="fa fa-check"></i><strong>Data importation and handling with seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#quick-r-exercise---sumerizing-seqinr-output"><i class="fa fa-check"></i><strong>Quick R exercise - sumerizing seqinr output</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.0.1" data-path="seqinr.html"><a href="seqinr.html#advanced-seqinr-functions"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Advanced seqinr functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exporting-sequence-elements.html"><a href="exporting-sequence-elements.html"><i class="fa fa-check"></i><strong>Exporting sequence elements</strong></a></li>
+<li class="chapter" data-level="" data-path="summary-exercise.html"><a href="summary-exercise.html"><i class="fa fa-check"></i><strong>Summary exercise:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>1</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>1.1</b> Footnotes</a></li>
+<li class="chapter" data-level="1.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>1.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>2</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>2.1</b> Equations</a></li>
+<li class="chapter" data-level="2.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>2.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="2.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>2.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>3</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>3.1</b> Publishing</a></li>
+<li class="chapter" data-level="3.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>3.2</b> 404 pages</a></li>
+<li class="chapter" data-level="3.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>3.3</b> Metadata for sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="5" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>5</b> <strong>Lab 8</strong></a></li>
+<li class="chapter" data-level="4" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>4</b> <strong>Lab 8</strong></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -321,195 +381,206 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conditional-statements-and-iterations" class="section level2 hasAnchor" number="0.2">
-<h2><span class="header-section-number">0.2</span> <strong>Conditional statements and iterations</strong><a href="conditional-statements-and-iterations.html#conditional-statements-and-iterations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="conditional-statements-and-iterations" class="section level2 unnumbered hasAnchor">
+<h2><strong>Conditional statements and iterations</strong><a href="conditional-statements-and-iterations.html#conditional-statements-and-iterations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes it is necessary to ask R to decide what type of code runs on which part of the data, or how many times to run each line of code. Conditional statement such as if else, and loops are there to do just that.</p>
-<p><strong>Conditional statements</strong></p>
+<div id="conditional-statements" class="section level3 unnumbered hasAnchor">
+<h3><strong>Conditional statements</strong><a href="conditional-statements-and-iterations.html#conditional-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Conditional statements are used to determine which code will handle what part of the data.
 You have already used a conditional statement, even if you haven’t noticed.
 mutate_if is a function using a conditional statement modifying a column if a condition is met (e.g. is.numeric).</p>
 <p>The basic conditional statement is if, it asks if a condition is met (e.g. if(x&gt;8) = TRUE). Once the condition is met, something happens. if can be paired with an else statement to determine what to do if the condition is not met.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="conditional-statements-and-iterations.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is an example of an if else statment note the curly brackets</span></span>
-<span id="cb73-2"><a href="conditional-statements-and-iterations.html#cb73-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb73-3"><a href="conditional-statements-and-iterations.html#cb73-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-4"><a href="conditional-statements-and-iterations.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">8</span>) {</span>
-<span id="cb73-5"><a href="conditional-statements-and-iterations.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x = 8&quot;</span>)</span>
-<span id="cb73-6"><a href="conditional-statements-and-iterations.html#cb73-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { </span>
-<span id="cb73-7"><a href="conditional-statements-and-iterations.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x != 8&quot;</span>)</span>
-<span id="cb73-8"><a href="conditional-statements-and-iterations.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb73-9"><a href="conditional-statements-and-iterations.html#cb73-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;x = 8&quot;</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="conditional-statements-and-iterations.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If else statments can be chaind</span></span>
-<span id="cb75-2"><a href="conditional-statements-and-iterations.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-3"><a href="conditional-statements-and-iterations.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">&gt;</span><span class="dv">8</span>) {</span>
-<span id="cb75-4"><a href="conditional-statements-and-iterations.html#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x&gt;8&quot;</span>)</span>
-<span id="cb75-5"><a href="conditional-statements-and-iterations.html#cb75-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb75-6"><a href="conditional-statements-and-iterations.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">8</span>) {</span>
-<span id="cb75-7"><a href="conditional-statements-and-iterations.html#cb75-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;x=8&quot;</span>)</span>
-<span id="cb75-8"><a href="conditional-statements-and-iterations.html#cb75-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb75-9"><a href="conditional-statements-and-iterations.html#cb75-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;x&lt;8&quot;</span>)</span>
-<span id="cb75-10"><a href="conditional-statements-and-iterations.html#cb75-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb75-11"><a href="conditional-statements-and-iterations.html#cb75-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;x=8&quot;</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb351-1"><a href="conditional-statements-and-iterations.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Here is an example of an if else statement note the curly brackets</span></span>
+<span id="cb351-2"><a href="conditional-statements-and-iterations.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb351-3"><a href="conditional-statements-and-iterations.html#cb351-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb351-4"><a href="conditional-statements-and-iterations.html#cb351-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">8</span>) {</span>
+<span id="cb351-5"><a href="conditional-statements-and-iterations.html#cb351-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="st">&quot;x = 8&quot;</span>)</span>
+<span id="cb351-6"><a href="conditional-statements-and-iterations.html#cb351-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> } <span class="cf">else</span> { </span>
+<span id="cb351-7"><a href="conditional-statements-and-iterations.html#cb351-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="st">&quot;x != 8&quot;</span>)</span>
+<span id="cb351-8"><a href="conditional-statements-and-iterations.html#cb351-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   </span>
+<span id="cb351-9"><a href="conditional-statements-and-iterations.html#cb351-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<pre><code>[1] &quot;x = 8&quot;</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb353-1"><a href="conditional-statements-and-iterations.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#If else statements can be chaind</span></span>
+<span id="cb353-2"><a href="conditional-statements-and-iterations.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb353-3"><a href="conditional-statements-and-iterations.html#cb353-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">if</span>(x<span class="sc">&gt;</span><span class="dv">8</span>) {</span>
+<span id="cb353-4"><a href="conditional-statements-and-iterations.html#cb353-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="st">&quot;x&gt;8&quot;</span>)</span>
+<span id="cb353-5"><a href="conditional-statements-and-iterations.html#cb353-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> } <span class="cf">else</span> {</span>
+<span id="cb353-6"><a href="conditional-statements-and-iterations.html#cb353-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">8</span>) {</span>
+<span id="cb353-7"><a href="conditional-statements-and-iterations.html#cb353-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="fu">print</span>(<span class="st">&quot;x=8&quot;</span>)</span>
+<span id="cb353-8"><a href="conditional-statements-and-iterations.html#cb353-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   } <span class="cf">else</span> {</span>
+<span id="cb353-9"><a href="conditional-statements-and-iterations.html#cb353-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="fu">print</span>(<span class="st">&quot;x&lt;8&quot;</span>)</span>
+<span id="cb353-10"><a href="conditional-statements-and-iterations.html#cb353-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   }</span>
+<span id="cb353-11"><a href="conditional-statements-and-iterations.html#cb353-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<pre><code>[1] &quot;x=8&quot;</code></pre>
 <p>if else statements only work with scalars, i.e. only evaluate objects with one element.
-In order to evaluate a vector, the function ifelse should be used. ifelse takes 3 arguments,
-test (e.g. x&gt;8), true (what to do in case test is true), false (what to do in case test is false).</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="conditional-statements-and-iterations.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a vector</span></span>
-<span id="cb77-2"><a href="conditional-statements-and-iterations.html#cb77-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">10</span>, <span class="at">replace =</span> T)</span>
-<span id="cb77-3"><a href="conditional-statements-and-iterations.html#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-4"><a href="conditional-statements-and-iterations.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ifelse function, if x &gt; 500 paste something else paste somthing else to y</span></span>
-<span id="cb77-5"><a href="conditional-statements-and-iterations.html#cb77-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">paste</span>(<span class="st">&quot;x&gt;500&quot;</span>), <span class="fu">paste</span>(<span class="st">&quot;x &lt; = 500&quot;</span>))</span>
-<span id="cb77-6"><a href="conditional-statements-and-iterations.html#cb77-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-7"><a href="conditional-statements-and-iterations.html#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyr has a modefied ifelse function, it alows to handle missing values</span></span>
-<span id="cb77-8"><a href="conditional-statements-and-iterations.html#cb77-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">paste</span>(<span class="st">&quot;x&gt;500&quot;</span>), <span class="fu">paste</span>(<span class="st">&quot;x &lt; = 500&quot;</span>))</span>
-<span id="cb77-9"><a href="conditional-statements-and-iterations.html#cb77-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-10"><a href="conditional-statements-and-iterations.html#cb77-10" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>##  [1] &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x&gt;500&quot;    
-##  [7] &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x&gt;500&quot;</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="conditional-statements-and-iterations.html#cb79-1" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
-<pre><code>##  [1] &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x&gt;500&quot;    
-##  [7] &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x&gt;500&quot;</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="conditional-statements-and-iterations.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s do this on a dataframe</span></span>
-<span id="cb81-2"><a href="conditional-statements-and-iterations.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co">#If elevation is high temp is -7 else temp is 10</span></span>
-<span id="cb81-3"><a href="conditional-statements-and-iterations.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-4"><a href="conditional-statements-and-iterations.html#cb81-4" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="dv">10</span>))</span>
-<span id="cb81-5"><a href="conditional-statements-and-iterations.html#cb81-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-6"><a href="conditional-statements-and-iterations.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="co">#ifelse can be chaind, either as sequenctial funcation or within the first function.</span></span>
-<span id="cb81-7"><a href="conditional-statements-and-iterations.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co">#NAis a filler in case one condition is not met </span></span>
-<span id="cb81-8"><a href="conditional-statements-and-iterations.html#cb81-8" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb81-9"><a href="conditional-statements-and-iterations.html#cb81-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#If test is false keep current value</span></span>
-<span id="cb81-10"><a href="conditional-statements-and-iterations.html#cb81-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="dv">15</span>, Temp)) <span class="sc">%&gt;%</span></span>
-<span id="cb81-11"><a href="conditional-statements-and-iterations.html#cb81-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="dv">25</span>, Temp))</span>
-<span id="cb81-12"><a href="conditional-statements-and-iterations.html#cb81-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-13"><a href="conditional-statements-and-iterations.html#cb81-13" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##         Sites Elevation CO2  NH4 Fe CH4 Temp
-## site1   site1      High 428 9489 50 677   -7
-## site2   site2       Low 940 7765  6 414   25
-## site3   site3       Low 211 8199 29 759   25
-## site4   site4       Low 255 6954 50 167   25
-## site5   site5       Low 374 8444 26 466   25
-## site6   site6      High 686 9559 26 268   -7
-## site7   site7      High 755 7011 36 673   -7
-## site8   site8 Sea level 884 5164 25 416   15
-## site9   site9      High  97 8869 48 830   -7
-## site10 site10       Low 189 5570 31  70   25</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="conditional-statements-and-iterations.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#alternatively</span></span>
-<span id="cb83-2"><a href="conditional-statements-and-iterations.html#cb83-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Temp)</span>
-<span id="cb83-3"><a href="conditional-statements-and-iterations.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-4"><a href="conditional-statements-and-iterations.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Note in second if_else, if_else is chaind in the false argument.</span></span>
-<span id="cb83-5"><a href="conditional-statements-and-iterations.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co">#This will not work with the first one since mutate needs to create the Temp column first</span></span>
-<span id="cb83-6"><a href="conditional-statements-and-iterations.html#cb83-6" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb83-7"><a href="conditional-statements-and-iterations.html#cb83-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="dv">15</span>, </span>
-<span id="cb83-8"><a href="conditional-statements-and-iterations.html#cb83-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="dv">25</span>, Temp))) </span>
-<span id="cb83-9"><a href="conditional-statements-and-iterations.html#cb83-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-10"><a href="conditional-statements-and-iterations.html#cb83-10" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##         Sites Elevation CO2  NH4 Fe CH4 Temp
-## site1   site1      High 428 9489 50 677   -7
-## site2   site2       Low 940 7765  6 414   25
-## site3   site3       Low 211 8199 29 759   25
-## site4   site4       Low 255 6954 50 167   25
-## site5   site5       Low 374 8444 26 466   25
-## site6   site6      High 686 9559 26 268   -7
-## site7   site7      High 755 7011 36 673   -7
-## site8   site8 Sea level 884 5164 25 416   15
-## site9   site9      High  97 8869 48 830   -7
-## site10 site10       Low 189 5570 31  70   25</code></pre>
-<p>Chaining multiple ifelse statements can make the code very unreadable and clumsy.
-The case_when function from the dplyr package acts as a multiple ifelse statements and accepts multiple test arguments.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="conditional-statements-and-iterations.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s creat a new column called contamination_level and assign values based on NH4 concentrations</span></span>
-<span id="cb85-2"><a href="conditional-statements-and-iterations.html#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-3"><a href="conditional-statements-and-iterations.html#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-4"><a href="conditional-statements-and-iterations.html#cb85-4" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Contamination_level =</span> <span class="fu">case_when</span>( NH4 <span class="sc">&gt;</span> <span class="dv">8000</span> <span class="sc">~</span><span class="st">&quot;Very high&quot;</span>,</span>
-<span id="cb85-5"><a href="conditional-statements-and-iterations.html#cb85-5" aria-hidden="true" tabindex="-1"></a>                                                       NH4 <span class="sc">&gt;</span> <span class="dv">7000</span> <span class="sc">~</span><span class="st">&quot;High&quot;</span>,</span>
-<span id="cb85-6"><a href="conditional-statements-and-iterations.html#cb85-6" aria-hidden="true" tabindex="-1"></a>                                                       NH4 <span class="sc">&gt;</span> <span class="dv">6500</span> <span class="sc">~</span><span class="st">&quot;Medium&quot;</span>,</span>
-<span id="cb85-7"><a href="conditional-statements-and-iterations.html#cb85-7" aria-hidden="true" tabindex="-1"></a>                                                       NH4 <span class="sc">&lt;</span> <span class="dv">6500</span> <span class="sc">~</span><span class="st">&quot;Low&quot;</span>))</span>
-<span id="cb85-8"><a href="conditional-statements-and-iterations.html#cb85-8" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##         Sites Elevation CO2  NH4 Fe CH4 Temp Contamination_level
-## site1   site1      High 428 9489 50 677   -7           Very high
-## site2   site2       Low 940 7765  6 414   25                High
-## site3   site3       Low 211 8199 29 759   25           Very high
-## site4   site4       Low 255 6954 50 167   25              Medium
-## site5   site5       Low 374 8444 26 466   25           Very high
-## site6   site6      High 686 9559 26 268   -7           Very high
-## site7   site7      High 755 7011 36 673   -7                High
-## site8   site8 Sea level 884 5164 25 416   15                 Low
-## site9   site9      High  97 8869 48 830   -7           Very high
-## site10 site10       Low 189 5570 31  70   25                 Low</code></pre>
+In order to evaluate a vector, the function <code>ifelse()</code> should be used. <code>ifelse()</code> takes 3 arguments,
+test (e.g. x&gt;8), true (what to do in case test is true), false (what to do in case the test condition isn’t met).</p>
+<p>The following code snippet demonstrates the use of the <code>ifelse()</code> function and it’s tidyverse equivalent <code>if_else()</code>.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb355-1"><a href="conditional-statements-and-iterations.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Creating a vector</span></span>
+<span id="cb355-2"><a href="conditional-statements-and-iterations.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">10</span>, <span class="at">replace =</span> T)</span>
+<span id="cb355-3"><a href="conditional-statements-and-iterations.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb355-4"><a href="conditional-statements-and-iterations.html#cb355-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#ifelse function, if x &gt; 500 paste something else paste somthing else to y</span></span>
+<span id="cb355-5"><a href="conditional-statements-and-iterations.html#cb355-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">paste</span>(<span class="st">&quot;x&gt;500&quot;</span>), <span class="fu">paste</span>(<span class="st">&quot;x &lt; = 500&quot;</span>))</span>
+<span id="cb355-6"><a href="conditional-statements-and-iterations.html#cb355-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb355-7"><a href="conditional-statements-and-iterations.html#cb355-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#dplyr has a modefied ifelse function, it alows to handle missing values</span></span>
+<span id="cb355-8"><a href="conditional-statements-and-iterations.html#cb355-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> z <span class="ot">&lt;-</span> <span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">paste</span>(<span class="st">&quot;x&gt;500&quot;</span>), <span class="fu">paste</span>(<span class="st">&quot;x &lt; = 500&quot;</span>))</span>
+<span id="cb355-9"><a href="conditional-statements-and-iterations.html#cb355-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb355-10"><a href="conditional-statements-and-iterations.html#cb355-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> y</span></code></pre></div>
+<pre><code> [1] &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot;
+ [7] &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot;</code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb357-1"><a href="conditional-statements-and-iterations.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z</span></code></pre></div>
+<pre><code> [1] &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot;
+ [7] &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot;</code></pre>
+<p><code>if_else()</code> can also be applied to data frames as can be seen in the snippet bellow.
+Note, that the code uses the tidyverse if_else but base R <code>ifelse()</code> would work equally well.</p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb359-1"><a href="conditional-statements-and-iterations.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#If elevation is high temp is -7 else temp is 10</span></span>
+<span id="cb359-2"><a href="conditional-statements-and-iterations.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb359-3"><a href="conditional-statements-and-iterations.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="dv">10</span>))</span>
+<span id="cb359-4"><a href="conditional-statements-and-iterations.html#cb359-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df2</span></code></pre></div>
+<div id="htmlwidget-1f797a2b40e4c841c5a6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1f797a2b40e4c841c5a6">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["Low","Low","Low","Low","Sea level","High","Low","High","Sea level","Low"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70],[10,10,10,10,10,-7,10,-7,10,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sites<\/th>\n      <th>Elevation<\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n      <th>Temp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>The previous example only had one condition, if the elevation is high, temp is -7, else it is 10.
+What if your data has more granularity, e.g. what if sea level and low elevation has a different temperature?
+It is possible to chain multiple <code>ifelse()</code> statement sequentially, in that case it is important to add a filler FALSE
+to the first test. Here I use NA and not a number, since that would make it easy to check whether something was missed as it would contain
+an NA. Note that for the first iteration I am using <code>ifelse()</code> andn not the dplyr <code>if_else()</code> because the latter is type specific and will
+throw an error if using input not of the same type (e.g. double and logical). This is anbother good demonstration of the diferences between
+base R and tidyverse approach to handling data.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb360-1"><a href="conditional-statements-and-iterations.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">ifelse</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb360-2"><a href="conditional-statements-and-iterations.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co">#If test is false keep current value</span></span>
+<span id="cb360-3"><a href="conditional-statements-and-iterations.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="dv">15</span>, Temp)) <span class="sc">%&gt;%</span></span>
+<span id="cb360-4"><a href="conditional-statements-and-iterations.html#cb360-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="dv">25</span>, Temp))</span>
+<span id="cb360-5"><a href="conditional-statements-and-iterations.html#cb360-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb360-6"><a href="conditional-statements-and-iterations.html#cb360-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2</span></code></pre></div>
+<div id="htmlwidget-cf726844220554e3016a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cf726844220554e3016a">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["Low","Low","Low","Low","Sea level","High","Low","High","Sea level","Low"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70],[25,25,25,25,15,-7,25,-7,15,25]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sites<\/th>\n      <th>Elevation<\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n      <th>Temp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Alternatively, it is possible to use the <code>if_else()</code> function as</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb361-1"><a href="conditional-statements-and-iterations.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Note in second if_else, if_else is chaind in the false argument.</span></span>
+<span id="cb361-2"><a href="conditional-statements-and-iterations.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#This will not work with the first one since mutate needs to create the Temp column first</span></span>
+<span id="cb361-3"><a href="conditional-statements-and-iterations.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">ifelse</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="fl">7.5</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb361-4"><a href="conditional-statements-and-iterations.html#cb361-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="fl">15.5</span>, </span>
+<span id="cb361-5"><a href="conditional-statements-and-iterations.html#cb361-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="fl">25.5</span>, Temp))) </span>
+<span id="cb361-6"><a href="conditional-statements-and-iterations.html#cb361-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb361-7"><a href="conditional-statements-and-iterations.html#cb361-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb362-1"><a href="conditional-statements-and-iterations.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">ifelse</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="fl">7.5</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb362-2"><a href="conditional-statements-and-iterations.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="fl">15.5</span>, </span>
+<span id="cb362-3"><a href="conditional-statements-and-iterations.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                         <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="fl">25.5</span>, Temp))) </span>
+<span id="cb362-4"><a href="conditional-statements-and-iterations.html#cb362-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb362-5"><a href="conditional-statements-and-iterations.html#cb362-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> DT<span class="sc">::</span><span class="fu">datatable</span>(df2)</span></code></pre></div>
+<div id="htmlwidget-0fa98d4cbbbd2303ce9a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0fa98d4cbbbd2303ce9a">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["Low","Low","Low","Low","Sea level","High","Low","High","Sea level","Low"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70],[25.5,25.5,25.5,25.5,15.5,-7.5,25.5,-7.5,15.5,25.5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sites<\/th>\n      <th>Elevation<\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n      <th>Temp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Chaining multiple if else statements can make the code very unreadable and clumsy.
+The <code>case_when()</code> function from the dplyr package acts as a multiple if else statements and accepts multiple test arguments.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb363-1"><a href="conditional-statements-and-iterations.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s create a new column called contamination_level and assign values based on NH4 concentrations</span></span>
+<span id="cb363-2"><a href="conditional-statements-and-iterations.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb363-3"><a href="conditional-statements-and-iterations.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb363-4"><a href="conditional-statements-and-iterations.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Contamination_level =</span> <span class="fu">case_when</span>( NH4 <span class="sc">&gt;</span> <span class="dv">8000</span> <span class="sc">~</span><span class="st">&quot;Very high&quot;</span>,</span>
+<span id="cb363-5"><a href="conditional-statements-and-iterations.html#cb363-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                                                        NH4 <span class="sc">&gt;</span> <span class="dv">7000</span> <span class="sc">~</span><span class="st">&quot;High&quot;</span>,</span>
+<span id="cb363-6"><a href="conditional-statements-and-iterations.html#cb363-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                                                        NH4 <span class="sc">&gt;</span> <span class="dv">6500</span> <span class="sc">~</span><span class="st">&quot;Medium&quot;</span>,</span>
+<span id="cb363-7"><a href="conditional-statements-and-iterations.html#cb363-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                                                        NH4 <span class="sc">&lt;</span> <span class="dv">6500</span> <span class="sc">~</span><span class="st">&quot;Low&quot;</span>))</span>
+<span id="cb363-8"><a href="conditional-statements-and-iterations.html#cb363-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df2</span></code></pre></div>
+<div id="htmlwidget-ed1a08b33154aea13fbb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed1a08b33154aea13fbb">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["Low","Low","Low","Low","Sea level","High","Low","High","Sea level","Low"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70],[25.5,25.5,25.5,25.5,15.5,-7.5,25.5,-7.5,15.5,25.5],["Very high","High","Very high","Medium","Very high","Very high","High","Low","Very high","Low"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sites<\/th>\n      <th>Elevation<\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n      <th>Temp<\/th>\n      <th>Contamination_level<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <hr />
-<p><strong>Quick R exercise</strong></p>
+<div id="quick-r-exercise---data-grouping-and-summerizing-2" class="section level4 unnumbered hasAnchor">
+<h4><strong>Quick R exercise - data grouping and summerizing 2</strong><a href="conditional-statements-and-iterations.html#quick-r-exercise---data-grouping-and-summerizing-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li>Group df2 by contamination level and summarize average chemical concentration per contamination level.</li>
 </ol>
 <hr />
-<p><strong>Iterations</strong></p>
+</div>
+</div>
+<div id="iterations" class="section level3 unnumbered hasAnchor">
+<h3><strong>Iterations</strong><a href="conditional-statements-and-iterations.html#iterations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As mentioned, R is pretty good at vectorized functions which negate the need for iterations.
-For example ifelse negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with functions such as summarize that iterate over an entire dataframe or replicate which can be used to to generate a list of multiple elements.</p>
-<p>These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration functions are compiled and efficient.</p>
-<p>However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in R in my experience they are rarely used.</p>
+For example ifelse negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with
+functions such as summarize that iterate over an entire dataframe or replicate which can be used to to generate a list of multiple elements.</p>
+<p>These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration
+functions are compiled and efficient.</p>
+<p>However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in
+R (pun intended) in my experience they are rarely used.</p>
 <p>The for loop has the following basic structure for(element in vector) { do something}.
 Normally a counting variable is used to subset elements while iterating over a vector
 If a counting variable is used than the vector is a range of numbers.</p>
-<p>Here is an example of a basic for loop</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="conditional-statements-and-iterations.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s write a loop that picks lotomax numbers for you</span></span>
-<span id="cb87-2"><a href="conditional-statements-and-iterations.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-3"><a href="conditional-statements-and-iterations.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co">#First assign a counting variable</span></span>
-<span id="cb87-4"><a href="conditional-statements-and-iterations.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-5"><a href="conditional-statements-and-iterations.html#cb87-5" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb87-6"><a href="conditional-statements-and-iterations.html#cb87-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-7"><a href="conditional-statements-and-iterations.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Generating random numbers</span></span>
-<span id="cb87-8"><a href="conditional-statements-and-iterations.html#cb87-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="dv">8</span>, <span class="at">replace =</span> F)</span>
-<span id="cb87-9"><a href="conditional-statements-and-iterations.html#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-10"><a href="conditional-statements-and-iterations.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Constructing the loop</span></span>
-<span id="cb87-11"><a href="conditional-statements-and-iterations.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="co">#seq_along() generates a vector of 1:length of x</span></span>
-<span id="cb87-12"><a href="conditional-statements-and-iterations.html#cb87-12" aria-hidden="true" tabindex="-1"></a><span class="co">#The reason I don&#39;t use 1:length(x) is that if the length of x is 0 the loop would still run, seq_along prevents this</span></span>
-<span id="cb87-13"><a href="conditional-statements-and-iterations.html#cb87-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-14"><a href="conditional-statements-and-iterations.html#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
-<span id="cb87-15"><a href="conditional-statements-and-iterations.html#cb87-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb87-16"><a href="conditional-statements-and-iterations.html#cb87-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;The 1 number is: 10&quot;
-## [1] &quot;The 2 number is: 26&quot;
-## [1] &quot;The 3 number is: 15&quot;
-## [1] &quot;The 4 number is: 49&quot;
-## [1] &quot;The 5 number is: 12&quot;
-## [1] &quot;The 6 number is: 37&quot;
-## [1] &quot;The 7 number is: 1&quot;
-## [1] &quot;The 8 number is: 39&quot;</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="conditional-statements-and-iterations.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s combine a conditional statment with the for loop and make a fancier number picker</span></span>
-<span id="cb89-2"><a href="conditional-statements-and-iterations.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-3"><a href="conditional-statements-and-iterations.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
-<span id="cb89-4"><a href="conditional-statements-and-iterations.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="dv">1</span><span class="sc">&lt;=</span> i <span class="sc">&amp;</span> i <span class="sc">&lt;</span><span class="dv">8</span>){</span>
-<span id="cb89-5"><a href="conditional-statements-and-iterations.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb89-6"><a href="conditional-statements-and-iterations.html#cb89-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{ </span>
-<span id="cb89-7"><a href="conditional-statements-and-iterations.html#cb89-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb89-8"><a href="conditional-statements-and-iterations.html#cb89-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb89-9"><a href="conditional-statements-and-iterations.html#cb89-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;The 1 number is: 10&quot;
-## [1] &quot;The 2 number is: 26&quot;
-## [1] &quot;The 3 number is: 15&quot;
-## [1] &quot;The 4 number is: 49&quot;
-## [1] &quot;The 5 number is: 12&quot;
-## [1] &quot;The 6 number is: 37&quot;
-## [1] &quot;The 7 number is: 1&quot;
-## [1] &quot;The bonus number is: 39&quot;</code></pre>
-<p><strong>Quick R exercise</strong></p>
+<p>Here is an example of a basic for loop, note that i is used as the counting variable and there is no need to declare it.</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb364-1"><a href="conditional-statements-and-iterations.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s write a loop that picks lotomax numbers for you</span></span>
+<span id="cb364-2"><a href="conditional-statements-and-iterations.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb364-3"><a href="conditional-statements-and-iterations.html#cb364-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb364-4"><a href="conditional-statements-and-iterations.html#cb364-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Generating random numbers</span></span>
+<span id="cb364-5"><a href="conditional-statements-and-iterations.html#cb364-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="dv">8</span>, <span class="at">replace =</span> F)</span>
+<span id="cb364-6"><a href="conditional-statements-and-iterations.html#cb364-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb364-7"><a href="conditional-statements-and-iterations.html#cb364-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Constructing the loop</span></span>
+<span id="cb364-8"><a href="conditional-statements-and-iterations.html#cb364-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#seq_along() generates a vector of 1:length of x</span></span>
+<span id="cb364-9"><a href="conditional-statements-and-iterations.html#cb364-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#The reason I don&#39;t use 1:length(x) is that if the length of x is 0 the loop would still run, seq_along prevents this</span></span>
+<span id="cb364-10"><a href="conditional-statements-and-iterations.html#cb364-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb364-11"><a href="conditional-statements-and-iterations.html#cb364-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
+<span id="cb364-12"><a href="conditional-statements-and-iterations.html#cb364-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb364-13"><a href="conditional-statements-and-iterations.html#cb364-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<pre><code>[1] &quot;The 1 number is: 5&quot;
+[1] &quot;The 2 number is: 35&quot;
+[1] &quot;The 3 number is: 6&quot;
+[1] &quot;The 4 number is: 21&quot;
+[1] &quot;The 5 number is: 36&quot;
+[1] &quot;The 6 number is: 2&quot;
+[1] &quot;The 7 number is: 43&quot;
+[1] &quot;The 8 number is: 16&quot;</code></pre>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb366-1"><a href="conditional-statements-and-iterations.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s combine a conditional statement with the for loop and make a fancier number picker</span></span>
+<span id="cb366-2"><a href="conditional-statements-and-iterations.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb366-3"><a href="conditional-statements-and-iterations.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
+<span id="cb366-4"><a href="conditional-statements-and-iterations.html#cb366-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="cf">if</span>(<span class="dv">1</span><span class="sc">&lt;=</span> i <span class="sc">&amp;</span> i <span class="sc">&lt;</span><span class="dv">8</span>){</span>
+<span id="cb366-5"><a href="conditional-statements-and-iterations.html#cb366-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb366-6"><a href="conditional-statements-and-iterations.html#cb366-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   } <span class="cf">else</span>{ </span>
+<span id="cb366-7"><a href="conditional-statements-and-iterations.html#cb366-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>     <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb366-8"><a href="conditional-statements-and-iterations.html#cb366-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   }</span>
+<span id="cb366-9"><a href="conditional-statements-and-iterations.html#cb366-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span></code></pre></div>
+<pre><code>[1] &quot;The 1 number is: 5&quot;
+[1] &quot;The 2 number is: 35&quot;
+[1] &quot;The 3 number is: 6&quot;
+[1] &quot;The 4 number is: 21&quot;
+[1] &quot;The 5 number is: 36&quot;
+[1] &quot;The 6 number is: 2&quot;
+[1] &quot;The 7 number is: 43&quot;
+[1] &quot;The bonus number is: 16&quot;</code></pre>
+<div id="quick-r-exercise---pseudorandom-numbers-and-loops" class="section level4 unnumbered hasAnchor">
+<h4><strong>Quick R exercise - pseudorandom numbers and loops</strong><a href="conditional-statements-and-iterations.html#quick-r-exercise---pseudorandom-numbers-and-loops" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>What would happen if set.seed(123) was the first line of the loop?</p>
 <hr />
-<p>The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use read.csv to import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an existing vector rather than add new elements to it for loops run faster.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="conditional-statements-and-iterations.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a vector with a list of all csv files in my foulder.</span></span>
-<span id="cb91-2"><a href="conditional-statements-and-iterations.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co">#You can use the argument path = to change foulder. </span></span>
-<span id="cb91-3"><a href="conditional-statements-and-iterations.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co">#recursive = F ignors subfolders</span></span>
-<span id="cb91-4"><a href="conditional-statements-and-iterations.html#cb91-4" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">&quot;.csv&quot;</span>, <span class="at">recursive =</span> F)</span>
-<span id="cb91-5"><a href="conditional-statements-and-iterations.html#cb91-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-6"><a href="conditional-statements-and-iterations.html#cb91-6" aria-hidden="true" tabindex="-1"></a>lsfile <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(files))</span>
-<span id="cb91-7"><a href="conditional-statements-and-iterations.html#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-8"><a href="conditional-statements-and-iterations.html#cb91-8" aria-hidden="true" tabindex="-1"></a>i <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb91-9"><a href="conditional-statements-and-iterations.html#cb91-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-10"><a href="conditional-statements-and-iterations.html#cb91-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) {</span>
-<span id="cb91-11"><a href="conditional-statements-and-iterations.html#cb91-11" aria-hidden="true" tabindex="-1"></a>  lsfile[[i]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> files[i],<span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">stringsAsFactors =</span> F)</span>
-<span id="cb91-12"><a href="conditional-statements-and-iterations.html#cb91-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(lsfile)[[i]] <span class="ot">&lt;-</span> <span class="fu">paste</span>(files[i])</span>
-<span id="cb91-13"><a href="conditional-statements-and-iterations.html#cb91-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb91-14"><a href="conditional-statements-and-iterations.html#cb91-14" aria-hidden="true" tabindex="-1"></a>}  </span></code></pre></div>
+<p>The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a
+bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use read.csv to
+import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an
+existing vector rather than add new elements to it for loops run faster.</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb368-1"><a href="conditional-statements-and-iterations.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Create a vector with a list of all csv files in my foulder.</span></span>
+<span id="cb368-2"><a href="conditional-statements-and-iterations.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#You can use the argument path = to change foulder. </span></span>
+<span id="cb368-3"><a href="conditional-statements-and-iterations.html#cb368-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#recursive = F ignors subfolders</span></span>
+<span id="cb368-4"><a href="conditional-statements-and-iterations.html#cb368-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">&quot;.csv&quot;</span>, <span class="at">recursive =</span> F)</span>
+<span id="cb368-5"><a href="conditional-statements-and-iterations.html#cb368-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb368-6"><a href="conditional-statements-and-iterations.html#cb368-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> lsfile <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(files))</span>
+<span id="cb368-7"><a href="conditional-statements-and-iterations.html#cb368-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb368-8"><a href="conditional-statements-and-iterations.html#cb368-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) {</span>
+<span id="cb368-9"><a href="conditional-statements-and-iterations.html#cb368-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   lsfile[[i]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> files[i],<span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb368-10"><a href="conditional-statements-and-iterations.html#cb368-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">names</span>(lsfile)[[i]] <span class="ot">&lt;-</span> <span class="fu">paste</span>(files[i])</span>
+<span id="cb368-11"><a href="conditional-statements-and-iterations.html#cb368-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   </span>
+<span id="cb368-12"><a href="conditional-statements-and-iterations.html#cb368-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }  </span></code></pre></div>
+<p>An alternative way to do it that’s a bit more descriptive would be to use the acutall fill names by iterating over the elements of the files
+vectors rather than over the positions of the elements.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb369-1"><a href="conditional-statements-and-iterations.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">&quot;.csv&quot;</span>, <span class="at">recursive =</span> F)</span>
+<span id="cb369-2"><a href="conditional-statements-and-iterations.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb369-3"><a href="conditional-statements-and-iterations.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> lsfile <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(files))</span>
+<span id="cb369-4"><a href="conditional-statements-and-iterations.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb369-5"><a href="conditional-statements-and-iterations.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#here I am declaring i</span></span>
+<span id="cb369-6"><a href="conditional-statements-and-iterations.html#cb369-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb369-7"><a href="conditional-statements-and-iterations.html#cb369-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Remember that the counting variable is basically, just what ever that&#39;s in the vector</span></span>
+<span id="cb369-8"><a href="conditional-statements-and-iterations.html#cb369-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#In this case file is just the file names, btw it&#39;s not that R understand what file means</span></span>
+<span id="cb369-9"><a href="conditional-statements-and-iterations.html#cb369-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#You could change file to pineapple and get the same result. </span></span>
+<span id="cb369-10"><a href="conditional-statements-and-iterations.html#cb369-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">for</span> (file <span class="cf">in</span> files) {</span>
+<span id="cb369-11"><a href="conditional-statements-and-iterations.html#cb369-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   lsfile[[i]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">paste</span>(file),<span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb369-12"><a href="conditional-statements-and-iterations.html#cb369-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">names</span>(lsfile)[[i]] <span class="ot">&lt;-</span> <span class="fu">paste</span>(file)</span>
+<span id="cb369-13"><a href="conditional-statements-and-iterations.html#cb369-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   i <span class="ot">&lt;-</span> i<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb369-14"><a href="conditional-statements-and-iterations.html#cb369-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   </span>
+<span id="cb369-15"><a href="conditional-statements-and-iterations.html#cb369-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }  </span></code></pre></div>
 <hr />
+</div>
+</div>
 </div>
             </section>
 
@@ -571,6 +642,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

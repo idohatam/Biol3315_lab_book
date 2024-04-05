@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>The Biostrings package | Biology 3315 Molecular Evolution and Phylogenetics</title>
+  <meta name="description" content="The Biostrings package | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="The Biostrings package | Biology 3315 Molecular Evolution and Phylogenetics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The Biostrings package | Biology 3315 Molecular Evolution and Phylogenetics" />
+  
+  
+  
+
+<meta name="author" content="Dr. Ido Hatam" />
+
+
+<meta name="date" content="2023-02-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="importing-and-working-with-fasta-files-with-base-r.html"/>
+<link rel="next" href="seqinr.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.27/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Biol 3315 lab manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>An introduction to the lab</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-get-the-most-out-of-the-lab.html"><a href="how-to-get-the-most-out-of-the-lab.html"><i class="fa fa-check"></i><strong>How to get the most out of the lab</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><a href="lab-1-introduction-to-the-r-programming-language-and-the-r-studio-ide.html"><i class="fa fa-check"></i><strong>Lab 1 introduction to the R programming language and the R studio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><strong>Getting started</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#what-is-r"><i class="fa fa-check"></i><strong>What is R?</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#why-use-r"><i class="fa fa-check"></i><strong>Why use R?</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#downloading-and-installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><strong>Downloading and installing R and RStudio desktop</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-r-interpreter"><i class="fa fa-check"></i><strong>The R interpreter</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#short-console-exercise"><i class="fa fa-check"></i><strong>Short console exercise</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-rstudio-ide"><i class="fa fa-check"></i><strong>The RStudio IDE</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-text-editor-pane"><i class="fa fa-check"></i><strong>The text editor pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-console-pane"><i class="fa fa-check"></i><strong>The console pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-global-environment-pane"><i class="fa fa-check"></i><strong>The global environment pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#the-output-pane"><i class="fa fa-check"></i><strong>The output pane</strong></a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#short-exercise-in-rstudio"><i class="fa fa-check"></i><strong>Short exercise in RStudio</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html"><i class="fa fa-check"></i><strong>Programming in R - the basics</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#r-language-and-syntax"><i class="fa fa-check"></i><strong>R language and syntax</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#seeking-help"><i class="fa fa-check"></i><strong>Seeking help</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#extended-help-search"><i class="fa fa-check"></i><strong>Extended help search</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#quick-r-exercise---basic-syntax"><i class="fa fa-check"></i><strong>Quick R exercise - basic syntax:</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#expanding-rs-capabilities-by-installing-additional-function-packages"><i class="fa fa-check"></i><strong>Expanding R’s capabilities by installing additional function packages</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#quick-r-exercise---installing-and-loading-packages"><i class="fa fa-check"></i><strong>Quick R exercise - installing and loading packages</strong></a></li>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#variable-assignment-in-r---vs---vs"><i class="fa fa-check"></i><strong>Variable assignment in R (<code>&lt;-</code> vs <code>-&gt;</code> vs <code>=</code>)</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="programming-in-r---the-basics.html"><a href="programming-in-r---the-basics.html#rules-for-variable-naming-in-r"><i class="fa fa-check"></i><strong>Rules for variable naming in R</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html"><i class="fa fa-check"></i><strong>Data types (objects) in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#atomic-vectors"><i class="fa fa-check"></i><strong>“Atomic” vectors</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#numeric-vectors-double-and-integer"><i class="fa fa-check"></i><strong>Numeric vectors (double and integer)</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#indexing-and-subseting-numeric-vectors"><i class="fa fa-check"></i><strong>Indexing and subseting numeric vectors</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---indexing-and-subseting"><i class="fa fa-check"></i><strong>Quick R exercise - indexing and subseting:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#character-vectors"><i class="fa fa-check"></i><strong>Character vectors:</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---character-vectors"><i class="fa fa-check"></i><strong>Quick R exercise - character vectors:</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---strings"><i class="fa fa-check"></i><strong>Quick R exercise - strings:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#logical-vectors"><i class="fa fa-check"></i><strong>Logical vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#checking-and-coercing"><i class="fa fa-check"></i><strong>Checking and coercing</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-class-function"><i class="fa fa-check"></i><strong>The class function</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-is.x-function-family"><i class="fa fa-check"></i><strong>The is.x function family</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#the-as.x-function-family"><i class="fa fa-check"></i><strong>The as.x function family</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---checking-and-coercing"><i class="fa fa-check"></i><strong>Quick R exercise - checking and coercing</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#factors---vectors-evil-cousins"><i class="fa fa-check"></i><strong>Factors - vectors’ evil cousins</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#matrices"><i class="fa fa-check"></i><strong>Matrices</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---matrices-1"><i class="fa fa-check"></i><strong>Quick R exercise - matrices 1</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-matrices"><i class="fa fa-check"></i><strong>Working with matrices</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---matrices-2"><i class="fa fa-check"></i><strong>Quick R exercise - matrices 2</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists"><i class="fa fa-check"></i><strong>Lists</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#working-with-lists"><i class="fa fa-check"></i><strong>Working with lists</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#lists-and-the-operator"><i class="fa fa-check"></i><strong>Lists and the $ operator</strong></a></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#quick-r-exercise---lists"><i class="fa fa-check"></i><strong>Quick R exercise - lists</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-types-objects-in-r.html"><a href="data-types-objects-in-r.html#data-frames"><i class="fa fa-check"></i><strong>Data frames</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary-exercise-lab1.html"><a href="summary-exercise-lab1.html"><i class="fa fa-check"></i><strong>Summary exercise Lab1</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-2-data-manipulation-and-presentation-in-r.html"><a href="lab-2-data-manipulation-and-presentation-in-r.html"><i class="fa fa-check"></i><strong>Lab 2 data manipulation and presentation in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup.html"><a href="the-setup.html"><i class="fa fa-check"></i><strong>The setup</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html"><i class="fa fa-check"></i><strong>Importing and exporting data in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.csv"><i class="fa fa-check"></i><strong>read.csv</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.table"><i class="fa fa-check"></i><strong>read.table</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#reading-non-tabulated-text-files"><i class="fa fa-check"></i><strong>Reading non-tabulated text files</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---working-with-strings-from-non-tabulated-data"><i class="fa fa-check"></i><strong>Quick R exercise - working with strings from non-tabulated data</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-tabulated-data"><i class="fa fa-check"></i><strong>Exporting tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-non-tabulated-data"><i class="fa fa-check"></i><strong>Exporting non-tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---data-exportation"><i class="fa fa-check"></i><strong>Quick R exercise - data exportation</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html"><i class="fa fa-check"></i><strong>(Tidy) Data manipulation in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#a-tidy-re-imagining-of-the-data-frame"><i class="fa fa-check"></i><strong>A tidy re-imagining of the data frame</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#why-use-tibbles"><i class="fa fa-check"></i><strong>Why use tibbles?</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#even-the-tidyverse-can-get-messy-sometimes"><i class="fa fa-check"></i><strong>Even the tidyverse can get messy sometimes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse"><i class="fa fa-check"></i><strong>Subseting columns and rows using base R and tidyverse</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using <code>%&gt;%</code> (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#adding-and-modifying-columns"><i class="fa fa-check"></i><strong>Adding and modifying columns</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#transforming-data-frames"><i class="fa fa-check"></i><strong>Transforming data frames</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-1"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-2"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><strong>Functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#constructing-a-function"><i class="fa fa-check"></i><strong>Constructing a function</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html"><i class="fa fa-check"></i><strong>Plotting your data</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#potting-data-with-the-ggplot2-package"><i class="fa fa-check"></i><strong>Potting data with the ggplot2 package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#basic-ggplot2-plot"><i class="fa fa-check"></i><strong>Basic ggplot2 plot</strong></a></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#exporting-plots"><i class="fa fa-check"></i><strong>Exporting plots</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary-exercise-lab-2.html"><a href="summary-exercise-lab-2.html"><i class="fa fa-check"></i><strong>Summary exercise lab 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-handling-of-biological-data-in-r---1.html"><a href="lab-3-handling-of-biological-data-in-r---1.html"><i class="fa fa-check"></i><strong>Lab 3 handling of biological data in R - 1</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html"><i class="fa fa-check"></i><strong>The setup</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html#installing-packages-from-bioconductor"><i class="fa fa-check"></i><strong>Installing packages from Bioconductor</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><i class="fa fa-check"></i><strong>Working with biological strings using base R and the tidyverse</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise-3"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise---basic-string-operations"><i class="fa fa-check"></i><strong>Quick R exercise - basic string operations</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html"><i class="fa fa-check"></i><strong>Importing and working with fasta files with base R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html#housing-sequences-moving-beyond-simple-vectors"><i class="fa fa-check"></i><strong>Housing sequences, moving beyond simple vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html"><i class="fa fa-check"></i><strong>The Biostrings package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biosting-sub-classes"><i class="fa fa-check"></i><strong>Basic biosting sub-classes</strong></a></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biostrings-functions"><i class="fa fa-check"></i><strong>Basic Biostrings functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#quick-r-exercise---basic-biostrings-functions"><i class="fa fa-check"></i><strong>Quick R exercise - basic Biostrings functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#working-with-multiple-sequences-using-xstringset-objects"><i class="fa fa-check"></i><strong>Working with multiple sequences using XStringSet objects</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html"><i class="fa fa-check"></i><strong>Seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#data-importation-and-handling-with-seqinr"><i class="fa fa-check"></i><strong>Data importation and handling with seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#quick-r-exercise---sumerizing-seqinr-output"><i class="fa fa-check"></i><strong>Quick R exercise - sumerizing seqinr output</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.0.1" data-path="seqinr.html"><a href="seqinr.html#advanced-seqinr-functions"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Advanced seqinr functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exporting-sequence-elements.html"><a href="exporting-sequence-elements.html"><i class="fa fa-check"></i><strong>Exporting sequence elements</strong></a></li>
+<li class="chapter" data-level="" data-path="summary-exercise.html"><a href="summary-exercise.html"><i class="fa fa-check"></i><strong>Summary exercise:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>1</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>1.1</b> Footnotes</a></li>
+<li class="chapter" data-level="1.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>1.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>2</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>2.1</b> Equations</a></li>
+<li class="chapter" data-level="2.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>2.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="2.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>2.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>3</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>3.1</b> Publishing</a></li>
+<li class="chapter" data-level="3.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>3.2</b> 404 pages</a></li>
+<li class="chapter" data-level="3.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>3.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="4" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>4</b> <strong>Lab 8</strong></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-biostrings-package" class="section level2 unnumbered hasAnchor">
+<h2><strong>The Biostrings package</strong><a href="the-biostrings-package.html#the-biostrings-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first package we will deal with is Biostrings. As its name suggests, it is a package that
+handles biological strings. It can handle DNA, RNA, and amino acid sequences and is also capable of
+pattern matching, which helps with sequence look-up and alignment (albeit with limited capabilities).
+Biostirngs allows to import individual sequences, or FASTA files containing multiple sequences.</p>
+<p>Biostrings utilizes a specialized class of container to store strings called Xstring. Xstring is similar to a
+character vector however, unlike a vector it can only house a single string.</p>
+<div id="basic-biosting-sub-classes" class="section level3 unnumbered hasAnchor">
+<h3><strong>Basic biosting sub-classes</strong><a href="the-biostrings-package.html#basic-biosting-sub-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The XString class has four sub classes:</p>
+<ol style="list-style-type: decimal">
+<li><p>DNAstring - stores DNA sequences</p></li>
+<li><p>RNAstring - stores RNA sequences</p></li>
+<li><p>AAstring - stores amino acid sequences</p></li>
+<li><p>Bstring - stores general strings (character/alphabet agnostic)</p></li>
+</ol>
+<p>Let’s look at a few examples of working with strings using Biostrings</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb422-1"><a href="the-biostrings-package.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#As always, let&#39;s generate a random string and convert it to a Xstring object</span></span>
+<span id="cb422-2"><a href="the-biostrings-package.html#cb422-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb422-3"><a href="the-biostrings-package.html#cb422-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> string <span class="ot">&lt;-</span> <span class="st">&quot;This is a random string (is it random though?!)&quot;</span></span>
+<span id="cb422-4"><a href="the-biostrings-package.html#cb422-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb422-5"><a href="the-biostrings-package.html#cb422-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Now lets call it as DNAstring</span></span>
+<span id="cb422-6"><a href="the-biostrings-package.html#cb422-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb422-7"><a href="the-biostrings-package.html#cb422-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> string <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(string)</span></code></pre></div>
+<pre><code>Error in .Call2(&quot;new_XString_from_CHARACTER&quot;, class(x0), string, start, : key 105 (char &#39;i&#39;) not in lookup table</code></pre>
+<p>Uh-oh, an error message.
+This is because DNAstring is limited in its intake of characters, remember that only Bstring is
+character agnostic.</p>
+<p>Let’s see which characters does DNAstring accepts</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb424-1"><a href="the-biostrings-package.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> DNA_ALPHABET</span></code></pre></div>
+<pre><code> [1] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot; &quot;M&quot; &quot;R&quot; &quot;W&quot; &quot;S&quot; &quot;Y&quot; &quot;K&quot; &quot;V&quot; &quot;H&quot; &quot;D&quot; &quot;B&quot; &quot;N&quot; &quot;-&quot; &quot;+&quot; &quot;.&quot;</code></pre>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb426-1"><a href="the-biostrings-package.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#In case you were wondering what each of those letters mean Biostrings has a function with the </span></span>
+<span id="cb426-2"><a href="the-biostrings-package.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#details.</span></span>
+<span id="cb426-3"><a href="the-biostrings-package.html#cb426-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Useful when designing synthetic sequences like primers</span></span>
+<span id="cb426-4"><a href="the-biostrings-package.html#cb426-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb426-5"><a href="the-biostrings-package.html#cb426-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> IUPAC_CODE_MAP</span></code></pre></div>
+<pre><code>     A      C      G      T      M      R      W      S      Y      K      V 
+   &quot;A&quot;    &quot;C&quot;    &quot;G&quot;    &quot;T&quot;   &quot;AC&quot;   &quot;AG&quot;   &quot;AT&quot;   &quot;CG&quot;   &quot;CT&quot;   &quot;GT&quot;  &quot;ACG&quot; 
+     H      D      B      N 
+ &quot;ACT&quot;  &quot;AGT&quot;  &quot;CGT&quot; &quot;ACGT&quot; </code></pre>
+<p>As you can see, DNAstring accepts more than just ATCG, it also accepts base categories, strand
+orientation (+/-) and alignment gaps.</p>
+<p>Let’s see which characters the other two restricted sub classes accept.</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb428-1"><a href="the-biostrings-package.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> RNA_ALPHABET</span></code></pre></div>
+<pre><code> [1] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;U&quot; &quot;M&quot; &quot;R&quot; &quot;W&quot; &quot;S&quot; &quot;Y&quot; &quot;K&quot; &quot;V&quot; &quot;H&quot; &quot;D&quot; &quot;B&quot; &quot;N&quot; &quot;-&quot; &quot;+&quot; &quot;.&quot;</code></pre>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb430-1"><a href="the-biostrings-package.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> AA_ALPHABET</span></code></pre></div>
+<pre><code> [1] &quot;A&quot; &quot;R&quot; &quot;N&quot; &quot;D&quot; &quot;C&quot; &quot;Q&quot; &quot;E&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;L&quot; &quot;K&quot; &quot;M&quot; &quot;F&quot; &quot;P&quot; &quot;S&quot; &quot;T&quot; &quot;W&quot; &quot;Y&quot;
+[20] &quot;V&quot; &quot;U&quot; &quot;O&quot; &quot;B&quot; &quot;J&quot; &quot;Z&quot; &quot;X&quot; &quot;*&quot; &quot;-&quot; &quot;+&quot; &quot;.&quot;</code></pre>
+<p>Now, let’s use the acceptable alphabet to generate an string that will not produce an error.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb432-1"><a href="the-biostrings-package.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#I am creating an AA sequence, using AA_standard to just include the standard amino acid symbols</span></span>
+<span id="cb432-2"><a href="the-biostrings-package.html#cb432-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that I am setting seed, if you want to reproduce the same random string I produced </span></span>
+<span id="cb432-3"><a href="the-biostrings-package.html#cb432-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#you should set seed to the same number</span></span>
+<span id="cb432-4"><a href="the-biostrings-package.html#cb432-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb432-5"><a href="the-biostrings-package.html#cb432-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb432-6"><a href="the-biostrings-package.html#cb432-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb432-7"><a href="the-biostrings-package.html#cb432-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain <span class="ot">&lt;-</span> <span class="fu">AAString</span>(<span class="fu">paste</span>(<span class="fu">sample</span>(AA_STANDARD, <span class="dv">10</span>, <span class="at">replace =</span> T),<span class="at">collapse =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb432-8"><a href="the-biostrings-package.html#cb432-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb432-9"><a href="the-biostrings-package.html#cb432-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain</span></code></pre></div>
+<pre><code>10-letter AAString object
+seq: PYFNIWLCVF</code></pre>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb434-1"><a href="the-biostrings-package.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(casain)</span></code></pre></div>
+<pre><code>[1] &quot;AAString&quot;
+attr(,&quot;package&quot;)
+[1] &quot;Biostrings&quot;</code></pre>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb436-1"><a href="the-biostrings-package.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Note, type of will output S4, this is a different object type than ones we have worked with so far</span></span>
+<span id="cb436-2"><a href="the-biostrings-package.html#cb436-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(casain)</span></code></pre></div>
+<pre><code>[1] &quot;S4&quot;</code></pre>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb438-1"><a href="the-biostrings-package.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(casain)</span></code></pre></div>
+<pre><code>Formal class &#39;AAString&#39; [package &quot;Biostrings&quot;] with 5 slots
+  ..@ shared         :Formal class &#39;SharedRaw&#39; [package &quot;XVector&quot;] with 2 slots
+  .. .. ..@ xp                    :&lt;externalptr&gt; 
+  .. .. ..@ .link_to_cached_object:&lt;environment: 0x14f30f588&gt; 
+  ..@ offset         : int 0
+  ..@ length         : int 10
+  ..@ elementMetadata: NULL
+  ..@ metadata       : list()</code></pre>
+<p>One advantage of the Xstring class is that it allows to treat the sequence both as a vector and as
+a string. Making it easy to index, subset, and modify.</p>
+<p>The code snippet bellow demonstrate how access and modify an XString class.</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb440-1"><a href="the-biostrings-package.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Lets get the first element of the AA sequence</span></span>
+<span id="cb440-2"><a href="the-biostrings-package.html#cb440-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>1-letter AAString object
+seq: P</code></pre>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb442-1"><a href="the-biostrings-package.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Lets subset</span></span>
+<span id="cb442-2"><a href="the-biostrings-package.html#cb442-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>5-letter AAString object
+seq: PYFNI</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb444-1"><a href="the-biostrings-package.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Another great feature of the xstring class is that the string is mutable in the same way a vector </span></span>
+<span id="cb444-2"><a href="the-biostrings-package.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#is. Let&#39;s change the first AA to methionine.</span></span>
+<span id="cb444-3"><a href="the-biostrings-package.html#cb444-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb444-4"><a href="the-biostrings-package.html#cb444-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;M&quot;</span></span>
+<span id="cb444-5"><a href="the-biostrings-package.html#cb444-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb444-6"><a href="the-biostrings-package.html#cb444-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Appending characters is done in the same way you would a character vector.</span></span>
+<span id="cb444-7"><a href="the-biostrings-package.html#cb444-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain[<span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="st">&quot;J&quot;</span></span>
+<span id="cb444-8"><a href="the-biostrings-package.html#cb444-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Reminder that gaps can also be added.</span></span>
+<span id="cb444-9"><a href="the-biostrings-package.html#cb444-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;-&quot;</span></span>
+<span id="cb444-10"><a href="the-biostrings-package.html#cb444-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb444-11"><a href="the-biostrings-package.html#cb444-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> casain</span></code></pre></div>
+<pre><code>11-letter AAString object
+seq: MYFNIWLCV-J</code></pre>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb446-1"><a href="the-biostrings-package.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#The bonus is that because an xstring class object is treated as a string, it is easy to use functions from the stringr package to process it. Let&#39;s use str_detect to pattern match.</span></span>
+<span id="cb446-2"><a href="the-biostrings-package.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#We already know that this pattern is elements 1-5 of the string</span></span>
+<span id="cb446-3"><a href="the-biostrings-package.html#cb446-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb446-4"><a href="the-biostrings-package.html#cb446-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">str_detect</span>(casain, <span class="st">&quot;MYFNI&quot;</span>)</span></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb448-1"><a href="the-biostrings-package.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Can also use stringer to replace elements in the string, easier to replace a larger pattern. </span></span>
+<span id="cb448-2"><a href="the-biostrings-package.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">str_replace</span>(casain, <span class="st">&quot;MYFNI&quot;</span>,<span class="st">&quot;MYXGT&quot;</span>)</span></code></pre></div>
+<pre><code>[1] &quot;MYXGTWLCV-J&quot;</code></pre>
+</div>
+<div id="basic-biostrings-functions" class="section level3 unnumbered hasAnchor">
+<h3><strong>Basic Biostrings functions</strong><a href="the-biostrings-package.html#basic-biostrings-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Biostrings package has some useful functions with respect to sequence processing.
+Let’s look at some of them.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb450-1"><a href="the-biostrings-package.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Biostrings can sum up the frequency of each letter (i.e. AA in this case)</span></span>
+<span id="cb450-2"><a href="the-biostrings-package.html#cb450-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">alphabetFrequency</span>(casain)</span>
+<span id="cb450-3"><a href="the-biostrings-package.html#cb450-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#output is a named vector, not the most convinent of ways to present results.</span></span>
+<span id="cb450-4"><a href="the-biostrings-package.html#cb450-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x</span></code></pre></div>
+<pre><code>    A     R     N     D     C     Q     E     G     H     I     L     K     M 
+    0     0     1     0     1     0     0     0     0     1     1     0     1 
+    F     P     S     T     W     Y     V     U     O     B     J     Z     X 
+    1     0     0     0     1     1     1     0     0     0     1     0     0 
+    *     -     +     . other 
+    0     1     0     0     0 </code></pre>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb452-1"><a href="the-biostrings-package.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Can subset to only include those larger than 0 (and normlize to percent)</span></span>
+<span id="cb452-2"><a href="the-biostrings-package.html#cb452-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#as.prob gives the probability of each AA</span></span>
+<span id="cb452-3"><a href="the-biostrings-package.html#cb452-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">alphabetFrequency</span>(casain, <span class="at">as.prob =</span> T)[<span class="fu">alphabetFrequency</span>(casain)<span class="sc">&gt;</span><span class="dv">0</span>]<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb452-4"><a href="the-biostrings-package.html#cb452-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb452-5"><a href="the-biostrings-package.html#cb452-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x</span></code></pre></div>
+<pre><code>       N        C        I        L        M        F        W        Y 
+9.090909 9.090909 9.090909 9.090909 9.090909 9.090909 9.090909 9.090909 
+       V        J        - 
+9.090909 9.090909 9.090909 </code></pre>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb454-1"><a href="the-biostrings-package.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s do the same to a longer sequence, this time DNA</span></span>
+<span id="cb454-2"><a href="the-biostrings-package.html#cb454-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#First, convert the sq1 string to xstring</span></span>
+<span id="cb454-3"><a href="the-biostrings-package.html#cb454-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.bio <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(sq1)</span>
+<span id="cb454-4"><a href="the-biostrings-package.html#cb454-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb454-5"><a href="the-biostrings-package.html#cb454-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#If using nucleotides, can use the argument basOnly, to only get ATCG</span></span>
+<span id="cb454-6"><a href="the-biostrings-package.html#cb454-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x.d <span class="ot">&lt;-</span> <span class="fu">alphabetFrequency</span>(sq1.bio, <span class="at">baseOnly=</span>T, <span class="at">as.prob =</span> T)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb454-7"><a href="the-biostrings-package.html#cb454-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb454-8"><a href="the-biostrings-package.html#cb454-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x.d</span></code></pre></div>
+<pre><code>    A     C     G     T other 
+   24    29    30    17     0 </code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb456-1"><a href="the-biostrings-package.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Alternatively its possible to look at the proportion of only one base with letterFrequency</span></span>
+<span id="cb456-2"><a href="the-biostrings-package.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb456-3"><a href="the-biostrings-package.html#cb456-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">letterFrequency</span>(sq1.bio,<span class="st">&quot;C&quot;</span>, <span class="at">as.prob =</span> T)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code> C 
+29 </code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb458-1"><a href="the-biostrings-package.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">letterFrequency</span>(sq1.bio, <span class="fu">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;C&quot;</span>), <span class="at">as.prob =</span> T)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code> G  C 
+30 29 </code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb460-1"><a href="the-biostrings-package.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Now let&#39;s convert the frequency information of all nucletides to a dataframe and plot it</span></span>
+<span id="cb460-2"><a href="the-biostrings-package.html#cb460-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb460-3"><a href="the-biostrings-package.html#cb460-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x.d.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">names</span>(x.d),x.d, <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb460-4"><a href="the-biostrings-package.html#cb460-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb460-5"><a href="the-biostrings-package.html#cb460-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">ggplot</span>(x.d.df, <span class="fu">aes</span>(<span class="at">y=</span>x.d, <span class="at">x=</span>names.x.d.))<span class="sc">+</span></span>
+<span id="cb460-6"><a href="the-biostrings-package.html#cb460-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb460-7"><a href="the-biostrings-package.html#cb460-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb460-8"><a href="the-biostrings-package.html#cb460-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">xlab</span>(<span class="st">&quot;Bases&quot;</span>)<span class="sc">+</span></span>
+<span id="cb460-9"><a href="the-biostrings-package.html#cb460-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ylab</span>(<span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/biostrings%20functions-1.png" width="672" /></p>
+<p>Biostrings allows you to reveres, complement, and even translate nucleotide sequences.</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb461-1"><a href="the-biostrings-package.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Reverse a sequence</span></span>
+<span id="cb461-2"><a href="the-biostrings-package.html#cb461-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.bio.rev <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">reverse</span>(sq1.bio)</span>
+<span id="cb461-3"><a href="the-biostrings-package.html#cb461-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb461-4"><a href="the-biostrings-package.html#cb461-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Complement a sequence</span></span>
+<span id="cb461-5"><a href="the-biostrings-package.html#cb461-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.bio.comp <span class="ot">&lt;-</span> <span class="fu">complement</span>(sq1.bio)</span>
+<span id="cb461-6"><a href="the-biostrings-package.html#cb461-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb461-7"><a href="the-biostrings-package.html#cb461-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Reverse complement a sequence</span></span>
+<span id="cb461-8"><a href="the-biostrings-package.html#cb461-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.bio.rev.comp <span class="ot">&lt;-</span> <span class="fu">reverseComplement</span>(sq1.bio)</span>
+<span id="cb461-9"><a href="the-biostrings-package.html#cb461-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb461-10"><a href="the-biostrings-package.html#cb461-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.bio</span></code></pre></div>
+<pre><code>100-letter DNAString object
+seq: GAAGATGTCTCGTCTCCACCTGGGGGGTAGGGTCCC...CCGGAGCGGGGAACCATATCGAACCAGTATAGAAAT</code></pre>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb463-1"><a href="the-biostrings-package.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sq1.bio.rev</span></code></pre></div>
+<pre><code>100-letter DNAString object
+seq: TAAAGATATGACCAAGCTATACCAAGGGGCGAGGCC...CCCTGGGATGGGGGGTCCACCTCTGCTCTGTAGAAG</code></pre>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb465-1"><a href="the-biostrings-package.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sq1.bio.comp</span></code></pre></div>
+<pre><code>100-letter DNAString object
+seq: CTTCTACAGAGCAGAGGTGGACCCCCCATCCCAGGG...GGCCTCGCCCCTTGGTATAGCTTGGTCATATCTTTA</code></pre>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb467-1"><a href="the-biostrings-package.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sq1.bio.rev.comp</span></code></pre></div>
+<pre><code>100-letter DNAString object
+seq: ATTTCTATACTGGTTCGATATGGTTCCCCGCTCCGG...GGGACCCTACCCCCCAGGTGGAGACGAGACATCTTC</code></pre>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb469-1"><a href="the-biostrings-package.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#translate a sequence</span></span>
+<span id="cb469-2"><a href="the-biostrings-package.html#cb469-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.bio.t <span class="ot">&lt;-</span> <span class="fu">translate</span>(sq1.bio)</span></code></pre></div>
+<pre><code>Warning in .Call2(&quot;DNAStringSet_translate&quot;, x, skip_code,
+dna_codes[codon_alphabet], : last base was ignored</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb471-1"><a href="the-biostrings-package.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sq1.bio.t</span></code></pre></div>
+<pre><code>33-letter AAString object
+seq: EDVSSPPGG*GPSDVHHPWAHAGAGNHIEPV*K</code></pre>
+<div id="quick-r-exercise---basic-biostrings-functions" class="section level4 unnumbered hasAnchor">
+<h4><strong>Quick R exercise - basic Biostrings functions</strong><a href="the-biostrings-package.html#quick-r-exercise---basic-biostrings-functions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use ?Biostrings::translate to see what arguments the function takes, can it be used to predict
+ORFs?</p>
+</div>
+</div>
+<div id="working-with-multiple-sequences-using-xstringset-objects" class="section level3 unnumbered hasAnchor">
+<h3><strong>Working with multiple sequences using XStringSet objects</strong><a href="the-biostrings-package.html#working-with-multiple-sequences-using-xstringset-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you know by now, bioinformaticians do not work with a single sequence rather with a lot of
+sequences in parallel. Biostrings offers the class XStringSet, as a container for multiple
+sequences. Here too it is a combination of a list and a vector, think of it as a list of XString
+class objects.</p>
+<p>Just like with the XString the XStringSet offers four sub classes</p>
+<ol style="list-style-type: decimal">
+<li><p>DNAStringSet to house DNA sequences</p></li>
+<li><p>RNAStringSet to house RNA sequences</p></li>
+<li><p>AAStringSet to house amino acid sequences</p></li>
+<li><p>BStringSet to house sets of diverse strings</p></li>
+</ol>
+<p>This means that a BStringSet can house the DNA, RNA, and AA sequences of a particular gene.</p>
+<p>Let’s see what it looks like</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb473-1"><a href="the-biostrings-package.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s generate a DNAstringst</span></span>
+<span id="cb473-2"><a href="the-biostrings-package.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb473-3"><a href="the-biostrings-package.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.set <span class="ot">&lt;-</span> <span class="fu">DNAStringSet</span>(<span class="fu">c</span>(<span class="fu">paste</span>(sq1.bio),<span class="fu">paste</span>(sq1.bio.rev),</span>
+<span id="cb473-4"><a href="the-biostrings-package.html#cb473-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                           <span class="fu">paste</span>(sq1.bio.comp),<span class="fu">paste</span>(sq1.bio.rev.comp)))</span>
+<span id="cb473-5"><a href="the-biostrings-package.html#cb473-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb473-6"><a href="the-biostrings-package.html#cb473-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#As you can see, an XStringSet object shows a glimps of the sequence and the length of each </span></span>
+<span id="cb473-7"><a href="the-biostrings-package.html#cb473-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#sequence</span></span>
+<span id="cb473-8"><a href="the-biostrings-package.html#cb473-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb473-9"><a href="the-biostrings-package.html#cb473-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.set</span></code></pre></div>
+<pre><code>DNAStringSet object of length 4:
+    width seq
+[1]   100 GAAGATGTCTCGTCTCCACCTGGGGGGTAGGGTC...GAGCGGGGAACCATATCGAACCAGTATAGAAAT
+[2]   100 TAAAGATATGACCAAGCTATACCAAGGGGCGAGG...TGGGATGGGGGGTCCACCTCTGCTCTGTAGAAG
+[3]   100 CTTCTACAGAGCAGAGGTGGACCCCCCATCCCAG...CTCGCCCCTTGGTATAGCTTGGTCATATCTTTA
+[4]   100 ATTTCTATACTGGTTCGATATGGTTCCCCGCTCC...ACCCTACCCCCCAGGTGGAGACGAGACATCTTC</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb475-1"><a href="the-biostrings-package.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Sequences housed in an XStringSet object can have names, let&#39;s name our sequences</span></span>
+<span id="cb475-2"><a href="the-biostrings-package.html#cb475-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb475-3"><a href="the-biostrings-package.html#cb475-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">names</span>(sq1.set) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sq1.bio&quot;</span>, <span class="st">&quot;sq1.bio.rev&quot;</span>, <span class="st">&quot;sq1.bio.comp&quot;</span>,<span class="st">&quot;sq1.bio.rev.comp&quot;</span>)</span>
+<span id="cb475-4"><a href="the-biostrings-package.html#cb475-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb475-5"><a href="the-biostrings-package.html#cb475-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> sq1.set</span></code></pre></div>
+<pre><code>DNAStringSet object of length 4:
+    width seq                                               names               
+[1]   100 GAAGATGTCTCGTCTCCACCTGG...CCATATCGAACCAGTATAGAAAT sq1.bio
+[2]   100 TAAAGATATGACCAAGCTATACC...GGTCCACCTCTGCTCTGTAGAAG sq1.bio.rev
+[3]   100 CTTCTACAGAGCAGAGGTGGACC...GGTATAGCTTGGTCATATCTTTA sq1.bio.comp
+[4]   100 ATTTCTATACTGGTTCGATATGG...CCAGGTGGAGACGAGACATCTTC sq1.bio.rev.comp</code></pre>
+<p>By now you probably realized that the XStringSet can house sequences from FASTA file.
+Let’s import the FASTA file practice_nuc.fa as an XStringSet object.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb477-1"><a href="the-biostrings-package.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Using the readDNAStringSet function to import the FASTA file.</span></span>
+<span id="cb477-2"><a href="the-biostrings-package.html#cb477-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that if the FASTA file would have contained both AA and nucletieds could have imported it </span></span>
+<span id="cb477-3"><a href="the-biostrings-package.html#cb477-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#using the readBStringSet function</span></span>
+<span id="cb477-4"><a href="the-biostrings-package.html#cb477-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set <span class="ot">&lt;-</span> <span class="fu">readDNAStringSet</span>(<span class="st">&quot;https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_nuc.fa&quot;</span>)</span>
+<span id="cb477-5"><a href="the-biostrings-package.html#cb477-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb477-6"><a href="the-biostrings-package.html#cb477-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#As you can see, the imported file is organized very conveniently</span></span>
+<span id="cb477-7"><a href="the-biostrings-package.html#cb477-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set</span></code></pre></div>
+<pre><code>DNAStringSet object of length 5:
+    width seq                                               names               
+[1]   609 AACTTTGTTTATAAATAATATTT...TTTATATTGAAAATTTTCGCTAT k141_185580_GM_en...
+[2]   544 CTAATTCACAAATCTGCGCGCGA...TGGGGGATGTAAGAGACGCATGA k141_37775_GM_EP_...
+[3]   786 CTATCTCACCAGTCTGCGCGTGA...ATTATTTCCATCAGACTCCATGG k141_45685_Lagoon...
+[4]   786 CTATCTCACCAGTCTGCGCGTGA...ATTATTTCCATCAGACTCCATGG k141_51585_GM_EP_...
+[5]   551 GAAGTAATAGCAATAGCAGGTAC...AAAGCCTCCGGCGAAAGGATCCT k141_5273_LagoonA...</code></pre>
+<p>Objects of class XStringSet can be subset, index, and modified similar to object of class XString</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb479-1"><a href="the-biostrings-package.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#How many elements are in the XStringSet?</span></span>
+<span id="cb479-2"><a href="the-biostrings-package.html#cb479-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb479-3"><a href="the-biostrings-package.html#cb479-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">length</span>(fa.set)</span></code></pre></div>
+<pre><code>[1] 5</code></pre>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb481-1"><a href="the-biostrings-package.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#What is the length of each of the sequences?</span></span>
+<span id="cb481-2"><a href="the-biostrings-package.html#cb481-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb481-3"><a href="the-biostrings-package.html#cb481-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">width</span>(fa.set)</span></code></pre></div>
+<pre><code>[1] 609 544 786 786 551</code></pre>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb483-1"><a href="the-biostrings-package.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#subset the first element</span></span>
+<span id="cb483-2"><a href="the-biostrings-package.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that when subseting an XStringSet, the output is an XStringSet and not an XString</span></span>
+<span id="cb483-3"><a href="the-biostrings-package.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>DNAStringSet object of length 1:
+    width seq                                               names               
+[1]   609 AACTTTGTTTATAAATAATATTT...TTTATATTGAAAATTTTCGCTAT k141_185580_GM_en...</code></pre>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb485-1"><a href="the-biostrings-package.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Because XStrigSet objects are named, they can be indexed and subset using the $ operator.</span></span>
+<span id="cb485-2"><a href="the-biostrings-package.html#cb485-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#In this case the output is a XString object and it can be treated as such</span></span>
+<span id="cb485-3"><a href="the-biostrings-package.html#cb485-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb485-4"><a href="the-biostrings-package.html#cb485-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set<span class="sc">$</span><span class="st">`</span><span class="at">k141_185580_GM_enrich_2.fa:145193-145801 </span><span class="st">`</span></span></code></pre></div>
+<pre><code>609-letter DNAString object
+seq: AACTTTGTTTATAAATAATATTTTATCTCCAATAGC...AATATCTTTATTTTTTATATTGAAAATTTTCGCTAT</code></pre>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb487-1"><a href="the-biostrings-package.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#First character of the XString</span></span>
+<span id="cb487-2"><a href="the-biostrings-package.html#cb487-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb487-3"><a href="the-biostrings-package.html#cb487-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set<span class="sc">$</span><span class="st">`</span><span class="at">k141_185580_GM_enrich_2.fa:145193-145801 </span><span class="st">`</span>[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>1-letter DNAString object
+seq: A</code></pre>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb489-1"><a href="the-biostrings-package.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Can be modefied like a regular vector</span></span>
+<span id="cb489-2"><a href="the-biostrings-package.html#cb489-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set<span class="sc">$</span><span class="st">`</span><span class="at">k141_185580_GM_enrich_2.fa:145193-145801 </span><span class="st">`</span>[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;G&quot;</span></span>
+<span id="cb489-3"><a href="the-biostrings-package.html#cb489-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb489-4"><a href="the-biostrings-package.html#cb489-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set<span class="sc">$</span><span class="st">`</span><span class="at">k141_185580_GM_enrich_2.fa:145193-145801 </span><span class="st">`</span>[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>1-letter DNAString object
+seq: G</code></pre>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb491-1"><a href="the-biostrings-package.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Because XStringSet objects behaive like a list strings can be accessed using &quot;[[ ]]&quot;</span></span>
+<span id="cb491-2"><a href="the-biostrings-package.html#cb491-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb491-3"><a href="the-biostrings-package.html#cb491-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set[[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span></span>
+<span id="cb491-4"><a href="the-biostrings-package.html#cb491-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb491-5"><a href="the-biostrings-package.html#cb491-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set[[<span class="dv">1</span>]][<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>1-letter DNAString object
+seq: A</code></pre>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb493-1"><a href="the-biostrings-package.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#It is easy to access a range of sequences</span></span>
+<span id="cb493-2"><a href="the-biostrings-package.html#cb493-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>DNAStringSet object of length 3:
+    width seq                                               names               
+[1]   609 AACTTTGTTTATAAATAATATTT...TTTATATTGAAAATTTTCGCTAT k141_185580_GM_en...
+[2]   544 CTAATTCACAAATCTGCGCGCGA...TGGGGGATGTAAGAGACGCATGA k141_37775_GM_EP_...
+[3]   786 CTATCTCACCAGTCTGCGCGTGA...ATTATTTCCATCAGACTCCATGG k141_45685_Lagoon...</code></pre>
+<p>One of the advantages of a XStringSet is the ability to manipulate multiple sequences at the same
+time.</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb495-1"><a href="the-biostrings-package.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#alphabetFrequency can calculate base frequency for every sequence, output is a matrix, let&#39;s #output as dataframe</span></span>
+<span id="cb495-2"><a href="the-biostrings-package.html#cb495-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb495-3"><a href="the-biostrings-package.html#cb495-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set.frq <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">alphabetFrequency</span>(fa.set, <span class="at">baseOnly=</span>T, <span class="at">as.prob =</span> T)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb495-4"><a href="the-biostrings-package.html#cb495-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb495-5"><a href="the-biostrings-package.html#cb495-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Let&#39;s orgenize it a bit, add the names and plot</span></span>
+<span id="cb495-6"><a href="the-biostrings-package.html#cb495-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set.frq <span class="ot">&lt;-</span> fa.set.frq <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">Sqs =</span> <span class="fu">names</span>(fa.set)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sqs,<span class="fu">everything</span>(), <span class="sc">-</span>other)<span class="sc">%&gt;%</span></span>
+<span id="cb495-7"><a href="the-biostrings-package.html#cb495-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">&quot;Bases&quot;</span>, <span class="at">value =</span> <span class="st">&quot;Frequency&quot;</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb495-8"><a href="the-biostrings-package.html#cb495-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb495-9"><a href="the-biostrings-package.html#cb495-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Not the pretiest, but you can see that the one at the top left has a much lower GC contant than </span></span>
+<span id="cb495-10"><a href="the-biostrings-package.html#cb495-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#the rest</span></span>
+<span id="cb495-11"><a href="the-biostrings-package.html#cb495-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">ggplot</span>(fa.set.frq, <span class="fu">aes</span>(<span class="at">x=</span>Bases,<span class="at">y=</span>Frequency))<span class="sc">+</span></span>
+<span id="cb495-12"><a href="the-biostrings-package.html#cb495-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb495-13"><a href="the-biostrings-package.html#cb495-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sqs)<span class="sc">+</span></span>
+<span id="cb495-14"><a href="the-biostrings-package.html#cb495-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/XStringSet%20working-1.png" width="672" /></p>
+<p>Similarly, sequences can be reversed, complemented, reverse complemented and translated in bulk.</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb496-1"><a href="the-biostrings-package.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Reverse complement</span></span>
+<span id="cb496-2"><a href="the-biostrings-package.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb496-3"><a href="the-biostrings-package.html#cb496-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set.rc <span class="ot">&lt;-</span> <span class="fu">reverseComplement</span>(fa.set)</span>
+<span id="cb496-4"><a href="the-biostrings-package.html#cb496-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb496-5"><a href="the-biostrings-package.html#cb496-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> fa.set</span></code></pre></div>
+<pre><code>DNAStringSet object of length 5:
+    width seq                                               names               
+[1]   609 AACTTTGTTTATAAATAATATTT...TTTATATTGAAAATTTTCGCTAT k141_185580_GM_en...
+[2]   544 CTAATTCACAAATCTGCGCGCGA...TGGGGGATGTAAGAGACGCATGA k141_37775_GM_EP_...
+[3]   786 CTATCTCACCAGTCTGCGCGTGA...ATTATTTCCATCAGACTCCATGG k141_45685_Lagoon...
+[4]   786 CTATCTCACCAGTCTGCGCGTGA...ATTATTTCCATCAGACTCCATGG k141_51585_GM_EP_...
+[5]   551 GAAGTAATAGCAATAGCAGGTAC...AAAGCCTCCGGCGAAAGGATCCT k141_5273_LagoonA...</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb498-1"><a href="the-biostrings-package.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fa.set.rc</span></code></pre></div>
+<pre><code>DNAStringSet object of length 5:
+    width seq                                               names               
+[1]   609 ATAGCGAAAATTTTCAATATAAA...AAATATTATTTATAAACAAAGTT k141_185580_GM_en...
+[2]   544 TCATGCGTCTCTTACATCCCCCA...TCGCGCGCAGATTTGTGAATTAG k141_37775_GM_EP_...
+[3]   786 CCATGGAGTCTGATGGAAATAAT...TCACGCGCAGACTGGTGAGATAG k141_45685_Lagoon...
+[4]   786 CCATGGAGTCTGATGGAAATAAT...TCACGCGCAGACTGGTGAGATAG k141_51585_GM_EP_...
+[5]   551 AGGATCCTTTCGCCGGAGGCTTT...GTACCTGCTATTGCTATTACTTC k141_5273_LagoonA...</code></pre>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb500-1"><a href="the-biostrings-package.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Pattern matching can also be done for all the sequences, let&#39;s serch for start codones</span></span>
+<span id="cb500-2"><a href="the-biostrings-package.html#cb500-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">str_locate_all</span>(fa.set, <span class="st">&quot;ATG&quot;</span>)</span></code></pre></div>
+<pre><code>[[1]]
+     start end
+[1,]    92  94
+[2,]   148 150
+[3,]   317 319
+[4,]   386 388
+[5,]   467 469
+[6,]   543 545
+
+[[2]]
+      start end
+ [1,]    31  33
+ [2,]   137 139
+ [3,]   177 179
+ [4,]   274 276
+ [5,]   310 312
+ [6,]   353 355
+ [7,]   413 415
+ [8,]   516 518
+ [9,]   521 523
+[10,]   528 530
+[11,]   541 543
+
+[[3]]
+     start end
+[1,]    95  97
+[2,]   115 117
+[3,]   184 186
+[4,]   268 270
+[5,]   347 349
+[6,]   358 360
+[7,]   598 600
+[8,]   783 785
+
+[[4]]
+     start end
+[1,]    95  97
+[2,]   115 117
+[3,]   184 186
+[4,]   268 270
+[5,]   347 349
+[6,]   358 360
+[7,]   598 600
+[8,]   783 785
+
+[[5]]
+      start end
+ [1,]    43  45
+ [2,]   131 133
+ [3,]   151 153
+ [4,]   157 159
+ [5,]   170 172
+ [6,]   248 250
+ [7,]   281 283
+ [8,]   313 315
+ [9,]   330 332
+[10,]   406 408
+[11,]   416 418
+[12,]   481 483</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="importing-and-working-with-fasta-files-with-base-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="seqinr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-lab3_biological_data1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

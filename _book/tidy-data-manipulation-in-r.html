@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Ido Hatam" />
 
 
-<meta name="date" content="2023-02-14" />
+<meta name="date" content="2023-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="importing-and-exporting-data-in-r.html"/>
-<link rel="next" href="functions.html"/>
+<link rel="next" href="conditional-statements-and-iterations.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.27/datatables.js"></script>
 <link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -250,8 +250,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="lab-2-data-manipulation-and-presentation-in-r.html"><a href="lab-2-data-manipulation-and-presentation-in-r.html"><i class="fa fa-check"></i><strong>Lab 2 data manipulation and presentation in R</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><strong>Learning objectives</strong></a></li>
-<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>0.1</b> <strong>Setup</strong></a></li>
+<li class="chapter" data-level="" data-path="the-setup.html"><a href="the-setup.html"><i class="fa fa-check"></i><strong>The setup</strong></a></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html"><i class="fa fa-check"></i><strong>Importing and exporting data in R</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.csv"><i class="fa fa-check"></i><strong>read.csv</strong></a></li>
@@ -261,25 +260,37 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---working-with-strings-from-non-tabulated-data"><i class="fa fa-check"></i><strong>Quick R exercise - working with strings from non-tabulated data</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-tabulated-data"><i class="fa fa-check"></i><strong>Exporting tabulated data</strong></a></li>
-<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exportin-non-tabulated-data"><i class="fa fa-check"></i><strong>Exportin non-tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-non-tabulated-data"><i class="fa fa-check"></i><strong>Exporting non-tabulated data</strong></a></li>
 <li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---data-exportation"><i class="fa fa-check"></i><strong>Quick R exercise - data exportation</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html"><i class="fa fa-check"></i><strong>(Tidy) Data manipulation in R</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#tidy-data-in-r"><i class="fa fa-check"></i><strong>Tidy data in R</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#a-tidy-re-imagining-of-the-data-frame"><i class="fa fa-check"></i><strong>A tidy re-imagining of the data frame</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#why-use-tibbles"><i class="fa fa-check"></i><strong>Why use tibbles?</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#even-the-tidyverse-can-get-messy-sometimes"><i class="fa fa-check"></i><strong>Even the tidyverse can get messy sometimes</strong></a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse"><i class="fa fa-check"></i><strong>Subseting columns and rows using base R and tidyverse</strong></a>
 <ul>
 <li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using %&gt;% (pip)operator</strong></a></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#conditional-statements-and-iterations"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using <code>%&gt;%</code> (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#adding-and-modifying-columns"><i class="fa fa-check"></i><strong>Adding and modifying columns</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#transforming-data-frames"><i class="fa fa-check"></i><strong>Transforming data frames</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
-<ul>
-<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-1"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-2"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><strong>Functions</strong></a>
@@ -296,26 +307,60 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="summary-exercise-lab-2.html"><a href="summary-exercise-lab-2.html"><i class="fa fa-check"></i><strong>Summary exercise lab 2</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>1</b> Parts</a></li>
-<li class="chapter" data-level="2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>2</b> Footnotes and citations</a>
+<li class="chapter" data-level="" data-path="lab-3-handling-of-biological-data-in-r---1.html"><a href="lab-3-handling-of-biological-data-in-r---1.html"><i class="fa fa-check"></i><strong>Lab 3 handling of biological data in R - 1</strong></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>2.1</b> Footnotes</a></li>
-<li class="chapter" data-level="2.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>2.2</b> Citations</a></li>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html"><i class="fa fa-check"></i><strong>The setup</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html#installing-packages-from-bioconductor"><i class="fa fa-check"></i><strong>Installing packages from Bioconductor</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>3</b> Blocks</a>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><i class="fa fa-check"></i><strong>Working with biological strings using base R and the tidyverse</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>3.1</b> Equations</a></li>
-<li class="chapter" data-level="3.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>3.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="3.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>3.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise-3"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise---basic-string-operations"><i class="fa fa-check"></i><strong>Quick R exercise - basic string operations</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>4</b> Sharing your book</a>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html"><i class="fa fa-check"></i><strong>Importing and working with fasta files with base R</strong></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>4.1</b> Publishing</a></li>
-<li class="chapter" data-level="4.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>4.2</b> 404 pages</a></li>
-<li class="chapter" data-level="4.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>4.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html#housing-sequences-moving-beyond-simple-vectors"><i class="fa fa-check"></i><strong>Housing sequences, moving beyond simple vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html"><i class="fa fa-check"></i><strong>The Biostrings package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biosting-sub-classes"><i class="fa fa-check"></i><strong>Basic biosting sub-classes</strong></a></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biostrings-functions"><i class="fa fa-check"></i><strong>Basic Biostrings functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#quick-r-exercise---basic-biostrings-functions"><i class="fa fa-check"></i><strong>Quick R exercise - basic Biostrings functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#working-with-multiple-sequences-using-xstringset-objects"><i class="fa fa-check"></i><strong>Working with multiple sequences using XStringSet objects</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html"><i class="fa fa-check"></i><strong>Seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#data-importation-and-handling-with-seqinr"><i class="fa fa-check"></i><strong>Data importation and handling with seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#quick-r-exercise---sumerizing-seqinr-output"><i class="fa fa-check"></i><strong>Quick R exercise - sumerizing seqinr output</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.0.1" data-path="seqinr.html"><a href="seqinr.html#advanced-seqinr-functions"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Advanced seqinr functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exporting-sequence-elements.html"><a href="exporting-sequence-elements.html"><i class="fa fa-check"></i><strong>Exporting sequence elements</strong></a></li>
+<li class="chapter" data-level="" data-path="summary-exercise.html"><a href="summary-exercise.html"><i class="fa fa-check"></i><strong>Summary exercise:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>1</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>1.1</b> Footnotes</a></li>
+<li class="chapter" data-level="1.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>1.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>2</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>2.1</b> Equations</a></li>
+<li class="chapter" data-level="2.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>2.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="2.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>2.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>3</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>3.1</b> Publishing</a></li>
+<li class="chapter" data-level="3.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>3.2</b> 404 pages</a></li>
+<li class="chapter" data-level="3.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>3.3</b> Metadata for sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="5" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>5</b> <strong>Lab 8</strong></a></li>
+<li class="chapter" data-level="4" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>4</b> <strong>Lab 8</strong></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -357,122 +402,242 @@ Click to expand
 </ul>
 </details>
 <hr />
-<div id="tidy-data-in-r" class="section level3 unnumbered hasAnchor">
-<h3><strong>Tidy data in R</strong><a href="tidy-data-manipulation-in-r.html#tidy-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-tidy-re-imagining-of-the-data-frame" class="section level3 unnumbered hasAnchor">
+<h3><strong>A tidy re-imagining of the data frame</strong><a href="tidy-data-manipulation-in-r.html#a-tidy-re-imagining-of-the-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As mentioned, the tidyverse is an assortment of packages designed for tidying up and streamlining data analysis and code writing in
+R. As you will see the tidyverse redesigned several basic consents in R, including data structure such as factors (via the
+<code>forcats</code> package) and data frames via the tibble package.
+Tibbles are the default format of tabulated data for many tidyverse packages.
+What are tibbles? Tibbles are first and foremost data frames. Lets see an example using readr’s <code>read_csv()</code> function.
+When importing a csv file using <code>read_csv()</code> we get a tibble, rather than a data frame.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb289-1"><a href="tidy-data-manipulation-in-r.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1_tbl <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span><span class="st">&quot;lab2_files/practice2.csv&quot;</span>)</span>
+<span id="cb289-2"><a href="tidy-data-manipulation-in-r.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(df1_tbl)</span></code></pre></div>
+<pre><code>[1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot; </code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb291-1"><a href="tidy-data-manipulation-in-r.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(df1_tbl)</span></code></pre></div>
+<pre><code># A tibble: 6 × 5
+  ...1    CO2   NH4    Fe   CH4
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 site1   428  9489    50   677
+2 site2   940  7765     6   414
+3 site3   211  8199    29   759
+4 site4   255  6954    50   167
+5 site5   374  8444    26   466
+6 site6   686  9559    26   268</code></pre>
+<p>As you can see, tibbles belong to the same class as data frames, they print similarly but not identically to data frames. Which brings the
+following question.</p>
+<div id="why-use-tibbles" class="section level4 unnumbered hasAnchor">
+<h4><strong>Why use tibbles?</strong><a href="tidy-data-manipulation-in-r.html#why-use-tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are several advantages to using tibbles, which are linked to the differences between them and traditional data
+frames.
+Tibbles are designed to handle larger data sets, which is why when we call them (lets look at that code again) they print slightly
+differently.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb293-1"><a href="tidy-data-manipulation-in-r.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Calling a data frame</span></span>
+<span id="cb293-2"><a href="tidy-data-manipulation-in-r.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df1</span></code></pre></div>
+<pre><code>       CO2  NH4 Fe CH4
+site1  428 9489 50 677
+site2  940 7765  6 414
+site3  211 8199 29 759
+site4  255 6954 50 167
+site5  374 8444 26 466
+site6  686 9559 26 268
+site7  755 7011 36 673
+site8  884 5164 25 416
+site9   97 8869 48 830
+site10 189 5570 31  70</code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb295-1"><a href="tidy-data-manipulation-in-r.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Calling a tibble</span></span>
+<span id="cb295-2"><a href="tidy-data-manipulation-in-r.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df1_tbl</span></code></pre></div>
+<pre><code># A tibble: 10 × 5
+   ...1     CO2   NH4    Fe   CH4
+   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 site1    428  9489    50   677
+ 2 site2    940  7765     6   414
+ 3 site3    211  8199    29   759
+ 4 site4    255  6954    50   167
+ 5 site5    374  8444    26   466
+ 6 site6    686  9559    26   268
+ 7 site7    755  7011    36   673
+ 8 site8    884  5164    25   416
+ 9 site9     97  8869    48   830
+10 site10   189  5570    31    70</code></pre>
+<p>Note how when calling a tibble, it specifies its dimensions and the class of data for each column. if we were dealing with a larger
+data set the tibble would only print the first 10 rows and the columns to not overload the console. If you noticed another
+difference, I haven’t mentioned don’t worry, you are not losing it, we will deal with it soon.
+Tibbles work great with the glimpse function that help inspect large data sets.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb297-1"><a href="tidy-data-manipulation-in-r.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">glimpse</span>(df1_tbl)</span></code></pre></div>
+<pre><code>Rows: 10
+Columns: 5
+$ ...1 &lt;chr&gt; &quot;site1&quot;, &quot;site2&quot;, &quot;site3&quot;, &quot;site4&quot;, &quot;site5&quot;, &quot;site6&quot;, &quot;site7&quot;, &quot;s…
+$ CO2  &lt;dbl&gt; 428, 940, 211, 255, 374, 686, 755, 884, 97, 189
+$ NH4  &lt;dbl&gt; 9489, 7765, 8199, 6954, 8444, 9559, 7011, 5164, 8869, 5570
+$ Fe   &lt;dbl&gt; 50, 6, 29, 50, 26, 26, 36, 25, 48, 31
+$ CH4  &lt;dbl&gt; 677, 414, 759, 167, 466, 268, 673, 416, 830, 70</code></pre>
+<p>Tibbles are stricter than data frames in the sense that tibbles do not convert data types when created, for example you don’t need to worry
+about it converting your character columns to factors. This makes them more memory efficient and faster to work with. s</p>
+<p>Another fundamental difference between tibbles and data frames is that tibbles can be subset via piping….
+Oh wait you don’t know about piping yet…</p>
+</div>
+<div id="even-the-tidyverse-can-get-messy-sometimes" class="section level4 unnumbered hasAnchor">
+<h4><strong>Even the tidyverse can get messy sometimes</strong><a href="tidy-data-manipulation-in-r.html#even-the-tidyverse-can-get-messy-sometimes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A guiding principle of tidy data is that every line of tabulated information should have a unique identifier (similar to
-SQL). In base R the row names act as a unique identifier for each row, as every row has a unique value. However, base R’s
-approach allows you to store metadata (descriptive information about your data) in your row names as well.
+SQL). In base R the row names act as a unique identifier for each row, as every row has a unique value. However, as you already know, base
+R’s approach allows you to store metadata (descriptive information about your data) in your row names as well.
 For example, the row name from <code>df1</code> you generated by importing the file practice2.csv has site names as row names.
-Tidyveres shares the same philosophy as SQLl and it does not view row names as a place to store descriptive data.
-This is not a big deal, it just requires that you assign the row names to a column.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tidy-data-manipulation-in-r.html#cb28-1" aria-hidden="true" tabindex="-1"></a>df1_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df1, <span class="at">rownames =</span> <span class="cn">NA</span>)</span>
-<span id="cb28-2"><a href="tidy-data-manipulation-in-r.html#cb28-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(df1_tbl)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e486a21ef29b8c1eaa66" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e486a21ef29b8c1eaa66">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p>The code snippet bellow will introduce you to two three tidyverse function that will allow you copy the row names as a
+This is a very convenient way to store data since it allows you for example to have all of your column as numeric, which means that you can do mathematical operations on all of them without having to subset the non-numeric meta data columns.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb299-1"><a href="tidy-data-manipulation-in-r.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1</span></code></pre></div>
+<pre><code>       CO2  NH4 Fe CH4
+site1  428 9489 50 677
+site2  940 7765  6 414
+site3  211 8199 29 759
+site4  255 6954 50 167
+site5  374 8444 26 466
+site6  686 9559 26 268
+site7  755 7011 36 673
+site8  884 5164 25 416
+site9   97 8869 48 830
+site10 189 5570 31  70</code></pre>
+<p>Which brings us to the other difference you might have noticed when printing df1_tbl, the row name was now the first column of the data
+frame. Tidyveres shares the same philosophy as SQL and it does not view the row names as a place to store descriptive info.
+When importing file as a tibble or when converting a data frame into a tibble, you will lose the row names.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb301-1"><a href="tidy-data-manipulation-in-r.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1_tbl</span></code></pre></div>
+<pre><code># A tibble: 10 × 5
+   ...1     CO2   NH4    Fe   CH4
+   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 site1    428  9489    50   677
+ 2 site2    940  7765     6   414
+ 3 site3    211  8199    29   759
+ 4 site4    255  6954    50   167
+ 5 site5    374  8444    26   466
+ 6 site6    686  9559    26   268
+ 7 site7    755  7011    36   673
+ 8 site8    884  5164    25   416
+ 9 site9     97  8869    48   830
+10 site10   189  5570    31    70</code></pre>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb303-1"><a href="tidy-data-manipulation-in-r.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df1)</span>
+<span id="cb303-2"><a href="tidy-data-manipulation-in-r.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1_tbl</span></code></pre></div>
+<pre><code># A tibble: 10 × 4
+     CO2   NH4    Fe   CH4
+   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1   428  9489    50   677
+ 2   940  7765     6   414
+ 3   211  8199    29   759
+ 4   255  6954    50   167
+ 5   374  8444    26   466
+ 6   686  9559    26   268
+ 7   755  7011    36   673
+ 8   884  5164    25   416
+ 9    97  8869    48   830
+10   189  5570    31    70</code></pre>
+<p>Not that it is still possible to keep the row names when converting a tibble into a data frame,</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb305-1"><a href="tidy-data-manipulation-in-r.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df1, <span class="at">rownames =</span> <span class="cn">NA</span>)</span>
+<span id="cb305-2"><a href="tidy-data-manipulation-in-r.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df1_tbl</span></code></pre></div>
+<div id="htmlwidget-9313ba5e42f6bdd89248" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9313ba5e42f6bdd89248">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>So where’s the problem? The problem is the inconsistency of the tidyverse when it comes to row names.
+Whille it doesn’t encourage the use of row names, it still allows it but then some tidyverse functions
+(e.g. <code>filter()</code>) will discard info from the row names and some (e.g. <code>select()</code>) will not.
+This is something to be mindful of when using tidyverse packages and functions.
+As a general it is best to get the row names to be a column so that you don’t lose it.</p>
+<p>The code snippet bellow will introduce you to a tidyverse function that will allow you copy the row names as a
 column, I will also compare it to a non-tidyverse approach</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tidy-data-manipulation-in-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s use the dataframe da.df as an example dataset</span></span>
-<span id="cb29-2"><a href="tidy-data-manipulation-in-r.html#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="tidy-data-manipulation-in-r.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#First the non-tidyverse way, note that I am copying da.df sine I am planing to reuse it</span></span>
-<span id="cb29-4"><a href="tidy-data-manipulation-in-r.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="tidy-data-manipulation-in-r.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Usinf the cbind.dataframe function to column bind the row names and the and da.df to one dataframe</span></span>
-<span id="cb29-6"><a href="tidy-data-manipulation-in-r.html#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="tidy-data-manipulation-in-r.html#cb29-7" aria-hidden="true" tabindex="-1"></a>da.df2 <span class="ot">&lt;-</span> <span class="fu">cbind.data.frame</span>(<span class="fu">row.names</span>(da.df),da.df)</span>
-<span id="cb29-8"><a href="tidy-data-manipulation-in-r.html#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="tidy-data-manipulation-in-r.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Change the name of the row names to Sites</span></span>
-<span id="cb29-10"><a href="tidy-data-manipulation-in-r.html#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="tidy-data-manipulation-in-r.html#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(da.df2)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Sites&quot;</span></span>
-<span id="cb29-12"><a href="tidy-data-manipulation-in-r.html#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="tidy-data-manipulation-in-r.html#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Inspect</span></span>
-<span id="cb29-14"><a href="tidy-data-manipulation-in-r.html#cb29-14" aria-hidden="true" tabindex="-1"></a>da.df2[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
-<pre><code>##       Sites species1 species2 species3
-## Site1 Site1     8054     5359     5640
-## Site2 Site2      439      518     2273
-## Site3 Site3     1848     3466      553
-## Site4 Site4     2467     3833     4825</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tidy-data-manipulation-in-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The tidyverse way</span></span>
-<span id="cb31-2"><a href="tidy-data-manipulation-in-r.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="tidy-data-manipulation-in-r.html#cb31-3" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(da.df, <span class="st">&quot;Sites&quot;</span>)</span>
-<span id="cb31-4"><a href="tidy-data-manipulation-in-r.html#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="tidy-data-manipulation-in-r.html#cb31-5" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
-<pre><code>##   Sites species1 species2 species3
-## 1 Site1     8054     5359     5640
-## 2 Site2      439      518     2273
-## 3 Site3     1848     3466      553
-## 4 Site4     2467     3833     4825</code></pre>
-<blockquote>
-
-</blockquote>
-<hr />
+<div class="sourceCode" id="cb306"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb306-1"><a href="tidy-data-manipulation-in-r.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s use the dataframe da.df as an example dataset</span></span>
+<span id="cb306-2"><a href="tidy-data-manipulation-in-r.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb306-3"><a href="tidy-data-manipulation-in-r.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#First the non-tidyverse way, note that I am copying da.df sine I am planing to reuse it</span></span>
+<span id="cb306-4"><a href="tidy-data-manipulation-in-r.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb306-5"><a href="tidy-data-manipulation-in-r.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Usinf the cbind.dataframe function to column bind the row names and the and da.df to one dataframe</span></span>
+<span id="cb306-6"><a href="tidy-data-manipulation-in-r.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb306-7"><a href="tidy-data-manipulation-in-r.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df2 <span class="ot">&lt;-</span> <span class="fu">cbind.data.frame</span>(<span class="fu">row.names</span>(da.df),da.df)</span>
+<span id="cb306-8"><a href="tidy-data-manipulation-in-r.html#cb306-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb306-9"><a href="tidy-data-manipulation-in-r.html#cb306-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Change the name of the row names to Sites</span></span>
+<span id="cb306-10"><a href="tidy-data-manipulation-in-r.html#cb306-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb306-11"><a href="tidy-data-manipulation-in-r.html#cb306-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">names</span>(da.df2)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Sites&quot;</span></span>
+<span id="cb306-12"><a href="tidy-data-manipulation-in-r.html#cb306-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb306-13"><a href="tidy-data-manipulation-in-r.html#cb306-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Inspect</span></span>
+<span id="cb306-14"><a href="tidy-data-manipulation-in-r.html#cb306-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df2[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>      Sites species1 species2 species3
+Site1 Site1     7975     3079     6004
+Site2 Site2     5611     5079     8256
+Site3 Site3      326     9396     8104
+Site4 Site4     8906     2699     1919</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb308-1"><a href="tidy-data-manipulation-in-r.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#The tidyverse way</span></span>
+<span id="cb308-2"><a href="tidy-data-manipulation-in-r.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb308-3"><a href="tidy-data-manipulation-in-r.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(da.df, <span class="st">&quot;Sites&quot;</span>)</span>
+<span id="cb308-4"><a href="tidy-data-manipulation-in-r.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb308-5"><a href="tidy-data-manipulation-in-r.html#cb308-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>  Sites species1 species2 species3
+1 Site1     7975     3079     6004
+2 Site2     5611     5079     8256
+3 Site3      326     9396     8104
+4 Site4     8906     2699     1919</code></pre>
+</div>
 </div>
 <div id="subseting-columns-and-rows-using-base-r-and-tidyverse" class="section level3 unnumbered hasAnchor">
 <h3><strong>Subseting columns and rows using base R and tidyverse</strong><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The dplyr package makes subseting columns and rows very simple using the select, filter, and slice functions.
 The select function allows to subset columns, while the filter and slice functions allows you to subset rows function</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tidy-data-manipulation-in-r.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The select function allows you to subset by column</span></span>
-<span id="cb33-2"><a href="tidy-data-manipulation-in-r.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="tidy-data-manipulation-in-r.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Subset a range of columns</span></span>
-<span id="cb33-4"><a href="tidy-data-manipulation-in-r.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="tidy-data-manipulation-in-r.html#cb33-5" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="dv">45</span><span class="sc">:</span><span class="dv">55</span>)</span>
-<span id="cb33-6"><a href="tidy-data-manipulation-in-r.html#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="tidy-data-manipulation-in-r.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that select does not remove the row names</span></span>
-<span id="cb33-8"><a href="tidy-data-manipulation-in-r.html#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="tidy-data-manipulation-in-r.html#cb33-9" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
-<pre><code>##       species44 species45 species46 species47
-## Site1      8313      3161      5208      7590
-## Site2      3038       659      4955      5563
-## Site3      1695      7343      7453      2353
-## Site4      6213      1096      9638      9207</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tidy-data-manipulation-in-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Alternatively it allows you to drop columns</span></span>
-<span id="cb35-2"><a href="tidy-data-manipulation-in-r.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Keeping only the first 2 column</span></span>
-<span id="cb35-3"><a href="tidy-data-manipulation-in-r.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="tidy-data-manipulation-in-r.html#cb35-4" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="sc">-</span>(<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(da.df2)))</span>
-<span id="cb35-5"><a href="tidy-data-manipulation-in-r.html#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="tidy-data-manipulation-in-r.html#cb35-6" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
-<pre><code>##       Sites species1
-## Site1 Site1     8054
-## Site2 Site2      439
-## Site3 Site3     1848
-## Site4 Site4     2467</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tidy-data-manipulation-in-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Select allows to choose specific columns</span></span>
-<span id="cb37-2"><a href="tidy-data-manipulation-in-r.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="tidy-data-manipulation-in-r.html#cb37-3" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="st">&quot;species1&quot;</span>, <span class="st">&quot;species2&quot;</span>,<span class="st">&quot;species11&quot;</span>)</span>
-<span id="cb37-4"><a href="tidy-data-manipulation-in-r.html#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="tidy-data-manipulation-in-r.html#cb37-5" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
-<pre><code>##       species1 species2 species11
-## Site1     8054     5359        40
-## Site2      439      518      2756
-## Site3     1848     3466      8617
-## Site4     2467     3833      9040</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tidy-data-manipulation-in-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#From a list</span></span>
-<span id="cb39-2"><a href="tidy-data-manipulation-in-r.html#cb39-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sites&quot;</span>,<span class="st">&quot;species13&quot;</span>,<span class="st">&quot;species37&quot;</span>,<span class="st">&quot;species55&quot;</span>)</span>
-<span id="cb39-3"><a href="tidy-data-manipulation-in-r.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="tidy-data-manipulation-in-r.html#cb39-4" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="fu">which</span>(<span class="fu">names</span>(da.df2) <span class="sc">%in%</span> species))</span>
-<span id="cb39-5"><a href="tidy-data-manipulation-in-r.html#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="tidy-data-manipulation-in-r.html#cb39-6" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
-<pre><code>##       Sites species13 species37 species55
-## Site1 Site1      8243      8502      8364
-## Site2 Site2      4417      3018      6769
-## Site3 Site3       983      6341       804
-## Site4 Site4      5547      9471      7675</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tidy-data-manipulation-in-r.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lastely select can be used to reorgnize a dataframe</span></span>
-<span id="cb41-2"><a href="tidy-data-manipulation-in-r.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s look at creating a column from row names again</span></span>
-<span id="cb41-3"><a href="tidy-data-manipulation-in-r.html#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="tidy-data-manipulation-in-r.html#cb41-4" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> da.df</span>
-<span id="cb41-5"><a href="tidy-data-manipulation-in-r.html#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="tidy-data-manipulation-in-r.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a column from row names, naming it sites</span></span>
-<span id="cb41-7"><a href="tidy-data-manipulation-in-r.html#cb41-7" aria-hidden="true" tabindex="-1"></a>da.df3<span class="sc">$</span>Sites <span class="ot">&lt;-</span> <span class="fu">row.names</span>(da.df3)</span>
-<span id="cb41-8"><a href="tidy-data-manipulation-in-r.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Now sites is the last column</span></span>
-<span id="cb41-9"><a href="tidy-data-manipulation-in-r.html#cb41-9" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="fu">ncol</span>(da.df3)]</span></code></pre></div>
-<pre><code>## [1] &quot;Site1&quot; &quot;Site2&quot; &quot;Site3&quot; &quot;Site4&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tidy-data-manipulation-in-r.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#, let&#39;s move it to be the first</span></span>
-<span id="cb43-2"><a href="tidy-data-manipulation-in-r.html#cb43-2" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df3, Sites,<span class="fu">everything</span>())</span>
-<span id="cb43-3"><a href="tidy-data-manipulation-in-r.html#cb43-3" aria-hidden="true" tabindex="-1"></a>da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
-<pre><code>##       Sites species1 species2 species3
-## Site1 Site1     8054     5359     5640
-## Site2 Site2      439      518     2273
-## Site3 Site3     1848     3466      553
-## Site4 Site4     2467     3833     4825</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb310-1"><a href="tidy-data-manipulation-in-r.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#The select function allows you to subset by column</span></span>
+<span id="cb310-2"><a href="tidy-data-manipulation-in-r.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb310-3"><a href="tidy-data-manipulation-in-r.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Subset a range of columns</span></span>
+<span id="cb310-4"><a href="tidy-data-manipulation-in-r.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb310-5"><a href="tidy-data-manipulation-in-r.html#cb310-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="dv">45</span><span class="sc">:</span><span class="dv">55</span>)</span>
+<span id="cb310-6"><a href="tidy-data-manipulation-in-r.html#cb310-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb310-7"><a href="tidy-data-manipulation-in-r.html#cb310-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that select does not remove the row names</span></span>
+<span id="cb310-8"><a href="tidy-data-manipulation-in-r.html#cb310-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb310-9"><a href="tidy-data-manipulation-in-r.html#cb310-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>      species44 species45 species46 species47
+Site1      2651      5704      5247      2383
+Site2      7757        75      1690      3342
+Site3      7977      8185       886      1429
+Site4      8788      4785      7093      6159</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb312-1"><a href="tidy-data-manipulation-in-r.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Alternatively it allows you to drop columns</span></span>
+<span id="cb312-2"><a href="tidy-data-manipulation-in-r.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Keeping only the first 2 column</span></span>
+<span id="cb312-3"><a href="tidy-data-manipulation-in-r.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb312-4"><a href="tidy-data-manipulation-in-r.html#cb312-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="sc">-</span>(<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(da.df2)))</span>
+<span id="cb312-5"><a href="tidy-data-manipulation-in-r.html#cb312-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb312-6"><a href="tidy-data-manipulation-in-r.html#cb312-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>      Sites species1
+Site1 Site1     7975
+Site2 Site2     5611
+Site3 Site3      326
+Site4 Site4     8906</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb314-1"><a href="tidy-data-manipulation-in-r.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Select allows to choose specific columns</span></span>
+<span id="cb314-2"><a href="tidy-data-manipulation-in-r.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb314-3"><a href="tidy-data-manipulation-in-r.html#cb314-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="st">&quot;species1&quot;</span>, <span class="st">&quot;species2&quot;</span>,<span class="st">&quot;species11&quot;</span>)</span>
+<span id="cb314-4"><a href="tidy-data-manipulation-in-r.html#cb314-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb314-5"><a href="tidy-data-manipulation-in-r.html#cb314-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>      species1 species2 species11
+Site1     7975     3079      7613
+Site2     5611     5079      9398
+Site3      326     9396      2662
+Site4     8906     2699      1827</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb316-1"><a href="tidy-data-manipulation-in-r.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#From a list</span></span>
+<span id="cb316-2"><a href="tidy-data-manipulation-in-r.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sites&quot;</span>,<span class="st">&quot;species13&quot;</span>,<span class="st">&quot;species37&quot;</span>,<span class="st">&quot;species55&quot;</span>)</span>
+<span id="cb316-3"><a href="tidy-data-manipulation-in-r.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb316-4"><a href="tidy-data-manipulation-in-r.html#cb316-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="fu">which</span>(<span class="fu">names</span>(da.df2) <span class="sc">%in%</span> species))</span>
+<span id="cb316-5"><a href="tidy-data-manipulation-in-r.html#cb316-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb316-6"><a href="tidy-data-manipulation-in-r.html#cb316-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>      Sites species13 species37 species55
+Site1 Site1      8056       507      9223
+Site2 Site2      6014      2493      1130
+Site3 Site3      9882      7518      6357
+Site4 Site4      2490      9335      2259</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb318-1"><a href="tidy-data-manipulation-in-r.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Lastely select can be used to reorgnize a dataframe</span></span>
+<span id="cb318-2"><a href="tidy-data-manipulation-in-r.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Let&#39;s look at creating a column from row names again</span></span>
+<span id="cb318-3"><a href="tidy-data-manipulation-in-r.html#cb318-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb318-4"><a href="tidy-data-manipulation-in-r.html#cb318-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> da.df</span>
+<span id="cb318-5"><a href="tidy-data-manipulation-in-r.html#cb318-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb318-6"><a href="tidy-data-manipulation-in-r.html#cb318-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Creating a column from row names, naming it sites</span></span>
+<span id="cb318-7"><a href="tidy-data-manipulation-in-r.html#cb318-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3<span class="sc">$</span>Sites <span class="ot">&lt;-</span> <span class="fu">row.names</span>(da.df3)</span>
+<span id="cb318-8"><a href="tidy-data-manipulation-in-r.html#cb318-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Now sites is the last column</span></span>
+<span id="cb318-9"><a href="tidy-data-manipulation-in-r.html#cb318-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="fu">ncol</span>(da.df3)]</span></code></pre></div>
+<pre><code>[1] &quot;Site1&quot; &quot;Site2&quot; &quot;Site3&quot; &quot;Site4&quot;</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb320-1"><a href="tidy-data-manipulation-in-r.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#, let&#39;s move it to be the first</span></span>
+<span id="cb320-2"><a href="tidy-data-manipulation-in-r.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df3, Sites,<span class="fu">everything</span>())</span>
+<span id="cb320-3"><a href="tidy-data-manipulation-in-r.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> da.df3[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>      Sites species1 species2 species3
+Site1 Site1     7975     3079     6004
+Site2 Site2     5611     5079     8256
+Site3 Site3      326     9396     8104
+Site4 Site4     8906     2699     1919</code></pre>
 <hr />
 <div id="quick-r-exercise" class="section level4 unnumbered hasAnchor">
 <h4><strong>Quick R exercise</strong><a href="tidy-data-manipulation-in-r.html#quick-r-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -483,428 +648,272 @@ The select function allows to subset columns, while the filter and slice functio
 </ol>
 <hr />
 <p>Next lets see how to use filter and slice to subset a data frame by rows</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tidy-data-manipulation-in-r.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter allows to subset the data frame based on values of one column</span></span>
-<span id="cb45-2"><a href="tidy-data-manipulation-in-r.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Lets filter df based on CO2 concentration</span></span>
-<span id="cb45-3"><a href="tidy-data-manipulation-in-r.html#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="tidy-data-manipulation-in-r.html#cb45-4" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
-<pre><code>##        CO2  NH4 Fe CH4
-## site1  428 9489 50 677
-## site2  940 7765  6 414
-## site3  211 8199 29 759
-## site4  255 6954 50 167
-## site5  374 8444 26 466
-## site6  686 9559 26 268
-## site7  755 7011 36 673
-## site8  884 5164 25 416
-## site9   97 8869 48 830
-## site10 189 5570 31  70</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tidy-data-manipulation-in-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df1, CO2 <span class="sc">&gt;</span> <span class="dv">300</span>)</span>
-<span id="cb47-2"><a href="tidy-data-manipulation-in-r.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="tidy-data-manipulation-in-r.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that filter discards row name</span></span>
-<span id="cb47-4"><a href="tidy-data-manipulation-in-r.html#cb47-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##       CO2  NH4 Fe CH4
-## site1 428 9489 50 677
-## site2 940 7765  6 414
-## site5 374 8444 26 466
-## site6 686 9559 26 268
-## site7 755 7011 36 673
-## site8 884 5164 25 416</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tidy-data-manipulation-in-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#slice allows to subset a range of rows</span></span>
-<span id="cb49-2"><a href="tidy-data-manipulation-in-r.html#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="tidy-data-manipulation-in-r.html#cb49-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">slice</span>(df1, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb49-4"><a href="tidy-data-manipulation-in-r.html#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="tidy-data-manipulation-in-r.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that slice discards row names as well</span></span>
-<span id="cb49-6"><a href="tidy-data-manipulation-in-r.html#cb49-6" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##       CO2  NH4 Fe CH4
-## site1 428 9489 50 677
-## site2 940 7765  6 414
-## site3 211 8199 29 759
-## site4 255 6954 50 167</code></pre>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb322-1"><a href="tidy-data-manipulation-in-r.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#filter allows to subset the data frame based on values of one column</span></span>
+<span id="cb322-2"><a href="tidy-data-manipulation-in-r.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Lets filter df based on CO2 concentration</span></span>
+<span id="cb322-3"><a href="tidy-data-manipulation-in-r.html#cb322-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb322-4"><a href="tidy-data-manipulation-in-r.html#cb322-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df1</span></code></pre></div>
+<pre><code>       CO2  NH4 Fe CH4
+site1  428 9489 50 677
+site2  940 7765  6 414
+site3  211 8199 29 759
+site4  255 6954 50 167
+site5  374 8444 26 466
+site6  686 9559 26 268
+site7  755 7011 36 673
+site8  884 5164 25 416
+site9   97 8869 48 830
+site10 189 5570 31  70</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb324-1"><a href="tidy-data-manipulation-in-r.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df1, CO2 <span class="sc">&gt;</span> <span class="dv">300</span>)</span>
+<span id="cb324-2"><a href="tidy-data-manipulation-in-r.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb324-3"><a href="tidy-data-manipulation-in-r.html#cb324-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that filter discards row name</span></span>
+<span id="cb324-4"><a href="tidy-data-manipulation-in-r.html#cb324-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2</span></code></pre></div>
+<pre><code>      CO2  NH4 Fe CH4
+site1 428 9489 50 677
+site2 940 7765  6 414
+site5 374 8444 26 466
+site6 686 9559 26 268
+site7 755 7011 36 673
+site8 884 5164 25 416</code></pre>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb326-1"><a href="tidy-data-manipulation-in-r.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#slice allows to subset a range of rows</span></span>
+<span id="cb326-2"><a href="tidy-data-manipulation-in-r.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb326-3"><a href="tidy-data-manipulation-in-r.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2 <span class="ot">&lt;-</span> <span class="fu">slice</span>(df1, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb326-4"><a href="tidy-data-manipulation-in-r.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb326-5"><a href="tidy-data-manipulation-in-r.html#cb326-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that slice discards row names as well</span></span>
+<span id="cb326-6"><a href="tidy-data-manipulation-in-r.html#cb326-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2</span></code></pre></div>
+<pre><code>      CO2  NH4 Fe CH4
+site1 428 9489 50 677
+site2 940 7765  6 414
+site3 211 8199 29 759
+site4 255 6954 50 167</code></pre>
 </div>
 </div>
 <div id="streamlining-data-manipulation-using-pipoperator" class="section level3 unnumbered hasAnchor">
-<h3><strong>Streamlining data manipulation using %&gt;% (pip)operator</strong><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><strong>Streamlining data manipulation using <code>%&gt;%</code> (pip)operator</strong><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So far we have gone through two ways of sequentially running through functions.</p>
 <ol style="list-style-type: decimal">
 <li><p>Line by line</p></li>
-<li><p>Chaining functions using brackets</p></li>
+<li><p>Chaining functions using brackets eg:</p></li>
 </ol>
-<p>X &lt;- f3(f2(f1(x))) where the order in which the function run is inside out.</p>
-<p>This sort of writing, while concise, makes the code hard to read. The Tydiverse employs a piping operator %&gt;%, colloquially
+<p>X &lt;- f3(f2(f1(x))) where the order in which the function run is inside out, i.e. f1(x) f2(output of f1),</p>
+<p>This sort of writing, while concise, makes the code hard to read. The Tidyverse employs a piping operator %&gt;%, colloquially
 referred to as an “and then” operator</p>
-<p>x <code>%&gt;%</code> f1() is equivalent to f1(x) and x <code>%&gt;%</code> f1(y) is the equivalent of f1(x,y).</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="tidy-data-manipulation-in-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#these lines are equivalent</span></span>
-<span id="cb51-2"><a href="tidy-data-manipulation-in-r.html#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="tidy-data-manipulation-in-r.html#cb51-3" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>)</span>
-<span id="cb51-4"><a href="tidy-data-manipulation-in-r.html#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="tidy-data-manipulation-in-r.html#cb51-5" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>)</span></code></pre></div>
-<p>The piping operator can be used to chain functions sequentially, from left to right allowing for a more readable code.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="tidy-data-manipulation-in-r.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#chaining functions, functions run from left to right on da.df2</span></span>
-<span id="cb52-2"><a href="tidy-data-manipulation-in-r.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#I am cheating here since you don&#39;t know what medefy is, though it is prety self explenatory.</span></span>
-<span id="cb52-3"><a href="tidy-data-manipulation-in-r.html#cb52-3" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species11 <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb52-4"><a href="tidy-data-manipulation-in-r.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_if</span>(is.numeric, log1p)</span></code></pre></div>
+<p>x <code>%&gt;%</code> f1() is equivalent to f1(x) and x <code>%&gt;%</code> f1(y) is the equivalent of f1(x,y) where y is an argument of f1().
+This allows the user to chain functions from left to right on a variable that was specified at the left hand side of the pipe.
+As a bonus, now that you understand piping I included a way to subset a culumn using <code>%&gt;%</code> and <code>$</code>.</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb328-1"><a href="tidy-data-manipulation-in-r.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#these lines are equivalent</span></span>
+<span id="cb328-2"><a href="tidy-data-manipulation-in-r.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb328-3"><a href="tidy-data-manipulation-in-r.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> <span class="fu">select</span>(da.df2, <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb328-4"><a href="tidy-data-manipulation-in-r.html#cb328-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb328-5"><a href="tidy-data-manipulation-in-r.html#cb328-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb328-6"><a href="tidy-data-manipulation-in-r.html#cb328-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb328-7"><a href="tidy-data-manipulation-in-r.html#cb328-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#bonus subseting the species13 column with a pipe, note that the dot (.) is a place holder for </span></span>
+<span id="cb328-8"><a href="tidy-data-manipulation-in-r.html#cb328-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#the data frame at the beginning of the pipe</span></span>
+<span id="cb328-9"><a href="tidy-data-manipulation-in-r.html#cb328-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df.df2.s13 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> .<span class="sc">$</span>species13 </span></code></pre></div>
+<p>The piping operator can be used to chain functions sequentially, from left to right allowing for a more readable code.
+The snippet below will take da.df2 select column 1 and 5-13, use <code>filter()</code> to only keep the rows where species 11 is represented with more than 50 individuals and log transform all the numeric columns remaining after <code>select()</code> using the <code>modefy()</code> function.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb329-1"><a href="tidy-data-manipulation-in-r.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#chaining functions, functions run from left to right on da.df2</span></span>
+<span id="cb329-2"><a href="tidy-data-manipulation-in-r.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#I am cheating here since you don&#39;t know what modify is, </span></span>
+<span id="cb329-3"><a href="tidy-data-manipulation-in-r.html#cb329-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#though it is pretty self explanatory.</span></span>
+<span id="cb329-4"><a href="tidy-data-manipulation-in-r.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species11 <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb329-5"><a href="tidy-data-manipulation-in-r.html#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">modify_if</span>(is.numeric, log1p)</span></code></pre></div>
 <hr />
 <blockquote>
-<p><strong>A note about piping:</strong>
-The <code>%&gt;%</code> operator is part of a series of pipes <a href="https://data-and-the-world.onrender.com/posts/magrittr-pipes/">magrittr package</a>
+<p><strong>A note about pipes:</strong>
+The <code>%&gt;%</code> operator is part of a series of pipes <a href="https://data-and-the-world.onrender.com/posts/magrittr-pipes/">magrittr package</a>.
 Base R offeres pipes as well <code>|&gt;</code>, however it is slighly less useable than <code>%&gt;%</code>.
 I still encourage you to try using it.</p>
 </blockquote>
 <hr />
-<p><strong>Adding and modifying columns</strong></p>
-<p>The dplyer package has functions dedicated to modifying and adding columns to tabulated objects.
-The function mutate from the package dplyer can be used to add columns to dataframes, as well as to modify them.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="tidy-data-manipulation-in-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lets add a column called elevation, with 3 vauleus high, sea level, low to df</span></span>
-<span id="cb53-2"><a href="tidy-data-manipulation-in-r.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that again I am copying it since I would like to use it again</span></span>
-<span id="cb53-3"><a href="tidy-data-manipulation-in-r.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># I am also creating the site collumn and than moving both to be columns 1 and 2</span></span>
-<span id="cb53-4"><a href="tidy-data-manipulation-in-r.html#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="tidy-data-manipulation-in-r.html#cb53-5" aria-hidden="true" tabindex="-1"></a>elevation <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Sea level&quot;</span>, <span class="st">&quot;Low&quot;</span>)</span>
-<span id="cb53-6"><a href="tidy-data-manipulation-in-r.html#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-7"><a href="tidy-data-manipulation-in-r.html#cb53-7" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Sites =</span> <span class="fu">row.names</span>(df1)) <span class="sc">%&gt;%</span> </span>
-<span id="cb53-8"><a href="tidy-data-manipulation-in-r.html#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Elevation =</span> <span class="fu">sample</span>(elevation, <span class="fu">nrow</span>(df1), <span class="at">replace =</span> T)) <span class="sc">%&gt;%</span></span>
-<span id="cb53-9"><a href="tidy-data-manipulation-in-r.html#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Sites, Elevation, <span class="fu">everything</span>())</span>
-<span id="cb53-10"><a href="tidy-data-manipulation-in-r.html#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-11"><a href="tidy-data-manipulation-in-r.html#cb53-11" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##         Sites Elevation CO2  NH4 Fe CH4
-## site1   site1      High 428 9489 50 677
-## site2   site2       Low 940 7765  6 414
-## site3   site3       Low 211 8199 29 759
-## site4   site4       Low 255 6954 50 167
-## site5   site5       Low 374 8444 26 466
-## site6   site6      High 686 9559 26 268
-## site7   site7       Low 755 7011 36 673
-## site8   site8       Low 884 5164 25 416
-## site9   site9       Low  97 8869 48 830
-## site10 site10      High 189 5570 31  70</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="tidy-data-manipulation-in-r.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mutate can also be used to modefy columns</span></span>
-<span id="cb55-2"><a href="tidy-data-manipulation-in-r.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Lets log transform the CO2 column</span></span>
-<span id="cb55-3"><a href="tidy-data-manipulation-in-r.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Again I am copying the dataframe since I plan on using it later</span></span>
-<span id="cb55-4"><a href="tidy-data-manipulation-in-r.html#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-5"><a href="tidy-data-manipulation-in-r.html#cb55-5" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">CO2 =</span> <span class="fu">log1p</span>(df2<span class="sc">$</span>CO2))</span>
-<span id="cb55-6"><a href="tidy-data-manipulation-in-r.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-7"><a href="tidy-data-manipulation-in-r.html#cb55-7" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>CO2</span></code></pre></div>
-<pre><code>##  [1] 428 940 211 255 374 686 755 884  97 189</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="tidy-data-manipulation-in-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a>df3<span class="sc">$</span>CO2</span></code></pre></div>
-<pre><code>##  [1] 6.061457 6.846943 5.356586 5.545177 5.926926 6.532334 6.628041 6.785588
-##  [9] 4.584967 5.247024</code></pre>
-<p>mutate has a subset of functions the modify all or a subset of columns from a dataframe, negating the need to use a loop.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tidy-data-manipulation-in-r.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#One useful mutate function is mutate_if, it allows to modefy a column if a condition is met</span></span>
-<span id="cb59-2"><a href="tidy-data-manipulation-in-r.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co">#For example it allows to change all character columns to factors</span></span>
-<span id="cb59-3"><a href="tidy-data-manipulation-in-r.html#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="tidy-data-manipulation-in-r.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df3<span class="sc">$</span>Elevation)</span></code></pre></div>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tidy-data-manipulation-in-r.html#cb61-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.character, as.factor)</span>
-<span id="cb61-2"><a href="tidy-data-manipulation-in-r.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df3<span class="sc">$</span>Elevation)</span></code></pre></div>
-<pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tidy-data-manipulation-in-r.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mutate_if allows to perform mathematical operations only on numeric columns</span></span>
-<span id="cb63-2"><a href="tidy-data-manipulation-in-r.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#e.g. log transformation and then multeply by 2 </span></span>
-<span id="cb63-3"><a href="tidy-data-manipulation-in-r.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that ~ is used to escape the mathematical operator and the . is used to tell R to run the operation on the dataframe</span></span>
-<span id="cb63-4"><a href="tidy-data-manipulation-in-r.html#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-5"><a href="tidy-data-manipulation-in-r.html#cb63-5" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.numeric, log1p) <span class="sc">%&gt;%</span> </span>
-<span id="cb63-6"><a href="tidy-data-manipulation-in-r.html#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, <span class="sc">~</span>.<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
-<p><strong>Transforming dataframes</strong></p>
-<p>The dplyr and tidyr packages have many functions that allow to transform and reshape dataframes.
-Much like BaseR, dplyr’s bind_rows and bind_cols pastes two dataframes based on columns or rows. However, dplyr has some functions that allows for more sophisticated joining of two dataframes</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="tidy-data-manipulation-in-r.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s use df2 and da.df2 as example, one contains information about species and one contains information about chemical atrebutes. However, df only has information about 10 sites, that&#39;s 90 less than in da.df2. How can they be joind? </span></span>
-<span id="cb64-2"><a href="tidy-data-manipulation-in-r.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-3"><a href="tidy-data-manipulation-in-r.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The function left_join takes two dataframes as arguments and joins matching values form tthe right to the left based on a joint column</span></span>
-<span id="cb64-4"><a href="tidy-data-manipulation-in-r.html#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-5"><a href="tidy-data-manipulation-in-r.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#In this example I will select the first 5 columns of da.df2 </span></span>
-<span id="cb64-6"><a href="tidy-data-manipulation-in-r.html#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co">#(easier to see the results of the join) and join df to it based on the site column which is shared between the two.</span></span>
-<span id="cb64-7"><a href="tidy-data-manipulation-in-r.html#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-8"><a href="tidy-data-manipulation-in-r.html#cb64-8" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb64-9"><a href="tidy-data-manipulation-in-r.html#cb64-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sites =</span> <span class="fu">str_to_lower</span>(Sites)) <span class="sc">%&gt;%</span> </span>
-<span id="cb64-10"><a href="tidy-data-manipulation-in-r.html#cb64-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df2, <span class="at">by=</span><span class="st">&quot;Sites&quot;</span>)</span>
-<span id="cb64-11"><a href="tidy-data-manipulation-in-r.html#cb64-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-12"><a href="tidy-data-manipulation-in-r.html#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Note the NAs in rows that are not matched</span></span>
-<span id="cb64-13"><a href="tidy-data-manipulation-in-r.html#cb64-13" aria-hidden="true" tabindex="-1"></a>da.df3 [<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>,]</span></code></pre></div>
-<pre><code>##     Sites species1 species2 species3 species4 Elevation CO2  NH4 Fe CH4
-## 10 site10     8258     5116     6424     4053      High 189 5570 31  70
-## 11 site11     2830     8169     5603     3693      &lt;NA&gt;  NA   NA NA  NA
-## 12 site12     2038     7477     7875      949      &lt;NA&gt;  NA   NA NA  NA</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="tidy-data-manipulation-in-r.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#inner_join will keep only matching rows</span></span>
-<span id="cb66-2"><a href="tidy-data-manipulation-in-r.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="tidy-data-manipulation-in-r.html#cb66-3" aria-hidden="true" tabindex="-1"></a>da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb66-4"><a href="tidy-data-manipulation-in-r.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sites =</span> <span class="fu">str_to_lower</span>(Sites)) <span class="sc">%&gt;%</span> </span>
-<span id="cb66-5"><a href="tidy-data-manipulation-in-r.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(df2, <span class="at">by=</span><span class="st">&quot;Sites&quot;</span>)</span>
-<span id="cb66-6"><a href="tidy-data-manipulation-in-r.html#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-7"><a href="tidy-data-manipulation-in-r.html#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(da.df3)</span></code></pre></div>
-<pre><code>## [1] 10</code></pre>
-<p><strong>Quick R exercise</strong></p>
+</div>
+<div id="adding-and-modifying-columns" class="section level3 unnumbered hasAnchor">
+<h3><strong>Adding and modifying columns</strong><a href="tidy-data-manipulation-in-r.html#adding-and-modifying-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The dplyr package has functions dedicated to modifying and adding columns to tabulated objects.
+The function mutate from the package dplyr can be used to add columns to data frames, as well as to modify them.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb330-1"><a href="tidy-data-manipulation-in-r.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Lets add a column called elevation, with 3 vauleus high, sea level, low to df</span></span>
+<span id="cb330-2"><a href="tidy-data-manipulation-in-r.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that again I am copying it since I would like to use it again</span></span>
+<span id="cb330-3"><a href="tidy-data-manipulation-in-r.html#cb330-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># I am also creating the site collumn and than moving both to be columns 1 and 2</span></span>
+<span id="cb330-4"><a href="tidy-data-manipulation-in-r.html#cb330-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb330-5"><a href="tidy-data-manipulation-in-r.html#cb330-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> elevation <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Sea level&quot;</span>, <span class="st">&quot;Low&quot;</span>)</span>
+<span id="cb330-6"><a href="tidy-data-manipulation-in-r.html#cb330-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb330-7"><a href="tidy-data-manipulation-in-r.html#cb330-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2 <span class="ot">&lt;-</span> df1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Sites =</span> <span class="fu">row.names</span>(df1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb330-8"><a href="tidy-data-manipulation-in-r.html#cb330-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Elevation =</span> <span class="fu">sample</span>(elevation, <span class="fu">nrow</span>(df1), <span class="at">replace =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb330-9"><a href="tidy-data-manipulation-in-r.html#cb330-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">select</span>(Sites, Elevation, <span class="fu">everything</span>())</span>
+<span id="cb330-10"><a href="tidy-data-manipulation-in-r.html#cb330-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb330-11"><a href="tidy-data-manipulation-in-r.html#cb330-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2</span></code></pre></div>
+<pre><code>        Sites Elevation CO2  NH4 Fe CH4
+site1   site1       Low 428 9489 50 677
+site2   site2       Low 940 7765  6 414
+site3   site3       Low 211 8199 29 759
+site4   site4       Low 255 6954 50 167
+site5   site5 Sea level 374 8444 26 466
+site6   site6      High 686 9559 26 268
+site7   site7       Low 755 7011 36 673
+site8   site8      High 884 5164 25 416
+site9   site9 Sea level  97 8869 48 830
+site10 site10       Low 189 5570 31  70</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb332-1"><a href="tidy-data-manipulation-in-r.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Mutate can also be used to modefy columns</span></span>
+<span id="cb332-2"><a href="tidy-data-manipulation-in-r.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Lets log transform the CO2 column</span></span>
+<span id="cb332-3"><a href="tidy-data-manipulation-in-r.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Again I am copying the dataframe since I plan on using it later</span></span>
+<span id="cb332-4"><a href="tidy-data-manipulation-in-r.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb332-5"><a href="tidy-data-manipulation-in-r.html#cb332-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">CO2 =</span> <span class="fu">log1p</span>(df2<span class="sc">$</span>CO2))</span>
+<span id="cb332-6"><a href="tidy-data-manipulation-in-r.html#cb332-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb332-7"><a href="tidy-data-manipulation-in-r.html#cb332-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df2<span class="sc">$</span>CO2</span></code></pre></div>
+<pre><code> [1] 428 940 211 255 374 686 755 884  97 189</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb334-1"><a href="tidy-data-manipulation-in-r.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df3<span class="sc">$</span>CO2</span></code></pre></div>
+<pre><code> [1] 6.061457 6.846943 5.356586 5.545177 5.926926 6.532334 6.628041 6.785588
+ [9] 4.584967 5.247024</code></pre>
+<p><code>mutate()</code> has a subset of functions that modify all or a subset of columns from a data frame, negating the need to use a loop.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb336-1"><a href="tidy-data-manipulation-in-r.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#One useful mutate function is mutate_if, it allows to modefy a column if a condition is met</span></span>
+<span id="cb336-2"><a href="tidy-data-manipulation-in-r.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#For example it allows to change all character columns to factors</span></span>
+<span id="cb336-3"><a href="tidy-data-manipulation-in-r.html#cb336-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb336-4"><a href="tidy-data-manipulation-in-r.html#cb336-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">class</span>(df3<span class="sc">$</span>Elevation)</span></code></pre></div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb338-1"><a href="tidy-data-manipulation-in-r.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.character, as.factor)</span>
+<span id="cb338-2"><a href="tidy-data-manipulation-in-r.html#cb338-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(df3<span class="sc">$</span>Elevation)</span></code></pre></div>
+<pre><code>[1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb340-1"><a href="tidy-data-manipulation-in-r.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#mutate_if allows to perform mathematical operations only on numeric columns</span></span>
+<span id="cb340-2"><a href="tidy-data-manipulation-in-r.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#e.g. log transformation and then multiply by 2 </span></span>
+<span id="cb340-3"><a href="tidy-data-manipulation-in-r.html#cb340-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that ~ is used to escape the mathematical operator for multiply and the . is used as a placeholder to tell R to run the operation on </span></span>
+<span id="cb340-4"><a href="tidy-data-manipulation-in-r.html#cb340-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#the data frame df2.</span></span>
+<span id="cb340-5"><a href="tidy-data-manipulation-in-r.html#cb340-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb340-6"><a href="tidy-data-manipulation-in-r.html#cb340-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.numeric, log1p) <span class="sc">%&gt;%</span> </span>
+<span id="cb340-7"><a href="tidy-data-manipulation-in-r.html#cb340-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate_if</span>(is.numeric, <span class="sc">~</span>.<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
+<hr />
+<blockquote>
+<p><strong>A note about <code>mutate()</code> and <code>modify()</code></strong>
+<code>mutate()</code> and <code>modify()</code> are two tidyvers family of functions that can be used to modify columns.
+Why the redundancy? While the end result might look the same, under the hood they work quite differently.
+<code>mutate()</code> works by adding columns columns to data frames, if a column exists it rewrites it.
+<code>modify()</code> on the other hand is designed to be more general and can work on lists as well.
+It is basically a sort for <code>df[[i]] &lt;- f()</code>.</p>
+</blockquote>
+<hr />
+</div>
+<div id="transforming-data-frames" class="section level3 unnumbered hasAnchor">
+<h3><strong>Transforming data frames</strong><a href="tidy-data-manipulation-in-r.html#transforming-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The dplyr and tidyr packages have many functions that allow to transform and reshape data frames.
+Much like base R, dplyr’s <code>bind_rows()</code> and <code>bind_cols()</code> pastes two data frames based on columns or rows. However, dplyr has some functions
+that allows for more sophisticated joining of two data frames.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb341-1"><a href="tidy-data-manipulation-in-r.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Let&#39;s use df2 and da.df2 as example, one contains information about species </span></span>
+<span id="cb341-2"><a href="tidy-data-manipulation-in-r.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#and one contains information about chemical attributes. </span></span>
+<span id="cb341-3"><a href="tidy-data-manipulation-in-r.html#cb341-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#However, df only has information about 10 sites, that&#39;s 90 less than in da.df2. </span></span>
+<span id="cb341-4"><a href="tidy-data-manipulation-in-r.html#cb341-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#How can they be joined? </span></span>
+<span id="cb341-5"><a href="tidy-data-manipulation-in-r.html#cb341-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb341-6"><a href="tidy-data-manipulation-in-r.html#cb341-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#The function left_join takes two data frames as arguments and joins matching </span></span>
+<span id="cb341-7"><a href="tidy-data-manipulation-in-r.html#cb341-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#values form tthe right to the left based on a joint column</span></span>
+<span id="cb341-8"><a href="tidy-data-manipulation-in-r.html#cb341-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb341-9"><a href="tidy-data-manipulation-in-r.html#cb341-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#In this example I will select the first 5 columns of da.df2 </span></span>
+<span id="cb341-10"><a href="tidy-data-manipulation-in-r.html#cb341-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#(easier to see the results of the join) and join df to it based on the site column which is shared between the two.</span></span>
+<span id="cb341-11"><a href="tidy-data-manipulation-in-r.html#cb341-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb341-12"><a href="tidy-data-manipulation-in-r.html#cb341-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb341-13"><a href="tidy-data-manipulation-in-r.html#cb341-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Sites =</span> <span class="fu">str_to_lower</span>(Sites)) <span class="sc">%&gt;%</span> </span>
+<span id="cb341-14"><a href="tidy-data-manipulation-in-r.html#cb341-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">left_join</span>(df2, <span class="at">by=</span><span class="st">&quot;Sites&quot;</span>)</span>
+<span id="cb341-15"><a href="tidy-data-manipulation-in-r.html#cb341-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb341-16"><a href="tidy-data-manipulation-in-r.html#cb341-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note the NAs in rows that are not matched</span></span>
+<span id="cb341-17"><a href="tidy-data-manipulation-in-r.html#cb341-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 [<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>,]</span></code></pre></div>
+<pre><code>    Sites species1 species2 species3 species4 Elevation CO2  NH4 Fe CH4
+10 site10     9936     1114     7222     2937       Low 189 5570 31  70
+11 site11     3950     1051     7170     2602      &lt;NA&gt;  NA   NA NA  NA
+12 site12     2082     8054     9451     9315      &lt;NA&gt;  NA   NA NA  NA</code></pre>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb343-1"><a href="tidy-data-manipulation-in-r.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#inner_join will keep only matching rows</span></span>
+<span id="cb343-2"><a href="tidy-data-manipulation-in-r.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb343-3"><a href="tidy-data-manipulation-in-r.html#cb343-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> da.df3 <span class="ot">&lt;-</span> da.df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb343-4"><a href="tidy-data-manipulation-in-r.html#cb343-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Sites =</span> <span class="fu">str_to_lower</span>(Sites)) <span class="sc">%&gt;%</span> </span>
+<span id="cb343-5"><a href="tidy-data-manipulation-in-r.html#cb343-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">inner_join</span>(df2, <span class="at">by=</span><span class="st">&quot;Sites&quot;</span>)</span>
+<span id="cb343-6"><a href="tidy-data-manipulation-in-r.html#cb343-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb343-7"><a href="tidy-data-manipulation-in-r.html#cb343-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">nrow</span>(da.df3)</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<div id="quick-r-exercise-1" class="section level4 unnumbered hasAnchor">
+<h4><strong>Quick R exercise</strong><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><p>Try running left_join with df as the left argument, what was the result?</p></li>
 <li><p>Try using right_join and full_join (you can use the dplyr cheetsheet for help)</p></li>
 </ol>
 <hr />
-<p>So far the data used in this lab was stored in a wide format table, however, as you will see later in lab 2 there are advantages to using <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">long format tables</a>. Long tables are ones where the columns are converted into keys and the content of the column is the value paired to each key.</p>
+<p>So far the data used in this lab was stored in a wide format table, however, as you will see later in lab 2 there are
+advantages to using <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">long format tables</a>. Long tables are ones where
+the columns are converted into keys and the content of the column is the value paired to each key.</p>
 <p>The gather function from tidyr package converts wide tables to long tables.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="tidy-data-manipulation-in-r.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Here using the gather function to convert df2 to wide table the column names are the key, the values they store are the values.</span></span>
-<span id="cb68-2"><a href="tidy-data-manipulation-in-r.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that I am exampting Site and Elevation from it.</span></span>
-<span id="cb68-3"><a href="tidy-data-manipulation-in-r.html#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="tidy-data-manipulation-in-r.html#cb68-4" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">&quot;Parameters&quot;</span>, <span class="at">value =</span> <span class="st">&quot;Concentration&quot;</span>, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(df2))</span>
-<span id="cb68-5"><a href="tidy-data-manipulation-in-r.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="tidy-data-manipulation-in-r.html#cb68-6" aria-hidden="true" tabindex="-1"></a>df3</span></code></pre></div>
-<pre><code>##     Sites Elevation Parameters Concentration
-## 1   site1      High        CO2           428
-## 2   site2       Low        CO2           940
-## 3   site3       Low        CO2           211
-## 4   site4       Low        CO2           255
-## 5   site5       Low        CO2           374
-## 6   site6      High        CO2           686
-## 7   site7       Low        CO2           755
-## 8   site8       Low        CO2           884
-## 9   site9       Low        CO2            97
-## 10 site10      High        CO2           189
-## 11  site1      High        NH4          9489
-## 12  site2       Low        NH4          7765
-## 13  site3       Low        NH4          8199
-## 14  site4       Low        NH4          6954
-## 15  site5       Low        NH4          8444
-## 16  site6      High        NH4          9559
-## 17  site7       Low        NH4          7011
-## 18  site8       Low        NH4          5164
-## 19  site9       Low        NH4          8869
-## 20 site10      High        NH4          5570
-## 21  site1      High         Fe            50
-## 22  site2       Low         Fe             6
-## 23  site3       Low         Fe            29
-## 24  site4       Low         Fe            50
-## 25  site5       Low         Fe            26
-## 26  site6      High         Fe            26
-## 27  site7       Low         Fe            36
-## 28  site8       Low         Fe            25
-## 29  site9       Low         Fe            48
-## 30 site10      High         Fe            31
-## 31  site1      High        CH4           677
-## 32  site2       Low        CH4           414
-## 33  site3       Low        CH4           759
-## 34  site4       Low        CH4           167
-## 35  site5       Low        CH4           466
-## 36  site6      High        CH4           268
-## 37  site7       Low        CH4           673
-## 38  site8       Low        CH4           416
-## 39  site9       Low        CH4           830
-## 40 site10      High        CH4            70</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="tidy-data-manipulation-in-r.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The function spread converts long tables to wide tables</span></span>
-<span id="cb70-2"><a href="tidy-data-manipulation-in-r.html#cb70-2" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df3 <span class="sc">%&gt;%</span> <span class="fu">spread</span>(Parameters,Concentration)</span>
-<span id="cb70-3"><a href="tidy-data-manipulation-in-r.html#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-4"><a href="tidy-data-manipulation-in-r.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df3)</span></code></pre></div>
-<pre><code>##    Sites Elevation CH4 CO2 Fe  NH4
-## 1  site1      High 677 428 50 9489
-## 2 site10      High  70 189 31 5570
-## 3  site2       Low 414 940  6 7765
-## 4  site3       Low 759 211 29 8199
-## 5  site4       Low 167 255 50 6954
-## 6  site5       Low 466 374 26 8444</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb345-1"><a href="tidy-data-manipulation-in-r.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Here using the gather function to convert df2 to wide table the column names are the key, the values they store are the values.</span></span>
+<span id="cb345-2"><a href="tidy-data-manipulation-in-r.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Note that I am exampting Site and Elevation from it.</span></span>
+<span id="cb345-3"><a href="tidy-data-manipulation-in-r.html#cb345-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb345-4"><a href="tidy-data-manipulation-in-r.html#cb345-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">&quot;Parameters&quot;</span>, <span class="at">value =</span> <span class="st">&quot;Concentration&quot;</span>, <span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(df2))</span>
+<span id="cb345-5"><a href="tidy-data-manipulation-in-r.html#cb345-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb345-6"><a href="tidy-data-manipulation-in-r.html#cb345-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3</span></code></pre></div>
+<pre><code>    Sites Elevation Parameters Concentration
+1   site1       Low        CO2           428
+2   site2       Low        CO2           940
+3   site3       Low        CO2           211
+4   site4       Low        CO2           255
+5   site5 Sea level        CO2           374
+6   site6      High        CO2           686
+7   site7       Low        CO2           755
+8   site8      High        CO2           884
+9   site9 Sea level        CO2            97
+10 site10       Low        CO2           189
+11  site1       Low        NH4          9489
+12  site2       Low        NH4          7765
+13  site3       Low        NH4          8199
+14  site4       Low        NH4          6954
+15  site5 Sea level        NH4          8444
+16  site6      High        NH4          9559
+17  site7       Low        NH4          7011
+18  site8      High        NH4          5164
+19  site9 Sea level        NH4          8869
+20 site10       Low        NH4          5570
+21  site1       Low         Fe            50
+22  site2       Low         Fe             6
+23  site3       Low         Fe            29
+24  site4       Low         Fe            50
+25  site5 Sea level         Fe            26
+26  site6      High         Fe            26
+27  site7       Low         Fe            36
+28  site8      High         Fe            25
+29  site9 Sea level         Fe            48
+30 site10       Low         Fe            31
+31  site1       Low        CH4           677
+32  site2       Low        CH4           414
+33  site3       Low        CH4           759
+34  site4       Low        CH4           167
+35  site5 Sea level        CH4           466
+36  site6      High        CH4           268
+37  site7       Low        CH4           673
+38  site8      High        CH4           416
+39  site9 Sea level        CH4           830
+40 site10       Low        CH4            70</code></pre>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb347-1"><a href="tidy-data-manipulation-in-r.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#The function spread converts long tables to wide tables</span></span>
+<span id="cb347-2"><a href="tidy-data-manipulation-in-r.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3 <span class="ot">&lt;-</span> df3 <span class="sc">%&gt;%</span> <span class="fu">spread</span>(Parameters,Concentration)</span>
+<span id="cb347-3"><a href="tidy-data-manipulation-in-r.html#cb347-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb347-4"><a href="tidy-data-manipulation-in-r.html#cb347-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(df3)</span></code></pre></div>
+<pre><code>   Sites Elevation CH4 CO2 Fe  NH4
+1  site1       Low 677 428 50 9489
+2 site10       Low  70 189 31 5570
+3  site2       Low 414 940  6 7765
+4  site3       Low 759 211 29 8199
+5  site4       Low 167 255 50 6954
+6  site5 Sea level 466 374 26 8444</code></pre>
 <hr />
 <p>dplyr can group data based on category and summarize it based on grouping.
 This can be useful for example to calculate the average genetic diversity across geographical areas.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="tidy-data-manipulation-in-r.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">#group_by is used to group the table by elevation, summarise is used to calculate the mean concntration of each chemical, per elevation. Because the Sites column is not numeric I used summerize_if.</span></span>
-<span id="cb72-2"><a href="tidy-data-manipulation-in-r.html#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-3"><a href="tidy-data-manipulation-in-r.html#cb72-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Elevation) <span class="sc">%&gt;%</span> <span class="fu">summarise_if</span>(is.numeric, mean)</span>
-<span id="cb72-4"><a href="tidy-data-manipulation-in-r.html#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-5"><a href="tidy-data-manipulation-in-r.html#cb72-5" aria-hidden="true" tabindex="-1"></a>df3</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
-##   Elevation   CO2   NH4    Fe   CH4
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 High       434. 8206   35.7  338.
-## 2 Low        502. 7487.  31.4  532.</code></pre>
-<p><strong>Quick R exercise</strong></p>
-<p>the summarize function can summarize more than just mean, and can take more than one argument to summarize by.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb349-1"><a href="tidy-data-manipulation-in-r.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#group_by is used to group the table by elevation, summarise is used to calculate the mean concntration of each chemical, per elevation. Because the Sites column is not numeric I used summerize_if.</span></span>
+<span id="cb349-2"><a href="tidy-data-manipulation-in-r.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb349-3"><a href="tidy-data-manipulation-in-r.html#cb349-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Elevation) <span class="sc">%&gt;%</span> <span class="fu">summarise_if</span>(is.numeric, mean)</span>
+<span id="cb349-4"><a href="tidy-data-manipulation-in-r.html#cb349-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb349-5"><a href="tidy-data-manipulation-in-r.html#cb349-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df3</span></code></pre></div>
+<pre><code># A tibble: 3 × 5
+  Elevation   CO2   NH4    Fe   CH4
+  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 High       785  7362.  25.5   342
+2 Low        463  7498   33.7   460
+3 Sea level  236. 8656.  37     648</code></pre>
+</div>
+<div id="quick-r-exercise-2" class="section level4 unnumbered hasAnchor">
+<h4><strong>Quick R exercise</strong><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>the <code>summarize()</code> function can summarize more than just mean, and can take more than one argument to summarize by.</p>
 <ul>
-<li>Use list() within summarize_if to calculate both the mean, SD, and maximum value for each of the chemicals in df2. Assign in to df3</li>
+<li>Use <code>list()</code> within summarize_if to calculate both the mean, SD, and maximum value for each of the chemicals in df2. Assign in to df3</li>
 </ul>
 <hr />
-</div>
-<div id="conditional-statements-and-iterations" class="section level3 unnumbered hasAnchor">
-<h3><strong>Conditional statements and iterations</strong><a href="tidy-data-manipulation-in-r.html#conditional-statements-and-iterations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes it is necessary to ask R to decide what type of code runs on which part of the data, or how many times to run each line of code. Conditional statement such as if else, and loops are there to do just that.</p>
-<div id="conditional-statements" class="section level4 unnumbered hasAnchor">
-<h4><strong>Conditional statements</strong><a href="tidy-data-manipulation-in-r.html#conditional-statements" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Conditional statements are used to determine which code will handle what part of the data.
-You have already used a conditional statement, even if you haven’t noticed.
-mutate_if is a function using a conditional statement modifying a column if a condition is met (e.g. is.numeric).</p>
-<p>The basic conditional statement is if, it asks if a condition is met (e.g. if(x&gt;8) = TRUE). Once the condition is met, something happens. if can be paired with an else statement to determine what to do if the condition is not met.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tidy-data-manipulation-in-r.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is an example of an if else statment note the curly brackets</span></span>
-<span id="cb74-2"><a href="tidy-data-manipulation-in-r.html#cb74-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb74-3"><a href="tidy-data-manipulation-in-r.html#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-4"><a href="tidy-data-manipulation-in-r.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">8</span>) {</span>
-<span id="cb74-5"><a href="tidy-data-manipulation-in-r.html#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x = 8&quot;</span>)</span>
-<span id="cb74-6"><a href="tidy-data-manipulation-in-r.html#cb74-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { </span>
-<span id="cb74-7"><a href="tidy-data-manipulation-in-r.html#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x != 8&quot;</span>)</span>
-<span id="cb74-8"><a href="tidy-data-manipulation-in-r.html#cb74-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb74-9"><a href="tidy-data-manipulation-in-r.html#cb74-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;x = 8&quot;</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="tidy-data-manipulation-in-r.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If else statments can be chaind</span></span>
-<span id="cb76-2"><a href="tidy-data-manipulation-in-r.html#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-3"><a href="tidy-data-manipulation-in-r.html#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x<span class="sc">&gt;</span><span class="dv">8</span>) {</span>
-<span id="cb76-4"><a href="tidy-data-manipulation-in-r.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x&gt;8&quot;</span>)</span>
-<span id="cb76-5"><a href="tidy-data-manipulation-in-r.html#cb76-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb76-6"><a href="tidy-data-manipulation-in-r.html#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">8</span>) {</span>
-<span id="cb76-7"><a href="tidy-data-manipulation-in-r.html#cb76-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;x=8&quot;</span>)</span>
-<span id="cb76-8"><a href="tidy-data-manipulation-in-r.html#cb76-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb76-9"><a href="tidy-data-manipulation-in-r.html#cb76-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;x&lt;8&quot;</span>)</span>
-<span id="cb76-10"><a href="tidy-data-manipulation-in-r.html#cb76-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb76-11"><a href="tidy-data-manipulation-in-r.html#cb76-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;x=8&quot;</code></pre>
-<p>if else statements only work with scalars, i.e. only evaluate objects with one element.
-In order to evaluate a vector, the function <code>ifelse()</code> should be used. <code>ifelse()</code> takes 3 arguments,
-test (e.g. x&gt;8), true (what to do in case test is true), false (what to do in case the test condition isn’t met).</p>
-<p>The following code snippet demonstrates the use of the <code>ifelse()</code> function and it’s tidyverse equivalent <code>if_else()</code>.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="tidy-data-manipulation-in-r.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a vector</span></span>
-<span id="cb78-2"><a href="tidy-data-manipulation-in-r.html#cb78-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">10</span>, <span class="at">replace =</span> T)</span>
-<span id="cb78-3"><a href="tidy-data-manipulation-in-r.html#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-4"><a href="tidy-data-manipulation-in-r.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ifelse function, if x &gt; 500 paste something else paste somthing else to y</span></span>
-<span id="cb78-5"><a href="tidy-data-manipulation-in-r.html#cb78-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">paste</span>(<span class="st">&quot;x&gt;500&quot;</span>), <span class="fu">paste</span>(<span class="st">&quot;x &lt; = 500&quot;</span>))</span>
-<span id="cb78-6"><a href="tidy-data-manipulation-in-r.html#cb78-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-7"><a href="tidy-data-manipulation-in-r.html#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyr has a modefied ifelse function, it alows to handle missing values</span></span>
-<span id="cb78-8"><a href="tidy-data-manipulation-in-r.html#cb78-8" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">paste</span>(<span class="st">&quot;x&gt;500&quot;</span>), <span class="fu">paste</span>(<span class="st">&quot;x &lt; = 500&quot;</span>))</span>
-<span id="cb78-9"><a href="tidy-data-manipulation-in-r.html#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-10"><a href="tidy-data-manipulation-in-r.html#cb78-10" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>##  [1] &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot;
-##  [7] &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="tidy-data-manipulation-in-r.html#cb80-1" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
-<pre><code>##  [1] &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;     &quot;x &lt; = 500&quot;
-##  [7] &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x &lt; = 500&quot; &quot;x&gt;500&quot;</code></pre>
-<p>If else can also be applied to data frames as can be seen in the snippet bellow.
-Note, that the code uses the</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="tidy-data-manipulation-in-r.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If elevation is high temp is -7 else temp is 10</span></span>
-<span id="cb82-2"><a href="tidy-data-manipulation-in-r.html#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-3"><a href="tidy-data-manipulation-in-r.html#cb82-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="dv">10</span>))</span></code></pre></div>
-<p>In the previous</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tidy-data-manipulation-in-r.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ifelse can be chaind, either as sequenctial funcation or within the first function.</span></span>
-<span id="cb83-2"><a href="tidy-data-manipulation-in-r.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co">#NAis a filler in case one condition is not met </span></span>
-<span id="cb83-3"><a href="tidy-data-manipulation-in-r.html#cb83-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb83-4"><a href="tidy-data-manipulation-in-r.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#If test is false keep current value</span></span>
-<span id="cb83-5"><a href="tidy-data-manipulation-in-r.html#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="dv">15</span>, Temp)) <span class="sc">%&gt;%</span></span>
-<span id="cb83-6"><a href="tidy-data-manipulation-in-r.html#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="dv">25</span>, Temp))</span>
-<span id="cb83-7"><a href="tidy-data-manipulation-in-r.html#cb83-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-8"><a href="tidy-data-manipulation-in-r.html#cb83-8" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##         Sites Elevation CO2  NH4 Fe CH4 Temp
-## site1   site1      High 428 9489 50 677   -7
-## site2   site2       Low 940 7765  6 414   25
-## site3   site3       Low 211 8199 29 759   25
-## site4   site4       Low 255 6954 50 167   25
-## site5   site5       Low 374 8444 26 466   25
-## site6   site6      High 686 9559 26 268   -7
-## site7   site7       Low 755 7011 36 673   25
-## site8   site8       Low 884 5164 25 416   25
-## site9   site9       Low  97 8869 48 830   25
-## site10 site10      High 189 5570 31  70   -7</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tidy-data-manipulation-in-r.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co">#alternatively</span></span>
-<span id="cb85-2"><a href="tidy-data-manipulation-in-r.html#cb85-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Temp)</span>
-<span id="cb85-3"><a href="tidy-data-manipulation-in-r.html#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-4"><a href="tidy-data-manipulation-in-r.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Note in second if_else, if_else is chaind in the false argument.</span></span>
-<span id="cb85-5"><a href="tidy-data-manipulation-in-r.html#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="co">#This will not work with the first one since mutate needs to create the Temp column first</span></span>
-<span id="cb85-6"><a href="tidy-data-manipulation-in-r.html#cb85-6" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;High&quot;</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb85-7"><a href="tidy-data-manipulation-in-r.html#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temp =</span> <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Sea level&quot;</span>, <span class="dv">15</span>, </span>
-<span id="cb85-8"><a href="tidy-data-manipulation-in-r.html#cb85-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">if_else</span>(Elevation <span class="sc">==</span> <span class="st">&quot;Low&quot;</span>, <span class="dv">25</span>, Temp))) </span>
-<span id="cb85-9"><a href="tidy-data-manipulation-in-r.html#cb85-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-10"><a href="tidy-data-manipulation-in-r.html#cb85-10" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<pre><code>##         Sites Elevation CO2  NH4 Fe CH4 Temp
-## site1   site1      High 428 9489 50 677   -7
-## site2   site2       Low 940 7765  6 414   25
-## site3   site3       Low 211 8199 29 759   25
-## site4   site4       Low 255 6954 50 167   25
-## site5   site5       Low 374 8444 26 466   25
-## site6   site6      High 686 9559 26 268   -7
-## site7   site7       Low 755 7011 36 673   25
-## site8   site8       Low 884 5164 25 416   25
-## site9   site9       Low  97 8869 48 830   25
-## site10 site10      High 189 5570 31  70   -7</code></pre>
-<p>Chaining multiple if else statements can make the code very unreadable and clumsy.
-The <code>case_when()</code> function from the dplyr package acts as a multiple if else statements and accepts multiple test arguments.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tidy-data-manipulation-in-r.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s creat a new column called contamination_level and assign values based on NH4 concentrations</span></span>
-<span id="cb87-2"><a href="tidy-data-manipulation-in-r.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-3"><a href="tidy-data-manipulation-in-r.html#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-4"><a href="tidy-data-manipulation-in-r.html#cb87-4" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Contamination_level =</span> <span class="fu">case_when</span>( NH4 <span class="sc">&gt;</span> <span class="dv">8000</span> <span class="sc">~</span><span class="st">&quot;Very high&quot;</span>,</span>
-<span id="cb87-5"><a href="tidy-data-manipulation-in-r.html#cb87-5" aria-hidden="true" tabindex="-1"></a>                                                       NH4 <span class="sc">&gt;</span> <span class="dv">7000</span> <span class="sc">~</span><span class="st">&quot;High&quot;</span>,</span>
-<span id="cb87-6"><a href="tidy-data-manipulation-in-r.html#cb87-6" aria-hidden="true" tabindex="-1"></a>                                                       NH4 <span class="sc">&gt;</span> <span class="dv">6500</span> <span class="sc">~</span><span class="st">&quot;Medium&quot;</span>,</span>
-<span id="cb87-7"><a href="tidy-data-manipulation-in-r.html#cb87-7" aria-hidden="true" tabindex="-1"></a>                                                       NH4 <span class="sc">&lt;</span> <span class="dv">6500</span> <span class="sc">~</span><span class="st">&quot;Low&quot;</span>))</span>
-<span id="cb87-8"><a href="tidy-data-manipulation-in-r.html#cb87-8" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e41775430078e57d617e" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e41775430078e57d617e">{"x":{"filter":"none","vertical":false,"data":[["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["site1","site2","site3","site4","site5","site6","site7","site8","site9","site10"],["High","Low","Low","Low","Low","High","Low","Low","Low","High"],[428,940,211,255,374,686,755,884,97,189],[9489,7765,8199,6954,8444,9559,7011,5164,8869,5570],[50,6,29,50,26,26,36,25,48,31],[677,414,759,167,466,268,673,416,830,70],[-7,25,25,25,25,-7,25,25,25,-7],["Very high","High","Very high","Medium","Very high","Very high","High","Low","Very high","Low"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sites<\/th>\n      <th>Elevation<\/th>\n      <th>CO2<\/th>\n      <th>NH4<\/th>\n      <th>Fe<\/th>\n      <th>CH4<\/th>\n      <th>Temp<\/th>\n      <th>Contamination_level<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<hr />
-</div>
-<div id="quick-r-exercise---data-grouping-and-summerizing-2" class="section level4 unnumbered hasAnchor">
-<h4><strong>Quick R exercise - data grouping and summerizing 2</strong><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---data-grouping-and-summerizing-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ol style="list-style-type: decimal">
-<li>Group df2 by contamination level and summarize average chemical concentration per contamination level.</li>
-</ol>
-<hr />
-</div>
-<div id="iterations" class="section level4 unnumbered hasAnchor">
-<h4><strong>Iterations</strong><a href="tidy-data-manipulation-in-r.html#iterations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>As mentioned, R is pretty good at vectorized functions which negate the need for iterations.
-For example ifelse negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with functions such as summarize that iterate over an entire dataframe or replicate which can be used to to generate a list of multiple elements.</p>
-<p>These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration functions are compiled and efficient.</p>
-<p>However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in R in my experience they are rarely used.</p>
-<p>The for loop has the following basic structure for(element in vector) { do something}.
-Normally a counting variable is used to subset elements while iterating over a vector
-If a counting variable is used than the vector is a range of numbers.</p>
-<p>Here is an example of a basic for loop</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tidy-data-manipulation-in-r.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s write a loop that picks lotomax numbers for you</span></span>
-<span id="cb88-2"><a href="tidy-data-manipulation-in-r.html#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-3"><a href="tidy-data-manipulation-in-r.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co">#First assign a counting variable</span></span>
-<span id="cb88-4"><a href="tidy-data-manipulation-in-r.html#cb88-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-5"><a href="tidy-data-manipulation-in-r.html#cb88-5" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb88-6"><a href="tidy-data-manipulation-in-r.html#cb88-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-7"><a href="tidy-data-manipulation-in-r.html#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Generating random numbers</span></span>
-<span id="cb88-8"><a href="tidy-data-manipulation-in-r.html#cb88-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="dv">8</span>, <span class="at">replace =</span> F)</span>
-<span id="cb88-9"><a href="tidy-data-manipulation-in-r.html#cb88-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-10"><a href="tidy-data-manipulation-in-r.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Constructing the loop</span></span>
-<span id="cb88-11"><a href="tidy-data-manipulation-in-r.html#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co">#seq_along() generates a vector of 1:length of x</span></span>
-<span id="cb88-12"><a href="tidy-data-manipulation-in-r.html#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="co">#The reason I don&#39;t use 1:length(x) is that if the length of x is 0 the loop would still run, seq_along prevents this</span></span>
-<span id="cb88-13"><a href="tidy-data-manipulation-in-r.html#cb88-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-14"><a href="tidy-data-manipulation-in-r.html#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
-<span id="cb88-15"><a href="tidy-data-manipulation-in-r.html#cb88-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb88-16"><a href="tidy-data-manipulation-in-r.html#cb88-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;The 1 number is: 25&quot;
-## [1] &quot;The 2 number is: 2&quot;
-## [1] &quot;The 3 number is: 44&quot;
-## [1] &quot;The 4 number is: 1&quot;
-## [1] &quot;The 5 number is: 33&quot;
-## [1] &quot;The 6 number is: 4&quot;
-## [1] &quot;The 7 number is: 8&quot;
-## [1] &quot;The 8 number is: 17&quot;</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tidy-data-manipulation-in-r.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s combine a conditional statment with the for loop and make a fancier number picker</span></span>
-<span id="cb90-2"><a href="tidy-data-manipulation-in-r.html#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-3"><a href="tidy-data-manipulation-in-r.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
-<span id="cb90-4"><a href="tidy-data-manipulation-in-r.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="dv">1</span><span class="sc">&lt;=</span> i <span class="sc">&amp;</span> i <span class="sc">&lt;</span><span class="dv">8</span>){</span>
-<span id="cb90-5"><a href="tidy-data-manipulation-in-r.html#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The&quot;</span>,i, <span class="st">&quot;number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb90-6"><a href="tidy-data-manipulation-in-r.html#cb90-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{ </span>
-<span id="cb90-7"><a href="tidy-data-manipulation-in-r.html#cb90-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;The bonus number is:&quot;</span>, x[i], <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb90-8"><a href="tidy-data-manipulation-in-r.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb90-9"><a href="tidy-data-manipulation-in-r.html#cb90-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;The 1 number is: 25&quot;
-## [1] &quot;The 2 number is: 2&quot;
-## [1] &quot;The 3 number is: 44&quot;
-## [1] &quot;The 4 number is: 1&quot;
-## [1] &quot;The 5 number is: 33&quot;
-## [1] &quot;The 6 number is: 4&quot;
-## [1] &quot;The 7 number is: 8&quot;
-## [1] &quot;The bonus number is: 17&quot;</code></pre>
-<div id="quick-r-exercise---pseudorandom-numbers-and-loops" class="section level5 unnumbered hasAnchor">
-<h5><strong>Quick R exercise - pseudorandom numbers and loops</strong><a href="tidy-data-manipulation-in-r.html#quick-r-exercise---pseudorandom-numbers-and-loops" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>What would happen if set.seed(123) was the first line of the loop?</p>
-<hr />
-<p>The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use read.csv to import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an existing vector rather than add new elements to it for loops run faster.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tidy-data-manipulation-in-r.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a vector with a list of all csv files in my foulder.</span></span>
-<span id="cb92-2"><a href="tidy-data-manipulation-in-r.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co">#You can use the argument path = to change foulder. </span></span>
-<span id="cb92-3"><a href="tidy-data-manipulation-in-r.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co">#recursive = F ignors subfolders</span></span>
-<span id="cb92-4"><a href="tidy-data-manipulation-in-r.html#cb92-4" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">&quot;.csv&quot;</span>, <span class="at">recursive =</span> F)</span>
-<span id="cb92-5"><a href="tidy-data-manipulation-in-r.html#cb92-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-6"><a href="tidy-data-manipulation-in-r.html#cb92-6" aria-hidden="true" tabindex="-1"></a>lsfile <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(files))</span>
-<span id="cb92-7"><a href="tidy-data-manipulation-in-r.html#cb92-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-8"><a href="tidy-data-manipulation-in-r.html#cb92-8" aria-hidden="true" tabindex="-1"></a>i <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb92-9"><a href="tidy-data-manipulation-in-r.html#cb92-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-10"><a href="tidy-data-manipulation-in-r.html#cb92-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) {</span>
-<span id="cb92-11"><a href="tidy-data-manipulation-in-r.html#cb92-11" aria-hidden="true" tabindex="-1"></a>  lsfile[[i]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> files[i],<span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">stringsAsFactors =</span> F)</span>
-<span id="cb92-12"><a href="tidy-data-manipulation-in-r.html#cb92-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(lsfile)[[i]] <span class="ot">&lt;-</span> <span class="fu">paste</span>(files[i])</span>
-<span id="cb92-13"><a href="tidy-data-manipulation-in-r.html#cb92-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb92-14"><a href="tidy-data-manipulation-in-r.html#cb92-14" aria-hidden="true" tabindex="-1"></a>}  </span></code></pre></div>
-<hr />
-</div>
 </div>
 </div>
 </div>
@@ -914,7 +923,7 @@ If a counting variable is used than the vector is a range of numbers.</p>
         </div>
       </div>
 <a href="importing-and-exporting-data-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conditional-statements-and-iterations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -968,6 +977,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

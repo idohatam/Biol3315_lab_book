@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Ido Hatam" />
 
 
-<meta name="date" content="2023-02-13" />
+<meta name="date" content="2023-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,14 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.27/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -155,7 +163,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Biol 3315 lab manual</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>An introduction to the lab</strong></a>
@@ -240,30 +248,119 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="summary-exercise-lab1.html"><a href="summary-exercise-lab1.html"><i class="fa fa-check"></i><strong>Summary exercise Lab1</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>1</b> Cross-references</a>
+<li class="chapter" data-level="" data-path="lab-2-data-manipulation-and-presentation-in-r.html"><a href="lab-2-data-manipulation-and-presentation-in-r.html"><i class="fa fa-check"></i><strong>Lab 2 data manipulation and presentation in R</strong></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="chapters-and-sub-chapters.html"><a href="chapters-and-sub-chapters.html"><i class="fa fa-check"></i><b>1.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="1.2" data-path="captioned-figures-and-tables.html"><a href="captioned-figures-and-tables.html"><i class="fa fa-check"></i><b>1.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="" data-path="the-setup.html"><a href="the-setup.html"><i class="fa fa-check"></i><strong>The setup</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html"><i class="fa fa-check"></i><strong>Importing and exporting data in R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.csv"><i class="fa fa-check"></i><strong>read.csv</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#read.table"><i class="fa fa-check"></i><strong>read.table</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#reading-non-tabulated-text-files"><i class="fa fa-check"></i><strong>Reading non-tabulated text files</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---working-with-strings-from-non-tabulated-data"><i class="fa fa-check"></i><strong>Quick R exercise - working with strings from non-tabulated data</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>2</b> Parts</a></li>
-<li class="chapter" data-level="3" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>3</b> Footnotes and citations</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>3.1</b> Footnotes</a></li>
-<li class="chapter" data-level="3.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>3.2</b> Citations</a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-tabulated-data"><i class="fa fa-check"></i><strong>Exporting tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#exporting-non-tabulated-data"><i class="fa fa-check"></i><strong>Exporting non-tabulated data</strong></a></li>
+<li class="chapter" data-level="" data-path="importing-and-exporting-data-in-r.html"><a href="importing-and-exporting-data-in-r.html#quick-r-exercise---data-exportation"><i class="fa fa-check"></i><strong>Quick R exercise - data exportation</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>4</b> Blocks</a>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html"><i class="fa fa-check"></i><strong>(Tidy) Data manipulation in R</strong></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>4.1</b> Equations</a></li>
-<li class="chapter" data-level="4.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>4.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="4.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>4.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#a-tidy-re-imagining-of-the-data-frame"><i class="fa fa-check"></i><strong>A tidy re-imagining of the data frame</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#why-use-tibbles"><i class="fa fa-check"></i><strong>Why use tibbles?</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#even-the-tidyverse-can-get-messy-sometimes"><i class="fa fa-check"></i><strong>Even the tidyverse can get messy sometimes</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>5</b> Sharing your book</a>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#subseting-columns-and-rows-using-base-r-and-tidyverse"><i class="fa fa-check"></i><strong>Subseting columns and rows using base R and tidyverse</strong></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>5.1</b> Publishing</a></li>
-<li class="chapter" data-level="5.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>5.2</b> 404 pages</a></li>
-<li class="chapter" data-level="5.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>5.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#streamlining-data-manipulation-using-pipoperator"><i class="fa fa-check"></i><strong>Streamlining data manipulation using <code>%&gt;%</code> (pip)operator</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#adding-and-modifying-columns"><i class="fa fa-check"></i><strong>Adding and modifying columns</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#transforming-data-frames"><i class="fa fa-check"></i><strong>Transforming data frames</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-1"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="tidy-data-manipulation-in-r.html"><a href="tidy-data-manipulation-in-r.html#quick-r-exercise-2"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html"><i class="fa fa-check"></i><strong>Conditional statements and iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#conditional-statements"><i class="fa fa-check"></i><strong>Conditional statements</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---data-grouping-and-summerizing-2"><i class="fa fa-check"></i><strong>Quick R exercise - data grouping and summerizing 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#iterations"><i class="fa fa-check"></i><strong>Iterations</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="conditional-statements-and-iterations.html"><a href="conditional-statements-and-iterations.html#quick-r-exercise---pseudorandom-numbers-and-loops"><i class="fa fa-check"></i><strong>Quick R exercise - pseudorandom numbers and loops</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><strong>Functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#constructing-a-function"><i class="fa fa-check"></i><strong>Constructing a function</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html"><i class="fa fa-check"></i><strong>Plotting your data</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#potting-data-with-the-ggplot2-package"><i class="fa fa-check"></i><strong>Potting data with the ggplot2 package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#basic-ggplot2-plot"><i class="fa fa-check"></i><strong>Basic ggplot2 plot</strong></a></li>
+<li class="chapter" data-level="" data-path="plotting-your-data.html"><a href="plotting-your-data.html#exporting-plots"><i class="fa fa-check"></i><strong>Exporting plots</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary-exercise-lab-2.html"><a href="summary-exercise-lab-2.html"><i class="fa fa-check"></i><strong>Summary exercise lab 2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lab-3-handling-of-biological-data-in-r---1.html"><a href="lab-3-handling-of-biological-data-in-r---1.html"><i class="fa fa-check"></i><strong>Lab 3 handling of biological data in R - 1</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html"><i class="fa fa-check"></i><strong>The setup</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-setup-1.html"><a href="the-setup-1.html#installing-packages-from-bioconductor"><i class="fa fa-check"></i><strong>Installing packages from Bioconductor</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><i class="fa fa-check"></i><strong>Working with biological strings using base R and the tidyverse</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise-3"><i class="fa fa-check"></i><strong>Quick R exercise</strong></a></li>
+<li class="chapter" data-level="" data-path="working-with-biological-strings-using-base-r-and-the-tidyverse.html"><a href="working-with-biological-strings-using-base-r-and-the-tidyverse.html#quick-r-exercise---basic-string-operations"><i class="fa fa-check"></i><strong>Quick R exercise - basic string operations</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html"><i class="fa fa-check"></i><strong>Importing and working with fasta files with base R</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="importing-and-working-with-fasta-files-with-base-r.html"><a href="importing-and-working-with-fasta-files-with-base-r.html#housing-sequences-moving-beyond-simple-vectors"><i class="fa fa-check"></i><strong>Housing sequences, moving beyond simple vectors</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html"><i class="fa fa-check"></i><strong>The Biostrings package</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biosting-sub-classes"><i class="fa fa-check"></i><strong>Basic biosting sub-classes</strong></a></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#basic-biostrings-functions"><i class="fa fa-check"></i><strong>Basic Biostrings functions</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#quick-r-exercise---basic-biostrings-functions"><i class="fa fa-check"></i><strong>Quick R exercise - basic Biostrings functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-biostrings-package.html"><a href="the-biostrings-package.html#working-with-multiple-sequences-using-xstringset-objects"><i class="fa fa-check"></i><strong>Working with multiple sequences using XStringSet objects</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html"><i class="fa fa-check"></i><strong>Seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#data-importation-and-handling-with-seqinr"><i class="fa fa-check"></i><strong>Data importation and handling with seqinr</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="seqinr.html"><a href="seqinr.html#quick-r-exercise---sumerizing-seqinr-output"><i class="fa fa-check"></i><strong>Quick R exercise - sumerizing seqinr output</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.0.1" data-path="seqinr.html"><a href="seqinr.html#advanced-seqinr-functions"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Advanced seqinr functions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exporting-sequence-elements.html"><a href="exporting-sequence-elements.html"><i class="fa fa-check"></i><strong>Exporting sequence elements</strong></a></li>
+<li class="chapter" data-level="" data-path="summary-exercise.html"><a href="summary-exercise.html"><i class="fa fa-check"></i><strong>Summary exercise:</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>1</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="footnotes.html"><a href="footnotes.html"><i class="fa fa-check"></i><b>1.1</b> Footnotes</a></li>
+<li class="chapter" data-level="1.2" data-path="citations.html"><a href="citations.html"><i class="fa fa-check"></i><b>1.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>2</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="equations.html"><a href="equations.html"><i class="fa fa-check"></i><b>2.1</b> Equations</a></li>
+<li class="chapter" data-level="2.2" data-path="theorems-and-proofs.html"><a href="theorems-and-proofs.html"><i class="fa fa-check"></i><b>2.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="2.3" data-path="callout-blocks.html"><a href="callout-blocks.html"><i class="fa fa-check"></i><b>2.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>3</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="publishing.html"><a href="publishing.html"><i class="fa fa-check"></i><b>3.1</b> Publishing</a></li>
+<li class="chapter" data-level="3.2" data-path="pages.html"><a href="pages.html"><i class="fa fa-check"></i><b>3.2</b> 404 pages</a></li>
+<li class="chapter" data-level="3.3" data-path="metadata-for-sharing.html"><a href="metadata-for-sharing.html"><i class="fa fa-check"></i><b>3.3</b> Metadata for sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="4" data-path="lab-8.html"><a href="lab-8.html"><i class="fa fa-check"></i><b>4</b> <strong>Lab 8</strong></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -378,14 +475,14 @@ defaulted by the function you call.</p>
 <pre><code>[1] 100</code></pre>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb65-1"><a href="data-types-objects-in-r.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Head lets you glimpse the first n elements in a variable, default is 6 (tail is for last)</span></span>
 <span id="cb65-2"><a href="data-types-objects-in-r.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(this.course.avarage)</span></code></pre></div>
-<pre><code>[1] 64.75 52.50 29.90 27.50 38.50 16.59</code></pre>
+<pre><code>[1] 57.64 13.13 35.57 49.34 58.16 41.17</code></pre>
 <p>OK, you made a vector now what?
 As mentioned above, elements along the vector can be accessed (sometimes referred to as indexed) using the <code>[]</code>.
 Vectors are mutable meaning that accessing elements allows you to modify them.
 The following code is an example of how.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb67-1"><a href="data-types-objects-in-r.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#let&#39;s access the first 10 elements in the vector.</span></span>
 <span id="cb67-2"><a href="data-types-objects-in-r.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> this.course.avarage[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code> [1] 64.75 52.50 29.90 27.50 38.50 16.59 54.26 56.49 68.03 52.03</code></pre>
+<pre><code> [1] 57.64 13.13 35.57 49.34 58.16 41.17 62.47 55.92 52.28 20.88</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb69-1"><a href="data-types-objects-in-r.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#You can also replace them with whatever it is you want. </span></span>
 <span id="cb69-2"><a href="data-types-objects-in-r.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Let&#39;s replace the first 10 elements with a copy of the last 10 elements.</span></span>
 <span id="cb69-3"><a href="data-types-objects-in-r.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
@@ -394,9 +491,9 @@ The following code is an example of how.</p>
 <span id="cb69-6"><a href="data-types-objects-in-r.html#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Did it work?</span></span>
 <span id="cb69-7"><a href="data-types-objects-in-r.html#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
 <span id="cb69-8"><a href="data-types-objects-in-r.html#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> this.course.avarage[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code> [1] 31.86 51.46 82.09 43.55 46.56 17.81 50.85 35.93 21.63 36.27</code></pre>
+<pre><code> [1] 70.19 61.34 48.96 72.79 36.88 21.99 31.27 30.42 23.28 59.58</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb71-1"><a href="data-types-objects-in-r.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> this.course.avarage[<span class="dv">91</span><span class="sc">:</span><span class="dv">100</span>]</span></code></pre></div>
-<pre><code> [1] 31.86 51.46 82.09 43.55 46.56 17.81 50.85 35.93 21.63 36.27</code></pre>
+<pre><code> [1] 70.19 61.34 48.96 72.79 36.88 21.99 31.27 30.42 23.28 59.58</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb73-1"><a href="data-types-objects-in-r.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Did we replace or just increased the size of the vector? </span></span>
 <span id="cb73-2"><a href="data-types-objects-in-r.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">length</span>(this.course.avarage)</span></code></pre></div>
 <pre><code>[1] 100</code></pre>
@@ -415,13 +512,13 @@ resorting to conditional statements.</p>
 <span id="cb75-11"><a href="data-types-objects-in-r.html#cb75-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb75-12"><a href="data-types-objects-in-r.html#cb75-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Let&#39;s access only marks higher than the avarage</span></span>
 <span id="cb75-13"><a href="data-types-objects-in-r.html#cb75-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> another.course.avarage2[another.course.avarage2<span class="sc">&gt;</span><span class="dv">75</span>]</span></code></pre></div>
-<pre><code> [1] 75.05824 80.80060 79.14124 75.39080 80.74760 78.39956 81.04133 80.31611
- [9] 80.37095 78.85462 75.11420 75.60317 79.07782 79.67129 77.92261 77.25344
-[17] 76.41504 79.49518 75.86280 75.26720 83.82298 76.86130 81.77093 76.94555
-[25] 81.35303 78.45302 82.10899 81.90515 79.15734 77.12807 78.21628 76.11017
-[33] 75.69447 84.74916 77.32299 75.01291 75.95961 82.73913 80.08722 85.36237
-[41] 75.27439 75.00232 77.53870 78.30852 79.13244 81.96881 80.69914 84.01055
-[49] 78.23597 75.03376 76.09590 81.51606 78.86384</code></pre>
+<pre><code> [1] 79.11019 77.01985 84.09941 79.85823 76.01662 77.51425 77.26020 83.59738
+ [9] 78.55468 77.36091 78.84164 77.45232 79.34773 79.74443 81.56185 78.65924
+[17] 79.25197 76.27369 86.49679 75.54120 77.84813 81.46743 76.05149 75.89301
+[25] 77.48752 77.89849 75.75378 79.55080 75.81562 82.54527 77.16002 75.05480
+[33] 76.75418 77.53484 77.38109 75.27572 77.52100 75.90061 79.42424 75.09398
+[41] 75.75721 75.10488 87.28087 75.97136 75.56457 80.15464 75.20334 79.06451
+[49] 77.10130</code></pre>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb77-1"><a href="data-types-objects-in-r.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#lets change anything equal to or grater than the 75 percentile to 100</span></span>
 <span id="cb77-2"><a href="data-types-objects-in-r.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#this can be done using the quantile function and subseting the 3 element of the vector it produces which it the 75 percentile</span></span>
 <span id="cb77-3"><a href="data-types-objects-in-r.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> another.course.avarage2[another.course.avarage2 <span class="sc">&gt;=</span> <span class="fu">quantile</span>(another.course.avarage2)[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
@@ -597,36 +694,36 @@ element is larger than the result will be TRUE and if it is not the result will 
 <p><br></p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb106-1"><a href="data-types-objects-in-r.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> log.vec <span class="ot">&lt;-</span> this.course.avarage <span class="sc">&gt;</span> <span class="dv">55</span></span>
 <span id="cb106-2"><a href="data-types-objects-in-r.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> log.vec</span></code></pre></div>
-<pre><code>  [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [13]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE
- [25]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
- [37] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
- [49]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
- [61]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
- [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [85]  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
- [97] FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>  [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+ [13] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+ [25] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+ [37]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [49] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [61] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+ [73] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE
+ [85]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE
+ [97] FALSE FALSE FALSE  TRUE</code></pre>
 <p><br></p>
 <p>You can use logical vectors to index and subset types of vectors using the which function.</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb108-1"><a href="data-types-objects-in-r.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#The which function tells you the position of elements fulfill a condition (give an answer of TRUE)</span></span>
 <span id="cb108-2"><a href="data-types-objects-in-r.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(<span class="fu">which</span>(this.course.avarage <span class="sc">&gt;</span> <span class="dv">50</span>))</span></code></pre></div>
-<pre><code>[1]  2  3  7 13 17 20</code></pre>
+<pre><code>[1]  1  2  4 10 11 14</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb110-1"><a href="data-types-objects-in-r.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Can use it to subset only the elements that do</span></span>
 <span id="cb110-2"><a href="data-types-objects-in-r.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#Here, asking R to subset only the elements larger than 50</span></span>
 <span id="cb110-3"><a href="data-types-objects-in-r.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> passed.the.course <span class="ot">&lt;-</span> this.course.avarage[<span class="fu">which</span>(this.course.avarage <span class="sc">&gt;</span> <span class="dv">50</span>)]</span>
 <span id="cb110-4"><a href="data-types-objects-in-r.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb110-5"><a href="data-types-objects-in-r.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">length</span>(passed.the.course)</span></code></pre></div>
-<pre><code>[1] 40</code></pre>
+<pre><code>[1] 35</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb112-1"><a href="data-types-objects-in-r.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#of course you can also use the subset function do achieve the same results</span></span>
 <span id="cb112-2"><a href="data-types-objects-in-r.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
 <span id="cb112-3"><a href="data-types-objects-in-r.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> passed.the.course2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(this.course.avarage, this.course.avarage <span class="sc">&gt;</span><span class="dv">50</span>)</span>
 <span id="cb112-4"><a href="data-types-objects-in-r.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(passed.the.course2)</span></code></pre></div>
-<pre><code>[1] 40</code></pre>
+<pre><code>[1] 35</code></pre>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb114-1"><a href="data-types-objects-in-r.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Lets compare the two vectors using a logical operator, the result of this will be a logical vector</span></span>
 <span id="cb114-2"><a href="data-types-objects-in-r.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> passed.the.course <span class="sc">==</span> passed.the.course2</span></code></pre></div>
 <pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+[31] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb116-1"><a href="data-types-objects-in-r.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#alternatively you can ask R which positions between the two vectors are not the same</span></span>
 <span id="cb116-2"><a href="data-types-objects-in-r.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">which</span>(passed.the.course <span class="sc">!=</span> passed.the.course2)</span></code></pre></div>
 <pre><code>integer(0)</code></pre>
@@ -733,7 +830,7 @@ the number of available levels rather than the elements of the factor.</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb146-1"><a href="data-types-objects-in-r.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(a2)</span></code></pre></div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb148-1"><a href="data-types-objects-in-r.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sum</span>(a2)</span></code></pre></div>
-<pre><code>Error in Summary.factor(structure(1:11, levels = c(&quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, : &#39;sum&#39; not meaningful for factors</code></pre>
+<pre><code>Error in Summary.factor(structure(1:11, .Label = c(&quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, : &#39;sum&#39; not meaningful for factors</code></pre>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb150-1"><a href="data-types-objects-in-r.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sum</span>(a)</span></code></pre></div>
 <pre><code>[1] 110</code></pre>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb152-1"><a href="data-types-objects-in-r.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#to coerce the factor to a numeric vector you have to pass through as.character otherwise it will use the number of levels.</span></span>
@@ -1240,6 +1337,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
