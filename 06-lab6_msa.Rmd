@@ -1,3 +1,10 @@
+```{r setup lab6, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+
+```
+
+
 # **Lab 6 studying the evolution of biological sequences in R**{-}
 
 **Learning objectives** 
