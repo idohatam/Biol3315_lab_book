@@ -433,22 +433,26 @@ when you'll work as a bioinformaticion.
 
 The first package we will deal with is Biostrings. As its name suggests, it is a package that 
 handles biological strings. It can handle DNA, RNA, and amino acid sequences and is also capable of
-pattern matching, which helps with sequence look-up and alignment (albeit with limited capabilities). 
+pattern matching, which helps with sequence look-up and alignments (albeit with limited capabilities). 
 Biostirngs allows to import individual sequences, or FASTA files containing multiple sequences.
 
-Biostrings utilizes a specialized class of  container to store strings called Xstring. Xstring is similar to a 
-character vector however, unlike a vector it can only house a single string.
+Biostrings utilizes a specialized class of  container to store strings called `Xstring`. 
+`Xstring` is similar to a character vector however, unlike a vector it can only house a single string.
+It is also different in that it allows to store meta-data relating to the sequence, which means that it behaves like a list. 
+It is also an object of the type S4 which have a slightly different structure than the 
+traditional `base R` objects you worked with up until now. The `S3` objects.
+In order to index an `S4` element you need to use `@` instead of `$`.
 
 ### **Basic biosting sub-classes**{-}
-The XString class has four sub classes:
+The `XString` class has four sub classes:
 
-1. DNAstring - stores DNA sequences
+1. `DNAstring` - stores DNA sequences
 
-2. RNAstring - stores RNA sequences
+2. `RNAstring` - stores RNA sequences
 
-3. AAstring - stores amino acid sequences
+3. `AAstring` - stores amino acid sequences
 
-4. Bstring - stores general strings (character/alphabet agnostic)
+4. `Bstring` - stores general strings (character/alphabet agnostic)
 
 Let's look at a few examples of working with strings using Biostrings
 
@@ -485,7 +489,7 @@ IUPAC_CODE_MAP
 
 ```
 
-As you can see, DNAstring accepts more than just ATCG, it also accepts base categories, strand 
+As you can see, `DNAstring` accepts more than just ATCG, it also accepts base categories, strand 
 orientation (+/-) and alignment gaps.
 
 Let's see which characters the other two restricted sub classes accept.
@@ -522,10 +526,10 @@ str(casain)
 
 ```
 
-One advantage of the Xstring class is that it allows to treat the sequence both as a vector and as 
+One advantage of the `Xstring` class is that it allows to treat the sequence both as a vector and as 
 a string. Making it easy to index, subset, and modify.
 
-The code snippet bellow demonstrate how access and modify an XString class.
+The code snippet bellow demonstrate how access and modify an `XString` class.
 
 ```{r xstring2}
 
@@ -547,35 +551,92 @@ casain[10] <- "-"
 
 casain
 
-#The bonus is that because an xstring class object is treated as a string, it is easy to use functions from the stringr package to process it. Let's use str_detect to pattern match.
-#We already know that this pattern is elements 1-5 of the string
-
-str_detect(casain, "MYFNI")
-
-#Can also use stringer to replace elements in the string, easier to replace a larger pattern. 
-str_replace(casain, "MYFNI","MYXGT")
 
 ```
+
+
+In addition it is possible to use `base R` pattern matching functions and patter substitution on class `XString` elements. 
+
+Here is an example of using the function `grepl()` to check if the sequence MYFNI is found in casain.
+
+```{r xstring3}
+
+grepl("MYFNI",casain)
+
+```
+
+It's also possible to use `gsup()` to substitute the sequence MYFNI with the sequence  
+
+
+```{r xstring4}
+
+gsub("MYFNI","MYXGT",casain)
+
+#Note that gsub returns a simple string so in order to replace and keep as an 
+#XString require the use of the AAString function
+
+AAString(gsub("MYFNI","MYXGT",casain))
+
+```
+
+`XString` elements cannot be used with functions from the package `stringr`, however they require a conversion to a character vector first. 
+For example here is how to use the function `str_detect()` to check if the sequence MYFNI is found in casain and the
+function `str_replace()` to replace it with MYXGT. This is useful when using `%>%` to chain functions processing biological string data. 
+
+```{r xstring5}
+
+str_detect(as.character(casain), "MYFNI")
+
+
+str_replace(as.character(casain), "MYFNI","MYXGT")
+
+#note, like gsub you have to convert back to AAString
+
+AAString(str_replace(as.character(casain), "MYFNI","MYXGT"))
+
+
+```
+
+
 
 ### **Basic Biostrings functions**{-}
 
 The Biostrings package has some useful functions with respect to sequence processing.
 Let's look at some of them.
 
-```{r biostrings functions}
+The package's built-in pattern matching function, `matchPattern()` that match patterns in an `XString` element. 
+`matchPattern()` allows to set mismatches and account for indels, pretty useful when handling biological strings. 
 
-#Biostrings can sum up the frequency of each letter (i.e. AA in this case)
+```{r pmatch}
+
+matchPattern("MYFNI", casain)
+
+```
+Another useful function is `alphabetFrequency()`which count the frequency of each letter in an `XString`.
+The default setting counts the number of occurrences while setting `as.prob=TRUE` will convert it to probability.
+
+```{r biostrings functions1}
+
 x <- alphabetFrequency(casain)
-#output is a named vector, not the most convinent of ways to present results.
+#output is a named vector, not the most convenient of ways to present results.
 x
-#Can subset to only include those larger than 0 (and normlize to percent)
+
 #as.prob gives the probability of each AA
-x <- alphabetFrequency(casain, as.prob = T)[alphabetFrequency(casain)>0]*100
+x <- alphabetFrequency(casain, as.prob = TRUE)[alphabetFrequency(casain)>0]*100
 
 x
 
-#Let's do the same to a longer sequence, this time DNA
-#First, convert the sq1 string to xstring
+```
+
+
+Now, let's do the same only with a longer sequence. This time a DNA sequence.
+We'll do it by converting the element `sq1` we created earlier to a `DNAString`.
+Note, that we don't care about any special characters allowed by the nucleotide alphabet.
+Therefore in this example I set `baseOnly=TRUE`.
+
+
+```{r biostrings functions2}
+
 sq1.bio <- DNAString(sq1)
 
 #If using nucleotides, can use the argument basOnly, to only get ATCG
@@ -583,15 +644,27 @@ x.d <- alphabetFrequency(sq1.bio, baseOnly=T, as.prob = T)*100
 
 x.d
 
-#Alternatively its possible to look at the proportion of only one base with letterFrequency
+#Alternatively its possible to look at the proportion of individual bases with letterFrequency
 
 letterFrequency(sq1.bio,"C", as.prob = T)*100
+
+#Can also cheat a bit 
 letterFrequency(sq1.bio, c("G","C"), as.prob = T)*100
 
 
-#Now let's convert the frequency information of all nucletides to a dataframe and plot it
+```
 
-x.d.df <- data.frame(names(x.d),x.d, stringsAsFactors = F)
+
+As you noticed, the output from `alphabetFrequency()` is not very convenient, however the information can be useful and biologically relevant.
+A better way of presenting it would be to plot the frequencies as bar graphs using `ggplot2`. 
+
+
+
+```{r biostrings functions3}
+
+#Need to convert to a long table format first
+x.d.df <- data.frame(names(x.d),x.d, stringsAsFactors = F) %>% 
+  filter(names.x.d. != "other")
 
 ggplot(x.d.df, aes(y=x.d, x=names.x.d.))+
   geom_bar(stat = "identity", fill = "lightblue")+
@@ -602,6 +675,7 @@ ggplot(x.d.df, aes(y=x.d, x=names.x.d.))+
 
 
 ```
+
 
 
 Biostrings allows you to reveres, complement, and even translate nucleotide sequences.
@@ -622,8 +696,9 @@ sq1.bio.rev
 sq1.bio.comp
 sq1.bio.rev.comp
 
-#translate a sequence
-sq1.bio.t <- translate(sq1.bio)
+#translate a sequence, note specifying the package due to masking
+
+sq1.bio.t <- Biostrings::translate(sq1.bio)
 
 sq1.bio.t
 
@@ -638,21 +713,21 @@ ORFs?
 ### **Working with multiple sequences using XStringSet objects**{-}
 
 As you know by now, bioinformaticians do not work with a single sequence rather with a lot of 
-sequences in parallel. Biostrings offers the class XStringSet, as a container for multiple 
-sequences. Here too it is a combination of a list and a vector, think of it as a list of XString 
+sequences in parallel. `Biostrings` offers the class `XStringSet`, as a container for multiple 
+sequences. Here too it is a combination of a list and a vector, think of it as a list of `XString` 
 class objects.
 
 Just like with the XString the XStringSet offers four sub classes
 
-1. DNAStringSet to house DNA sequences
+1. `DNAStringSet` to house DNA sequences
 
-2. RNAStringSet to house RNA sequences
+2. `RNAStringSet` to house RNA sequences
 
-3. AAStringSet to house amino acid sequences
+3. `AAStringSet` to house amino acid sequences
 
-4. BStringSet to house sets of diverse strings
+4. `BStringSet` to house sets of diverse strings
 
-This means that a BStringSet can house the DNA, RNA, and AA sequences of a particular gene.
+This means that a `BStringSet` can be used to house the DNA, RNA, and AA sequences of a particular gene within a single element.
 
 Let's see what it looks like
 
@@ -676,8 +751,8 @@ sq1.set
 
 ```
 
-By now you probably realized that the XStringSet can house sequences from FASTA file.
-Let's import the FASTA file practice_nuc.fa as an XStringSet object.
+By now you probably guessed that the `XStringSet` can house sequences from FASTA file.
+Let's import the FASTA file practice_nuc.fa as an `XStringSet`.
 
 ```{r importing fasta as XStringSet, warning=FALSE}
 #Using the readDNAStringSet function to import the FASTA file.
@@ -691,7 +766,7 @@ fa.set
 ```
 
 
-Objects of class XStringSet can be subset, index, and modified similar to object of class XString
+Variables of class `XStringSet` can be subset, index, and modified similar to varialbes of class `XString`
 
 
 ```{r working with XStringSet}
@@ -734,7 +809,7 @@ fa.set[1:3]
 
 ```
 
-One of the advantages of a XStringSet is the ability to manipulate multiple sequences at the same 
+One of the advantages of a `XStringSet` is the ability to manipulate multiple sequences at the same 
 time. 
 
 ```{r XStringSet working}
@@ -770,21 +845,27 @@ fa.set
 
 fa.set.rc
 
+```
 
-#Pattern matching can also be done for all the sequences, let's serch for start codones
-str_locate_all(fa.set, "ATG")
 
+It is also possible to match patterns over an `XStringSet` using the `Biostrings'` built-in pattern matching function `vmatchPattern()`.
+Let's search for positions that match the start codon ATG.
+
+```{r pmatchset}
+
+Biostrings::vmatchPattern("ATG", fa.set)
 
 ```
 
 
-## **Seqinr**{-}
+## **The seqinr package**{-}
 
-An alternative package to Biostrings is seqinr, it is not a Bioconductor package and thus uses 
-standard objects. Much less elegant than Biostrings yet it has some perks that are worth getting to know.
+An alternative package to `Biostrings` is `seqinr`, it is not a Bioconductor package and thus uses 
+standard S3 objects. Much less elegant than `Biostrings` yet it has some perks that are worth getting to know.
 
 ### **Data importation and handling with seqinr**{-}
-First, lets see how seqinr handles sequences by importing the practice_nuc FASTA file.
+
+First, lets see how `seqinr` handles sequences by importing the practice_nuc FASTA file.
 
 ```{r seqinr imprt, warning=FALSE}
 #Import the file
@@ -795,10 +876,10 @@ str(fa.snr)
 
 ```
 
-As can be seen, the output from read.fasta is a list. Each sequence is an element of the list 
+As can be seen, the output from `read.fasta` is a list. Each sequence is an element of the list 
 stored as a character vector resembling the exercise we did at the beginning of the class. Another 
 thing to note is that the characters are not capitalized. This means that when pattern matching is 
-required, the vectors need to be converted to strings. seqinr has two functions c2s and s2c which 
+required, the vectors need to be converted to strings. `seqinr` has two functions c2s and s2c which 
 converts characters to strings and vice versa respectively. 
 
 Let's look at an example for pattern matching with seqinr by identifying all start codons in all 
@@ -812,7 +893,7 @@ the sequences in the file.
 str_locate_all(lapply(fa.snr, c2s), "(?i)ATG")
 ```
 
-Apart from concatenating vectors and splitting stings seqinr has some summery functions as well.
+Apart from concatenating vectors and splitting stings `seqinr` has some summery functions as well.
 
 ```{r seqinr2, echo=TRUE}
 

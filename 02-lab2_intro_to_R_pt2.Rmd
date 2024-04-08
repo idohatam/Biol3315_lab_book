@@ -486,9 +486,9 @@ df2 <- filter(df1, CO2 > 300)
 #Note that filter discards row name
 df2
 
-#slice allows to subset a range of rows
+#slice allows to subset a range of rows, note specifying package due to masking. 
 
-df2 <- slice(df1, 1:4)
+df2 <- dplyr::slice(df1, 1:4)
 
 #Note that slice discards row names as well
 df2
@@ -1180,7 +1180,7 @@ This is a nice plot, but it is possible to add more information to it.
 For example overlay each observation (i.e. observation from each site) on the box plot using the geom_jitter function
 
 
-```{r ggplot2}
+```{r ggplot2b}
 
 #Let's overlay each observation on top of the box plot, this will allow you to see where the
 #observation fall, and how many observations are in each category.
