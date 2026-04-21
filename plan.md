@@ -75,6 +75,6 @@ For each lab below, the process will be:
   - Render & Commit.
 
 ### Phase 3: Final Review
-- [ ] 1. Perform a complete clean `quarto render` of the entire project.
-- [ ] 2. Final check of output formatting (figures, math, tables).
-- [ ] 3. Final commit and push of `dev` branch.
+- [x] 1. Perform a complete clean `quarto render` of the entire project.
+- [x] 2. Final check of output formatting (figures, math, tables).
+- [x] 3. Final commit and push of `dev` branch.
