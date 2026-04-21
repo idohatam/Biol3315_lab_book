@@ -35,13 +35,13 @@ For each lab below, the process will be:
   - Ensure Tidyverse is introduced here. Future labs can now use tidy syntax.
   - Render & Commit.
 
-- [ ] **Lab 3 Update (`03-lab3_biological_data1.qmd`)**
+- [x] **Lab 3 Update (`03-lab3_biological_data1.qmd`)**
   - Read `Biol_3315_lab3_2025.Rmd`
   - Convert to `.qmd` and update chunk options.
   - Explicitly update content based on the 2025 reference file.
   - Render & Commit.
 
-- [ ] **Lab 4 Update (`04-lab4_biologicaldata2.qmd`)**
+- [x] **Lab 4 Update (`04-lab4_biologicaldata2.qmd`)**
   - Read `Biol_3315_lab4_2025.Rmd`
   - Convert to `.qmd` and update chunk options.
   - Explicitly update content based on the 2025 reference file.
