@@ -47,7 +47,7 @@ For each lab below, the process will be:
   - Explicitly update content based on the 2025 reference file.
   - Render & Commit.
 
-- [ ] **Lab 5 Update (`05-lab5_pop_gen.qmd`)**
+- [x] **Lab 5 Update (`05-lab5_pop_gen.qmd`)**
   - Read `Biol_3315_lab5_2025.Rmd`
   - Convert to `.qmd` and update chunk options.
   - Explicitly update content based on the 2025 reference file.
