@@ -1,139 +1,93 @@
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, class.source = "fold-show")
-options(knitr.duplicate.label = "allow")
-```
+# **Lab 8: comparing phylogenetic trees made with genes and genomes**
 
-# **Lab 8 comparing phylogenetic trees made with genes and genomes**{-}
+<br>
 
-**Learning objectives** 
+## **Learning objectives** 
+<details>
+  <summary>Click to expand</summary>
 __By the end of this lab you will be able to:__
 
 
-*	Reconstruct phylogeny based on genes and genomes
+* Reconstruct phylogeny based on genes and genomes
 
-* Evaluate the performance of different substitution models and choose an optimal model for the data-set
+* Evaluate the performance of different substitution models and choose an optimal model for the dataset
 
 * Analyze and compare phylogenies constructed by different algorithms and different models
 
-* Analyze and compare phylogenies constructed by genes and genomes
+* Analyze and compare gene trees to genome trees
 
 * Test the robustness of the reconstruction method
 
+</details>
 
-## **Phylogeny reconstruction using genomes - the setup**{-}
+***
+
+## **Phylogeny reconstruction using genomes**
 
 This will be the culmination of many concepts covered in both lecture and lab.
-You will build a very simple analysis pipeline, and analyze the  relationships between 
-nine different strains of corona viruses. You will do so using both genes and whole genomes and
-compare the end result.
+You will build a very simple analysis pipeline and analyze the relationships between 
+nine different strains of coronaviruses. You will do so using both genes and whole genomes and
+compare the end results.
 
-You will use both pairwise and multiple sequence alignment to find homologous and build gene and genome trees.
-You would compare the genome trees to the gene trees and see which of them produces a more evolutionary relevant tree.
+You will use both pairwise and multiple sequence alignment to find homologs and build gene and genome trees.
+You will compare the genome trees to the gene trees and see which of them produces a more evolutionarily relevant tree.
 
 <br> 
 
 ***
 
 >**Note that for this lab we will use a linear multiple sequence aligner to align genomes.**
->**This is only possible because you will be working with small viral genomes, ~10kb.**
->**Aligning larger genomes requires a [graph aligner](https://en.wikipedia.org/wiki/Sequence_graph), we will discuss these in depth in Biol4315**
+>**This is only possible because you will be working with small viral genomes, ~10 kb.**
+>**Aligning larger genomes requires a [graph aligner](https://en.wikipedia.org/wiki/Sequence_graph); we will discuss these in depth in Biol 4315.**
 
 ***
 
 <br>
 
 
-### **Setting up local blast data sets**{-}
+## **Tips for completing the lab**
 
-First import the functions allowing you to run NCBI's blast+ via R.
+* The lab assignment is due on the date specified by your instructor.
 
+* This lab is made up of 3 questions that will require you to use the workflow you used for labs 6 and 7.
 
-```{r source func, eval=FALSE}
+* The code for this lab should include all the workflow from loading the libraries all the way to 
+generating and plotting a maximum likelihood tree.
 
-source("https://raw.githubusercontent.com/idohatam/blastinR/master/Blast_func.R")
-source("https://raw.githubusercontent.com/idohatam/blastinR/master/make_blast_db.R")
-source("https://raw.githubusercontent.com/idohatam/blastinR/master/retrieve_hit_seqs.R")
+* When performing the multiple sequence alignment, use the default settings (i.e., `ClustalW`) to save on run time.
 
-```
+  * Note that the multiple sequence alignment of the genomes may take a long time; it took my M1 Mac ~7 min. This is by far the slowest step and may need to be run on the lab Mac computers. If you have an older computer, I recommend you complete the maximum likelihood part on the lab computers as well.
 
-Next, after downloading the viral genomes, turn them into a blast databse
-
-```{r blast db, eval=FALSE}
-make_blast_db(infile = "PATH/TO/VIRAL/GENOMES.fasta", dbtype = "nucl" ,outfile = "OUTFILE")
-```
-
-Perform blast with tblastn using the spike protein seqs as query.
-Results will be returned as a dataframe/tibble. 
-
-```{r bnr, eval=FALSE}
-blast <- blstinr(btype = "tblastn", dbase = "your database", qry = "spike_protein.fasta ")
-
-```
-
-Retrieve the first hit for each of the spike proteins.
-To do so you will need to get the id of each query sequence (i.e. the header minus the `>`)
-
-```{r retrive hits, eval=FALSE}
-
-retrieve_hit_seqs(query_ids = "vector with query ids", 
-                  blast_results = "dataframe with your blast results",
-                  blastdb = "your database")
-
-```
-
->**Note: if you wish to use your own computer for this exersize make sure to download and install the [blast+](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) suite. You can then source the Check_blast_function, to check if the software suite was installed correctly. 
-
-<br>
-
-
-### **Tips for this lab**{-}
-
-* The code for this lab should include all the workflow from loading the library all the way to 
-generating a maximum likelihood tree.
-
-* When performing the multiple sequence alignment use the default setting (i.e. CLUSTAL) to save time (implementation of MUSCLE in msa is a bit finicky).
-
-  * Note that the multiple sequence alignment of the genomes can take up to 40 min
-
-* Remember to convert msa objects to phyDat, you can do that with msaConvert for the nucleotide sequences but will have to be creative for the protein sequences.
+* Remember to convert `msa` objects to `phyDat`. You can do that with `msaConvert()` for the nucleotide sequences. For the protein sequences, use: `as.phyDat(msaConvert(your_msa_object, "seqinr::alignment"), type = "AA")`.
   
-* Use the phangorn package to generate the NJ tree, use JC69 and the model for genomes and JTT as the model for the spike proteins when generating the distance matrix.
+* Use the `phangorn` package to generate the NJ tree; use JC69 as the model for genomes and JTT as the model for the spike proteins when generating the distance matrix.
 
-* When bootstrapping the NJ tree use 1000 iterations.
+* When bootstrapping the NJ tree, use 1000 iterations.
 
-* When testing the models for ML use model = "all", this will allow you to compare the simplest substitution model with the most sophisticated model. You will be able to determine whether JC69 is up for the challenge.
+* When testing the models for ML, use `model = "all"`. This will allow you to compare the simplest substitution model with the most sophisticated model. You will be able to determine whether JC69 is up for the challenge.
   
-  * Note that the optimization of the parameters of the likelihood models can take time.
+  * Note that the optimization of the parameters of the likelihood models can take time; on my M1 Mac, it was about 6 min.
 
-* When bootstrapping the ML tree use 100 iterations
-
-* When plotting (or comparing) trees make sure they are rooted
+* When plotting (or comparing) trees, make sure they are rooted. Use the `ggtree` package introduced in Lab 7 for all tree visualizations.
 
 <br>
 
 ***
 
->**Note: Aligning the genomes, as well as the construction and bootstraping of the ML trees are computationally intensive. It is recommended that you use the computers of the Mac lab**
+>**Note: Aligning the genomes, as well as the construction and bootstrapping of the ML trees, are computationally intensive. It is recommended that you use the computers in the Mac lab. Plan accordingly and start early.**
 
 ***
 
 <br>
 
-```{r packages, eval = FALSE, echo = FALSE}
+```{r}
+#| label: packages
+#| eval: false
+#| echo: false
 
-#Installing the package dendextend
-install.packages("phangorn")
-
-#Installing the package phytools
-install.packages("phytools")
-
-#Installing the package taxize
-install.packages("taxize")
-
-
-#lapply is part of the apply family of functions, one of those functions that act as a for loop
+# lapply is part of the apply family of functions, one of those functions that act as a for loop
 lapply(c("ape","seqinr","Biostrings", "tidyverse","msa", "phangorn",
-         "phytools","stringr","taxize"),
+         "phytools","stringr","taxize", "ggtree"),
        library, character.only = TRUE)
 
 ```
@@ -142,8 +96,8 @@ lapply(c("ape","seqinr","Biostrings", "tidyverse","msa", "phangorn",
 
 ## **Question 1**
 
-Write a script that downloads the fasta files containing the spike protein sequences and the genomes sequences of nine
-corona-viruses and performs a phylogenetic analysis.
+Write a script that downloads the FASTA files containing the spike protein sequences and the genome sequences of nine
+coronaviruses and performs a complete phylogenetic analysis.
 
 ***
 
@@ -155,47 +109,67 @@ corona-viruses and performs a phylogenetic analysis.
 >
 >https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/spike.fa
 >
->**Note: your code should download/read the files directly from  github, you're not allowed to download them manually**
+>**Note: Your code should download/read the files directly from GitHub; you are not allowed to download them manually.**
 
 ***
 
-a. Make sure that your script includes loading all the necessary libraries
+Your script should include the following steps (each step is worth 1 mark):
 
-b. Make sure to go from MSA all the way to a tanglegram using the cophy function from phylotoolt.
+1. Loading all necessary libraries
+2. Reading/downloading the genome and spike protein files from GitHub
+3. Performing MSA on both datasets
+4. Converting MSA objects to phyDat format
+5. Constructing NJ trees with appropriate models
+6. Bootstrapping the NJ trees (1000 iterations)
+7. Model testing for ML using `model = "all"`
+8. Constructing ML trees with optimal models
+9. Bootstrapping the ML trees (100 iterations)
+10. Creating tanglegrams using the `cophylo()` function from `phytools`
 
-c. Make sure to comment every step of your script
+Additionally, 3 marks are awarded for comprehensive commenting throughout your script.
 
-d. each step of the script will receive 1 mark plus 3 marks for commenting, make sure to include the lines for the plots required in questions 2.
+**Requirements:**
 
-Total marks 13
+a. Make sure that your script includes loading all the necessary libraries.
+
+b. Make sure to go from MSA all the way to a tanglegram using the `cophylo()` function from `phytools`.
+
+c. Make sure to comment on every step of your script.
+
+d. Each step of the script will receive 1 mark, plus a total of 3 marks for commenting. Make sure to include the lines for the plots required in Question 2.
+
+**Total marks: 13**
 
 <br>
 
 ## **Question 2**
 
-a. Attached a bootstrapped rooted NJ tree of the spike protein and the genomes. Make sure to give a title. Export the trees as PDFs (2 marks)
+a. Attach a bootstrapped rooted NJ tree of the spike protein and the genomes. Make sure to give each a descriptive title. Export the trees as PDFs (2 marks).
 
-b. Attache the following tanglegrams: ML vs NJ for genomes, ML vs NJ for proteins, ML genomes vs ML proteins. Attache the plots as PDFs. (2 marks)
+b. Attach the following tanglegrams: ML vs. NJ for genomes, ML vs. NJ for proteins, ML genomes vs. ML proteins. Attach the plots as PDFs (2 marks).
 
 <br>
 
 
 ## **Question 3**
 
-a. Based on the tanglegrams was there any difference between the gene trees and the genome trees? Did the clades 
-within the tree make sense biologically (i.e. did they resolve based on the taxonomic groups they belong to) (3 
+a. Based on the tanglegrams, was there any difference between the gene trees and the genome trees? Did the clades 
+within the tree make sense biologically (i.e., did they resolve based on the taxonomic groups they belong to) (3 
 marks)?
 
-b. Do you think that your tanglgram would look the same had you built the spike tree with nucleic acid seqs rather
+b. Do you think that your tanglegram would look the same had you built the spike tree with nucleic acid sequences rather
 than amino acids (3 marks)?
 
 c. Which model was found to be optimal for the genomes based on maximum likelihood? In no more than three sentences,
-what are the assumptions behind this model and how do they compare to JC-69 (4 marks)?
+what are the assumptions behind this model, and how do they compare to JC69 (4 marks)?
 
-d. How did JC-69 perform compared to the model selected by the maximum likelihood algorithm? Based on what you learned
+d. How did JC69 perform compared to the model selected by the maximum likelihood algorithm (as measured by AIC and BIC values)? Based on what you learned
 in class, why do you think this is (2 marks)?
 
-```{r files, eval=FALSE,echo=FALSE}
+```{r}
+#| label: files
+#| eval: false
+#| echo: false
 
 spike <- readAAStringSet(
   "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/spike.fa")
@@ -204,7 +178,11 @@ genomes <- readDNAStringSet(
   "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/SARS_MERS_coronavirus.raw_sequence.fasta")
 ```
 
-```{r align, echo=FALSE,eval=FALSE}
+```{r}
+#| label: align
+#| echo: false
+#| eval: false
+
 stt <- Sys.time()
 
 alsp <- msa(spike)
@@ -216,7 +194,11 @@ edt <- Sys.time()
 edt-stt
 
 ```
-```{r tree, eval=FALSE, echo=F}
+```{r}
+#| label: tree
+#| eval: false
+#| echo: false
+
 gpd <- msaConvert(alng, type = "phangorn::phyDat")
 
 spd <- as.phyDat(msaConvert(alsp, "seqinr::alignment"),type = "AA")
@@ -229,20 +211,20 @@ stree <- phangorn::NJ(sdist)
 
 gbs <- bootstrap.phyDat(gpd,FUN = function(x)NJ(dist.ml(x, model = "JC69")),bs=1000)
 
-plot(midpoint(gtree))
+ggtree(midpoint(gtree)) + geom_tiplab() + theme_tree2() + ggtitle("Genome NJ Tree")
 
 
 sbs <- bootstrap.phyDat(spd,FUN = function(x)NJ(dist.ml(x, model = "JTT")),bs=1000)
 
-plot(midpoint(gtree))
-
-plot(midpoint(gtree))
-
-plot(midpoint(stree))
+ggtree(midpoint(stree)) + geom_tiplab() + theme_tree2() + ggtitle("Spike NJ Tree")
 
 ```
 
-```{r model, eval=FALSE, echo=FALSE}
+```{r}
+#| label: model
+#| eval: false
+#| echo: false
+
 stt <- Sys.time()
 
 mt <- modelTest(gpd, model="all")
@@ -253,15 +235,16 @@ edt <- Sys.time()
 edt-stt
 
 ?modelTest
-#Print the results
+# Print the results
 mt
-#Which model has the lowest AIC?
+# Which model has the lowest AIC?
 mt$Model[mt$AIC==min(mt$AIC)]
 mt2$Model[mt2$AIC==min(mt2$AIC)]
 stt <- Sys.time()
 g.pml <- pml(gtree,gpd,model="GTR",k=4)
 gopt.pml <- optim.pml(g.pml,optNni=TRUE,optBf=TRUE,optQ=TRUE,optGamma=TRUE,optEdge=TRUE)
-plot(midpoint(gopt.pml$tree))
+
+ggtree(midpoint(gopt.pml$tree)) + geom_tiplab() + theme_tree2() + ggtitle("Genome ML Tree")
 
 s.pml <- pml(stree,spd,model="WAG",k=4)
 sopt.pml <- optim.pml(s.pml,optNni=TRUE,optBf=TRUE,optQ=TRUE,optGamma=TRUE,optEdge=TRUE)
@@ -270,24 +253,26 @@ edt <- Sys.time()
 
 edt-stt
 
+# Note: This step is computationally intensive
 bsg.pml <- bootstrap.pml(gopt.pml, bs=500,trees=TRUE,optNni=TRUE)
 
-#Can plot the tree
-plotBS(midpoint(gopt.pml$tree), bsg.pml, type = "phylogram")
-
+# Can plot the tree
+boot_tree_g <- plotBS(midpoint(gopt.pml$tree), bsg.pml, type = "none")
+ggtree(boot_tree_g) + geom_tiplab() + geom_nodelab() + theme_tree2() + ggtitle("Genome ML Tree with Bootstrap")
 
 ```
 
 
-```{r thegram, echo=FALSE, eval=FALSE}
+```{r}
+#| label: thegram
+#| echo: false
+#| eval: false
 
 obj <- cophylo(midpoint(gtree), midpoint(sopt.pml$tree))
 
-#Plotting the trees
+# Plotting the trees
 par(mfrow=c(1,1))
-#mar sets the margins of the plot
+# mar sets the margins of the plot
 plot(obj,mar=c(.1,.1,2,.1))
 
-
 ```
-
