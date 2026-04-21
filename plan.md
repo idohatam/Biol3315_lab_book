@@ -29,7 +29,7 @@ For each lab below, the process will be:
   - Update main lab file, convert to `.qmd`, update chunk options, remove dates, verify code blocks.
   - Render & Commit.
 
-- [ ] **Lab 2 Update (`02-lab2_intro_to_R_pt2.qmd`)**
+- [x] **Lab 2 Update (`02-lab2_intro_to_R_pt2.qmd`)**
   - Read `Biol_3315_lab2_2025.Rmd`
   - Convert to `.qmd` and update chunk options.
   - Ensure Tidyverse is introduced here. Future labs can now use tidy syntax.
