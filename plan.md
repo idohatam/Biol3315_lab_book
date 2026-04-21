@@ -24,7 +24,7 @@ For each lab below, the process will be:
 4. Test code chunks and run `quarto render`. Debug any failures.
 5. Commit the changes to `dev`.
 
-- [ ] **Lab 1 Update (`01-lab1_intro_to_R_pt1.qmd`)**
+- [x] **Lab 1 Update (`01-lab1_intro_to_R_pt1.qmd`)**
   - Read `Biol_3315_lab1_2025.Rmd`
   - Update main lab file, convert to `.qmd`, update chunk options, remove dates, verify code blocks.
   - Render & Commit.
@@ -64,6 +64,7 @@ For each lab below, the process will be:
   - Convert to `.qmd` and update chunk options.
   - Explicitly update content based on the 2025 reference file.
   - **Special Mandate**: Add `ggtree` tutorial for tree plotting and annotation. Convert appropriate visualizations to use `ggtree`.
+  - **Special Mandate**: Add `#| cache: true` to the maximum likelihood tree chunk with bootstrapping to avoid long render times.
   - Render & Commit.
 
 - [ ] **Lab 8 Update (`08-lab8_genome_trees.qmd`)**
