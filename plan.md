@@ -59,7 +59,7 @@ For each lab below, the process will be:
   - Explicitly update content based on the 2025 reference file.
   - Render & Commit.
 
-- [ ] **Lab 7 Update (`07-lab7_trees.qmd`)**
+- [x] **Lab 7 Update (`07-lab7_trees.qmd`)**
   - Read `Biol_3315_lab7_2025.Rmd`
   - Convert to `.qmd` and update chunk options.
   - Explicitly update content based on the 2025 reference file.
