@@ -67,7 +67,7 @@ For each lab below, the process will be:
   - **Special Mandate**: Add `#| cache: true` to the maximum likelihood tree chunk with bootstrapping to avoid long render times.
   - Render & Commit.
 
-- [ ] **Lab 8 Update (`08-lab8_genome_trees.qmd`)**
+- [x] **Lab 8 Update (`08-lab8_genome_trees.qmd`)**
   - Read `Biol_3315_lab8_2025.Rmd`
   - Convert to `.qmd` and update chunk options.
   - Explicitly update content based on the 2025 reference file.
