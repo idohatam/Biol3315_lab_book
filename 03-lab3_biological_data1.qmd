@@ -1,0 +1,1094 @@
+```{r setup lab3, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+
+```
+
+# **Lab 3 handling of biological data in R - 1**{-}
+
+
+**Learning objectives**
+
+__By the end of this lab you will be able to:__
+
+* Demonstrate the ability to install packages from Bioconductor
+
+*	Demonstrate the ability to import and export biological sequences
+
+*	Demonstrate the ability to manipulate biological sequences using baseR and tidyverse
+
+* Demonstrate the ability to collect basic statistics of biological sequences using base R
+
+* Demonstrate an understanding of the basic data classes of the Biostrings and seqinr packages
+
+* Demonstrate the ability to manipulate both multiple and single biological strings using tools from the Biostrings and seqinr packages
+
+* Demonstrate the ability to collect basic statistics of biological strings using tools from the Biostrings and seqinr package
+
+## **The setup**{-}
+
+R has many tools to handle biological data and over the next couple of labs you will build the
+vocabulary needed to deal with sequences, statistical methods and objects, trees and dendrograms.
+
+```{r install packages_lab3, eval=FALSE, echo=TRUE}
+install.packages(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust"))
+
+#lapply is part of the apply family of functions, one of those functions that act as a for loop
+lapply(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust"), 
+       library, character.only = TRUE)
+
+```
+
+```{r set libs, ecoh=FALSE,include=FALSE, message=FALSE,warning=FALSE}
+lapply(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust", 
+         "tidyverse", "Biostrings","DT"), 
+       library, character.only = TRUE)
+
+```
+
+You should also load the Tydiverse packages
+
+```{r load tidyverse, eval=FALSE, echo = TRUE}
+
+library("tidyverse")
+
+```
+
+
+
+### **Installing packages from Bioconductor**{-}
+
+[Bioconductor](https://bioconductor.org/) is a repository that stores R packages geared towards the
+analysis of biological data.
+Most packages in Bioconductor are designed to handle omics, cellular, genetic, and biochemical
+data, and thus will be more useful in more advanced courses. However some of the packages on
+Bioconductor are excellent for this course. One of them is the Biostrings package, which as its name
+suggests handles biological strings (i.e. nucleotide and amino acid sequences). While there are
+packages on CRAN with similar functions, it is a good opportunity to familiarize yourself with the
+object structure employed by Bioconductor packages.
+
+```{r installing bioconductor, eval=FALSE, echo=TRUE}
+#Bioconductor require its own package manager
+install.packages("BiocManager")
+
+#Once the manager is installed, can install bioconductor packaged
+BiocManager::install("Biostrings")
+
+#Load the library
+library("Biostrings")
+```
+
+Note that when you load the packages functions can get masked, make sure you are using the function
+from the correct package. You can do that by specifying the package when calling the function.
+e.g. `dplyr::summarise()`
+
+
+## **Working with biological strings using base R and the tidyverse**{-}
+
+You were introduced to strings during lab 1, and biological strings are no different than regular
+strings. Nucleotide sequences are comprised of up to 20 letters (ATCGU and letters that denote
+alternative bases, base groups, and modified bases).Amino acid strings are comprised of up to
+28 letters (22 amino acids and some special codes).
+
+Base R and some functions from the package stringr make it easy to perform basic processing of biological
+strings. Let's reexamine a simple example and create a string of 100 nucleotides and summarize the number of times each nucleotide appears 
+in the sequence. Here I turn the resulting vectors into a data frame so it's nicer to present and plot later on. 
+
+```{r creat a sequence}
+#Get our bases
+nucs <- c("A","T","C","G")
+#Why am I seting seeds?
+set.seed(649)
+#generate a vector of nucleotides
+sq1 <- paste(sample(nucs, 100,replace = T), collapse = "")
+
+#Str_count from stringr makes it easy to count the number of time each nucleotide appears in our sequence
+#Again, vectorization instead of loops
+(reps <- str_count(sq1, nucs))
+```
+
+Now lets convert it to a data frame.
+
+```{r dfstr, eval=FALSE}
+df <- tibble::tibble(Bases = nucs, Ocurances =reps)
+df
+```
+
+```{r dfstr2, echo=FALSE}
+df <- tibble::tibble(Bases = nucs, Ocurances =reps)
+DT::datatable(df)
+```
+
+And plot.
+```{r plot nbases}
+ggplot(df, aes(x=nucs, y=reps))+
+  geom_bar(stat = "identity")
+```
+
+One more thing we can do with simple string operations is to figure out if there are any start or stop codons in 
+our sequence, which is the first step in predicting ORFs, or convert the DNA sequence to RNA sequence (and vice versa).
+In the code snippet bellow I use the `str_locate_all()` function from the stringr package to find all ATGs and TAAs in the string created 
+earlier. 
+
+```{r start stop}
+#With ths stringr package it is simple to find all start and stop codons
+(atg <- str_locate_all(sq1, "ATG"))
+
+#Just one of the stop codons
+(stp <- str_locate_all(sq1, "TAA"))
+
+```
+
+From here you can write a loop calculating the length of characters from the first nucleotide of
+each start codon to the last nucleotide of every stop codon. Those who are dividable by 3 are potential open
+reading frames (why?). 
+
+Stringr's `str_replace_all()` function makes it easy to convert DNA strings to RNA and vice versa.  
+
+```{r dna 2 rna}
+sq1.rna <- str_replace_all(sq1, "T","U")
+
+#Let's inspect the first 10 characters of each string, did it work?
+str_sub(sq1, 1,10)
+str_sub(sq1.rna, 1,10)
+```
+
+
+#### **Quick R exercise** {-}
+
+*   Write a function that takes a nucleotide string summarizes the occurrence of each nucleotide into a table and graphs it.
+
+Bonus - get the function to:
+
+*   Add a column to your data frame with the percent proportion of each nucleotide (right now you have absolute values)
+
+*   Convert the table to a long table format
+
+*   Plots 2 graphs (or 2 facets), one with absolute values, one with proportion
+
+
+
+Next let's see how to convert a sequence of nucleotides to its reverse and complementary sequence
+
+```{r reverse complement}
+
+#First let's generate a shorter sequence, it will be easier to inspect
+
+sq2 <- str_sub(sq1,1,10)
+
+#stringr doesn't have a good option to replace every base to its complement because it can only 
+#replece one patternt at a time.
+
+sq2c <- str_replace_all(sq2, "T","A")
+#Now that all Ts are As, ther is no way to replace all original As with Ts
+
+#It can be done by splitting the string into a character vector
+#using the str_split from stringr, note the [[]] since str_split outputs a list
+sq2c <- str_split(sq2,"")[[1]]
+
+#Now with a chain of ifelse it is possible to replace each position
+
+sq2c <- if_else(sq2c == "T", "A",
+                if_else(sq2c =="A","T", 
+                        if_else(sq2c =="G","C",if_else(sq2c =="C","G",sq2c))))
+
+#Complementary, indeed.
+sq2
+sq2c
+
+#We can now use the rev function to reverse the order of the vector
+#resulting in a sequence that is reverse and complementary
+
+sq2
+sq2c
+(sq2rc <- rev(sq2c))
+
+#Is it possible to locate a codon usign a vector?
+#First occurance using str_locate
+str_locate(sq2c, "GTT") [1,]
+
+#In order to find the codon need to find all ocurances of the nucleotide G, and then find which nucletotides are found one and two possitions over. Not impossible but definetly annoying.
+
+#An easier way would be to convert the vector bac to a string and match patterns.
+
+```
+
+***
+
+### **Quick R exercise - basic string operations**{-}
+
+1.    We will need to convert sequences to reverse complement again, based on the code snippet above
+Write a function that does so, name it rev_comp.
+
+2.   Bonus - Write a function that takes a nucleotide string summarizes the occurrence of each nucleotide into a table and graphs it.
+
+get the function to:
+
+*   Add a column to your data frame with the percent proportion of each nucleotide (right now you have absolute values)
+
+*   Convert the table to a long table format
+
+*   Plots 2 graphs (or 2 facets), one with absolute values, one with proportion
+
+
+```{r rev_comp, echo=FALSE}
+
+rev_comp <- function(x){
+  
+  if(length(x) == 1 ){
+    x <- str_split(x, pattern = "")[[1]]
+  }
+  x_rc <- x
+  x_rc <- if_else(x_rc == "T", "A",
+                if_else(x_rc =="A","T", 
+                        if_else(x_rc =="G","C",if_else(x_rc =="C","G",x_rc))))
+  x_rc <- paste(rev(x_rc), collapse = "")
+  return(x_rc)
+  
+}
+
+```
+
+
+## **Importing and working with fasta files with base R**{-}
+
+Converting a string to its reverse and complement sequence adds a level of complexity because of
+the switch between strings to character vectors and back to string. This doesn't seem too complex
+but remember that as bioinformaticians you will never work with just one sequence, you will use fasta files with
+multiple (sometimes thousands) sequences. Let's see how base R handles those.
+
+First, what are FASTA files?
+
+Fasta files are text files in the [FASTA format](https://en.wikipedia.org/wiki/FASTA_format).
+The FASTA format requires that the first line of each sequence will be a header, it is denoted by >
+(greater than) followed by a description of the sequence, e.g. >E.coli strain K12 complete 
+chromosome. Next are all the letters denoting nucleotides or amino acids with no spaces (basically 
+a string). Sequences in FASTA format are universally used by all sequence repositories and fasta 
+files (generally .fa or .fasta extensions though any txt file with the format will work) are 
+universally used.
+
+Because FASTA files are essentially text files it is easy to import them to using the `file()` and 
+`readLines()` functions.
+
+```{r reading fasta files, warning=FALSE}
+#Let's import 
+nuc_fa <- readLines(file("https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_nuc.fa",open = "r"))
+```
+
+Now, let's inspect the file by calling the first 4 lines (or the first 4 elements in the vector `nuc_fa`).
+
+```{r inspect1}
+nuc_fa[1:4]
+```
+
+As you can see, sequences in the file are housed in multiple lines (or elements along the vector), e.g. line 2-4 still belong to sequence 1.
+So when does the first sequence end? Because the header will always be a separate line and header lines are denoted with a greater than 
+symbol `>`, it is easy to count how many sequences does a file contain and which line marks the beginning of a new sequence.
+
+Again we turn to a stringr function, in this case `str_which()` to find the lines denoting the beginning of each sequence, we can also use 
+the `length()` function to find how many elements are housed in the vector created, which would be equal to the number of sequences found in
+the fasta file. 
+
+```{r inspect2}
+(length(hdr <- str_which(nuc_fa, ">")))
+
+```
+
+Looks like the file contains 5 sequences, next we might ask what is the length of each sequence.
+Are the sequences of equal length, or not. This seem trivial, but later in your program you will see that this is a nice way to filter 
+sequences that, for various reasons, you might not be interested in from from downstream analysis.  
+
+The code snippet bellow shows a simple loop that does that, did you figure out why it uses a conditional statement? 
+
+```{r seqstatloop}
+#Preping a vector to house the results of the for loop.
+#Note no hard coding, that way you can reuse this line even if the next file has more sequences.
+seq_length <- rep(0,length(hdr))
+#The for loop
+for (i in seq_along(hdr)) {
+  #What is the role of this if else statement?
+  if(i<length(hdr)){
+    seq_length[i] <- sum(nchar(nuc_fa[(hdr[i]+1):(hdr[i+1]-1)]))
+  }else{ 
+      seq_length[i] <- sum(nchar(nuc_fa[(hdr[i]+1):length(nuc_fa)]))
+    }
+  
+}
+
+#Let's get the stats on sequence length
+summary(seq_length)
+
+```
+
+We can see that the longest sequence is 786 nucleotides, and the shortest is 544 nucleotides.
+
+
+### **Housing sequences, moving beyond simple vectors**{-}
+
+What if there is a need to perform more tasks with the sequences. For example, find ORFs, compile
+the reverse and complementary sequences, or align the sequences against each other, build a
+phylogenetic tree, etc? 
+
+The fact that the sequences are divided into lines (different element of a character vector) makes it difficult to process them and they need to be housed in a new container.
+Two possible ways to do it are:
+
+* House them in a dataframe column 1 will be the header, column 2 will be the concatenated line of each sequence and line 3 will be the reverse complement sequence.
+
+* House each of them in a list the name of each element will be the header and a second list would be the reverse complement sequence. The two lists could be merged as two nested lists 
+
+Both options will require a fair bit of code, let's see what does the data frame option look like.
+
+```{r housing seqs in df, echo=TRUE, warning=FALSE}
+
+#Let's start with creating 3 vectors
+
+#Sequence headers
+
+hdrs <- nuc_fa[hdr]
+
+#a vector to house the seqs
+
+sqs <- rep("H",length(hdr))
+
+# vector to house the reverse complement seqs
+sqs_rc <- sqs
+
+#Now let's write a for loop to marge all lines of each sequence to one sequence and also produce 
+#the reverse complementary sequence
+
+for(i in seq_along(hdr)){
+  
+  if(i<length(hdr)){
+    
+    sqs[i] <- paste(nuc_fa[(hdr[i]+1):(hdr[i+1]-1)], collapse = "")
+    
+    #Now I don't know about you, but I wrote the rev_comp function
+    #My function also makes sure to check if the string is split or not and splits it if needed.
+    
+    sqs_rc[i] <- rev_comp(sqs[i])
+    
+  } else{
+    
+    sqs[i] <- paste(nuc_fa[(hdr[i]+1):length(nuc_fa)], collapse = "")
+    
+    sqs_rc[i] <- rev_comp(sqs[i])
+    
+  }
+  
+}
+
+#Now let's bind the vectors as data frame
+
+df_sqs <- data.frame(hdrs, sqs,sqs_rc, stringsAsFactors = F)
+
+```
+
+Now that the sequences are housed in a data frame it is easy to get what we need from them.
+
+```{r something, warning=FALSE}
+
+#Calculate
+df_sqs <- df_sqs %>% mutate(Seq.len = nchar(sqs))
+
+#Get sequence stats
+summary(df_sqs$Seq.len)
+
+#Get all ATGs
+ATGs <- str_locate_all(df_sqs$sqs, "ATG")
+#Resut is a list with 5 elements, each with the positions of ATG of a particular sequence
+#This is for The first sequnces
+ATGs[[1]]
+
+```
+
+Data frames requires that all columns be of the same length, it is not very flexible and 
+only allows to work with strings. The second option, working with lists, affords more flexibility since each element 
+of the list is independent of each other and can even be another list.
+Therefore, you could generate a set of nested lists where the outer list will house all other lists 
+and each nested list will contain the string and a vectorizes sequences.
+
+Here's an example of what a list structure might look like:
+
+List of all sequences (
+
+  List of sequence 1 (element one( string of sequence 1), element two(string of reverse complement of sequence 1),
+                      element 3 (character vector of sequence 1), element 4( character vector of
+                      reverse complement of sequence 1))
+  .
+  .
+  .
+  list of sequence 5(....)
+)
+
+From there you can add more elements such as location of all ORFs, corresponding RNA and amino acid 
+sequences. However as you can see, all these will require <u> **_a lot of coding!_**</u>
+Luckily you don't have to reinvent the wheel since there are great R packages designed to handle
+biological strings. This, however, was not a pointless exercise because you gained an
+understanding of some of the data structures generated by these packages, and hopefully it will make
+it easier for you to work with them. Furthermore, now you know what it takes to write a package like the
+ones you will use. This understanding will serve you when you will be required to develop your own packages,
+when you'll work as a bioinformaticion.
+
+## **The Biostrings package**{-}
+
+The first package we will deal with is Biostrings. As its name suggests, it is a package that 
+handles biological strings. It can handle DNA, RNA, and amino acid sequences and is also capable of
+pattern matching, which helps with sequence look-up and alignments (albeit with limited capabilities). 
+Biostirngs allows to import individual sequences, or FASTA files containing multiple sequences.
+
+Biostrings utilizes a specialized class of  container to store strings called `Xstring`. 
+`Xstring` is similar to a character vector however, unlike a vector it can only house a single string.
+It is also different in that it allows to store meta-data relating to the sequence, which means that it behaves like a list. 
+It is also an object of the type S4 which have a slightly different structure than the 
+traditional `base R` objects you worked with up until now. The `S3` objects.
+In order to index an `S4` element you need to use `@` instead of `$`.
+
+### **Basic biosting sub-classes**{-}
+The `XString` class has four sub classes:
+
+1. `DNAstring` - stores DNA sequences
+
+2. `RNAstring` - stores RNA sequences
+
+3. `AAstring` - stores amino acid sequences
+
+4. `Bstring` - stores general strings (character/alphabet agnostic)
+
+Let's look at a few examples of working with strings using Biostrings
+
+
+```{r readig sequence biostrings, echo=TRUE, error=TRUE}
+
+#As always, let's generate a random string and convert it to a Xstring object
+
+string <- "This is a random string (is it random though?!)"
+
+#Now lets call it as DNAstring
+
+string <- DNAString(string)
+
+
+```
+
+Uh-oh, an error message.
+This is because DNAstring is limited in its intake of characters, remember that only Bstring is
+character agnostic.
+
+Let's see which characters does DNAstring accepts
+
+```{r xstring characters}
+
+DNA_ALPHABET
+
+#In case you were wondering what each of those letters mean Biostrings has a function with the 
+#details.
+#Useful when designing synthetic sequences like primers
+
+IUPAC_CODE_MAP
+
+
+```
+
+As you can see, `DNAstring` accepts more than just ATCG, it also accepts base categories, strand 
+orientation (+/-) and alignment gaps.
+
+Let's see which characters the other two restricted sub classes accept.
+
+```{r  xstring characters-2}
+
+RNA_ALPHABET
+
+AA_ALPHABET
+
+```
+
+Now, let's use the acceptable alphabet to generate an string that will not produce an error.
+
+```{r xstring}
+
+#I am creating an AA sequence, using AA_standard to just include the standard amino acid symbols
+#Note that I am setting seed, if you want to reproduce the same random string I produced 
+#you should set seed to the same number
+
+set.seed(123)
+
+casain <- AAString(paste(sample(AA_STANDARD, 10, replace = T),collapse = ""))
+
+casain
+
+class(casain)
+
+#Note, type of will output S4, this is a different object type than ones we have worked with so far
+typeof(casain)
+
+str(casain)
+
+
+```
+
+One advantage of the `Xstring` class is that it allows to treat the sequence both as a vector and as 
+a string. Making it easy to index, subset, and modify.
+
+The code snippet bellow demonstrate how access and modify an `XString` class.
+
+```{r xstring2}
+
+#Lets get the first element of the AA sequence
+casain[1]
+
+#Lets subset
+casain[1:5]
+
+#Another great feature of the xstring class is that the string is mutable in the same way a vector 
+#is. Let's change the first AA to methionine.
+
+casain[1] <- "M"
+
+#Appending characters is done in the same way you would a character vector.
+casain[11] <- "X"
+#Reminder that gaps can also be added.
+casain[10] <- "-"
+
+casain
+
+
+```
+
+
+In addition it is possible to use `base R` pattern matching functions and patter substitution on class `XString` elements. 
+
+Here is an example of using the function `grepl()` to check if the sequence MYFNI is found in casain.
+
+```{r xstring3}
+
+grepl("MYFNI",casain)
+
+```
+
+It's also possible to use `gsup()` to substitute the sequence MYFNI with the sequence  
+
+
+```{r xstring4}
+
+gsub("MYFNI","MYXGT",casain)
+
+#Note that gsub returns a simple string so in order to replace and keep as an 
+#XString require the use of the AAString function
+
+AAString(gsub("MYFNI","MYXGT",casain))
+
+```
+
+`XString` elements cannot be used with functions from the package `stringr`, however they require a conversion to a character vector first. 
+For example here is how to use the function `str_detect()` to check if the sequence MYFNI is found in casain and the
+function `str_replace()` to replace it with MYXGT. This is useful when using `%>%` to chain functions processing biological string data. 
+
+```{r xstring5}
+
+str_detect(as.character(casain), "MYFNI")
+
+
+str_replace(as.character(casain), "MYFNI","MYXGT")
+
+#note, like gsub you have to convert back to AAString
+
+AAString(str_replace(as.character(casain), "MYFNI","MYXGT"))
+
+
+```
+
+
+
+### **Basic Biostrings functions**{-}
+
+The Biostrings package has some useful functions with respect to sequence processing.
+Let's look at some of them.
+
+The package's built-in pattern matching function, `matchPattern()` that match patterns in an `XString` element. 
+`matchPattern()` allows to set mismatches and account for indels, pretty useful when handling biological strings. 
+
+```{r pmatch}
+
+matchPattern("MYFNI", casain)
+
+```
+Another useful function is `alphabetFrequency()`which count the frequency of each letter in an `XString`.
+The default setting counts the number of occurrences while setting `as.prob=TRUE` will convert it to probability.
+
+```{r biostrings functions1}
+
+x <- alphabetFrequency(casain)
+#output is a named vector, not the most convenient of ways to present results.
+x
+
+#as.prob gives the probability of each AA
+x <- alphabetFrequency(casain, as.prob = TRUE)[alphabetFrequency(casain)>0]*100
+
+x
+
+```
+
+
+Now, let's do the same only with a longer sequence. This time a DNA sequence.
+We'll do it by converting the element `sq1` we created earlier to a `DNAString`.
+Note, that we don't care about any special characters allowed by the nucleotide alphabet.
+Therefore in this example I set `baseOnly=TRUE`.
+
+
+```{r biostrings functions2}
+
+sq1.bio <- DNAString(sq1)
+
+#If using nucleotides, can use the argument basOnly, to only get ATCG
+x.d <- alphabetFrequency(sq1.bio, baseOnly=T, as.prob = T)*100
+
+x.d
+
+#Alternatively its possible to look at the proportion of individual bases with letterFrequency
+
+letterFrequency(sq1.bio,"C", as.prob = T)*100
+
+#Can also cheat a bit 
+letterFrequency(sq1.bio, c("G","C"), as.prob = T)*100
+
+
+```
+
+
+As you noticed, the output from `alphabetFrequency()` is not very convenient, however the information can be useful and biologically relevant.
+A better way of presenting it would be to plot the frequencies as bar graphs using `ggplot2`. 
+
+
+
+```{r biostrings functions3}
+
+#Need to convert to a long table format first
+x.d.df <- data.frame(names(x.d),x.d, stringsAsFactors = F) %>% 
+  filter(names.x.d. != "other")
+
+ggplot(x.d.df, aes(y=x.d, x=names.x.d.))+
+  geom_bar(stat = "identity", fill = "lightblue")+
+  theme_bw(base_size = 16)+
+  xlab("Bases")+
+  ylab("Frequency")
+
+
+
+```
+
+
+
+Biostrings allows you to reveres, complement, and even translate nucleotide sequences.
+
+```{r reversing}
+
+#Reverse a sequence
+sq1.bio.rev <- Biostrings::reverse(sq1.bio)
+
+#Reverse complement a sequence
+sq1.bio.rev.comp <- reverseComplement(sq1.bio)
+
+sq1.bio
+sq1.bio.rev
+sq1.bio.rev.comp
+
+#translate a sequence, note specifying the package due to masking
+
+sq1.bio.t <- Biostrings::translate(sq1.bio)
+
+sq1.bio.t
+
+```
+
+
+#### **Quick R exercise - basic Biostrings functions**{-}
+Use ?Biostrings::translate to see what arguments the function takes, can it be used to predict 
+ORFs?
+
+
+### **Working with multiple sequences using XStringSet objects**{-}
+
+As you know by now, bioinformaticians do not work with a single sequence rather with a lot of 
+sequences in parallel. `Biostrings` offers the class `XStringSet`, as a container for multiple 
+sequences. Here too it is a combination of a list and a vector, think of it as a list of `XString` 
+class objects.
+
+Just like with the XString the XStringSet offers four sub classes
+
+1. `DNAStringSet` to house DNA sequences
+
+2. `RNAStringSet` to house RNA sequences
+
+3. `AAStringSet` to house amino acid sequences
+
+4. `BStringSet` to house sets of diverse strings
+
+This means that a `BStringSet` can be used to house the DNA, RNA, and AA sequences of a particular gene within a single element.
+
+Let's see what it looks like
+
+```{r xstringset}
+
+#Let's generate a DNAstringst
+
+sq1.set <- DNAStringSet(c(paste(sq1.bio),paste(sq1.bio.rev),
+                          paste(sq1.bio.rev.comp)))
+
+
+
+#As you can see, an XStringSet object shows a glimps of the sequence and the length of each 
+#sequence
+
+sq1.set
+
+#Sequences housed in an XStringSet object can have names, let's name our sequences
+
+names(sq1.set) <- c("sq1.bio", "sq1.bio.rev","sq1.bio.rev.comp")
+
+sq1.set
+
+```
+
+By now you probably guessed that the `XStringSet` can house sequences from FASTA file.
+Let's import the FASTA file practice_nuc.fa as an `XStringSet`.
+
+```{r importing fasta as XStringSet, warning=FALSE}
+#Using the readDNAStringSet function to import the FASTA file.
+#Note that if the FASTA file would have contained both AA and nucletieds could have imported it 
+#using the readBStringSet function
+fa.set <- readDNAStringSet("https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_nuc.fa")
+
+#As you can see, the imported file is organized very conveniently
+fa.set
+
+```
+
+
+Variables of class `XStringSet` can be subset, index, and modified similar to varialbes of class `XString`
+
+
+```{r working with XStringSet}
+
+#How many elements are in the XStringSet?
+
+length(fa.set)
+
+#What is the length of each of the sequences?
+
+width(fa.set)
+
+#subset the first element
+#Note that when subseting an XStringSet, the output is an XStringSet and not an XString
+fa.set[1]
+
+#Because XStrigSet objects are named, they can be indexed and subset using the $ operator.
+#In this case the output is a XString object and it can be treated as such
+
+fa.set$`k141_185580_GM_enrich_2.fa:145193-145801 `
+
+#First character of the XString
+
+fa.set$`k141_185580_GM_enrich_2.fa:145193-145801 `[1]
+
+#Can be modefied like a regular vector
+fa.set$`k141_185580_GM_enrich_2.fa:145193-145801 `[1] <- "G"
+
+fa.set$`k141_185580_GM_enrich_2.fa:145193-145801 `[1]
+
+#Because XStringSet objects behaive like a list strings can be accessed using "[[ ]]"
+
+fa.set[[1]][1] <- "A"
+
+fa.set[[1]][1]
+
+#It is easy to access a range of sequences
+fa.set[1:3]
+
+
+```
+
+One of the advantages of a `XStringSet` is the ability to manipulate multiple sequences at the same 
+time. 
+
+```{r XStringSet working}
+
+#alphabetFrequency can calculate base frequency for every sequence, output is a matrix, let's #output as dataframe
+
+fa.set.frq <- as.data.frame(alphabetFrequency(fa.set, baseOnly=T, as.prob = T)*100)
+
+#Let's orgenize it a bit, add the names and plot
+fa.set.frq <- fa.set.frq %>%  mutate(Sqs = names(fa.set)) %>% select(Sqs,everything(), -other)%>%
+  gather(key = "Bases", value = "Frequency",2:5)
+
+#Not the pretiest, but you can see that the one at the top left has a much lower GC contant than 
+#the rest
+ggplot(fa.set.frq, aes(x=Bases,y=Frequency))+
+  geom_bar(stat = "identity") +
+  facet_wrap(~Sqs)+
+  theme_bw()
+
+
+```
+
+Similarly, sequences can be reversed, complemented, reverse complemented and translated in bulk.
+
+```{r reversing2}
+
+
+#Reverse complement
+
+fa.set.rc <- reverseComplement(fa.set)
+
+fa.set
+
+fa.set.rc
+
+```
+
+
+It is also possible to match patterns over an `XStringSet` using the `Biostrings'` built-in pattern matching function `vmatchPattern()`.
+Let's search for positions that match the start codon ATG.
+
+```{r pmatchset}
+
+Biostrings::vmatchPattern("ATG", fa.set)
+
+```
+
+
+## **The seqinr package**{-}
+
+An alternative package to `Biostrings` is `seqinr`, it is not a Bioconductor package and thus uses 
+standard S3 objects. Much less elegant than `Biostrings` yet it has some perks that are worth getting to know.
+
+### **Data importation and handling with seqinr**{-}
+
+First, lets see how `seqinr` handles sequences by importing the practice_nuc FASTA file.
+
+```{r seqinr imprt, warning=FALSE}
+#Import the file
+fa.snr <- read.fasta(file = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_nuc.fa" )
+
+#Note that this is a list
+str(fa.snr)
+
+```
+
+As can be seen, the output from `read.fasta` is a list. Each sequence is an element of the list 
+stored as a character vector resembling the exercise we did at the beginning of the class. Another 
+thing to note is that the characters are not capitalized. This means that when pattern matching is 
+required, the vectors need to be converted to strings. `seqinr` has two functions c2s and s2c which 
+converts characters to strings and vice versa respectively. 
+
+Let's look at an example for pattern matching with seqinr by identifying all start codons in all 
+the sequences in the file. 
+
+```{r}
+#Since fa.snr is a list, lapply is used to run c2s on all ellements of the list
+#Remember tha the apply family of functions is basiclly an optemized for loop
+#lapply takes a list and runs a funciton on all its elements and outputs a list with the results
+#Then str_locate_all is used to find all ATG (?i) is for case insensitivity
+str_locate_all(lapply(fa.snr, c2s), "(?i)ATG")
+```
+
+Apart from concatenating vectors and splitting stings `seqinr` has some summery functions as well.
+
+```{r seqinr2, echo=TRUE}
+
+#count is a seqinr function that counts the occurrence of bases or a combination of bases
+#word size is the argument that controls combinations. When set to 1 it counts the occurrence of
+#each nucleotide. If it was set to 3 it would count the occurrence of each codon.
+#Note that within lapply I am specifying which package to use count from, 
+#this is because we loaded multiple packages with a function named count and I want to make sure 
+#lapply uses the correct one
+
+
+lapply(fa.snr, seqinr::count, wordsize = 1)
+
+#The function GC from seqinr calculates %gc, just as count it does not access a list and you have 
+#to present it with a vector, so I used lapply to itterate over each of the 
+
+lapply(fa.snr, GC)
+
+#Let's get it into a plottable dataframe
+#Note how I chain lapplys here, those are the equivalent of a nested for loop
+
+fa.snr.gc <- as.data.frame(lapply(lapply(fa.snr, GC), cbind)) %>%
+  gather(key = "Sqs",value = "GC")%>%mutate(GC = GC*100)
+
+
+```
+
+
+
+
+#### **Quick R exercise - sumerizing seqinr output**{-}
+
+Use ggplot2 to plot a bar graph of the GC content we just calculated
+
+### **Advanced seqinr functions**
+
+While seqinr does not seem impressive compared to Biorstings, it does have some perks, one of them
+is the ability to download sequences straight from online databases such as GenBank and EMBL. 
+It's worth noting that is it not the only package that can do that, ape is another package that 
+can do that and you will be introduced to it in lab #4.
+
+First, let's inspect which sequence repositories can seqinr interface with.
+
+```{r repositories}
+#Getting the list of repositories
+#Note, to prevent masking the code specifies to use choosebank from the seqinr package
+
+ripos <- seqinr::choosebank()
+#Large list 
+ripos
+```
+
+
+In order to download sequences from a database, it should be chosen using the choosebank function.
+In the following example the RefSeq16S repositories has been selected. It contains high quality 
+sequences of 16S and 23S rRNA genes from Bacteria and Archaea.
+
+
+```{r repositories 2}
+
+#Chooses refseq16s, note how I subset for the element that contains the pattern 16s
+bank <- seqinr::choosebank(bank=ripos[str_which(ripos, "16s")], infobank = T)
+
+#Let's inspect the database
+bank
+
+```
+
+As you can see this database was not recently updated. 
+Now that the repository has been chosen, it is possible to download the sequence information using 
+the query and getSequence.
+
+
+```{r repositories 3}
+
+#In order to download a sequence first need to obtain the sequence information using the query #function
+#The query argument within the query function accepts a lot of values and regular expressions
+#In this example I am using a specific accession number to downolad the 16S rRNA gene from E.coli
+ecoliq <- seqinr::query(listname = "ecoli", query = "AC=NR_024570")
+
+#query outputs a list, the sequenc information is storred under req
+#This information can than be used to extract the sequence
+#getSequence eithe outputs the sequence as a character or a string
+
+ecoli <- seqinr::getSequence(ecoliq$req,as.string = T)
+
+substring(ecoli, 1,10)
+
+#query allows to download multiple sequences as well
+#the value SP allows to download the information of sequences belonging to certain taxonomic groups
+#Let's download the information of sequences belonging to domain Archaea
+arch <- seqinr::query( listname = "Archaea", query="sp=Archaea")
+#Let's see how many sequences are there
+length(arch$req)
+
+#Lets get the first 200 seqs (will take a few minutes)
+#When downloading multiple sequences, getSequence stores them as a list
+#Here I unlisted them for our next step
+arch2 <- unlist(seqinr::getSequence(arch$req[1:200],as.string = T))
+
+
+```
+
+As you can see, downloading sequences using seqinr stores the information in very basic 
+containers. The next step will be to convert them to a XStringSet object. 
+
+
+```{r seqinr to Biostrings}
+
+#DNAStringSet accepts vectors with strings as elements, that's why we used unlist in the previous 
+#step
+
+arch3 <- DNAStringSet(arch2)
+
+#Let's add the sequences' names to the XStringSet object.
+#This is a nifty trick using lapply in lieu of a for loop.
+#The [[ part tells lapply to use square brackets to subset each element of the list and the 1 tells #it what 
+#position.
+#Unlist turns the the subset list into a vector that can then be used for the names function 
+
+names(arch3) <- unlist(lapply(arch$req[1:200], '[[',1))
+
+```
+
+From here it's possible to calculate all the sequence stats you were introduced to at the beginning
+of the lab.
+
+## **Exporting sequence elements**{-}
+
+Now that we got all of these sequences in to R, how do we get them out?
+As always there are several options.
+
+Let's start with the easiest option, writing a file using Biostrings
+
+```{r biostrings export}
+#writeXStringSet exports XStringSets as FASTA files 
+#When you open the file you will notice that the name of each sequence is now the header 
+writeXStringSet(arch3,"Arch.fa")
+```
+
+
+seqinr also allows to export objects as FASTA files
+
+```{r write.fasta}
+#write.fasta is a seqinr function to save objects as fasta files
+
+write.fasta(sequences = fa.snr, names = names(fa.snr), file.out = "practice2.fa")
+```
+
+
+Lastly, BaseR write function allows to also write FASTA files (since they are basically text
+files). Not as elegant since it requires a loop which really slows down the operation. 
+
+```{r baseR write}
+for (i in seq_along(arch3)) {
+  #This part writes the header
+  write(paste(">",names(arch3[i]), sep = ""), file = "Arch2.fa" ,append = T)
+  #This part writes the sequence
+  write(paste(arch3[i]), file = "Arch2.fa" ,append = T)
+}
+```
+
+What do we do with the files now that we have them saved?
+You'll see in the upcoming labs
+
+## **Summary exercise:**{-}
+
+Start a script file in RStudio name it 3315_lab3_yourinitials.R
+You will submit this script and output file if applicable to Brightspace by Tue Oct 11 23:59.
+
+**1.** Write a function that reads fasta files and counts how many sequences are present in the files and how long is each sequence
+
+**2.** Write a function that takes a nucleotide sequence as a string and reverse complements it. Make sure that the function differentiate between DNA input and RNA input. Make sure the output is a DNA string.
+
+**3.** Write a for loop that generates five 500 amino acid strings, make sure to only use the standard 20 AA alphabet.
+
+  + Make sure that the strings are <u>**NOT**</u> identical
+  
+  + The loop should store each string as an element of a vector named my_fave_proteins (hint make the vector before the loop).
+  
+**4.** Assign the vector my_fave_proteins to an XStringSet object, name that object my_fave_proteins_set
+
+**5.** Change the first AA of each in my_fave_proteins_set protein to M and give each protein a creative name
+
+**6.** Get the frequency of each AA in each protein stored in my_fave_proteins_set  and plot a box plot of the frequency of each AA in all the proteins (plot using ggplot2)
+
+  + Export the plot as PDF
+
+**7.** Export my_fave_proteins_set as a FASTA file, name the file yourfirstname_fave_prots.fasta
+
+**8.** Use seqinr to import the first 200 bacterial 16S rRNA sequences from the refseq16s database (use TID =2 instead of sp=bacteria)
+
+**9.** Assign the imported sequences to an XStringSet object named my_fave_bac_set and reverse complement the sequences
+
+  + Do not forget to include the sequences' names
+
+**10.** What is the the length of the longest sequence out of the 200 you imported, show your work
+
+**11.** Export my_fave_bac_set as a FASTA file, name the file yourfirstname_fave_bac.fa 
+

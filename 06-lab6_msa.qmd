@@ -421,7 +421,7 @@ hba_aa_msa_ms <- AAStringSet(AAMultipleAlignment(hba_aa_msa_m))
 #To do so turning the concensus sequence to an AAStringSet and adding it as additional element to 
 #The AAStringSet generated above
 #note, no hard coding!
-hba_aa_msa_ms[length(hba_aa_msa_ms)+1] <- AAStringSet(msaConsensusSequence(hba_aa_msa_m))
+hba_aa_msa_ms[length(hba_aa_msa_ms)+1] <- AAStringSet(gsub("\\?", "*",msaConsensusSequence(hba_aa_msa_m)))
 
 #Lastly, add the name
 names(hba_aa_msa_ms)[length(hba_aa_msa_ms)] <- "Consensus"
@@ -485,5 +485,3 @@ B. Perform the same analysis as in 6A for HBB (2 marks)
 
 C. Generate a tanglegram comparing the alignments done on AA sequence for HBA and HBB, did you find any discrepancies with respect to membership in monophyletic 
 groups? Show your code and attach the figures (2 marks) Keep this in mind when we will study actual gene trees.
-
-

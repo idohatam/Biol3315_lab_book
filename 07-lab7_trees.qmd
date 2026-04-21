@@ -1,0 +1,423 @@
+
+```{r setup lab7, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, class.source = "fold-show")
+options(knitr.duplicate.label = "allow")
+```
+
+
+# **Lab 7 Reconstructing phylogenetic trees (gene trees) in R** {-}
+
+**Learning objectives** 
+__By the end of this lab you will be able to:__
+
+
+*	Demonstrate the ability to load msa files into R
+
+* Analyze and reconstruct phylogeny based on genes trees
+
+* Identify and root tree using an out-groups
+
+* Root trees using midpoint rooting
+
+* Interface with NCBI and download taxonomic information
+
+* Asses the confidence of your reconstruction using bootstrap
+
+* Optimize and select substitution models for maximum likelihood phylogeny reconstruction
+
+* Compare the reconstruction of phylogeny based different genes
+
+* Compare the accuracy of different methodologies for tree reconstruction and inference
+
+## **Using sequences to reconstruct phylogenetic trees - the setup** {-}
+
+
+During this week's lab you will continue studying the the evolutionary relationships 
+between HBA  and HBB sequences. You will generate multiple phylogenetic trees (gene trees)
+and asses their quality.
+
+****
+
+>**Note1: The assignment questions for this week are interspersed throughout the tutorial.**
+>**They are itemized in the table of content so make sure you answer all of them.**
+>**The due date for the assignment will be announced by the lab instructor**
+
+****
+
+In order to complete this week's lab you will need to install the `phangorn` package winch extends
+some of the capabilities of the `ape` package, especially with respect to incorporating substitution 
+models. You will also need to install the package `phytools` which as it names suggests has some 
+useful tools to manipulate phylogenetic trees. Lastly, you will need to download the package `taxize`
+which allows to download the common names of the organisms from NCBI.
+
+****
+
+>**Note2: Install the new packages ASAP as some might take some time and would require you to update** 
+>**a lot of dependencies**
+
+****
+
+
+```{r packages_lab7, eval = FALSE, echo = TRUE}
+
+#Installing the package dendextend
+install.packages("phangorn")
+
+#Installing the package phytools
+install.packages("phytools")
+
+#Installing the package taxize
+install.packages("taxize")
+
+
+#lapply is part of the apply family of functions, one of those functions that act as a for loop
+lapply(c("ape","seqinr","Biostrings", "tidyverse","msa", "phangorn",
+         "phytools","stringr","taxize"),
+       library, character.only = TRUE)
+
+```
+
+```{r p2, echo=FALSE,message=FALSE,warning=FALSE, results='hide'}
+
+lapply(c("ape","seqinr","Biostrings", "tidyverse","msa", "phangorn",
+         "phytools","stringr","taxize"),
+       library, character.only = TRUE)
+```
+
+### **Import last week's MSA**{-}
+
+Last week you have generated multiple sequence alignment for the HBA and HBB gene. This week, you 
+will use the **amino acid** to generate phylogenetic trees. In order to do that first you will need to import them. 
+You can import the msa using the read.phyDat function from pronghorn.
+phyDat is a list based element used to stor_e alignment information by phangorn.  
+
+```{r align_import, eval=FALSE}
+
+#This is an example of how to read files using read.phyDat
+hba_phy <- read.phyDat("hba_align_aa.fa", type = "AA")
+
+```
+
+<br>
+
+### **Alternative, generate MSA**{-}
+
+If you do not have the alingments from last week saved as a fasta file, or you still have 
+the `msa` object on your worktable, you can use msaConvert function to convert the `msa` 
+to `phyDat`. If you have the `msa` objects in your environment you can skip to the last 
+step
+
+```{r align_import2}
+#Read file and align
+
+hba_aa <- readAAStringSet(
+  filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA_aa.fasta")
+
+hbb_aa <- readAAStringSet(
+  filepath = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBB_aa.fasta")
+
+#Remember need to clean up names
+
+names(hba_aa) <- str_remove_all(str_split_fixed(names(hba_aa),pattern = "\\[", n=2)[,2],"\\]")
+
+names(hbb_aa) <- str_remove_all(str_split_fixed(names(hbb_aa),pattern = "\\[", n=2)[,2],"\\]")
+
+#And make sure both have the same organisms
+hba_aa <- hba_aa[which(names(hbb_aa)%in%names(hba_aa))]
+
+#generate msa
+
+hba_aa_msa <- msa(hba_aa, method = "ClustalW")
+
+#Convert to a seqinr alignment and then th a phyDat class element
+
+hba_phy <- as.phyDat(msaConvert(hba_aa_msa, "seqinr::alignment"),type = "AA")
+
+```
+
+<br>
+
+## **Constructing a neighbor joining tree (distance based reconstruction)**{-}
+
+One approach to reconstructing phylogenetic tree is by clustering OTUs based on distance (i.e. 
+forming a distance matrix). 
+There are two main algorithms to constructing a distance based tree, UPGMA and 
+Neighbor joining (NJ). UPGMA assumes similar and constant rate of evolution across all OTUs, therefore 
+the inference of evolutionary relations is error prone. NJ is more reliable will still being 
+computationally light, since it does not make assumptions about evolutionary rates. To generate the 
+distance matrix used to construct the tree you will use the dist.ml function from `phangorn`, which 
+accounts for substitution mode. Since you are using an alignment of AA sequences you will need a 
+model suitable for AA  substitution. You will use the Jones-Taylor-Thornton (JTT), an empirical model, to 
+account for AA  substitution. Similar to BLOSUM but accounts for evolutionary history (i.e. is the observed number of 
+substitutions the true number of substitution?).
+
+```{r nj}
+
+#First step is to generate a distance matrix using a substitution model.
+#The function dist.ml from phangorn can use 17 different AA substitution models. 
+#You will use a fairly simple one. 
+hba_aa_dml <-dist.ml(hba_phy, model = "JTT")
+
+#Next, let's generate a neighborjoining tree
+#Note you will use NJ (capitalized) from phangoen rather than nj from ape to generate the tree
+hba_aa_nj <- phangorn::NJ(hba_aa_dml)
+
+
+#Note that the tree is unrooted
+plot(hba_aa_nj)
+
+```
+
+
+
+Next let's root the tree. We do not have a good knowledge of the groups making up the tree yet, so you will use
+midpoint rooting,which places the root midpoint between the two OTUs with the longest connecting path.
+Use the `?` operator to figure out how to use the function `midpoint` and plot the rooted tree using the function `plot`.
+
+```{r mp}
+?midpoint
+
+```
+
+```{r mp2 ,echo=F, results='hide', fig.cap="The rooted tree"}
+hba_aa_nj <- midpoint(hba_aa_nj)
+plot(hba_aa_nj)
+```
+
+<br>
+
+### **Bootstrapping the tree**{-}
+
+There are multiple ways to root trees and there are multiple possible unrooted trees
+that could be constructed when reconstructing phylogeny, however, just one of these trees is a true 
+tree. While we have no way of knowing which is the true tree, we can
+statistically asses the confidence in our tree topology. One way to asses this is by using
+bootstrap which is an iterative algorithm to generate multiple random pseaudoreplicates of the tree
+using the msa and assessing how many of them agree with the tree topology.
+Bootstrapping requires a tree and the `phyDat` object generated at the beginning of the lab.
+
+```{r bstrap}
+
+#Use the bootstrap.phyDat function to calculate the bootstrap values of the tree
+#Remember the bootstaping randominzes the columns of the alignment and generate pseaudoreplicates 
+#of the tree.
+#How would you make sure that the resultes of bootstapping are reproducible?
+
+#here we are bootstraping the hba alignment it is important to choose the same model.
+#A goos practice is to run bootstrap with at least 1000 iterations. You will run it 500 times, a 
+#good compromise between accuracy and CPU power
+
+hba_aa_nj_bs <-bootstrap.phyDat(hba_phy,
+                                #note how the function is entered
+                                FUN = function(x)NJ(dist.ml(x, model = "JTT")),bs=500)
+
+#Note that values smaller than 50% are not printed.
+plotBS(hba_aa_nj,hba_aa_nj_bs,"phylogram")
+
+
+```
+
+<br>
+
+***
+
+## **Question 1**{-}
+
+A. Generate a bootstrapped neighbor joining tree for HBB and HBA. **Make sure that your code takes into account the randomization of the bootstrap method and allows reproducibility**. Show your code and make sure to comment (2 marks)
+
+B. Print both trees, use the main argument and insert a descriptive plot title. Save the plots as PDFs and add them to your assignment. Show your code (2 marks).
+
+C. The HBA tree has areas with bootstrap values lower than 50% do these areas have higher bootstrap values using HBB? What does it tell you about the resolving power of the HBs (2 marks)?
+
+
+***
+
+<br>
+
+## **Constructing a maximum likelihood tree (character and distance base reconstruction)**{-}
+
+Distance based approaches are rapid but considered quick and dirty since all they do is cluster 
+based on distances. Maximum likelihood is an algorithm that calculates the likelihood that trees 
+generated using a certain substitution models represent evolutionary events.
+
+The function `modelTest` from the package `phangorn` allows to test which model is the best fit to construct the tree with a maximum likelihood algorithm. The output is a dataframe
+with log likelihood and several estimators of prediction error (i.e. how accurate is the prediction that the model fits).
+We will use Akaike information criterion (AIC). The test also offers a second estimator, Bayesian 
+information criterion (BIC), which uses Bayesian inference. You can read more about them [here](https://machinelearningmastery.com/probabilistic-model-selection-measures/). 
+In either case you will select the model with the lowest prediction error.
+
+```{r ml}
+#Let's use the modelTest function
+mt <- modelTest(hba_phy, model=c("JTT", "LG", "WAG"))
+#Print the results
+mt
+#Which model has the lowest AIC?
+mt$Model[mt$AIC==min(mt$AIC)]
+
+
+```
+
+Looks like JTT is a good model to select, however, the test indicates the parameters G and I should be added to the 
+model. G indicates gamma distribution, which assumes that the rate of evolution is unequal among OTUs and I indicates 
+invariant sites i.e. assuming that some sites cannot be mutated (e.g. sites critically important to protein function).
+Both parameters are reasonable considering that some areas are important to hemoglobin function and that mutation rate is different between different species.
+
+Next let's use the model to construct a tree using maximum likelihood.
+
+```{r ml2, results='hide'}
+#Next let's use the NJ tree and the model selected by modelTest to rearange the tree topology such #that is represents the tree with the largest likelihood to be the true evolutionary tree.
+#The output is a list like object of class pml.
+#K is is the of intervals for gamma distribution
+#inv is the proportion of inveriable sites
+
+hba_aa_nj.pml <- pml(hba_aa_nj,hba_phy,model="JTT",k=4,inv=.2)
+
+#Initially we set the parameters of the model, now that we have the tree let's optimize the parameters of the model with optim.pml this will take some time to complete.
+hba_aa_nj.pml <- optim.pml(hba_aa_nj.pml,optNni=TRUE,optBf=TRUE,optQ=TRUE,optInv=TRUE,optGamma=TRUE,optEdge=TRUE)
+
+```
+
+**The tree generated by pml is unrooted, before you proceed make sure to root the tree with midpoint**
+
+<br>
+
+### **Bootstrap the maximum likelihood tree**{-}
+
+Just like with NJ tree, we can asses the support of each of the edges.
+The function `bootstrap.pml` performs bootstrap on ML trees. 
+
+```{r mlb, results='hide', message=FALSE}
+#Note that here we are only performing 100 itterations since more would take a lot of computational power
+
+hba_aa_nj.pml.bs <- bootstrap.pml(hba_aa_nj.pml,bs=100,trees=TRUE,optNni=TRUE)
+
+#Can plot the tree
+plotBS(hba_aa_nj.pml$tree, hba_aa_nj.pml.bs, type = "phylogram")
+
+```
+
+***
+
+<br>
+
+## **Question 2**{-}
+
+A. Generate a bootstrapped neighbor joining tree for HBB and HBA. **Make sure that your code takes into account the randomization of the bootstrap method and allows reproducibility**. Show your code and make sure to comment (2 marks)
+
+B. Print both trees, use the main argument and insert a descriptive plot title. Save the plots as PDFs and add them to your assignment. Show your code (2 marks).
+
+C. Compare the bootstrap values of the ML trees to the NJ trees, do ML bootstrap values offer better support to branches of the tree?
+
+
+***
+
+<br>
+
+## **Comparing trees**{-}
+
+Last, lets compare the trees that you generated today. You have already used the function 
+`tanglegram` from `Dendextend` to compare the topology of dendrograms. The package 
+`phytools` offers the function `cophylo` which allows for a similar 
+comparison of phylogenetic trees.
+
+But first...curious about what animals we have been working with? let's find out.
+
+```{r taxize, results='hide', message=F}
+#We are going to modefy the tips of the trees, so lets copy them just incase you need them again
+
+hba_aa_nj2 <- hba_aa_nj
+
+hba_aa_nj.pml2 <- hba_aa_nj.pml
+
+#Next lets get a species names, they are the tip lables
+#The order is important so we will get it for each tree
+
+sp1 <- hba_aa_nj2$tip.label
+sp2 <- hba_aa_nj.pml2$tree$tip.label
+
+#Now lets get the species ids from ncbi
+
+uids <- taxize::get_uid(sp1)
+
+uids2 <- taxize::get_uid(sp2)
+
+#Next let's get the common names of the organisms
+
+cnames <- sci2comm(uids, "ncbi")
+cnames2 <- sci2comm(uids2, "ncbi")
+
+#The reterned element is a list, let's make is into a vector
+
+a <- unlist(lapply(cnames, "[",1), use.names = F)
+
+a2 <- unlist(lapply(cnames2, "[",1), use.names = F)
+
+```
+
+Before we continue, let's see if we have all the common names or if we have some missing 
+values. Missing values will normally be denoted as NAs and they can mess with downstream 
+processes. As bioinformaticians you will have to inspect data all the time for missing 
+values and decide how to handle it. Here we will just use the scientific names. 
+R has several functions to check for missing values. For 1d objects is.na is great, but 
+for elements with 2d you can use the function complete.cases from the stats package which 
+is part of BaseR.
+
+```{r comnames}
+#Are there any NAs?
+which(is.na(a))
+#Looks like we have 3 missing values, we will complete them from the original species list
+#note how I subset the relevant values
+a[which(is.na(a))] <- sp1[which(is.na(a))]
+
+#Now for the ML tree as well
+#Remember, the order of the tips on the tree might be different and that's why we can't use only #one list
+a2[which(is.na(a2))] <- sp2[which(is.na(a2))]
+
+a2
+
+#Now let's change the tips of the trees
+
+hba_aa_nj2$tip.label <- a
+hba_aa_nj.pml2$tree$tip.label <- a2
+
+
+
+```
+
+***
+
+Finally lets compare trees with `cophylo`.
+
+
+```{r cophy}
+
+#Here I am comparing the NJ and ML trees of HBA
+#Note how I access the ML tree
+obj <- cophylo(hba_aa_nj2, hba_aa_nj.pml2$tree)
+
+#Plotting the trees
+par(mfrow=c(1,1))
+#mar sets the margins of the plot
+plot(obj,mar=c(.1,.1,2,.1))
+#Title is self explenatory
+title("NJ                                                                   ML")
+```
+
+***
+
+<br>
+
+## **Question 3**{-}
+
+A. Compare the following trees using `cophylo`: NJ and ML of HBA, NJ and ML of HBB, ML of 
+HBA and ML of HBB (three comparisons in total). Show your code save the trees as PDF files
+and attach to your assignment (2 marks).
+
+B. Are there any clades that changed between HBA and HBB using ML (2 marks)?
+
+C. Are there any clades that changed between NJ and ML, does it significantly change the
+tree (i.e. do you see mammals clustering with fish all of a sudden?) (2 marks)?
+
+D. HBA trees denote some snakes as a possible out-group. What taxonomic group do they 
+belong to (e.g. is it a mammal)? Are there any other members of that taxonomic group on 
+that tree, what does it tell you about this group (e.g. is it really monophyletic)? (2 marks)
