@@ -1,14 +1,17 @@
-```{r setup lab2, include=FALSE}
+```{r setup lab2}
+#| include: false
 knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "fold-show")
 options(knitr.duplicate.label = "allow")
-
 ```
 
-# **Lab 2 data manipulation and presentation in R**{-}
+# **Data manipulation and presentation in R**
 
+<br>
 
-**Learning objectives**
+## **Learning objectives** 
 
+<details>
+  <summary>Click to expand</summary>
 __By the end of this lab you will be able to:__
 
 
@@ -16,90 +19,82 @@ __By the end of this lab you will be able to:__
 
 *	Demonstrate the ability to transform and manipulate data using a variety of base and accessory functions
 
-    + Know haw to manipulate data using functions from the tidyvesre family of packages e.g. dplyr and tidyr
+    + Know how to manipulate data using functions from the tidyverse family of packages e.g. dplyr and tidyr
   
 *	Demonstrate the ability to use and nest conditional statements
 
 *	Understand the concept of iteration and demonstrate the ability to iterate over complex data
 
-*	Demonstrate the ability to write costume functions in R
+*	Demonstrate the ability to write custom functions in R
 
 *	Demonstrate the ability to generate plots in R
 
     + Demonstrate mastery of plotting using the ggplot package
   
+</details>
 
-## **The setup**{-}
+***
+
+# **The Lab**
 
 
-As part of this lab you will learn how to import, export, manipulate and present data in R.
+In this lab you will learn how to import, export, manipulate and present data in R.
 You will also learn how to use loops and conditional statements to control the flow of your script.
-Lastly you will learn how to write costume (user-defined) functions. 
+Lastly you will learn how to write custom (user-defined) functions. 
 
-As part of this lab you will use some packages belonging to the [Tidyverse](https://www.tidyverse.org) package family (the 
-link has more useful information). Tydiverse packages are geared towards data importation, manipulation, and presentation. 
-They all use standardized grammar and philosophy that make the code more streamlined and readable. Stringer, which you have
-already used, is part of the Tidyverse packages. 
+As part of this lab you will use some packages belonging to the [Tidyverse](https://www.tidyverse.org) package family (the link has more useful information). Tidyverse packages are geared towards data importation, manipulation, and presentation. They all use standardized grammar that makes the code more streamlined and readable. Stringr, which you have already used, is part of the Tidyverse packages. 
 
-It is possible to install packages belonging to the tidyverse individually, however all Tidyverse packages can also be 
-installed using a wrapper package called...tidyverse. Before you start this lab, use the code bellow to install and load 
-the tidyverse package. 
-Installing the 
+All Tidyverse packages are packaged as one package. Before you start this lab, use the code below to install and load it.
 
-```{r tidyverse install, eval=F, echo=T}
+```{r tidyverse install}
+#| eval: false
+#| echo: true
 install.packages("tidyverse")
-library("tidyverse")
-
+library(tidyverse)
 ```
 
-```{r load packages, echo=FALSE,message=FALSE,warning=FALSE,include=FALSE}
-library("tidyverse")
-library("DT")
-
+```{r load packages}
+#| echo: false
+#| message: false
+#| warning: false
+#| include: false
+library(tidyverse)
 ```
 
-***
 
->**Note: even if you installed all tidyverse packages using `install.packages("tidyverse")`, tidyverse packages such as** 
->**`dplyr` can still be loaded individually**
+## **Importing and exporting data in R**
 
-***
+So far you have been generating data in R, however when you work on real data most likely you will need to import it to R. 
+R is capable of importing multiple file formats, and additional packages can expand its capabilities to import specialized file formats (e.g. raw DNA and RNA sequencing files).
+During this lab you will import csv and txt files.
+Make sure to download the CSV and txt files from Brightspace.
 
-## **Importing and exporting data in R**{-}
+**read.csv**
 
-So far you have been generating data in R, however when you work on real data you will need to import it to R. 
-R is capable of importing multiple file formats, and additional packages can expand its capabilities to import specialized 
-file formats (e.g. raw DNA and RNA sequencing files).
-During this lab you will import csv and txt files, make sure to download the CSV and txt files from Brightspace.
-
-### **read.csv**{-}
-
-[CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) (or comma-separated value files) are text files where 
-values are separated by commas. This is a commonly used file format used to store tabulated data. 
-`read.csv()` is a built-in function is base R that imports CSV files to R as a data frame. Note that the `readr` package 
-which is part of the Tidyverse has a `read_csv()` function which imports CSV files to R.
-However, it imports them as a tibble which is a sort of a redesigned data frame with some quirks so make sure not to
-confuse them.
+[CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) (or comma-separated value files) are text files where values are separated by commas. This is a commonly used file format used to store tabulated data. 
+read.csv is a built-in function in BaseR that imports CSV files to R as a dataframe. Note that the readr package which is part of the Tidyverse has a read_csv function which imports CSV files to R.
+However it imports them as a tibble which is a sort of redesigned dataframe with some quirks so make sure not to confuse them.
 
 ```{r read.csv 1}
-
 #When calling read.csv, the file arguments specifies the path the the file you are loading 
 #/path/to/file.csv
-#eg in windows c:/directory1/directory2/file.csv
-#eg in mac or linux ~/directory1/file.csv
+#eg c:/directory1/directory2/file.csv
+#eg ~/directory1/file.csv
 
 df1 <- read.csv(file ="lab2_files/practice2.csv")
 class(df1)
 head(df1,3)
-#Note the column with the x, that's the column with the row names.
-#If you know that the first column in file you are loading conatins row names add
-#row.names = 1 as part of the read.csv function
+```
 
-#Note that read.csv import characters as factors, to avoid it use stringsAsFactors=F
+Note the column with the `X`, that's the column with the row names. If you know that the first column in the file you are loading contains row names you can add `row.names = 1` as part of the `read.csv` function. Note that `read.csv` imports characters as factors, to avoid it use `stringsAsFactors=F`. Let's inspect the class of the `X` column:
+
+```{r check class}
 class(df1$X)
+```
 
+Let's fix that by assigning the column values to the row names. Then, we can remove the first column:
 
-#Let's fix that by assigning 
+```{r assign row names}
 row.names(df1) <- df1$X
 #Now let's remove the first column
 df1 <- df1[,-1]
@@ -107,34 +102,26 @@ df1 <- df1[,-1]
 #df1[1] <- NULL
 #Could use $ as well
 head(df1)
-
 ```
 
-`read.csv()` can be used to read files from online sources as well, the code snippet bellow demonstrates how to read a file
-from a public repository on my GitHub page. 
+read.csv can be used to read files from online sources as well; the code snippet below demonstrates how to read a file from my GitHub page. 
 
 ```{r read.csv2}
-
 df2 <- read.csv(
   file = "https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice.csv",
-  row.names = 1, stringsAsFactors = FALSE)
+  row.names = 1, stringsAsFactors = F)
 head(df2,3)
-
 ```
 
 
-### **read.table**{-}
+**read.table**
 
-`read.csv()` is a private case of the `read.table()` function (R has 
-[several](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table) of those. `read.table()` allows 
-you to read tabulated data stored in text files, but separated by any type of spacer.
+read.csv is a special case of the read.table function (R has [several](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table) of those). read.table allows you to read tabulated data stored in text files, but separated by any type of spacer.
 
-Here is an example where the spacer is a tab. Note that read.table can be used to read csv files as well and that read.csv 
-can be used to read txt files so long as the sep argument is correct.
+Here is an example where the spacer is a tab. Note that read.table can be used to read csv files as well and that read.csv can be used to read txt files so long as the sep argument is correct.
 
 ```{r read.table1}
-
-#sep = '\t' means tab delimited
+#sep = '\t' means tab delimitation
 df1b <- read.table("lab2_files/practice2.txt", sep = '\t', header = T, 
                    row.names = 1, stringsAsFactors = F)
 
@@ -142,44 +129,34 @@ class(df1b)
 
 #are they identical?
 df1 == df1b
-
-
 ```
 
 ***
 
->**A note about funky files and funky R behavior**
->
->As bioinformaticians, you will be asked to analyze data that you did not generate. If the columns contain 
->characters that R recognizes as special characters, it might lead to errors in the delimitation process when importing the
->file. `read.table()` and all private cases of it, has a quote argument that help circumvent these errors by ignoring 
-specified characters. 
-This [blog post](https://biowize.wordpress.com/2013/10/08/quotation-marks-and-rs-read-table-function/) has a great example 
->of how to use the quote argument in `read.table()`.
+**A note about funky files and funky R behavior**
+
+As bioinformaticians, oftentimes you will be asked to analyze data that you did not create. If the columns contain characters that R recognizes as special characters, it might lead to errors in the delimitation process when importing the file. read.table and all special cases of it have a quote argument that helps circumvent these errors by ignoring specified characters. 
+This [blog post](https://biowize.wordpress.com/2013/10/08/quotation-marks-and-rs-read-table-function/) has a great example of how to use the quote argument in read.table.
+
 
 ***
 
-### **Reading non-tabulated text files**{-}
+**Reading non-tabulated text files**
 
-As bioinformaticians you will be required to work with non-tabulated file formats. A great example of this are text files, 
-where information is stored as lines of strings. The [FASTA file format](https://en.wikipedia.org/wiki/FASTA_format), a 
-standard for handling sequence data (will be covered in labs 3 and 4) is in fact a text file with lines as strings of 
-sequences.
-Base R has some built-in functions to import non-tabulated text files. The snippet bellow demonstrates how read a text file
-from the Gutenberg organisation. Just like with `read.csv()`, you can use it to read files locally as well.
+As bioinformaticians you will be required to work with non-tabulated file formats. A great example of this are text files, where information is stored as lines of strings. [FASTA format](https://en.wikipedia.org/wiki/FASTA_format), a standard for handling sequence data (will be covered in labs 3 and 4) is in fact a text file with lines as strings of sequences.
+
+BaseR has some built-in functions to import non-tabulated text files. The snippet below demonstrates how read a text file from the Gutenberg organization. Just like with read.csv, you can use it to read files locally as well.
 
 ```{r non-tabulated txt file}
-
 #The function file establishes a connection with the file, open="r" denotes a read only connection
 book <- file("https://www.gutenberg.org/files/98/98-0.txt", open="r")
 
-#The function readLines read the file to memory line by line
+#The function readLines reads the file into memory line by line
 #This is also a useful way to remove non tabulated lines from a file that otherwise contains tabulated data (e.g. header lines)
 
 book.lines <- readLines(book)
 
 #The file is stored as a large atomic vector
-
 typeof(book.lines)
 is.atomic(book.lines)
 
@@ -187,208 +164,101 @@ is.atomic(book.lines)
 book.lines[7]
 length(book.lines[7])
 
-#We can use the length function to inspect how many lines of text are in the file
+#We can use the length function to inspect how many lines are in the file
 length(book.lines)
-
 ```
 
-#### **Quick R exercise - working with strings from non-tabulated data**{-}
+**Quick R exercise**
 
-1. Load the stringer package if you haven't yet
+1. Load the stringr package if you haven't yet
 
 2. Use the str_which function to find all lines with the word title in them (remember to account for case sensitivity)
 
 3. What is the title of the book you imported to R?
 
-### **Exporting tabulated data**{-}
+**Exporting files**
 
-There are many ways to export data from R. In many cases you would be required to export tabulated data, and base R has an 
-array of functions to handle the task. A convenient one is `write.csv()` function (yes it is a private case of 
-`write.table()` function) which will export tabulated data as a CSV file. The tidyverse version is `write_csv()`, which 
-works similarly however don't confuse them. 
-Let's look at an example, the code snippet bellow will generate a 100X100 data frame, which will get exported as a csv 
-file.
+There are many ways to export data from R as files. In many cases you will be required to export tabulated data from R. To do so you can use the write.csv function (yes it is a special case of write.table function).
 
-```{r write.csv}
+```{r write.csv prep}
+#Let's generate a 100X100 dataframe which we will export out of R
 
-#First let's generate the row names
-#The paste function will generate a vector of 100 consecutive elements, Site1 - Site 100
+#First let's generate the row names vector
+#The paste function will generate a vector of 100 consecutive elements Site1 - Site 100
 #Note that I am not using a loop for that, the vectorization in R saves on a lot of iterations
 
 sites <- paste("Site", seq(1,100, by=1), sep = "")
 
-#Similarly let's generate a vector that will house the names of the columns
-
 cols <- paste("species", seq(1,100, by = 1), sep = "")
 
-#Now lets generate the numbers, here I am cheating and using the replicate function.
-#It is a function that acts as a for loop, we will see some more of these function when we discuss iterations.
+#Now lets generate the numbers, here I am cheating and using the replicate function
+#It is a function that acts as a for loop, we will see some more of these function when we discuss iterations
 #The replicate function will create a list with 100 elements each is a vector of a 100 random numbers
 
 da <- replicate(100, sample(1:10000,100,replace = T), simplify = F)
+```
 
-#Now lets turn is to a data frame, Reduce binds all the vectors as columns (again cheating and using a function that acts as a for loop)
+Now let's turn it into a dataframe and set the column names:
+
+```{r write.csv bind}
+#Now lets turn is to a dataframe, Reduce binds all the vectors as columns (again cheating and using a function that acts as a for loop)
 da.df <- as.data.frame(Reduce(f=cbind, da),row.names = sites)
 names(da.df) <- cols
 ```
 
-Now that you made the data frame you can export it using `write.csv()`
+Now we are ready to export the dataframe as a csv file:
 
-```{r wcsv, eval=FALSE}
+```{r write.csv export}
+#Now we are ready to export the dataframe as a csv file
 write.csv(da.df, file = "practice3.csv", row.names = T)
 ```
 
+R allows you to export non-tabulated files as well, the following snippet demonstrates how to export non-tabulated data as a txt file. In future labs you will export other file types as well. 
 
-***
-
->CSV is a common file format for tabulated data; however, there are noumerous R packages
->e.g. `readr` that allow to export tabulated data from R as xls or xlsx files.
-
-***
-
-### **Exporting non-tabulated data**{-}
-
-R allows you to export non-tabulated files as well, the following snippet demonstrates how to export non-tabulated data as a txt file. In 
-future labs you will export other file types as well. 
-
-```{r export txt files, eval=FALSE}
+```{r export txt files}
 #Let's write the first 12 lines of the book as text file
-#Note that if you were writing into an existing file you could use the argument append = T and R would add lines insted of writing over the file.
+#Note that if you were writing into an existing file you could use the argument append = T and R would add lines instead of writing over the file.
 
 write(book.lines[1:12], file = "book.txt", append = F)
-
 ```
 
-### **Quick R exercise - data exportation**{-}
+**Quick R exercise**
 
 1. Generate 3 strings and house each of them in a vector
 
 2. Add the 3 strings as new lines at the end of book.txt 
 
-## **(Tidy) Data manipulation in R**{-}
+## **Manipulating your data**
 
-R has some powerful tools allowing you to manipulate and modify data. We have already gone over some of them. For example, 
-you have learned several ways to subset objects, you have learned that almost any data type in R can be coerced to any 
-other using the as.x functions. You have also learned the `rbind()` and `cbind()` can bind vectors to matrices and matrices
-to larger matrices.
+R has some powerful tools allowing you to manipulate and modify data. We have already gone over some of them. For example, you have learned several ways to subset objects, you have learned that almost any data type in R can be coerced to any other using the as.x functions. You have also learned the rbind and cbind can bind vectors to matrices and matrices to larger matrices.
 
-This section of the lab will expand your capabilities of modifying data, and will focus of tools mainly from the two 
-Tidyverse packaged, dplyr and tidyr. This packages are designed to streamline data manipulation, making data more tidy. 
-They share some of the philosophy and framework of [SQL](https://en.wikipedia.org/wiki/SQL), and thus are worth getting to 
-know.
+This section of the lab will expand your capabilities of modifying data, and will focus of tools mainly from two Tidyverse packages, dplyr and tidyr. These packages are designed to streamline data manipulation, making data tidier. They share some of the philosophy and framework of [SQL](https://en.wikipedia.org/wiki/SQL), and thus are worth getting to know.
 
 As always, there are some great cheatsheets for data manipulation using Tidyverse packages:
 
 <details>
   <summary>Click to expand</summary>
 
-* A Simple [cheetsheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+* A Simple [cheatsheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
-* A [comprehensive cheetsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+* A [comprehensive cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
 </details>
 
 ***
 
-### **A tidy re-imagining of the data frame**{-}
+**A note about tidy data**
 
-As mentioned, the tidyverse is an assortment of packages designed for tidying up and streamlining data analysis and code writing in 
-R. As you will see the tidyverse redesigned several basic consents in R, including data structure such as factors (via the 
-`forcats` package) and data frames via the tibble package. 
-Tibbles are the default format of tabulated data for many tidyverse packages.
-What are tibbles? Tibbles are first and foremost data frames. Lets see an example using readr's `read_csv()` function.
-When importing a csv file using `read_csv()` we get a tibble, rather than a data frame. 
-```{r read_csv, message=FALSE,warning=FALSE}
-df1_tbl <- readr::read_csv(file ="lab2_files/practice2.csv")
-class(df1_tbl)
-head(df1_tbl)
-```
+A guiding principle of tidy data is that every line of tabulated information should have a unique identifier (similar to SQL). In BaseR row names act as a unique identifier for each row, as every row has a unique value. Tidyverse does not view row names as an efficient way to handle unique ID and some tidyverse functions tend to omit the information stored as row names. 
+This is not a big deal, it just requires that you assign the row names to a column.
 
-As you can see, tibbles belong to the same class as data frames, they print similarly but not identically to data frames. Which brings the 
-following question.
+The code snippet below will introduce you to three tidyverse functions that will allow you copy the row names as a column, I will also compare it to a non-tidyverse approach.
 
-#### **Why use tibbles?**{-}
-
-There are several advantages to using tibbles, which are linked to the differences between them and traditional data 
-frames. 
-Tibbles are designed to handle larger data sets, which is why when we call them (lets look at that code again) they print slightly 
-differently.
-
-```{r tib vs df1}
-#Calling a data frame
-df1
-#Calling a tibble
-df1_tbl
-```
-
-Note how when calling a tibble, it specifies its dimensions and the class of data for each column. if we were dealing with a larger 
-data set the tibble would only print the first 10 rows and the columns to not overload the console. If you noticed another 
-difference, I haven't mentioned don't worry, you are not losing it, we will deal with it soon.
-Tibbles work great with the glimpse function that help inspect large data sets.
-
-```{r glimpse}
-glimpse(df1_tbl)
-```
-
-Tibbles are stricter than data frames in the sense that tibbles do not convert data types when created, for example you don't need to worry 
-about it converting your character columns to factors. This makes them more memory efficient and faster to work with. s
-
-Another fundamental difference between tibbles and data frames is that tibbles can be subset via piping....
-Oh wait you don't know about piping yet...
-
-#### **Even the tidyverse can get messy sometimes**{-}
-
-A guiding principle of tidy data is that every line of tabulated information should have a unique identifier (similar to 
-SQL). In base R the row names act as a unique identifier for each row, as every row has a unique value. However, as you already know, base 
-R's approach allows you to store metadata (descriptive information about your data) in your row names as well.
-For example, the row name from `df1` you generated by importing the file practice2.csv has site names as row names.
-This is a very convenient way to store data since it allows you for example to have all of your column as numeric, which means that you can do mathematical operations on all of them without having to subset the non-numeric meta data columns. 
-
-```{r show rn}
-df1
-```
-
-Which brings us to the other difference you might have noticed when printing df1_tbl, the row name was now the first column of the data 
-frame. Tidyveres shares the same philosophy as SQL and it does not view the row names as a place to store descriptive info.
-When importing file as a tibble or when converting a data frame into a tibble, you will lose the row names. 
-
-```{r show rn2}
-
-df1_tbl
-
-df1_tbl <- as_tibble(df1)
-df1_tbl
-
-```
-
-Not that it is still possible to keep the row names when converting a tibble into a data frame,
-
-```{r the tibble rn, eval=FALSE}
-df1_tbl <- as_tibble(df1, rownames = NA)
-df1_tbl
-```
-
-```{r the tibble rn2, echo=FALSE}
-df1_tbl <- as_tibble(df1, rownames = NA)
-DT::datatable(df1_tbl)
-```
-
-So where's the problem? The problem is the inconsistency of the tidyverse when it comes to row names.
-Whille it doesn't encourage the use of row names, it still allows it but then some tidyverse functions 
-(e.g. `filter()`) will discard info from the row names and some (e.g. `select()`) will not.
-This is something to be mindful of when using tidyverse packages and functions.
-As a general it is best to get the row names to be a column so that you don't lose it. 
-
-The code snippet bellow will introduce you to a tidyverse function that will allow you copy the row names as a 
-column, I will also compare it to a non-tidyverse approach
-
-```{r tidyvers vs non-tydiverse}
-
+```{r non-tidyverse copy rownames}
 #Let's use the dataframe da.df as an example dataset
 
-#First the non-tidyverse way, note that I am copying da.df sine I am planing to reuse it
-
-#Usinf the cbind.dataframe function to column bind the row names and the and da.df to one dataframe
+#First the non-tidyverse way, note that I am copying da.df since I am planning to reuse it
+#Using the cbind.data.frame function to column bind the row names and the and da.df to one dataframe
 
 da.df2 <- cbind.data.frame(row.names(da.df),da.df)
 
@@ -398,54 +268,68 @@ names(da.df2)[1] <- "Sites"
 
 #Inspect
 da.df2[1:4,1:4]
+```
 
+Compare that to the tidyverse way:
+
+```{r tidyverse copy rownames}
 #The tidyverse way
-
 da.df3 <- tibble::rownames_to_column(da.df, "Sites")
 
 da.df3[1:4,1:4]
-
-
 ```
 
-### **Subseting columns and rows using base R and tidyverse**{-}
 
-The dplyr package makes subseting columns and rows very simple using the select, filter, and slice functions.
-The select function allows to subset columns, while the filter and slice functions allows you to subset rows function
+***
 
-```{r select }
+**Subsetting columns and rows**
 
+The dplyr package makes subsetting columns and rows very simple using the `select`, `filter`, and `slice` functions.
+The `select` function allows you to subset columns, while the `filter` and `slice` functions allow you to subset rows.
+
+```{r select range}
 #The select function allows you to subset by column
-
 #Subset a range of columns
-
 da.df3 <- select(da.df2, 45:55)
 
 #Note that select does not remove the row names
-
 da.df3[1:4,1:4]
+```
 
+Alternatively it allows you to drop columns.
+
+```{r select drop}
 #Alternatively it allows you to drop columns
 #Keeping only the first 2 column
-
 da.df3 <- select(da.df2, -(3:ncol(da.df2)))
 
 da.df3[1:4,1:2]
+```
 
+`select` allows you to choose specific columns by name.
+
+```{r select specific}
 #Select allows to choose specific columns
-
 da.df3 <- select(da.df2, "species1", "species2","species11")
 
 da.df3[1:4,1:3]
+```
 
+You can also dynamically select columns found in a list or vector.
+
+```{r select from list}
 #From a list
 species <- c("Sites","species13","species37","species55")
 
 da.df3 <- select(da.df2, which(names(da.df2) %in% species))
 
 da.df3[1:4,1:4]
+```
 
-#Lastely select can be used to reorgnize a dataframe
+Lastly `select` can be used to reorganize a dataframe.
+
+```{r select reorganize}
+#Lastly select can be used to reorganize a dataframe
 #Let's look at creating a column from row names again
 
 da.df3 <- da.df
@@ -457,26 +341,24 @@ da.df3[1:4,ncol(da.df3)]
 #, let's move it to be the first
 da.df3 <- select(da.df3, Sites,everything())
 da.df3[1:4,1:4]
-
 ```
 
 ***
 
-#### **Quick R exercise**{-}
+**Quick R exercise**
 
-Select can be used with some helper functions from the tidyer package such as starts_with
+Select can be used with some helper functions from the tidyr package such as starts_with
 
-1. Use select and a helper function to subset da.df for columns ending with 1 (hint, use on of the cheatsheets)
+1. Use select and a helper function to subset da.df for columns ending with 1 (hint, use one of the cheatsheets)
 
 2. Use the select and the helper function one_of to select columns found in the species vector
 
 ***
 
-Next lets see how to use filter and slice to subset a data frame by rows
+Next lets see how to use filter and slice to subset a dataframe by rows
 
-```{r filter and slice}
-
-#filter allows to subset the data frame based on values of one column
+```{r filter rows}
+#filter allows to subset the dataframe based on values of one column
 #Lets filter df based on CO2 concentration
 
 df1
@@ -485,82 +367,61 @@ df2 <- filter(df1, CO2 > 300)
 
 #Note that filter discards row name
 df2
+```
 
-#slice allows to subset a range of rows, note specifying package due to masking. 
+The `slice` function allows you to subset a range of rows.
 
-df2 <- dplyr::slice(df1, 1:4)
+```{r slice rows}
+#slice allows to subset a range of rows
+
+df2 <- slice(df1, 1:4)
 
 #Note that slice discards row names as well
 df2
-
 ```
 
 
 
-### **Streamlining data manipulation using `%>%` (pip)operator**{-}
+**Streamlining data manipulation using %>% operator**
 
 So far we have gone through two ways of sequentially running through functions.
 
 1. Line by line
 
-2. Chaining functions using brackets eg:
+2. Chaining functions using brackets
 
-X <- f3(f2(f1(x))) where the order in which the function run is inside out, i.e. f1(x) f2(output of f1), 
+`X <- f3(f2(f1(x)))` where the order in which the functions run is inside out.
 
-This sort of writing, while concise, makes the code hard to read. The Tidyverse employs a piping operator %>%, colloquially
-referred to as an "and then" operator
+This sort of writing, while concise, makes the code hard to read. The Tidyverse employs a piping operator `%>%`, colloquially referred to as an "and then" operator.
 
-x `%>%` f1() is equivalent to f1(x) and x `%>%` f1(y) is the equivalent of f1(x,y) where y is an argument of f1().
-This allows the user to chain functions from left to right on a variable that was specified at the left hand side of the pipe.
-As a bonus, now that you understand piping I included a way to subset a culumn using `%>%` and `$`.
+`x %>% f1()` is equivalent to `f1(x)` and `x %>% f1(y)` is the equivalent of `f1(x,y)`.
 
 ```{r piping}
-
 #these lines are equivalent
 
 da.df3 <- select(da.df2, 11:15)
 
 da.df3 <- da.df2 %>% select(11:15)
-
-#bonus subseting the species13 column with a pipe, note that the dot (.) is a place holder for 
-#the data frame at the beginning of the pipe
-df.df2.s13 <- da.df2 %>% .$species13 
-
 ```
 
-The piping operator can be used to chain functions sequentially, from left to right allowing for a more readable code.
-The snippet below will take da.df2 select column 1 and 5-13, use `filter()` to only keep the rows where species 11 is represented with more than 50 individuals and log transform all the numeric columns remaining after `select()` using the `modefy()` function.
+The piping operator can be used to chain functions sequentially, from left to right allowing for more readable code.
 
-```{r mod}
+```{r chaining functions}
 #chaining functions, functions run from left to right on da.df2
-#I am cheating here since you don't know what modify is, 
-#though it is pretty self explanatory.
+#I am cheating here since you don't know what modify is, though it is pretty self explanatory.
 da.df3 <- da.df2 %>% select(1, 5:13) %>% filter(species11 > 50) %>% 
   modify_if(is.numeric, log1p)
-
 ```
 
-***
-
->**A note about pipes:**
-> The `%>%` operator is part of a series of pipes [magrittr package](https://data-and-the-world.onrender.com/posts/magrittr-pipes/).
->Base R offeres pipes as well `|>`, however it is slighly less useable than `%>%`.
->I still encourage you to try using it. 
-
-
-***
-
-
-### **Adding and modifying columns**{-}
+**Adding and modifying columns**
 
 The dplyr package has functions dedicated to modifying and adding columns to tabulated objects.
-The function mutate from the package dplyr can be used to add columns to data frames, as well as to modify them.  
+The function `mutate` from the package dplyr can be used to add columns to dataframes, as well as to modify them.  
 
-```{r mutate1}
-
-#Lets add a column called elevation, with 3 vauleus high, sea level, low to df
+```{r mutate add column}
+#Lets add a column called elevation, with 3 values: high, sea level, low to df
 #Note that again I am copying it since I would like to use it again
-# I am also creating the site collumn and than moving both to be columns 1 and 2
+# I am also creating the site column and then moving both to be columns 1 and 2
 
 elevation <- c("High", "Sea level", "Low")
 
@@ -569,8 +430,12 @@ df2 <- df1 %>% mutate(Sites = row.names(df1)) %>%
   select(Sites, Elevation, everything())
 
 df2
+```
 
-#Mutate can also be used to modefy columns
+`mutate` can also be used to modify columns. Let's log transform the CO2 column.
+
+```{r mutate modify column}
+#Mutate can also be used to modify columns
 #Lets log transform the CO2 column
 #Again I am copying the dataframe since I plan on using it later
 
@@ -578,59 +443,40 @@ df3 <- df2 %>% mutate(CO2 = log1p(df2$CO2))
 
 df2$CO2
 df3$CO2
-
-
 ```
 
-`mutate()` has a subset of functions that modify all or a subset of columns from a data frame, negating the need to use a loop.
+`mutate` has a subset of functions that modify all or a subset of columns from a dataframe, negating the need to use a loop.
 
-```{r mutate 2}
-
-#One useful mutate function is mutate_if, it allows to modefy a column if a condition is met
+```{r mutate_if characters}
+#One useful mutate function is mutate_if, it allows to modify a column if a condition is met
 #For example it allows to change all character columns to factors
 
 class(df3$Elevation)
 df3 <- df2 %>% mutate_if(is.character, as.factor)
 class(df3$Elevation)
+```
 
+`mutate_if` allows you to perform mathematical operations only on numeric columns.
+
+```{r mutate_if numeric}
 #mutate_if allows to perform mathematical operations only on numeric columns
 #e.g. log transformation and then multiply by 2 
-#Note that ~ is used to escape the mathematical operator for multiply and the . is used as a placeholder to tell R to run the operation on 
-#the data frame df2.
+#Note that ~ is used to escape the mathematical operator and the . is used to tell R to run the operation on the dataframe
 
 df3 <- df2 %>% mutate_if(is.numeric, log1p) %>% 
   mutate_if(is.numeric, ~.*2)
-
-
-
 ``` 
 
-***
 
->**A note about `mutate()` and `modify()`**
->`mutate()` and `modify()` are two tidyvers family of functions that can be used to modify columns.
->Why the redundancy? While the end result might look the same, under the hood they work quite differently.
->`mutate()` works by adding columns columns to data frames, if a column exists it rewrites it.
->`modify()` on the other hand is designed to be more general and can work on lists as well.
->It is basically a sort for `df[[i]] <- f()`.
+**Transforming dataframes**
 
-***
+The dplyr and tidyr packages have many functions that allow you to transform and reshape dataframes.
+Much like BaseR, dplyr's `bind_rows` and `bind_cols` pastes two dataframes based on columns or rows. However, dplyr has some functions that allow for more sophisticated joining of two dataframes.
 
-### **Transforming data frames**{-}
+```{r joins left_join}
+#Let's use df2 and da.df2 as example, one contains information about species and one contains information about chemical attributes. However, df only has information about 10 sites, that's 90 less than in da.df2. How can they be joined? 
 
-The dplyr and tidyr packages have many functions that allow to transform and reshape data frames.
-Much like base R, dplyr's `bind_rows()` and `bind_cols()` pastes two data frames based on columns or rows. However, dplyr has some functions
-that allows for more sophisticated joining of two data frames.
-
-```{r joins}
-
-#Let's use df2 and da.df2 as example, one contains information about species 
-#and one contains information about chemical attributes. 
-#However, df only has information about 10 sites, that's 90 less than in da.df2. 
-#How can they be joined? 
-
-#The function left_join takes two data frames as arguments and joins matching 
-#values form tthe right to the left based on a joint column
+#The function left_join takes two dataframes as arguments and joins matching values from the right to the left based on a joint column
 
 #In this example I will select the first 5 columns of da.df2 
 #(easier to see the results of the join) and join df to it based on the site column which is shared between the two.
@@ -641,7 +487,11 @@ da.df3 <- da.df2 %>% select(1:5)%>%
 
 #Note the NAs in rows that are not matched
 da.df3 [10:12,]
+```
 
+Using `inner_join` will keep only matching rows.
+
+```{r joins inner_join}
 #inner_join will keep only matching rows
 
 da.df3 <- da.df2 %>% select(1:5)%>%
@@ -649,37 +499,36 @@ da.df3 <- da.df2 %>% select(1:5)%>%
   inner_join(df2, by="Sites")
 
 nrow(da.df3)
-
 ```
 
-#### **Quick R exercise**{-}
+**Quick R exercise**
 
 1. Try running left_join with df as the left argument, what was the result?
 
-2. Try using right_join and full_join (you can use the dplyr cheetsheet for help)
+2. Try using right_join and full_join (you can use the dplyr cheatsheet for help)
 
 ***
 
-So far the data used in this lab was stored in a wide format table, however, as you will see later in lab 2 there are 
-advantages to using [long format tables](https://en.wikipedia.org/wiki/Wide_and_narrow_data). Long tables are ones where 
-the columns are converted into keys and the content of the column is the value paired to each key. 
+So far the data used in this lab was stored in a wide format table, however, as you will see later in lab 2 there are advantages to using [long format tables](https://en.wikipedia.org/wiki/Wide_and_narrow_data). Long tables are ones where the columns are converted into keys and the content of the column is the value paired to each key. 
 
 The gather function from tidyr package converts wide tables to long tables. 
 
-```{r gather and split}
-
+```{r gather long format}
 #Here using the gather function to convert df2 to wide table the column names are the key, the values they store are the values.
-#Note that I am exampting Site and Elevation from it.
+#Note that I am exempting Site and Elevation from it.
 
 df3 <- df2 %>% gather(key = "Parameters", value = "Concentration", 3:ncol(df2))
 
 df3
+```
 
+The function `spread` converts long tables to wide tables.
+
+```{r spread wide format}
 #The function spread converts long tables to wide tables
 df3 <- df3 %>% spread(Parameters,Concentration)
 
 head(df3)
-
 ```
 
 ***
@@ -687,35 +536,33 @@ head(df3)
 dplyr can group data based on category and summarize it based on grouping.
 This can be useful for example to calculate the average genetic diversity across geographical areas. 
 
-```{r group and summrize}
-
-#group_by is used to group the table by elevation, summarise is used to calculate the mean concntration of each chemical, per elevation. Because the Sites column is not numeric I used summerize_if.
+```{r group and summarize}
+#group_by is used to group the table by elevation, summarise is used to calculate the mean concentration of each chemical, per elevation. Because the Sites column is not numeric I used summarize_if.
 
 df3 <- df2 %>% group_by(Elevation) %>% summarise_if(is.numeric, mean)
 
 df3
-
 ```
 
-#### **Quick R exercise**{-}
+**Quick R exercise**
 
-the `summarize()` function can summarize more than just mean, and can take more than one argument to summarize by.
+the summarize function can summarize more than just mean, and can take more than one argument to summarize by.
 
-* Use `list()` within summarize_if to calculate both the mean, SD, and maximum value for each of the chemicals in df2. Assign in to df3
+* Use list() within summarize_if to calculate both the mean, SD, and maximum value for each of the chemicals in df2. Assign in to df3
 
 ***
 
-## **Conditional statements and iterations**{-}
+## **Conditional statements and iterations**
 
-Sometimes it is necessary to ask R to decide what type of code runs on which part of the data, or how many times to run each line of code. Conditional statement such as if else, and loops are there to do just that.
+Sometimes it is necessary to tell R which code to run on different parts of the data, or how many times to run each line of code. Conditional statements such as if else, and loops are there to do just that.
 
-### **Conditional statements**{-}
+**Conditional statements**
 
 Conditional statements are used to determine which code will handle what part of the data.
-You have already used a conditional statement, even if you haven't noticed.
-mutate_if is a function using a conditional statement modifying a column if a condition is met (e.g. is.numeric).
+You have already used a conditional statement, even if you didn't notice.
+`mutate_if` is a function using a conditional statement modifying a column if a condition is met (e.g. `is.numeric`).
 
-The basic conditional statement is if, it asks if a condition is met (e.g. if(x>8) = TRUE). Once the condition is met, something happens. if can be paired with an else statement to determine what to do if the condition is not met.
+The basic conditional statement is `if`, it asks if a condition is met (e.g. `if(x>8) = TRUE`). Once the condition is met, something happens. `if` can be paired with an `else` statement to determine what to do if the condition is not met.
 
 ```{r if else}
 # Here is an example of an if else statement note the curly brackets
@@ -725,11 +572,13 @@ if (x == 8) {
   print("x = 8")
 } else { 
   print("x != 8")
-  
 }
+```
 
-#If else statements can be chaind
+If else statements can also be chained sequentially.
 
+```{r chained if else}
+#If else statements can be chained
 if(x>8) {
   print("x>8")
 } else {
@@ -739,59 +588,41 @@ if(x>8) {
     print("x<8")
   }
 }
-
-
 ```
 
 if else statements only work with scalars, i.e. only evaluate objects with one element.
-In order to evaluate a vector, the function `ifelse()` should be used. `ifelse()` takes 3 arguments,
-test (e.g. x>8), true (what to do in case test is true), false (what to do in case the test condition isn't met).
+In order to evaluate a vector, the function `ifelse` should be used. `ifelse` takes 3 arguments,
+`test` (e.g. x>8), `yes` (what to do in case test is true), `no` (what to do in case test is false).
 
-The following code snippet demonstrates the use of the `ifelse()` function and it's tidyverse equivalent `if_else()`.
-
-```{r ifelse if_else}
-
+```{r ifelse vectors}
 #Creating a vector
 x <- sample(1:1000, 10, replace = T)
 
-#ifelse function, if x > 500 paste something else paste somthing else to y
+#ifelse function, if x > 500 paste something else paste something else to y
 y <- ifelse(x > 500, paste("x>500"), paste("x < = 500"))
 
-#dplyr has a modefied ifelse function, it alows to handle missing values
+#dplyr has a modified ifelse function, it allows to handle missing values
 z <- if_else(x > 500, paste("x>500"), paste("x < = 500"))
 
 y
 z
-
 ```
 
-`if_else()` can also be applied to data frames as can be seen in the snippet bellow.
-Note, that the code uses the tidyverse if_else but base R `ifelse()` would work equally well.
+Let's do this on a dataframe. If elevation is high temp is -7 else temp is 10.
 
-```{r if_else df, eval=FALSE}
+```{r ifelse dataframe}
+#Let's do this on a dataframe
 #If elevation is high temp is -7 else temp is 10
 
 df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
-df2
 ```
 
-```{r if_else df2, echo=FALSE, warning=FALSE,message=FALSE}
+`ifelse` can be chained, either as sequential function or within the first function. `NA` is a filler in case one condition is not met.
 
-df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, 10))
-DT::datatable(df2)
-```
-
-
-The previous example only had one condition, if the elevation is high, temp is -7, else it is 10.
-What if your data has more granularity, e.g. what if sea level and low elevation has a different temperature?
-It is possible to chain multiple `ifelse()` statement sequentially, in that case it is important to add a filler FALSE
-to the first test. Here I use NA and not a number, since that would make it easy to check whether something was missed as it would contain 
-an NA. Note that for the first iteration I am using `ifelse()` andn not the dplyr `if_else()` because the latter is type specific and will 
-throw an error if using input not of the same type (e.g. double and logical). This is anbother good demonstration of the diferences between 
-base R and tidyverse approach to handling data. 
-
-```{r multiple ifelse1, eval=FALSE}
-df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7, NA)) %>%
+```{r chain ifelse dataframe}
+#ifelse can be chained, either as sequential function or within the first function.
+#NA is a filler in case one condition is not met 
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
   #If test is false keep current value
   mutate(Temp = if_else(Elevation == "Sea level", 15, Temp)) %>%
   mutate(Temp = if_else(Elevation == "Low", 25, Temp))
@@ -799,42 +630,25 @@ df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7, NA)) %>%
 df2
 ```
 
-```{r multiple ifelse1b, echo=FALSE, message=FALSE,warning=FALSE}
-#ifelse can be chaind, either as sequenctial funcation or within the first function.
-#NAis a filler in case one condition is not met 
-df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7, NA)) %>%
-  #If test is false keep current value
-  mutate(Temp = if_else(Elevation == "Sea level", 15, Temp)) %>%
-  mutate(Temp = if_else(Elevation == "Low", 25, Temp))
+Alternatively, you can nest `if_else` statements. Note that the second `if_else` is chained in the false argument.
 
-DT::datatable(df2)
-```
+```{r nested ifelse dataframe}
+#alternatively
+df2 <- df2 %>% select(-Temp)
 
-Alternatively, it is possible to use the `if_else()` function as 
-
-```{r multiple ifelse2, eval=FALSE}
-#Note in second if_else, if_else is chaind in the false argument.
+#Note in second if_else, if_else is chained in the false argument.
 #This will not work with the first one since mutate needs to create the Temp column first
-df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7.5, NA)) %>%
-  mutate(Temp = if_else(Elevation == "Sea level", 15.5, 
-                        if_else(Elevation == "Low", 25.5, Temp))) 
+df2 <- df2 %>% mutate(Temp = if_else(Elevation == "High", -7, NA)) %>%
+  mutate(Temp = if_else(Elevation == "Sea level", 15, 
+                        if_else(Elevation == "Low", 25, Temp))) 
 
 df2
 ```
 
-```{r multiple ifelse2b, echol=FALSE, message=FALSE, warning=FALSE}
-df2 <- df2 %>% mutate(Temp = ifelse(Elevation == "High", -7.5, NA)) %>%
-  mutate(Temp = if_else(Elevation == "Sea level", 15.5, 
-                        if_else(Elevation == "Low", 25.5, Temp))) 
+Chaining multiple ifelse statements can make the code very unreadable and clumsy.
+The `case_when` function from the dplyr package acts as a multiple ifelse statements and accepts multiple test arguments.
 
-DT::datatable(df2)
-```
-
-
-Chaining multiple if else statements can make the code very unreadable and clumsy.
-The `case_when()` function from the dplyr package acts as a multiple if else statements and accepts multiple test arguments.
-
-```{r case_when, eval=FALSE}
+```{r case_when}
 #Let's create a new column called contamination_level and assign values based on NH4 concentrations
 
 
@@ -843,53 +657,36 @@ df2 <- df2 %>% mutate(Contamination_level = case_when( NH4 > 8000 ~"Very high",
                                                        NH4 > 6500 ~"Medium",
                                                        NH4 < 6500 ~"Low"))
 df2
-
-
 ```
-
-```{r case_when2, echo=FALSE,message=FALSE}
-df2 <- df2 %>% mutate(Contamination_level = case_when( NH4 > 8000 ~"Very high",
-                                                       NH4 > 7000 ~"High",
-                                                       NH4 > 6500 ~"Medium",
-                                                       NH4 < 6500 ~"Low"))
-DT::datatable(df2)
-
-
-
-```
-
-
 
 ***
 
-#### **Quick R exercise - data grouping and summerizing 2**{-}
+**Quick R exercise**
 
 1. Group df2 by contamination level and summarize average chemical concentration per contamination level.
 
 ***
 
-### **Iterations**{-}
+**Iterations**
 
 As mentioned, R is pretty good at vectorized functions which negate the need for iterations.
-For example ifelse negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with 
-functions such as summarize that iterate over an entire dataframe or replicate which can be used to to generate a list of multiple elements.
+For example `ifelse` negates the need to use a loop to iterate over each position of the inspected vector. Furthermore, we have worked with functions such as `summarize` that iterate over an entire dataframe or `replicate` which can be used to generate a list of multiple elements.
 
-These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration 
-functions are compiled and efficient.
+These functions were made because loops are considered memory inefficient and slow, while vectorized functions and specialized iteration functions are compiled and efficient.
 
-However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in 
-R (pun intended) in my experience they are rarely used.
+However, sometimes there is no escaping the loop. The only loop we will go over in this lab is the for loop, while there are other loops in R in my experience they are rarely used.
 
-The for loop has the following basic structure for(element in vector) { do something}.
-Normally a counting variable is used to subset elements while iterating over a vector
+The for loop has the following basic structure `for(element in vector) { do something}`.
+Normally a counting variable is used to subset elements while iterating over a vector.
 If a counting variable is used than the vector is a range of numbers.
 
-Here is an example of a basic for loop, note that i is used as the counting variable and there is no need to declare it. 
+Here is an example of a basic for loop.
 
 ```{r basic for loop}
-
 #Let's write a loop that picks lotomax numbers for you
 
+#First assign a counting variable
+i=1
 
 #Generating random numbers
 x <- sample(1:50, 8, replace = F)
@@ -901,9 +698,12 @@ x <- sample(1:50, 8, replace = F)
 for(i in seq_along(x)){
   print(paste("The",i, "number is:", x[i], sep = " "))
 }
+```
 
+Let's combine a conditional statement with the for loop and make a fancier number picker.
+
+```{r fancy number picker}
 #Let's combine a conditional statement with the for loop and make a fancier number picker
-
 for(i in seq_along(x)){
   if(1<= i & i <8){
   print(paste("The",i, "number is:", x[i], sep = " "))
@@ -911,66 +711,35 @@ for(i in seq_along(x)){
     print(paste("The bonus number is:", x[i], sep = " "))
   }
 }
-
-
-
 ```
 
-#### **Quick R exercise - pseudorandom numbers and loops**{-}
+**Quick R exercise**
 
 What would happen if set.seed(123) was the first line of the loop?
 
 ***
 
-The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a 
-bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use read.csv to 
-import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an 
-existing vector rather than add new elements to it for loops run faster.
+The previous snippet was a pretty simple use of a for loop, now lets look at a practical way of implement it. When working as a bioinformatician you will most likely have to load and manipulate data from multiple files. In the following example I will use `read.csv` to import all csv files in a certain folder and place them in a list. Note that I am generating the list outside the loop, when you index an existing vector rather than add new elements to it for loops run faster.
 
-```{r practical for loop, eval=FALSE}
-
-#Create a vector with a list of all csv files in my foulder.
-#You can use the argument path = to change foulder. 
-#recursive = F ignors subfolders
+```{r practical for loop}
+#Create a vector with a list of all csv files in my folder.
+#You can use the argument path = to change folder. 
+#recursive = F ignores subfolders
 files <- dir(pattern = ".csv", recursive = F)
 
 lsfile <- vector(mode = "list", length = length(files))
+
+i = 1
 
 for (i in seq_along(files)) {
   lsfile[[i]] <- read.csv(file = files[i],row.names = 1, stringsAsFactors = F)
   names(lsfile)[[i]] <- paste(files[i])
-  
 }  
-  
 ```
-
-An alternative way to do it that's a bit more descriptive would be to use the acutall fill names by iterating over the elements of the files
-vectors rather than over the positions of the elements. 
-
-```{r practical loop2, eval=FALSE}
-files <- dir(pattern = ".csv", recursive = F)
-
-lsfile <- vector(mode = "list", length = length(files))
-
-#here I am declaring i
-i=1
-#Remember that the counting variable is basically, just what ever that's in the vector
-#In this case file is just the file names, btw it's not that R understand what file means
-#You could change file to pineapple and get the same result. 
-for (file in files) {
-  lsfile[[i]] <- read.csv(file = paste(file),row.names = 1, stringsAsFactors = F)
-  names(lsfile)[[i]] <- paste(file)
-  i <- i+1
-  
-}  
-
-
-```
-
 
 ***
 
-## **Functions**{-}
+## **Functions**
 
 If you remember, R lets users write customized functions.
 
@@ -985,23 +754,17 @@ As a student it also pays to know how write functions in R. If you find yourself
 same analysis in different labs (say chemistry and physics), write a pipeline that generates the
 graphs and tables you need. 
 
-### **Constructing a function**{-}
+**Constructing a function**
 
-The function structure is function(arguments){operations done on functions}.
-Arguments can be though of as R variables that would be called only in the function environment, and are independent of the global 
-environment. They are assigned values using the `=` operator, and can hold any R data type just like variables in the global environment, 
-even other functions. Arguments require input from the user, but they can have default values e.g.
-function(arg1=5, arg2 = NA, arg3) { do something}. In this example arg1 and arg2 have default
-values (and are vectors). They can be changed by the user, but if there is no input from the user the function will
-use the default value. If the function is intended to return a value is should have some sort of an output function like, `print()`.
-If the function is intended to output a variable (e.g. a list, a data frame, a matrix, etc..) as it's final product, that variable should be
-outputed using the `return()` function.
+The function structure is `function(arguments){operations done on functions}`. 
+The arguments require input from the user, but they can have default values e.g.
+`function(arg1=5, arg2 = NA, arg3) { do something}`. In this example `arg1` and `arg2` have default
+values. They can be changed by the user, but if there is no input from the user the function will
+use the default value. If the function is intended to return a value 
 
-Lets look at two functions as an example, the first one is very simple the second a bit more complex.
-Neither are of any consequence, therefore the `return()` function was not used.
+Lets look at two functions as an example, the first one is very simple the second a bit more complex. 
 
-```{r function1}
-
+```{r simple function}
 #How to construct a function
 
 #Assign a function to a variable, set the arguments
@@ -1011,10 +774,12 @@ print_x <- function(x){
   print("All this function does is print x")
   print(x)
 }
+```
 
+Let's turn the for loop lotto number generator into a function.
 
+```{r complex function}
 # Let's turn the for loop lotto number generator to a functions
-
 
 Lottery_nums <- function(npicks){
   #Need round numbers
@@ -1049,139 +814,110 @@ Lottery_nums <- function(npicks){
       }
     
   }
- #Print disclamer 
+ #Print disclaimer 
   print("This number picker does not increase the chances of winning nor does it encourage participating in lottery games")
   
 }
 
 Lottery_nums(7)
-
 ```
 
 ***
 
 Now that we have played around with some useless functions, lets write a practical function.
-When you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are a 
-great way to automate your work and keep in a reproducible. 
+As I mentioned, when you work as a bioinformatician you would be required to perform the same task multiple times on multiple files and functions are great to automate that in a reproducible manner. 
 
-The following example, demonstrates how write a function that imports csv files,log transforms them and store them in a list. 
-This is a very straight forward and simple function, however, its capabilities can be expended to perform other tasks.
-For example, you could replace read.csv with `read.table` or `read_table()` to generalize it, or add a conditional statement so that it 
-might also be used to read non-tabulated data like fasta files.
-The following function uses the function `getwd()` as the default argument for the function variable Path.
-Path would be used as the variable that directs the function to the directory you would like to iterate over.
-Use `?getwd` or just call `getwd()` in the console to figure out what its output is.
-This is a useful function, that's used to output `return()`
-Note that `return()` tells R that this is the end of the function and R will disregard any code within the function that comes after 
-`return()` was called.
+In this example we will write a function that imports csv files, log transforms them and store them in a list. This is a very straight forward function, and its capabilities can be expanded to perform other tasks.
+
 
 ```{r practical function}
 #Note that I am giving each argument a default value
 
 imp.data <- function(Pattern= ".csv", Path = getwd(), Recursive = FALSE){
-  #note, this function uses other R functions
+  
   files <- dir(path = Path, recursive = Recursive, pattern = Pattern)
   i = 1
   f_list <- vector(mode = "list", length = length(files))
-  #No escaping the loop this time
+  
   for (i in seq_along(files)) {
     f_list[[i]] <- log10(read.csv(file = files[i], row.names = 1, stringsAsFactors = F) )
     
   }
   names(f_list) <- files
   
-  #Note return will output the list and will terminate the function
+  #Note return
   return(f_list)
+  
 }
 ```
 
-`imp.data()` can be used like any other function. 
+***
 
-```{r use your illusion, eval=FALSE}
-#Note that to catch the list outputed by the function, I assign it to a variable.
-csv.list <- imp.data(Path = "/the/folder/i/chose")
+**A note on the function environment**
 
-```
-
+The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the intermediate variables created by the function they need to be exported using the `<<-` operator. The `<<-` operator is variable assignment operator similar to `<-` only it exports variables to the global environment.
 
 ***
 
-> **A note on the function environment**
->
->The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the
->intermediate variables created by the function they need to be exported using the `<<-` operator. The `<<-` operator is
->variable assignment operator similar to `<-` only it exports variables to the global environment.
->It is considered bad practice to force a variable out of the function env. using `<<-`, idealy you should only use `return()` as the output >of custum functions 
+## **Plotting your data**
 
-***
-
-## **Plotting your data**{-}
-
-R has a basic function to graph data, this is done with the plot function.
-Here is an example of a scatter plot using the plot function.
+R has a basic function to graph data, this is done with the `plot` function.
+Here is an example of a scatter plot using the `plot` function.
 
 
 ```{r baseR plot}
-
 plot(x=df2$NH4,y=df2$CO2, xlab = "NH4", ylab = "CO2", main = "A scatter plot")
-
 ```
 
-As you can see the resulting graph is...OK, however, the tidyverse has a package that makes plotting graphs in R a whole lot better. 
+As you can see the resulting graph is...OK. Luckily the tidyverse has a package that makes plotting graphs in R a whole lot better. 
 
 
-### **Potting data with the ggplot2 package**{-}
+**Plotting data with the ggplot2 package**
 
-The ggplot2 package is a part of the Tidyverse packages. It's strength is that it allows to build graphs layer by layer based on the 
-[grammer of graphics](https://vita.had.co.nz/papers/layered-grammar.pdf).
+The ggplot2 is a part of the Tidyverse packages. Its strength is that it allows you to build graphs layer by layer based on the [grammar of graphics](https://vita.had.co.nz/papers/layered-grammar.pdf).
 
 All plots generated by ggplot2 require the same three components:
 
-* A data set (usually a data frame or a matrix)
-* A list of coordinates (usually a set of vectors (columns) from the data set)
+* A data set
+* A list of coordinates
 * [geoms](https://ggplot2.tidyverse.org/reference/) - a set of marks that determines the geometry of the plot (e.g. box-plot, scatter plot)
 
-Note that on top of these three components you could add multiple other components, for example themes that indicate what would your plot 
-look like. (e.g. black and white or collored plot, what would the background look like, should it have grid lines, etc..)
-
-As always ggplot2 has a great [cheetsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+As always ggplot2 has a great [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
 
 
-#### **Basic ggplot2 plot**{-}
+**Basic ggplot2 plot**
 
-The plotting function in the ggplot2 package is `ggplot()`, every plot starts with it.
+The plotting function in the ggplot2 package is `ggplot`, every plot starts with it.
 In it you specify the data set the plot will use as well as the x and y coordinates.
 On top of the basic information you add geoms, i.e. what graph element to add.
-Elements of the graphs are added using the + sign.
+Elements of the graphs are added using the `+` sign.
 
-Here is an example of a basic box plot
+Here is an example of a basic box plot. We'll break down the components. First, we need to prepare the data. ggplot works best with long tables, so let's convert `df2` and log transform so that the differences in values between chemicals will not be huge.
 
-
-```{r ggplot1}
-
-#ggplot works best with long tables, lets first convert df2 and log transform it 
-#so that the differences in values between chemicals will not be huge.
+```{r ggplot1 prep}
+#ggplot works best with long tables, lets first convert df2 and log transform so that the differences in values between chemicals will not be huge
 
 df3l <- df2 %>% gather(key = Parameters, value = Concentration, 3:6) %>%
   mutate(Concentration = log10(Concentration))
+```
 
+Now we construct the basic box plot.
+
+```{r ggplot1 plot}
 #Lets generate the box plot.
 #First start with ggplot and specify which data to use.
-#The axis are specified under the aes (stands for aesthetics) argument.
+#The axis are specified under the aes argument.
 plot1 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
-  #Now let's add the geom
   geom_boxplot()
 
 plot1
-
 ```
 
 This is a nice plot, but it is possible to add more information to it.
-For example overlay each observation (i.e. observation from each site) on the box plot using the geom_jitter function
+For example overlay each observation (i.e. observation from each site) on the box plot using the `geom_jitter` function.
 
 
-```{r ggplot2b}
-
+```{r ggplot2}
 #Let's overlay each observation on top of the box plot, this will allow you to see where the
 #observation fall, and how many observations are in each category.
 #On top of it, we will color each observation by the level of contamination in the site 
@@ -1189,21 +925,14 @@ For example overlay each observation (i.e. observation from each site) on the bo
 
 plot2 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   geom_boxplot()+
-  #overlay geom_jitter
   geom_jitter(aes(color = Contamination_level))
 
 plot2
-
-#Alternatively you can just add an extra layer to the previous plot
-
-plot1 + geom_jitter(aes(color = Contamination_level))
-
 ```
 
 That is a nice graph, now lets see how to split a graph to panels by category (e.g. elevation).
 
 ```{r ggplot3}
-
 #Facet_wrap allows you to split a graph into facets
 plot3 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   geom_boxplot()+
@@ -1211,25 +940,16 @@ plot3 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   facet_wrap(~Elevation)
 
 plot3
-
-#Alternatively
-
-plot1 + geom_jitter(aes(color = Contamination_level)) +
-  facet_wrap(~Elevation)
-
-
 ```
 
 
-Lastly, let's take care of the cosmetics. ggplot has a set of built-in themes, the default is classic view. However it's possible to change them using them_x, and further customize them using the theme function. The plot and axis title can also be modified.
+Lastly, let's take care of the cosmetics. ggplot has a set of built-in themes, the default is classic view. However it's possible to change them using `theme_x`, and further customize them using the `theme` function. The plot and axis title can also be modified.
 
 
 ```{r ggplot4}
-
-# here I used theme_bw to switch to a black and white theme the base size argument changes font
-#size
-#I then used the theme function to further costumize the polt. Strip.text are the title of each facrt and axis.title are the title of the axis
-#Basically every aspect of the graph can be modefied using theme or other functions
+# here I used theme_bw to switch to a black and white theme the base size argument changes font size
+#I then used the theme function to further customize the plot. Strip.text is the title of each facet and axis.title is the title of the axis
+#Basically every aspect of the graph can be modified using theme or other functions
 
 plot4 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   geom_boxplot()+
@@ -1241,45 +961,43 @@ plot4 <- ggplot(data = df3l, aes(x=Parameters, y=Concentration))+
   xlab("Chemical parameters")+
   ylab("Concentration of chemicals")+
   ggtitle("A box plot of chemical parameters per elevation levels")
-  
 
 plot4
-
-
 ```
 
 
-#### **Exporting plots**{-}
+**Exporting plots**
 
-ggplot2 allows you to export plots using the ggsave function
+ggplot2 allows you to export plots using the `ggsave` function
 
-```{r exporting plots, eval=FALSE}
+```{r exporting plots}
+#| eval: false
 ggsave(plot = plot4, filename = "a_plot.pdf", units = "in",
        width = 11.69, height = 8.27)
 ```
 
 
-## **Summary exercise lab 2**{-}
+# **Summary exercise:**
 
-Start a script file in RStudio name it 3315_lab1_yourinitials.R
-You will submit this script and output file if applicable to D2l submission.
+Start a script file in RStudio, name it 3315_lab2_yourinitials.R
+You will submit this script and output file if applicable to D2l submission folder.
 
-**1.** Load the mtcars data-set by using data(mtcars).
+**1.** Load the mtcars data-set by using `data(mtcars)`.
 
 **2.** What class is mtcars? Show your code.
 
-**3.** Once loaded assign it to the variable car_data, turn the row names into a column (name it Car_model), 
-make sure it is the first column. Do this all in one line of code using the %>% operator and Tydiverse functions. Perform all following tasks on this variable.
+**3.** Once loaded assign it to the variable `car_data`, turn the row names into a column (name it `Car_model`), 
+make sure it is the first column. Do this all in one line of code using the `%>%` operator and Tidyverse functions. Perform all following tasks on this variable.
 
-**4.** The column am represents the car's transmission, 0=Automatic and 1 = Manual write a conditional statement that converts 0 and 1 to Automatic and Manual respectively. Do it within a mutate function. Move am to be the 2nd column of the dataframe. Do it in a single line of code
+**4.** The column `am` represents the car's transmission, 0=Automatic and 1 = Manual write a conditional statement that converts 0 and 1 to Automatic and Manual respectively. Do it within a mutate function. Move `am` to be the 2nd column of the dataframe. Do it in a single line of code.
 
-**5.** Remove the columns vs, gear and carb from car_data using a Tydiverse function
+**5.** Remove the columns `vs`, `gear` and `carb` from `car_data` using a Tidyverse function.
 
-**6.** Use ggplot to plot a box plot of mpg, with cyl as the grouping category (if you're getting an error thing what types of values are categorical values). Add jitter to the plot, make sure the size of the dots is 2. Make sure that the x axis title is Number of cylinders and the y axis title is Miles per gallon. Brownie points for any other cosmetic modification of the plot.
+**6.** Use ggplot to plot a box plot of `mpg`, with `cyl` as the grouping category (if you're getting an error think about what types of values are categorical values). Add jitter to the plot, make sure the size of the dots is 2. Make sure that the x axis title is Number of cylinders and the y axis title is Miles per gallon. Brownie points for any other cosmetic modification of the plot.
 
 **7.** Export the plot as pdf using a ggplot function, attach the file to your submission.
 
-**8.** Write a for loop that generates three dataframes, the dataframes needs to have 2 numerical columns and 1 character columns and 100 rows. 
-The loop should store each dataframe as an element of a list and save each dataframe as a csv file. The names should be dataframe1.csv - dataframe3.csv. You can use the paste function with the loop counting variable to make sure the names are not hard coded. Hint, make the list before you loop.
+**8.** Write a for loop that generates three dataframes, the dataframes need to have 2 numerical columns and 1 character column and 100 rows. 
+The loop should store each dataframe as an element of a list and save each dataframe as a csv file. The names should be dataframe1.csv - dataframe3.csv. You can use the `paste` function with the loop counting variable to make sure the names are not hard coded. Hint, make the list before you loop.
 
 **9.** Write a function that reads all csv files in a folder, log1p transforms all the numeric columns and stores the data as an element of a list. Hint, make the list before you loop and make sure to return the list as the final step of the function.
