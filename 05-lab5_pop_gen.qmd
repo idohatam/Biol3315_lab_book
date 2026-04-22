@@ -1,4 +1,4 @@
-# **Lab 5 Population genetics and selection** {-}
+# **Lab 5: Population Genetics and Selection** {-}
 
 ## **Learning objectives** {-}
 

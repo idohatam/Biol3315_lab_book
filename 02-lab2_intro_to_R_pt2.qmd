@@ -4,7 +4,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = "", prompt = TRUE ,class.source = "
 options(knitr.duplicate.label = "allow")
 ```
 
-# **Data manipulation and presentation in R**
+# **Lab 2: Data Manipulation and Presentation in R**
 
 <br>
 

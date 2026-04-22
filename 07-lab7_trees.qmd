@@ -7,7 +7,7 @@ options(knitr.duplicate.label = "allow")
 
 <br>
 
-# **Lab 7: using sequences to reconstruct phylogenetic trees**
+# **Lab 7: Using Sequences to Reconstruct Phylogenetic Trees**
 
 <br>
 

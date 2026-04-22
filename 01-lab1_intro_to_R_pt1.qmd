@@ -9,7 +9,7 @@ options(knitr.duplicate.label = "allow")
 
 <br>
 
-# **Lab 1: Introduction to the R programming language and the RStudio IDE**
+# **Lab 1: Introduction to the R Programming Language and the RStudio IDE**
 
 <br>
 

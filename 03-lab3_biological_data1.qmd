@@ -13,7 +13,7 @@ lapply(c("vegan","ape","ade4","ggdendro","dendextend","seqinr","pvclust",
        library, character.only = TRUE)
 ```
 
-# **Handling of biological data in R - 1**
+# **Lab 3: Handling of Biological Data in R - 1**
 
 <br>
 

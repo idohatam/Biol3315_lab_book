@@ -10,3 +10,10 @@
 *.png
 _book/
 lab2_files/
+-DESKTOP-F1CDIC9.RData
+*.Rhistory
+*.Rproj
+
+/.quarto/
+
+**/*.quarto_ipynb

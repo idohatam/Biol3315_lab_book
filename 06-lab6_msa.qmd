@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = TRUE, class.source = "fold-show")
 options(knitr.duplicate.label = "allow")
 ```
 
-# **Lab 6 sequence evolution** {-}
+# **Lab 6: Sequence Evolution** {-}
 
 The purpose of this lab is for you to get familiarized with methodologies used in the analysis of sequence similarity. 
 

@@ -12,7 +12,7 @@ klippy::klippy(position = "right")
 
 <br>
 
-# **Handling of biological data in R - 2**
+# **Lab 4: Handling of Biological Data in R - 2**
 
 <br>
 
