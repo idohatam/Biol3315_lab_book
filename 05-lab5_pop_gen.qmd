@@ -1,5 +1,7 @@
 # **Lab 5: Population Genetics and Selection** {-}
 
+<br>
+
 ## **Learning objectives** {-}
 
 <details>
@@ -37,6 +39,8 @@ data.
 Before you begin solving problems, since these functions will be written with the end user in mind,
 we will go over ways to catch user input errors and ways to control the flow of a function when a 
 solution is reached.
+
+<br>
 
 ## **Catching user input errors** {-}
 
@@ -125,7 +129,7 @@ Log_of_sum(m)
 A list is also a vector. What will happen if a list is used as a value for argument x in the 
 `Log_of_sum()` function?
 
-***
+<br>
 
 ## **Control of flow: the break and next functions within for loops** {-}
 
@@ -231,6 +235,8 @@ As you can see, `break` skipped **_~half_** of the elements that met the conditi
 
 # **The assignment** {-}
 
+<br>
+
 ## **General information** {-}
 
 * Below are 3 problems you will have to solve in groups.
@@ -243,6 +249,8 @@ As you can see, `break` skipped **_~half_** of the elements that met the conditi
 
   + The submission folder will show up as a group submission rather than an individual submission.
 
+<br>
+
 ## **Marking** {-}
 
 Each problem is worth 5 marks:
@@ -254,6 +262,8 @@ Each problem is worth 5 marks:
 * If a solution was reached, you will receive 4 additional marks on top of the marks for properly commenting the function.
 
 * If you feel that any of the members did not contribute at all to the assignment, do not include their name and they will receive 0.
+
+<br>
 
 ## **Practical information** {-}
 

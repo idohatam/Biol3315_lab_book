@@ -36,7 +36,7 @@ __By the end of this lab you will be able to:__
 
 </details>
 
-***
+<br>
 
 ## **Lab 4**
 
@@ -71,6 +71,7 @@ lapply(c("vegan","ape","ggdendro","seqinr",
          "Biostrings", "tidyverse","ggrepel"),library, character.only = TRUE)
 ```
 
+<br>
 
 ## **Distances**
 
@@ -87,6 +88,8 @@ a relative measure of the dissimilarity between the two sequences and can be exp
 
 When calculating distances between entities (e.g., populations), the data you work with can be tabulated (e.g., allele/genotype frequency/abundance table, etc.) or non-tabulated (e.g., sequence alignment).
 R can do both, and the approaches are quite similar.  
+
+<br>
 
 ### **Distance calculations with tabulated data**
 
@@ -233,9 +236,7 @@ dune.vd.bry.bin <- vegdist(dune, method = "bray", binary = T)
 
 4. What other distance indices does `vegdist()` accept under the method argument?
 
-
-***
-
+<br>
 
 ### **Two dimensional representation of distances**
 
@@ -479,9 +480,6 @@ are unsuitable for the way their data are collected or distributed. This book wi
 (Also, it's always great to plug the work of fellow Canadians!)
 :::
 
-
-***
-
 <br>
 
 ### **Non-tabulated data**
@@ -562,6 +560,7 @@ While it is possible to reflect the distance matrix resulting from the alignment
 ordination techniques, it is more useful to visualize them using hierarchical visualization
 tools such as dendrograms and phylogenetic trees, which is what we will do next. 
 
+<br>
 
 ## **Dendrograms**
 
@@ -631,7 +630,7 @@ class dendrogram? Which class stores more information?
 
 5. Convert the hclust objects generated for the dune dataset to class dendrogram
 
-***
+<br>
 
 ### **Plotting dendrograms**
 
@@ -892,11 +891,7 @@ resulting from the unsupervised learning. When you train or use an algorithm to 
 category a sample would be classified into, you are performing supervised machine learning.
 :::
 
-
-***
-
 <br>
-
 
 ## **Trees**
 
@@ -970,8 +965,7 @@ As I mentioned, phylo class objects can contain additional information about the
 
 * tip.data: a vector dating the tips (leaves) of the tree, useful if some are not current.
 
-
-
+<br>
 
 ### **Plotting trees**
 

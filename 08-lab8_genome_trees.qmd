@@ -20,7 +20,7 @@ __By the end of this lab you will be able to:__
 
 </details>
 
-***
+<br>
 
 ## **Phylogeny reconstruction using genomes**
 
@@ -42,11 +42,7 @@ You will compare the genome trees to the gene trees and see which of them produc
 **Aligning larger genomes requires a [graph aligner](https://en.wikipedia.org/wiki/Sequence_graph); we will discuss these in depth in Biol 4315.**
 :::
 
-
-***
-
 <br>
-
 
 ## **Tips for completing the lab**
 
@@ -119,9 +115,6 @@ coronaviruses and performs a complete phylogenetic analysis.
 **Note: Your code should download/read the files directly from GitHub; you are not allowed to download them manually.**
 :::
 
-
-***
-
 Your script should include the following steps (each step is worth 1 mark):
 
 1. Loading all necessary libraries
@@ -158,7 +151,6 @@ a. Attach a bootstrapped rooted NJ tree of the spike protein and the genomes. Ma
 b. Attach the following tanglegrams: ML vs. NJ for genomes, ML vs. NJ for proteins, ML genomes vs. ML proteins. Attach the plots as PDFs (2 marks).
 
 <br>
-
 
 ## **Question 3**
 

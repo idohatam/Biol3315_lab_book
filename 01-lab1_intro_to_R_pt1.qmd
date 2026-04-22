@@ -34,6 +34,8 @@ __By the end of this lab you will be able to:__
 
 # **Getting started**
 
+<br>
+
 ## **What is R?**
 <br>
 
@@ -56,6 +58,7 @@ R is a great platform for documentation—in fact, this entire lab manual was wr
 * Customizable and allows for the construction of pipelines
 * Reproducible analysis
 
+<br>
 
 ## **Downloading and installing R and RStudio desktop**
 
@@ -70,6 +73,7 @@ Note that you must download and install both R and RStudio in order to work with
 Note that it is important that you have the most up-to-date version of R. Even if R is already installed on your computer, make sure to update it. If using Windows, you can use the [installr package](https://github.com/talgalili/installr) to update R. 
 :::
 
+<br>
 
 ## **The R interpreter**
 
@@ -146,7 +150,7 @@ ls()
 >allows you to have better control of code editing, variable storage, console output, etc. R has several IDEs; however, 
 >the most popular by far is RStudio. 
 
-***
+<br>
 
 ## **The RStudio IDE** 
 
@@ -315,6 +319,8 @@ What happens when you call the rowling variable directly in the console?
 
 # **Programming in R - the basics**
 
+<br>
+
 ## **R language and syntax**
 
 R is an expression language with very simple syntax that requires you to list call-functions in order to perform tasks
@@ -461,10 +467,8 @@ print(paste(c(j,k),
 The example code above includes indentation; however, unlike in other programming languages, R does not require that you indent your code. Indentation is only used to make code more readable to humans, especially as it gets more complex. As you will learn, the flow of operations in basic R is determined by parentheses "()" when combining functions (e.g., the code above) and braces "{}" when writing custom functions and statements (an example of that is the Useless.function).   
 :::
 
-
-***
-
 <br>
+
 ## **Expanding R's capabilities by installing additional function packages**
 
 The R language includes an extensive array of functions. Those are known as base R, or core R functions. However, 
@@ -527,8 +531,6 @@ installation functions. We will go over this during labs 3-4.
 
 3. How many arguments does the anosim function from this package accept? How many of them are variables?
 
-***
-
 <br>
 
 ## **Variable assignment in R (<- vs -> vs =)**
@@ -590,9 +592,6 @@ v2. v2 can be assigned a different value or be edited by appending more values t
 and v1 will not be affected.
 :::
 
-
-***
-
 <br>
 
 ## **Rules for variable naming in R**
@@ -616,6 +615,8 @@ these is optimized to handle either single or multidimensional information and i
 powerful tool in handling, analyzing, and representing data. This part will go over the commonly used data types in
 R.
 
+<br>
+
 ## **"Atomic" vectors**
 
 Atomic vectors are probably the most basic form of data class in R. Similar to lists in Python, they contain a 
@@ -623,6 +624,8 @@ sequence of elements. In fact, the output from all the functions used in this tu
 element. That is the reason [1] was displayed next to the output, to denote the first element in the vector. In R, 
 each atomic vector class is capable of only storing information of the same type. There are four main classes of 
 atomic vectors in R. This part will detail them and how to work with them.   
+
+<br>
 
 ### **Numeric vectors (double and integer):**
 
@@ -797,8 +800,6 @@ If you are unsure of how to use seq, use the help function.
 
 8. Create a new vector with the final element being -8, the first element being the 7th element of the third vector, the second element being the 5th element of the first vector, and the third element being the first element of the second vector.
 
-***
-
 <br>
 
 ### **Character vectors:**
@@ -957,8 +958,6 @@ dna <- paste(sample(bases,10000, replace = T), collapse = "")
 1. Use stringr to calculate the %GC of this string
 2. Use stringr to find out how many times the codons ATG and TAG appear in the string?
 
-***
-
 <br>
 
 ### **Logical vectors:**
@@ -1008,11 +1007,11 @@ passed.the.course == passed.the.course2
 which(passed.the.course != passed.the.course2)
 ```
 
-
-
 <br>
 
 ## **Checking and coercing**
+
+<br>
 
 ### **The class function**
 
@@ -1026,6 +1025,7 @@ class(dna)
 
 ```
 
+<br>
 
 ### **The is.x function family**
 
@@ -1048,7 +1048,7 @@ typeof(passed.the.course)
 
 ```
 
-
+<br>
 
 ### **The as.x function family**
 
@@ -1085,10 +1085,7 @@ lets <- letters[1:5]
 
 4. What is the difference between is.numeric and is.integer?
 
-***
-
 <br>
-
 
 ## **Factors - vectors' evil cousins**
 
@@ -1158,7 +1155,7 @@ a==a4
 
 ```
 
-
+<br>
 
 ## **Matrices**
 
@@ -1227,8 +1224,6 @@ There are several R functions that can be used to generate a matrix.
 2. Create a character vector of 10 elements; use the function cbind to bind it with the vector from the previous question. Are the vectors columns or rows? What happens when you use the function rbind?
 
 3. Use the typeof function on one of the matrices from question 2. What type of data does this matrix contain? What does it tell you about the coercion of data types within a matrix?
-
-***
 
 <br>
 
@@ -1364,6 +1359,8 @@ head(mat2_mlt)
 Because matrices are tables but behave like vectors, operating on them is memory efficient, and many R packages use 
 them as a preferred object.
 
+<br>
+
 ## **Lists**
 
 A list is a multidimensional vector, which is a fancy way of saying that a list is a vector that can house any R 
@@ -1390,6 +1387,7 @@ list2 <- list(matrix(sample(10:1000,100,replace = F),ncol = 2),
               factor(c("Cat","Dog","Cat","Mouse")) )
 ```
 
+<br>
 
 ### **Working with lists**
 
@@ -1428,6 +1426,8 @@ list1[1]
 
 ```
 
+<br>
+
 ### **Lists and the $ operator**
 
 $ is an operator that can be thought of as the equivalent of [[ ]], therefore it can be used to access elements of a list. However, in order to use it, the elements must be named first.
@@ -1464,8 +1464,6 @@ Let's wrap up working with lists with the following exercise:
 3. Name the first element of list1 "S2_log"
 4. Use sweep to normalize Sample1 by dividing it by the sum of its columns, assign it to the 2nd element of list1 and name it S1_norm
 5. Create a list called list3 that contains only the first 2 elements of list1
-
-***
 
 <br>
 

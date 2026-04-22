@@ -35,17 +35,10 @@ __By the end of this lab you will be able to:__
 
 <br>
 
-****
-
 ::: {.callout-note}
 **Note 1: The assignment questions for this week are interspersed throughout the tutorial.**
 **They are itemized in the table of contents, so make sure you answer all of them.**
 :::
-
-
-****
-
-****
 
 ::: {.callout-note}
 **Note 2: Install the new packages ASAP, as some might take considerable time and may require you to update many dependencies.**
@@ -102,10 +95,14 @@ lapply(c("vegan","ape","ggdendro","seqinr",
          "Biostrings", "tidyverse","dendextend","msa","ggmsa"),library, character.only = TRUE)
 ```
 
+<br>
+
 ## **Pairwise alignment**
 
 Let's begin the lab by conducting pairwise (PW) sequence alignments. To do so, you will use two libraries you are already familiar 
 with: `Biostrings` and `seqinr`. You will perform a few types of pairwise sequence alignments using several sequences.  
+
+<br>
 
 ### **Dot-plot alignment**
 
@@ -155,8 +152,6 @@ Now let's figure out how to work with the function `dotPlot()`.
 
 <br>
 
-***
-
 ### **Question 1**
 
 A. What is the length of each sequence? Show your code (1 mark).
@@ -193,8 +188,6 @@ class(selA)
 
 <br>
 
-***
-
 ### **Question 2**
 
 A. Use the `dotPlot()` function with default settings to compare the 1st and 5th sequences in selA. Can you identify an alignment? Show your code and include a PDF of the figure produced (2 marks).
@@ -203,7 +196,6 @@ B. Now, smooth the sequences by selecting a window size of 10, stringency of 5, 
 
 C. What happens if you change the window size to 60 and select a stringency of 12? What does it tell you about results obtained by this technique? Show your code and include a PDF of the figure produced (3 marks).
 
-***
 <br>
 
 ### **Global PW alignment with NWA**
@@ -283,7 +275,6 @@ ga2
 
 <br>
 
-***
 ### **Question 3**
 
 A. Show the code used for each alignment; make sure to comment (2 marks).
@@ -291,9 +282,6 @@ A. Show the code used for each alignment; make sure to comment (2 marks).
 B. Print the nucleotide alignments. What was the score for each of them? Given that 16S rRNA genes are highly conserved, would you expect these alignments to have negative scores (2 marks)?
 
 C. Print each of the AA alignments. Did the trend in scores agree between PAM and BLOSUM (1 mark)?
-
-
-***
 
 <br>
 
@@ -318,9 +306,8 @@ la2 <- pairwiseAlignment(selAset[1],selAset[2], substitutionMatrix="PAM40", gapO
 
 la2
 ```
-<br>
 
-***
+<br>
 
 ### **Question 4**
 
@@ -331,8 +318,6 @@ B. What was the score and length of the local alignment between Arch1 and Arch3?
 C. Run the sequence for Arch1 in nucleotide BLAST. Is it actually an archaeal sequence? What species and genus did the top hit belong to? Include a screenshot of the description and graphic summary tabs. Tip: check the box for excluding uncultured organisms from the alignment (3 marks).
 
 D. What were the lengths of the AA alignments? Did they change with different substitution matrices? Show your code (2 marks).
-
-***
 
 <br>
 
@@ -521,8 +506,6 @@ hba_aa_msa_ms[length(hba_aa_msa_ms)]
 
 <br>
 
-***
-
 ### **Question 5**
 
 A. Generate an MSA for each of the `StringSets` for HBA and HBB. Show your code (1 mark).
@@ -538,9 +521,6 @@ E. Convert the alignments to seqinr format and generate distance matrices. Show 
 marks).
 
 F. Cluster the matrices using UPGMA and convert to dendrograms. Show your code (2 marks).
-
-
-***
 
 <br>
 
@@ -559,8 +539,6 @@ tanglegram(hba_aa_sq_c_clust,hba_aa_sq_m_clust, sort = TRUE,
            common_subtrees_color_lines = FALSE, 
            highlight_distinct_edges  = FALSE, highlight_branches_lwd = FALSE)
 ```
-
-***
 
 <br>
 

@@ -61,6 +61,7 @@ library(tidyverse)
 library(tidyverse)
 ```
 
+<br>
 
 ## **Importing and exporting data in R**
 
@@ -227,6 +228,8 @@ write(book.lines[1:12], file = "book.txt", append = F)
 1. Generate 3 strings and house each of them in a vector
 
 2. Add the 3 strings as new lines at the end of book.txt 
+
+<br>
 
 ## **Manipulating your data**
 
@@ -550,7 +553,7 @@ the summarize function can summarize more than just mean, and can take more than
 
 * Use list() within summarize_if to calculate both the mean, SD, and maximum value for each of the chemicals in df2. Assign in to df3
 
-***
+<br>
 
 ## **Conditional statements and iterations**
 
@@ -737,7 +740,7 @@ for (i in seq_along(files)) {
 }  
 ```
 
-***
+<br>
 
 ## **Functions**
 
@@ -851,13 +854,13 @@ imp.data <- function(Pattern= ".csv", Path = getwd(), Recursive = FALSE){
 }
 ```
 
-***
-
+::: {.callout-note}
 **A note on the function environment**
 
 The function environment is distinct from the global environment, therefore if there is an interest in keeping some of the intermediate variables created by the function they need to be exported using the `<<-` operator. The `<<-` operator is variable assignment operator similar to `<-` only it exports variables to the global environment.
+:::
 
-***
+<br>
 
 ## **Plotting your data**
 
