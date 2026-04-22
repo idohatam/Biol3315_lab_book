@@ -467,8 +467,9 @@ patterns of a large number of individuals.
 
 ***
 
->  **A note about distances and ordination techniques**
-> 
+::: {.callout-note}
+ **A note about distances and ordination techniques**
+
 As I mentioned, distance calculation, ordination techniques, and hierarchical clustering (which we
 will deal with later in this lab) are important methods in exploring, understanding, and visualizing
 data. You will use these a lot as bioinformaticians, and it is imperative that you choose the
@@ -476,6 +477,8 @@ correct method for the data you are studying. A great resource for that is the b
 [Numerical ecology with R](http://adn.biol.umontreal.ca/~numericalecology/numecolR/). While the book deals mainly with ecological data, it is relevant to biology in general. Unfortunately, too often researchers use approaches that
 are unsuitable for the way their data are collected or distributed. This book will help you avoid such mistakes.
 (Also, it's always great to plug the work of fellow Canadians!)
+:::
+
 
 ***
 
@@ -877,8 +880,8 @@ p2
 
 ***
 
-> **A note about machine learning**
->
+::: {.callout-note}
+**A note about machine learning**
 While this plot might not look impressive, what you have done here is to take your first steps
 (unless you've done this before) in machine learning. When you ask an algorithm (e.g., k-means
 clustering) to classify your samples into groups, without specifying groups, you are performing
@@ -887,6 +890,8 @@ Once you have enough information about how the particular set of data classifies
 develop a predictive algorithm that would classify new samples into groups based on the information
 resulting from the unsupervised learning. When you train or use an algorithm to predict which
 category a sample would be classified into, you are performing supervised machine learning.
+:::
+
 
 ***
 

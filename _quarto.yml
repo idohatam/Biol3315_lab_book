@@ -6,7 +6,6 @@ book:
   title: "Biology 3315 Molecular Evolution and Phylogenetics"
   subtitle: "Lab manual"
   author: "Dr. Ido Hatam"
-  cover-image: "cover_art_8.jpeg"
   chapters:
     - index.qmd
     - 01-lab1_intro_to_R_pt1.qmd

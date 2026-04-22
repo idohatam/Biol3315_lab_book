@@ -37,15 +37,21 @@ __By the end of this lab you will be able to:__
 
 ****
 
->**Note 1: The assignment questions for this week are interspersed throughout the tutorial.**
->**They are itemized in the table of contents, so make sure you answer all of them.**
+::: {.callout-note}
+**Note 1: The assignment questions for this week are interspersed throughout the tutorial.**
+**They are itemized in the table of contents, so make sure you answer all of them.**
+:::
+
 
 ****
 
 ****
 
->**Note 2: Install the new packages ASAP, as some might take considerable time and may require you to update many dependencies.**
->**If prompted to install UTF8, do not install from binaries.**
+::: {.callout-note}
+**Note 2: Install the new packages ASAP, as some might take considerable time and may require you to update many dependencies.**
+**If prompted to install UTF8, do not install from binaries.**
+:::
+
 
 To complete this lab, you will need to install the following packages: 
 
@@ -389,7 +395,10 @@ You can also use the msa package [reference manual](http://www.bioconductor.org/
 
 ***
 
->**Note: You will also need the HBB.fasta and HBB_aa.fasta files. You can source those as well from my `GitHub` page.**
+::: {.callout-note}
+**Note: You will also need the HBB.fasta and HBB_aa.fasta files. You can source those as well from my `GitHub` page.**
+:::
+
 
 ***
 

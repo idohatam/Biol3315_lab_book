@@ -36,9 +36,12 @@ You will compare the genome trees to the gene trees and see which of them produc
 
 ***
 
->**Note that for this lab we will use a linear multiple sequence aligner to align genomes.**
->**This is only possible because you will be working with small viral genomes, ~10 kb.**
->**Aligning larger genomes requires a [graph aligner](https://en.wikipedia.org/wiki/Sequence_graph); we will discuss these in depth in Biol 4315.**
+::: {.callout-note}
+**Note that for this lab we will use a linear multiple sequence aligner to align genomes.**
+**This is only possible because you will be working with small viral genomes, ~10 kb.**
+**Aligning larger genomes requires a [graph aligner](https://en.wikipedia.org/wiki/Sequence_graph); we will discuss these in depth in Biol 4315.**
+:::
+
 
 ***
 
@@ -74,7 +77,10 @@ generating and plotting a maximum likelihood tree.
 
 ***
 
->**Note: Aligning the genomes, as well as the construction and bootstrapping of the ML trees, are computationally intensive. It is recommended that you use the computers in the Mac lab. Plan accordingly and start early.**
+::: {.callout-note}
+**Note: Aligning the genomes, as well as the construction and bootstrapping of the ML trees, are computationally intensive. It is recommended that you use the computers in the Mac lab. Plan accordingly and start early.**
+:::
+
 
 ***
 
@@ -109,7 +115,10 @@ coronaviruses and performs a complete phylogenetic analysis.
 >
 >https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/spike.fa
 >
->**Note: Your code should download/read the files directly from GitHub; you are not allowed to download them manually.**
+::: {.callout-note}
+**Note: Your code should download/read the files directly from GitHub; you are not allowed to download them manually.**
+:::
+
 
 ***
 
