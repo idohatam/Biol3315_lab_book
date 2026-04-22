@@ -6,6 +6,8 @@ author: "Dr. Ido Hatam"
 
 # **Lab manual Biol 3315 Langara College** {.unnumbered}
 
+<br>
+
 ## **Additional contributors** {.unnumbered}
 
 Sarah Bawker (code)
