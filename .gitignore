@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .Rdata
+*.RData
 .httr-oauth
 .DS_Store
 *.csv
@@ -10,3 +11,20 @@
 *.png
 _book/
 lab2_files/
+-DESKTOP-F1CDIC9.RData
+*.Rhistory
+*.Rproj
+
+/.quarto/
+
+**/*.quarto_ipynb
+
+# Explicitly ignore cache and generated files
+*_cache/
+*_files/
+
+# Ignore feedback and planning files
+MARVIN_NOTES.md
+FEEDBACK_FOR_HUMAN.md
+spec.md
+plan.md

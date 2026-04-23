@@ -1,0 +1,29 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Biology 3315 Molecular Evolution and Phylogenetics"
+  subtitle: "Lab manual"
+  author: "Dr. Ido Hatam"
+  chapters:
+    - index.qmd
+    - 01-lab1_intro_to_R_pt1.qmd
+    - 02-lab2_intro_to_R_pt2.qmd
+    - 03-lab3_biological_data1.qmd
+    - 04-lab4_biologicaldata2.qmd
+    - 05-lab5_pop_gen.qmd
+    - 06-lab6_msa.qmd
+    - 07-lab7_trees.qmd
+    - 08-lab8_genome_trees.qmd
+
+bibliography: [book.bib, packages.bib]
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    toc: true
+    toc-depth: 6
+    number-sections: true

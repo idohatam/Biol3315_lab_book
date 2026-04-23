@@ -1,0 +1,34 @@
+--- 
+title: "Biology 3315 Molecular Evolution and Phylogenetics"
+subtitle: "Lab manual"
+author: "Dr. Ido Hatam"
+---
+
+# **Lab manual Biol 3315 Langara College** {.unnumbered}
+
+<br>
+
+## **Additional contributors** {.unnumbered}
+
+Sarah Bawker (code)
+
+DALL.E3 (the bellow artwork)
+
+```{r artwork}
+#| fig-align: center
+#| echo: false
+#| include: !expr knitr::is_html_output()
+knitr::include_graphics('cover_art_8.jpeg', dpi = NA)
+```
+
+
+
+
+
+```{r ggg}
+#| include: false
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
