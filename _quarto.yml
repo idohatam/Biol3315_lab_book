@@ -30,3 +30,7 @@ format:
     toc: true
     toc-depth: 6
     number-sections: true
+
+language:
+  en:
+    toc-title-edit: "Edit this book"
