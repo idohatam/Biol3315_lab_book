@@ -33,4 +33,4 @@ format:
 
 language:
   en:
-    toc-title-edit: "Edit this book"
+    edit-link-title: "Edit this book"
