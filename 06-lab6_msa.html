@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 6: Sequence Evolution – Biology 3315 Molecular Evolution and Phylogenetics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-lab7_trees.html" rel="next">
+<link href="./05-lab5_pop_gen.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-lab6_msa.html"><strong>Lab 6: Sequence Evolution</strong></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/idohatam/Biol3315_lab_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Biology 3315 Molecular Evolution and Phylogenetics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-lab1_intro_to_R_pt1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Lab 1: Introduction to the R Programming Language and the RStudio IDE</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-lab2_intro_to_R_pt2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Lab 2: Data Manipulation and Presentation in R</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-lab3_biological_data1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Lab 3: Handling of Biological Data in R - 1</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-lab4_biologicaldata2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Lab 4: Handling of Biological Data in R - 2</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-lab5_pop_gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Lab 5: Population Genetics and Selection</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-lab6_msa.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><strong>Lab 6: Sequence Evolution</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-lab7_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><strong>Lab 7: Using Sequences to Reconstruct Phylogenetic Trees</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-lab8_genome_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><strong>Lab 8: Comparing Phylogenetic Trees Made with Genes and Genomes</strong></span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><strong>Learning objectives</strong></a></li>
+  <li><a href="#pairwise-alignment" id="toc-pairwise-alignment" class="nav-link" data-scroll-target="#pairwise-alignment"><strong>Pairwise alignment</strong></a>
+  <ul>
+  <li><a href="#dot-plot-alignment" id="toc-dot-plot-alignment" class="nav-link" data-scroll-target="#dot-plot-alignment"><strong>Dot-plot alignment</strong></a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><strong>Question 1</strong></a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><strong>Question 2</strong></a></li>
+  <li><a href="#global-pw-alignment-with-nwa" id="toc-global-pw-alignment-with-nwa" class="nav-link" data-scroll-target="#global-pw-alignment-with-nwa"><strong>Global PW alignment with NWA</strong></a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><strong>Question 3</strong></a></li>
+  <li><a href="#local-pw-alignment-with-swa" id="toc-local-pw-alignment-with-swa" class="nav-link" data-scroll-target="#local-pw-alignment-with-swa"><strong>Local PW alignment with SWA</strong></a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><strong>Question 4</strong></a></li>
+  </ul></li>
+  <li><a href="#msa" id="toc-msa" class="nav-link" data-scroll-target="#msa"><strong>MSA</strong></a>
+  <ul>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><strong>Question 5</strong></a></li>
+  <li><a href="#dendextend" id="toc-dendextend" class="nav-link" data-scroll-target="#dendextend"><strong>Dendextend</strong></a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><strong>Question 6</strong></a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/idohatam/Biol3315_lab_book/edit/main/06-lab6_msa.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><strong>Lab 6: Sequence Evolution</strong></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The purpose of this lab is for you to get familiarized with methodologies used in the analysis of sequence similarity.</p>
+<p><br></p>
+<section id="learning-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="learning-objectives"><strong>Learning objectives</strong></h2>
+<details>
+<summary>
+Click to expand
+</summary>
+<p><strong>By the end of this lab you will be able to:</strong></p>
+<ul>
+<li>Demonstrate the ability to load biological sequences into R</li>
+<li>Perform dot-plot alignment using AA and nucleotide sequences</li>
+<li>Analyze sequences for regions of homology based on dot-plot alignments</li>
+<li>Perform global and local alignments using dynamic programming algorithms</li>
+<li>Analyze regions of homology based on those alignments</li>
+<li>Retrieve alignment scores</li>
+<li>Export sequences to be used for homology search in BLAST</li>
+<li>Perform multiple sequence alignment using the <code>msa</code> package</li>
+<li>Print multiple sequence alignments and identify conserved areas and consensus sequences</li>
+<li>Analyze differences in alignments with a tanglegram</li>
+</ul>
+</details>
+<hr>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Note 1: The assignment questions for this week are interspersed throughout the tutorial.</strong> <strong>They are itemized in the table of contents, so make sure you answer all of them.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Note 2: Install the new packages ASAP, as some might take considerable time and may require you to update many dependencies.</strong> <strong>If prompted to install UTF8, do not install from binaries.</strong></p>
+</div>
+</div>
+<p>To complete this lab, you will need to install the following packages:</p>
+<ol type="1">
+<li><p><code>dendextend</code>, a package that allows you to compare dendrograms</p></li>
+<li><p><code>msa</code>, a package for multiple sequence alignments</p></li>
+<li><p><code>ggmsa</code>, to plot MSAs with ggplot2</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing the package dendextend</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dendextend"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing the package ggmsa</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggmsa"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing the package msa from Bioconductor</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"msa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><br></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply is part of the apply family of functions, one of those functions that act as a for loop</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">c</span>(<span class="st">"vegan"</span>,<span class="st">"ape"</span>,<span class="st">"ggdendro"</span>,<span class="st">"seqinr"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Biostrings"</span>, <span class="st">"tidyverse"</span>,<span class="st">"dendextend"</span>,<span class="st">"msa"</span>,<span class="st">"ggmsa"</span>),library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+<section id="pairwise-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="pairwise-alignment"><strong>Pairwise alignment</strong></h2>
+<p>Let’s begin the lab by conducting pairwise (PW) sequence alignments. To do so, you will use two libraries you are already familiar with: <code>Biostrings</code> and <code>seqinr</code>. You will perform a few types of pairwise sequence alignments using several sequences.</p>
+<p><br></p>
+<section id="dot-plot-alignment" class="level3">
+<h3 class="anchored" data-anchor-id="dot-plot-alignment"><strong>Dot-plot alignment</strong></h3>
+<p>A dot-plot alignment is a simple way to perform pairwise sequence alignment. The purpose of this exercise is to grant you firsthand experience working with dot-plot alignments and to understand their advantages and disadvantages.</p>
+<p>Let’s examine how well dot-plot alignments work with nucleotide sequences. You will align three 16S rRNA genes. You will use a file that contains 200 Archaeal rRNA genes obtained from <a href="https://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the fasta file with Archaeal rRNA sequences from GitHub</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>arch <span class="ot">&lt;-</span> seqinr<span class="sc">::</span><span class="fu">read.fasta</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/Arch.fa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Since the dataset contains both 16S rRNA and 23S rRNA sequences, let’s find elements in the list imported by <code>read.fasta()</code> that house 16S rRNA sequences. We will do that by asking which positions house vectors with fewer than 1700 elements (the size of 16S rRNA genes ranges between 1400–~1650 bp).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: using the function lapply to iterate over the list returned by read.fasta</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">unlist</span>(base<span class="sc">::</span><span class="fu">lapply</span>(arch, <span class="cf">function</span>(x) <span class="fu">length</span>(x) <span class="sc">&lt;</span> <span class="dv">1700</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NG_041949 NG_041950 NG_041953 NG_042066 NG_042069 NG_042072 NR_024799 NR_024870 
+        2         3         6        16        19        20        23        24 
+NR_025028 NR_025303 NR_025555 NR_025718 NR_025933 NR_026246 NR_028147 NR_028148 
+       25        26        27        28        29        30        31        32 
+NR_028149 NR_028150 NR_028151 NR_028152 NR_028153 NR_028154 NR_028155 NR_028156 
+       33        34        35        36        37        38        39        40 
+NR_028157 NR_028158 NR_028159 NR_028160 NR_028161 NR_028162 NR_028163 NR_028164 
+       41        42        43        44        45        46        47        48 
+NR_028165 NR_028166 NR_028167 NR_028168 NR_028169 NR_028170 NR_028171 NR_028172 
+       49        50        51        52        53        54        55        56 
+NR_028173 NR_028174 NR_028175 NR_028176 NR_028177 NR_028178 NR_028179 NR_028180 
+       57        58        59        60        61        62        63        64 
+NR_028181 NR_028182 NR_028183 NR_028184 NR_028185 NR_028186 NR_028187 NR_028188 
+       65        66        67        68        69        70        71        72 
+NR_028189 NR_028190 NR_028191 NR_028192 NR_028193 NR_028194 NR_028195 NR_028196 
+       73        74        75        76        77        78        79        80 
+NR_028197 NR_028198 NR_028199 NR_028200 NR_028201 NR_028202 NR_028203 NR_028204 
+       81        82        83        84        85        86        87        88 
+NR_028205 NR_028206 NR_028207 NR_028208 NR_028209 NR_028210 NR_028211 NR_028212 
+       89        90        91        92        93        94        95        96 
+NR_028213 NR_028214 NR_028215 NR_028216 NR_028217 NR_028218 NR_028219 NR_028220 
+       97        98        99       100       101       102       103       104 
+NR_028221 NR_028222 NR_028223 NR_028224 NR_028225 NR_028226 NR_028227 NR_028228 
+      105       106       107       108       109       110       111       112 
+NR_028229 NR_028230 NR_028231 NR_028232 NR_028233 NR_028234 NR_028235 NR_028236 
+      113       114       115       116       117       118       119       120 
+NR_028237 NR_028238 NR_028239 NR_028240 NR_028241 NR_028242 NR_028243 NR_028244 
+      121       122       123       124       125       126       127       128 
+NR_028245 NR_028246 NR_028247 NR_028248 NR_028249 NR_028250 NR_028251 NR_028252 
+      129       130       131       132       133       134       135       136 
+NR_028253 NR_028254 NR_028255 NR_028603 NR_028609 NR_028628 NR_028646 NR_028701 
+      137       138       139       140       141       142       143       144 
+NR_028779 NR_028831 NR_028856 NR_028861 NR_028877 NR_028916 NR_028921 NR_028937 
+      145       146       147       148       149       150       151       152 
+NR_028955 NR_029053 NR_029054 NR_029055 NR_029059 NR_029086 NR_029122 NR_029124 
+      153       154       155       156       157       158       159       160 
+NR_029127 NR_029140 NR_029141 NR_029142 NR_029214 NR_029300 NR_029316 NR_037131 
+      161       162       163       164       165       166       167       168 
+NR_040776 NR_040777 NR_040778 NR_040779 NR_040788 NR_040790 NR_040870 NR_040876 
+      169       170       171       172       173       174       175       176 
+NR_040881 NR_040922 NR_040935 NR_040964 NR_040968 NR_040969 NR_040973 NR_041310 
+      177       178       179       180       181       182       183       184 
+NR_041513 NR_041665 NR_041669 NR_041698 NR_041713 NR_041716 NR_041717 NR_041774 
+      185       186       187       188       189       190       191       192 
+NR_041788 NR_041789 NR_041801 NR_041828 NR_041876 NR_041896 NR_041943 NR_041944 
+      193       194       195       196       197       198       199       200 </code></pre>
+</div>
+</div>
+<p>Looks like there are quite a few 16S rRNA sequences in the dataset. Let’s get the last 3 elements. Note that <code>arch</code> is a list; therefore, the use of <code>lapply()</code> makes it very convenient to grab all three sequences without recycling code or using a <code>for</code> loop. Note as well that <code>lapply()</code> returns a list and requires unlisting just for ease of use later on.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arch_16s <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(arch[(<span class="fu">length</span>(arch)<span class="sc">-</span><span class="dv">2</span>)<span class="sc">:</span><span class="fu">length</span>(arch)],</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">function</span>(x) <span class="fu">paste0</span>(x,<span class="at">collapse =</span> <span class="st">""</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now let’s figure out how to work with the function <code>dotPlot()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">dotPlot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1"><strong>Question 1</strong></h3>
+<p>A. What is the length of each sequence? Show your code (1 mark).</p>
+<p>B. Run the <code>dotPlot()</code> function to compare the first and third sequences, and to compare the second and third sequences using the default settings. Could you identify an optimal alignment using the default settings? Show your code and attach the resulting figure from each alignment saved as PDF (you can export from the plot pane) (3 marks). <strong>Hint:</strong> Note that <code>dotPlot()</code> only accepts character vectors where each element is a single character (e.g., <code>c("A", "T", "G", "C")</code>). You might want to explore using <code>str_split_1()</code> from the <code>stringr</code> package.</p>
+<p>C. Run the same alignments using a smoothing window with a word size of 50 letters, stringency of 30, and make sure that the window progresses one position at a time. Could you identify an optimal alignment in any of the cases? Is there any apparent feature in any of the alignments? Show your code and attach the resulting figures as PDFs (3 marks).</p>
+<hr>
+<p><br></p>
+<p>Next, let’s examine how well a dot-plot alignment will perform when inspecting amino acid (AA) sequences. Remember that AA sequences use a 20-letter alphabet, which in theory should reduce spurious matching.</p>
+<p>To do that, first load the selA.fa file (found on GitHub) with <code>read.fasta()</code> from <code>seqinr</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load selA using the read.fasta function from seqinr</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>selA <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/selA.fa"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What class is this variable?</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(selA)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How will you use it in subsequent functions?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2"><strong>Question 2</strong></h3>
+<p>A. Use the <code>dotPlot()</code> function with default settings to compare the 1st and 5th sequences in selA. Can you identify an alignment? Show your code and include a PDF of the figure produced (2 marks).</p>
+<p>B. Now, smooth the sequences by selecting a window size of 10, stringency of 5, and a slide of one position. Did it improve the alignment? Show your code and attach a PDF of the resulting figure (2 marks).</p>
+<p>C. What happens if you change the window size to 60 and select a stringency of 12? What does it tell you about results obtained by this technique? Show your code and include a PDF of the figure produced (3 marks).</p>
+<p><br></p>
+</section>
+<section id="global-pw-alignment-with-nwa" class="level3">
+<h3 class="anchored" data-anchor-id="global-pw-alignment-with-nwa"><strong>Global PW alignment with NWA</strong></h3>
+<p>It’s time to switch it up and use some fancier methods and fancier variable classes—yes, it’s time for some <code>Biostrings</code> and dynamic programming algorithms.</p>
+<p>You will work with the <a href="https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">Needleman-Wunsch algorithm (NWA)</a> for global alignment. Remember: global alignments align sequences from end to end, attempting to align every position in both sequences.</p>
+<p>First, it is necessary to convert the sequences used in the previous example to <code>Biostrings</code> class variables. Furthermore, remember that a sequence alignment using a dynamic programming algorithm receives an alignment score. Therefore, it is necessary to create a scoring matrix for the nucleotide sequences (what will you use to score AA alignments?).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the nucleotide sequences to StringSets</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>arch_strinS <span class="ot">&lt;-</span> <span class="fu">DNAStringSet</span>(arch_16s)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, let’s convert the AA sequences to an <code>AAStringSet</code>. The AA sequences are saved as a list; also, they are lowercase and the substitution matrices are uppercase, so we need to correct for it. We will chain a few <code>lapply</code> functions to iterate over the list. The inner <code>lapply</code> pastes the sequences as strings, the second <code>lapply</code> changes the case to upper, then we unlist the list into a vector with the same number of elements as the list. Each element is a string that represents a sequence.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>selAset <span class="ot">&lt;-</span> <span class="fu">AAStringSet</span>(<span class="fu">unlist</span>(<span class="fu">lapply</span>((<span class="fu">lapply</span>(selA, base<span class="sc">::</span>paste, <span class="at">collapse =</span> <span class="st">""</span>)),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                    stringr<span class="sc">::</span>str_to_upper), <span class="st">'[['</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Need to set a scoring matrix for the alignment of nucleotide sequences; note that the scoring matrix only accounts for matches vs.&nbsp;mismatches; gap penalties will be addressed as arguments in the alignment function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nucsubmat <span class="ot">&lt;-</span> <span class="fu">nucleotideSubstitutionMatrix</span>(<span class="at">match =</span> <span class="dv">1</span>, <span class="at">mismatch =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">type =</span> <span class="st">"DNA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .call_fun_in_pwalign("nucleotideSubstitutionMatrix", ...): nucleotideSubstitutionMatrix() has moved to the pwalign package. Please
+  call pwalign::nucleotideSubstitutionMatrix() to get rid of this
+  warning.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How would you load the protein substitution matrix?</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>?substitution.matrices</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arguments for pairwiseAlignment</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>?pairwiseAlignment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now it’s your turn. Run the function <code>pairwiseAlignment()</code> on the same nucleotide sequences used for dot-plot. Remember that you need to subset the <code>XStringSet</code>. Use -1 as the penalty for opening and extending. Make sure to use the correct substitution matrix. Store the resulting <code>PairwiseAlignmentsSingleSubject</code> in a list (you should have two elements in the list).</p>
+<p>Similarly, run <code>pairwiseAlignment()</code> for the AA sequences from the previous example. Use the following scoring matrices: BLOSUM62, BLOSUM80, PAM120, PAM40. What do the numbering systems for these matrices represent? Store these in a list (you should have 4 elements in the list).</p>
+<p>Did you notice how much faster NWA is compared with a dot-plot alignment?</p>
+<p><br></p>
+</section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3"><strong>Question 3</strong></h3>
+<p>A. Show the code used for each alignment; make sure to comment (2 marks).</p>
+<p>B. Print the nucleotide alignments. What was the score for each of them? Given that 16S rRNA genes are highly conserved, would you expect these alignments to have negative scores (2 marks)?</p>
+<p>C. Print each of the AA alignments. Did the trend in scores agree between PAM and BLOSUM (1 mark)?</p>
+<p><br></p>
+</section>
+<section id="local-pw-alignment-with-swa" class="level3">
+<h3 class="anchored" data-anchor-id="local-pw-alignment-with-swa"><strong>Local PW alignment with SWA</strong></h3>
+<p>Now let’s do the same, but perform a local alignment using the <a href="https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm">Smith-Waterman algorithm (SWA)</a>. Remember: local alignments identify the best matching subsequence regions rather than aligning sequences end to end. As before, make sure to store your alignments in two lists.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .call_fun_in_pwalign("pairwiseAlignment", ...): pairwiseAlignment() has moved to the pwalign package. Please call
+  pwalign::pairwiseAlignment() to get rid of this warning.
+Warning in .call_fun_in_pwalign("pairwiseAlignment", ...): pairwiseAlignment() has moved to the pwalign package. Please call
+  pwalign::pairwiseAlignment() to get rid of this warning.</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4"><strong>Question 4</strong></h3>
+<p>A. Show the code used for each alignment; make sure to comment (2 marks).</p>
+<p>B. What was the score and length of the local alignment between Arch1 and Arch3? What positions in Arch1 and Arch3 were aligned (remember that XString is an S4 object and should be subsetted using @ and not $)? Show your code (3 marks).</p>
+<p>C. Run the sequence for Arch1 in nucleotide BLAST. Is it actually an archaeal sequence? What species and genus did the top hit belong to? Include a screenshot of the description and graphic summary tabs. Tip: check the box for excluding uncultured organisms from the alignment (3 marks).</p>
+<p>D. What were the lengths of the AA alignments? Did they change with different substitution matrices? Show your code (2 marks).</p>
+<p><br></p>
+</section>
+</section>
+<section id="msa" class="level2">
+<h2 class="anchored" data-anchor-id="msa"><strong>MSA</strong></h2>
+<p>In this part, you will perform multiple sequence alignment (MSA) with the HBA and HBB sequences. You will read these files directly from GitHub using the URLs provided in the code. These files contain datasets of hemoglobin A and hemoglobin B from several organisms. As you can see, the datasets are quite messy—i.e., the headers are long and inconsistent. Furthermore, the HBB dataset contains two fewer organisms than HBA. You’ll need to clean up these datasets in order to compare alignments with <code>dendextend</code>.</p>
+<p>The snippet below shows how to clean up the datasets once loaded.</p>
+<p><strong>Important:</strong> Ensure that the HBA datasets contain only the sequences that are also present in the HBB datasets (hint: think about subsetting based on names).</p>
+<p>First, we read the files as <code>XStringSet</code> objects.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read files as XStringSet</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>hba_n <span class="ot">&lt;-</span> <span class="fu">readDNAStringSet</span>(<span class="at">filepath =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA.fasta"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>hba_aa <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(<span class="at">filepath =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA_aa.fasta"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we clean up the names of the nucleotide sequences. Splitting the names based on a blank space results in a matrix; we choose the 2nd and 3rd columns, which include the genus and species names. We use <code>apply()</code> to iterate over the columns and get a vector of names in the format “Genus Species”. We will use functions from the <code>stringr</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that for cleanup I am using functions from stringr; make sure to load it</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hba_n) <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">str_split_fixed</span>(<span class="fu">names</span>(hba_n), </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">pattern =</span> <span class="st">" "</span>, <span class="dv">4</span>)[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">1</span>, base<span class="sc">::</span>paste,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">collapse =</span> <span class="st">" "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we clean up the names of the amino acid sequences. Here, genus and species are surrounded by brackets <code>[]</code>. We can use that to retrieve them. Note that <code>\\</code> are used as escape characters since <code>[]</code> have meaning in R syntax.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hba_aa) <span class="ot">&lt;-</span> <span class="fu">str_remove_all</span>(<span class="fu">str_split_fixed</span>(<span class="fu">names</span>(hba_aa), <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">["</span>, <span class="at">n=</span><span class="dv">2</span>)[,<span class="dv">2</span>], <span class="st">"</span><span class="sc">\\</span><span class="st">]"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p>The MUSCLE implementation is a bit finicky with respect to names, so make sure to run over the naming scheme for all <code>StringSets</code>, also note that MUSCLE might be finicky with respect to number of seqs, if one of the files have more than 40 keep only the sequences that overlap between both files. Now that all the sets are clean, it’s time to perform MSA. The function <code>msa()</code> can use CLUSTALW, MUSCLE, CLUSTAL Omega, or CLUSTAL 2.0. You will only use MUSCLE for the sake of this lab to keep things short. You will use the default settings, which means BLOSUM62 for AA alignments.</p>
+</blockquote>
+<p>Here are the functions that you will need to use for the next part:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">msa</span>()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>?<span class="fu">msaConvert</span>()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>?<span class="fu">msaConsensusSequence</span>()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>?<span class="fu">dist.alignment</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can also use the msa package <a href="http://www.bioconductor.org/packages/release/bioc/manuals/msa/man/msa.pdf">reference manual</a>.</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Note: You will also need the HBB.fasta and HBB_aa.fasta files. You can source those as well from my <code>GitHub</code> page.</strong></p>
+</div>
+</div>
+<hr>
+<p><br></p>
+<p>As you have learned in lecture, one advantage of performing multiple sequence alignment is the ability to identify conserved domains and consensus sequences. You will use ggmsa to visualize only AA alignments; the nucleotide ones are too large to print. Interfacing with ggmsa requires a bit of a workaround, which is demonstrated in the snippet below.</p>
+<p>First, we convert the MSA to an <code>AAStringSet</code>. <code>ggmsa</code> accepts <code>Biostrings</code> class types (e.g., <code>XStringSet</code>, <code>AAMultipleAlignment</code>, etc.), and <code>XStringSet</code> variables are much more malleable than <code>MultipleAlignment</code> variables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>hba_aa_msa_ms <span class="ot">&lt;-</span> <span class="fu">AAStringSet</span>(<span class="fu">AAMultipleAlignment</span>(hba_aa_msa_m))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Converting to a <code>Biostrings</code> element removes the consensus sequence; let’s add it as the last sequence. To do so, we turn the consensus sequence into an <code>AAStringSet</code> and add it as an additional element to the <code>AAStringSet</code> generated above. We are using <code>gsub()</code> to substitute <code>?</code> which marks ambiguity with <code>*</code> since <code>?</code> is not part of the <code>AAStringSet</code> alphabet.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>hba_aa_msa_ms[<span class="fu">length</span>(hba_aa_msa_ms)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">AAStringSet</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">?"</span>, <span class="st">"*"</span>, <span class="fu">msaConsensusSequence</span>(hba_aa_msa_m)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Lastly, add the name for the new consensus sequence, check the output, and pull up the help file for <code>ggmsa()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hba_aa_msa_ms)[<span class="fu">length</span>(hba_aa_msa_ms)] <span class="ot">&lt;-</span> <span class="st">"Consensus"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Looks good</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>hba_aa_msa_ms[<span class="fu">length</span>(hba_aa_msa_ms)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>AAStringSet object of length 1:
+    width seq                                               names               
+[1]   144 -MVLS*ADK*NVKA*WGKIGGHA...P*VHASLDKFLASVSTVLTSKYR Consensus</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How to use the ggmsa function</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>?ggmsa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5"><strong>Question 5</strong></h3>
+<p>A. Generate an MSA for each of the <code>StringSets</code> for HBA and HBB. Show your code (1 mark).</p>
+<p>B. Save each alignment to your computer; you will use them in the next lab. The best approach is to convert to a Biostrings alignment set, then to a StringSet. Attach these files to your submission (1 mark).</p>
+<p>C. Print the consensus sequence for each alignment. Which one worked better: nucleotide or AA? Show your code (2 marks).</p>
+<p>D. Use ggmsa to print the AA alignments; print 50 positions at a time. Use <code>Chemistry_AA</code> as the color argument. For each protein, identify one position where there is a radical amino acid change (e.g., a change that significantly alters chemical properties such as charge, polarity, or size). Explain why this change is considered radical. Show your code and attach the figures as PDFs (use ggsave) (3 marks).</p>
+<p>E. Convert the alignments to seqinr format and generate distance matrices. Show your code (2 marks).</p>
+<p>F. Cluster the matrices using UPGMA and convert to dendrograms. Show your code (2 marks).</p>
+<p><br></p>
+</section>
+<section id="dendextend" class="level3">
+<h3 class="anchored" data-anchor-id="dendextend"><strong>Dendextend</strong></h3>
+<p>Lastly, let’s compare the dendrograms using a tanglegram. Tanglegrams visually compare two dendrograms by connecting corresponding tips (leaves with matching labels), allowing you to assess whether the topologies differ. You can now compare if the alignments cluster differently based on whether nucleotides or amino acids are used. You can also inspect the topology between HBA and HBB.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tanglegrams can be very colorful; the settings will remove color. Feel free to change.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This one compares the alignments of HBA with CLUSTALW and MUSCLE; as you can see, they perform equally</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># well on small datasets.</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tanglegram</span>(hba_aa_sq_c_clust,hba_aa_sq_m_clust, <span class="at">sort =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">common_subtrees_color_lines =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">highlight_distinct_edges  =</span> <span class="cn">FALSE</span>, <span class="at">highlight_branches_lwd =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-lab6_msa_files/figure-html/dext-1.png" class="img-fluid figure-img" style="width:205.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6"><strong>Question 6</strong></h3>
+<p>A. Generate a tanglegram comparing the HBA alignment done with nucleotides and with amino acids. Did you find any discrepancies with respect to membership in monophyletic groups? Show your code and attach the figures (2 marks).</p>
+<p>B. Perform the same analysis as in 6A for HBB (2 marks).</p>
+<p>C. Generate a tanglegram comparing the alignments done on AA sequences for HBA and HBB. Did you find any discrepancies with respect to membership in monophyletic groups? Show your code and attach the figures (2 marks). Keep this in mind when we study actual gene trees.</p>
+<hr>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-lab5_pop_gen.html" class="pagination-link" aria-label="**Lab 5: Population Genetics and Selection**">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><strong>Lab 5: Population Genetics and Selection</strong></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-lab7_trees.html" class="pagination-link" aria-label="**Lab 7: Using Sequences to Reconstruct Phylogenetic Trees**">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><strong>Lab 7: Using Sequences to Reconstruct Phylogenetic Trees</strong></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/idohatam/Biol3315_lab_book/edit/main/06-lab6_msa.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

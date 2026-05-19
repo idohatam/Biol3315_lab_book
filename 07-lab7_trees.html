@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Lab 7: Using Sequences to Reconstruct Phylogenetic Trees – Biology 3315 Molecular Evolution and Phylogenetics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-lab8_genome_trees.html" rel="next">
+<link href="./06-lab6_msa.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-lab7_trees.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><strong>Lab 7: Using Sequences to Reconstruct Phylogenetic Trees</strong></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/idohatam/Biol3315_lab_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Biology 3315 Molecular Evolution and Phylogenetics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-lab1_intro_to_R_pt1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Lab 1: Introduction to the R Programming Language and the RStudio IDE</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-lab2_intro_to_R_pt2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Lab 2: Data Manipulation and Presentation in R</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-lab3_biological_data1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Lab 3: Handling of Biological Data in R - 1</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-lab4_biologicaldata2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Lab 4: Handling of Biological Data in R - 2</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-lab5_pop_gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Lab 5: Population Genetics and Selection</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-lab6_msa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Lab 6: Sequence Evolution</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-lab7_trees.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><strong>Lab 7: Using Sequences to Reconstruct Phylogenetic Trees</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-lab8_genome_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><strong>Lab 8: Comparing Phylogenetic Trees Made with Genes and Genomes</strong></span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1</span> <strong>Learning objectives</strong></a></li>
+  <li><a href="#multiple-sequence-alignment" id="toc-multiple-sequence-alignment" class="nav-link" data-scroll-target="#multiple-sequence-alignment"><span class="header-section-number">6.2</span> <strong>Multiple sequence alignment</strong></a>
+  <ul>
+  <li><a href="#import-last-weeks-msa" id="toc-import-last-weeks-msa" class="nav-link" data-scroll-target="#import-last-weeks-msa"><span class="header-section-number">6.2.1</span> <strong>Import last week’s MSA</strong></a></li>
+  <li><a href="#alternative-generate-msa" id="toc-alternative-generate-msa" class="nav-link" data-scroll-target="#alternative-generate-msa"><span class="header-section-number">6.2.2</span> <strong>Alternative: generate MSA</strong></a></li>
+  </ul></li>
+  <li><a href="#constructing-a-neighbor-joining-tree-distance-based-reconstruction" id="toc-constructing-a-neighbor-joining-tree-distance-based-reconstruction" class="nav-link" data-scroll-target="#constructing-a-neighbor-joining-tree-distance-based-reconstruction"><span class="header-section-number">6.3</span> <strong>Constructing a Neighbor-Joining tree (distance-based reconstruction)</strong></a>
+  <ul>
+  <li><a href="#plotting-and-annotating-trees-with-ggtree" id="toc-plotting-and-annotating-trees-with-ggtree" class="nav-link" data-scroll-target="#plotting-and-annotating-trees-with-ggtree"><span class="header-section-number">6.3.1</span> <strong>Plotting and annotating trees with ggtree</strong></a></li>
+  <li><a href="#rooting-the-tree" id="toc-rooting-the-tree" class="nav-link" data-scroll-target="#rooting-the-tree"><span class="header-section-number">6.3.2</span> <strong>Rooting the tree</strong></a></li>
+  <li><a href="#bootstrapping-the-tree" id="toc-bootstrapping-the-tree" class="nav-link" data-scroll-target="#bootstrapping-the-tree"><span class="header-section-number">6.3.3</span> <strong>Bootstrapping the tree</strong></a></li>
+  </ul></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">6.4</span> <strong>Question 1</strong></a></li>
+  <li><a href="#constructing-a-maximum-likelihood-tree-character--and-distance-based-reconstruction" id="toc-constructing-a-maximum-likelihood-tree-character--and-distance-based-reconstruction" class="nav-link" data-scroll-target="#constructing-a-maximum-likelihood-tree-character--and-distance-based-reconstruction"><span class="header-section-number">6.5</span> <strong>Constructing a maximum likelihood tree (character- and distance-based reconstruction)</strong></a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/idohatam/Biol3315_lab_book/edit/main/07-lab7_trees.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><strong>Lab 7: Using Sequences to Reconstruct Phylogenetic Trees</strong></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><br></p>
+<p><br></p>
+<section id="learning-objectives" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> <strong>Learning objectives</strong></h2>
+<details>
+<summary>
+Click to expand
+</summary>
+<p>By the end of this lab you will be able to:</p>
+<ul>
+<li><p>Load MSA files into R</p></li>
+<li><p>Analyze and reconstruct phylogeny based on gene trees</p></li>
+<li><p>Root trees using an outgroup and by midpoint rooting</p></li>
+<li><p>Interface with NCBI and download taxonomic information</p></li>
+<li><p>Assess the confidence of your reconstruction using bootstrap</p></li>
+<li><p>Optimize and select substitution models for maximum likelihood phylogeny reconstruction</p></li>
+<li><p>Compare the reconstruction of phylogeny based on different genes</p></li>
+<li><p>Compare the accuracy of different methodologies for tree reconstruction and inference</p></li>
+<li><p>Analyze phylogenetic trees</p></li>
+</ul>
+</details>
+<hr>
+<p>During this week’s lab, you will continue studying the evolutionary relationships between HBA and HBB sequences. You will generate multiple phylogenetic trees (gene trees) and assess their quality.</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note 1: The assignment questions for this week are interspersed throughout the tutorial. They are itemized in the table of contents, so make sure you answer all of them. The due date for the assignment will be announced by the lab instructor.</p>
+</div>
+</div>
+<hr>
+<p>In order to complete this week’s lab, you will need to install the <code>phangorn</code> package, which extends some of the capabilities of the <code>ape</code> package, especially with respect to incorporating substitution models. You will also need to install the package <code>phytools</code>, which, as its name suggests, has some useful tools to manipulate phylogenetic trees. You will need to download the package <code>taxize</code>, which allows you to download the common names of the organisms from NCBI. Additionally, we will install and use <code>ggtree</code> (part of Bioconductor) to plot our trees beautifully.</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note 2: Install the new packages ASAP, as some might take considerable time and may require you to update many dependencies.</p>
+</div>
+</div>
+<hr>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing the package phangorn</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"phangorn"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing the package phytools</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"phytools"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing the package taxize</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"taxize"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing ggtree from Bioconductor</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggtree"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply is part of the apply family of functions, one of those functions that act as a for loop</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">c</span>(<span class="st">"ape"</span>,<span class="st">"seqinr"</span>,<span class="st">"Biostrings"</span>, <span class="st">"tidyverse"</span>,<span class="st">"msa"</span>, <span class="st">"phangorn"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>         <span class="st">"phytools"</span>,<span class="st">"stringr"</span>,<span class="st">"taxize"</span>, <span class="st">"ggtree"</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>       library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+<section id="multiple-sequence-alignment" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="multiple-sequence-alignment"><span class="header-section-number">6.2</span> <strong>Multiple sequence alignment</strong></h2>
+<p><br></p>
+<section id="import-last-weeks-msa" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="import-last-weeks-msa"><span class="header-section-number">6.2.1</span> <strong>Import last week’s MSA</strong></h3>
+<p>Last week you generated multiple sequence alignments for the HBA and HBB genes. This week, you will use the amino acid alignments to generate phylogenetic trees. In order to do that, first you will need to import them. You can import the MSA using the <code>read.phyDat()</code> function from phangorn. phyDat is a list-based element used to store alignment information by phangorn.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is an example of how to read files using read.phyDat</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hba_phy <span class="ot">&lt;-</span> <span class="fu">read.phyDat</span>(<span class="st">"hba_align_aa.fa"</span>, <span class="at">type =</span> <span class="st">"AA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+<section id="alternative-generate-msa" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="alternative-generate-msa"><span class="header-section-number">6.2.2</span> <strong>Alternative: generate MSA</strong></h3>
+<p>Alternatively, if you do not have the alignments from last week saved as a FASTA file, or you still have the <code>msa</code> object in your workspace, you can use the <code>msaConvert()</code> function to convert the <code>msa</code> to <code>phyDat</code>. If you have the <code>msa</code> objects in your environment, you can skip to the last step.</p>
+<p>First, we will read the unaligned files and clean the organism names.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file and align</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hba_aa <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">filepath =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBA_aa.fasta"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>hbb_aa <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">filepath =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/HBB_aa.fasta"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember: need to clean up names</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hba_aa) <span class="ot">&lt;-</span> <span class="fu">str_remove_all</span>(<span class="fu">str_split_fixed</span>(<span class="fu">names</span>(hba_aa),<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">["</span>, <span class="at">n=</span><span class="dv">2</span>)[,<span class="dv">2</span>],<span class="st">"</span><span class="sc">\\</span><span class="st">]"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(hbb_aa) <span class="ot">&lt;-</span> <span class="fu">str_remove_all</span>(<span class="fu">str_split_fixed</span>(<span class="fu">names</span>(hbb_aa),<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">["</span>, <span class="at">n=</span><span class="dv">2</span>)[,<span class="dv">2</span>],<span class="st">"</span><span class="sc">\\</span><span class="st">]"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># And make sure both have the same organisms</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>hba_aa <span class="ot">&lt;-</span> hba_aa[<span class="fu">which</span>(<span class="fu">names</span>(hbb_aa)<span class="sc">%in%</span><span class="fu">names</span>(hba_aa))]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we generate the alignment and convert it into a <code>phyDat</code> class element.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate MSA</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hba_aa_msa <span class="ot">&lt;-</span> <span class="fu">msa</span>(hba_aa, <span class="at">method =</span> <span class="st">"ClustalW"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>use default substitution matrix</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a seqinr alignment and then to a phyDat class element</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hba_phy <span class="ot">&lt;-</span> <span class="fu">as.phyDat</span>(<span class="fu">msaConvert</span>(hba_aa_msa, <span class="st">"seqinr::alignment"</span>),<span class="at">type =</span> <span class="st">"AA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="constructing-a-neighbor-joining-tree-distance-based-reconstruction" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="constructing-a-neighbor-joining-tree-distance-based-reconstruction"><span class="header-section-number">6.3</span> <strong>Constructing a Neighbor-Joining tree (distance-based reconstruction)</strong></h2>
+<p>One approach to reconstructing phylogenetic trees is by clustering OTUs based on distance (i.e., forming a distance matrix). There are two main algorithms for constructing distance-based trees: UPGMA and Neighbor-Joining (NJ). UPGMA assumes similar and constant rates of evolution across all OTUs; therefore, the inference of evolutionary relations is error-prone. NJ is more reliable while still being computationally efficient, since it does not make assumptions about evolutionary rates. To generate the distance matrix used to construct the tree, you will use the <code>dist.ml()</code> function from <code>phangorn</code>, which accounts for substitution models. Since you are using an alignment of AA sequences, you will need a model suitable for AA substitution. You will use the Jones-Taylor-Thornton (JTT), an empirical model, to account for AA substitution. Similar to BLOSUM, but accounts for evolutionary history by correcting for multiple substitutions at the same site (i.e., distinguishing between observed and true numbers of substitutions).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First step is to generate a distance matrix using a substitution model.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The function dist.ml from phangorn can use 17 different AA substitution models. </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># You will use a fairly simple one. </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>hba_aa_dml <span class="ot">&lt;-</span><span class="fu">dist.ml</span>(hba_phy, <span class="at">model =</span> <span class="st">"JTT"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Next, let's generate a Neighbor-Joining tree</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: you will use NJ (capitalized) from phangorn rather than nj from ape to generate the tree</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>hba_aa_nj <span class="ot">&lt;-</span> phangorn<span class="sc">::</span><span class="fu">NJ</span>(hba_aa_dml)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>At this stage, our tree <code>hba_aa_nj</code> is unrooted. Before we explore the topology and bootrapping, let’s introduce a much more robust and beautiful way to visualize phylogenetic trees in R: <code>ggtree</code>.</p>
+<p><br></p>
+<section id="plotting-and-annotating-trees-with-ggtree" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="plotting-and-annotating-trees-with-ggtree"><span class="header-section-number">6.3.1</span> <strong>Plotting and annotating trees with ggtree</strong></h3>
+<p>The <code>ggtree</code> package extends the famous <code>ggplot2</code> grammar of graphics to phylogenetic trees. It allows for highly customizable visualizations and annotations, including tips, nodes, labels, and color scales. We will be using <code>ggtree</code> exclusively for tree visualization.</p>
+<p>To plot a basic tree, you simply call the <code>ggtree</code> function on your tree object. Let’s add tip labels to it using <code>geom_tiplab()</code>. Notice that similar to <code>ggplot2</code>, layers are added together using the <code>+</code> operator.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic unrooted tree plot with ggtree</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(hba_aa_nj) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Unrooted Neighbor-Joining Tree"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="co"># adds an x-axis to represent evolutionary distance</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `aes_()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`
+ℹ The deprecated feature was likely used in the ggtree package.
+  Please report the issue at &lt;https://github.com/YuLab-SMU/ggtree/issues&gt;.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>! The tree contained negative edge length. If you want to ignore the edge, you
+can set `options(ignore.negative.edge=TRUE)`, then re-run ggtree.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fortify(data, ...): Arguments in `...` must be used.
+✖ Problematic arguments:
+• as.Date = as.Date
+• yscale_mapping = yscale_mapping
+• hang = hang
+ℹ Did you misspell an argument name?</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information.
+ℹ The deprecated feature was likely used in the ggtree package.
+  Please report the issue at &lt;https://github.com/YuLab-SMU/ggtree/issues&gt;.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-lab7_trees_files/figure-html/plot_unrooted-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Because <code>ggtree</code> objects are <code>ggplot</code> objects, you can use common ggplot modifiers (e.g., <code>xlim</code> to increase the space for the tip labels to show completely) and other aesthetic adjustments. You can also color branches or change their thickness.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusting the plot to ensure labels fit</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(hba_aa_nj, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Unrooted Neighbor-Joining Tree"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">2.5</span>) <span class="co"># Expand the x-axis limits to fit the labels</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>! The tree contained negative edge length. If you want to ignore the edge, you
+can set `options(ignore.negative.edge=TRUE)`, then re-run ggtree.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fortify(data, ...): Arguments in `...` must be used.
+✖ Problematic arguments:
+• as.Date = as.Date
+• yscale_mapping = yscale_mapping
+• hang = hang
+• color = "darkblue"
+• linewidth = 1
+ℹ Did you misspell an argument name?</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-lab7_trees_files/figure-html/plot_unrooted_adjusted-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="rooting-the-tree" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="rooting-the-tree"><span class="header-section-number">6.3.2</span> <strong>Rooting the tree</strong></h3>
+<p>Next, let’s root the tree. Since we don’t yet have a good understanding of the groups making up the tree, you will use midpoint rooting, which places the root at the midpoint between the two OTUs with the longest connecting path. Use the <code>?</code> operator to figure out how to use the function <code>midpoint()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>?midpoint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, let’s apply the rooting to our NJ tree and plot it using <code>ggtree</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hba_aa_nj <span class="ot">&lt;-</span> <span class="fu">midpoint</span>(hba_aa_nj)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(hba_aa_nj) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Rooted Neighbor-Joining Tree"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>! The tree contained negative edge length. If you want to ignore the edge, you
+can set `options(ignore.negative.edge=TRUE)`, then re-run ggtree.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fortify(data, ...): Arguments in `...` must be used.
+✖ Problematic arguments:
+• as.Date = as.Date
+• yscale_mapping = yscale_mapping
+• hang = hang
+ℹ Did you misspell an argument name?</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-lab7_trees_files/figure-html/mp2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>The rooted tree</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="bootstrapping-the-tree" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="bootstrapping-the-tree"><span class="header-section-number">6.3.3</span> <strong>Bootstrapping the tree</strong></h3>
+<p>There are multiple ways to root trees, and there are multiple possible unrooted trees that could be constructed when reconstructing phylogeny; however, only one of these trees is the true tree. While we have no way of knowing which is the true tree, we can statistically assess the confidence in our tree topology. One way to assess this is by using bootstrap, which is an iterative algorithm to generate multiple random pseudoreplicates of the tree using the MSA and assessing how many of them agree with the tree topology. Bootstrapping requires a tree and the <code>phyDat</code> object generated at the beginning of the lab.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the bootstrap.phyDat function to calculate the bootstrap values of the tree</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember: bootstrapping randomizes the columns of the alignment and generates pseudoreplicates </span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of the tree.</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># How would you make sure that the results of bootstrapping are reproducible?</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we are bootstrapping the HBA alignment; it is important to choose the same model.</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A good practice is to run bootstrap with at least 1000 iterations. You will run it 500 times, a </span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># good compromise between accuracy and computational power.</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>hba_aa_nj_bs <span class="ot">&lt;-</span><span class="fu">bootstrap.phyDat</span>(hba_phy,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                                <span class="co"># Note: the function is passed as an anonymous function</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">FUN =</span> <span class="cf">function</span>(x)<span class="fu">NJ</span>(<span class="fu">dist.ml</span>(x, <span class="at">model =</span> <span class="st">"JTT"</span>)),<span class="at">bs=</span><span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We now have the bootstrap values. Typically, we plot these values as node labels onto our tree. To map bootstrap values onto our NJ tree, we need to assign them to the <code>node.label</code> slot of our original tree. With <code>ggtree</code>, you can extract and display bootstrap values using <code>geom_nodelab()</code>. By convention, bootstrap values are shown on branches or nodes, usually omitting lower confidence ones (e.g.&nbsp;&lt; 50%).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the bootstrap values to the tree's nodes</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Since tree nodes include the tips but bootstrap values only apply to internal nodes, </span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to be careful. The plotBS function from phangorn returns a tree with assigned node labels.</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>hba_aa_nj_booted <span class="ot">&lt;-</span> <span class="fu">plotBS</span>(hba_aa_nj, hba_aa_nj_bs, <span class="at">type =</span> <span class="st">"none"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we plot it with ggtree, adding bootstrap values at the nodes</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(hba_aa_nj_booted) <span class="sc">+</span> </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> label), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Bootstrapped NJ Tree"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>! The tree contained negative edge length. If you want to ignore the edge, you
+can set `options(ignore.negative.edge=TRUE)`, then re-run ggtree.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fortify(data, ...): Arguments in `...` must be used.
+✖ Problematic arguments:
+• as.Date = as.Date
+• yscale_mapping = yscale_mapping
+• hang = hang
+ℹ Did you misspell an argument name?</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-lab7_trees_files/figure-html/bstrap_plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="question-1" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="question-1"><span class="header-section-number">6.4</span> <strong>Question 1</strong></h2>
+<p>A. Generate a bootstrapped Neighbor-Joining tree for HBB and HBA. <strong>Make sure that your code takes into account the randomization of the bootstrap method and allows reproducibility</strong>. Show your code and make sure to comment (2 marks).</p>
+<p>B. Print both trees using <code>ggtree</code>; insert a descriptive plot title. Save the plots as PDFs and add them to your assignment. Show your code (2 marks).</p>
+<p>C. The HBA tree has areas with bootstrap values lower than 50%. Do these areas have higher bootstrap values using HBB? What does it tell you about the resolving power of the HBs (2 marks)?</p>
+<p><br></p>
+</section>
+<section id="constructing-a-maximum-likelihood-tree-character--and-distance-based-reconstruction" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="constructing-a-maximum-likelihood-tree-character--and-distance-based-reconstruction"><span class="header-section-number">6.5</span> <strong>Constructing a maximum likelihood tree (character- and distance-based reconstruction)</strong></h2>
+<p>Distance-based approaches are rapid but less robust than character-based methods, since all they do is cluster based on distances. Maximum likelihood is an algorithm that calculates the likelihood that trees generated using a certain substitution model represent evolutionary events.</p>
+<p>The function <code>modelTest()</code> from the package <code>phangorn</code> allows you to test which model is the best fit to construct the tree with a maximum likelihood algorithm. The output is a dataframe with log-likelihood and several estimators of prediction error (i.e., how accurate is the prediction that the model fits). We will use Akaike information criterion (AIC). The test also offers a second estimator, Bayesian information criterion (BIC), which uses Bayesian inference. You can read more about them <a href="https://machinelearningmastery.com/probabilistic-model-selection-measures/">here</a>. In either case, you will select the model with the lowest prediction error.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's use the modelTest function</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mt <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(hba_phy, <span class="at">model=</span><span class="fu">c</span>(<span class="st">"JTT"</span>, <span class="st">"LG"</span>, <span class="st">"WAG"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model        df  logLik   AIC      BIC
+         JTT 79 -3636.873 7431.747 7665.811 
+       JTT+I 80 -3557.437 7274.875 7511.903 
+    JTT+G(4) 80 -3469.286 7098.572 7335.6 
+  JTT+G(4)+I 81 -3467.458 7096.915 7336.906 
+          LG 79 -3651.974 7461.948 7696.013 
+        LG+I 80 -3569.097 7298.194 7535.222 
+     LG+G(4) 80 -3471.142 7102.284 7339.311 
+   LG+G(4)+I 81 -3469.69 7101.379 7341.37 
+         WAG 79 -3645.585 7449.17 7683.235 
+       WAG+I 80 -3561.317 7282.634 7519.662 
+    WAG+G(4) 80 -3478.868 7117.736 7354.764 
+  WAG+G(4)+I 81 -3476.672 7115.345 7355.335 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the results</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>mt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Model df    logLik      AIC         AICw     AICc        AICcw      BIC
+1         JTT 79 -3636.873 7431.747 1.215758e-73 7632.381 2.515393e-71 7665.811
+2       JTT+I 80 -3557.437 7274.875 1.409542e-39 7483.907 4.379031e-39 7511.903
+3    JTT+G(4) 80 -3469.286 7098.572 2.708235e-01 7307.605 8.413683e-01 7335.600
+4  JTT+G(4)+I 81 -3467.458 7096.915 6.201887e-01 7314.686 2.439722e-02 7336.906
+5          LG 79 -3651.974 7461.948 3.362780e-80 7662.583 6.957559e-78 7696.013
+6        LG+I 80 -3569.097 7298.194 1.217247e-44 7507.226 3.781626e-44 7535.222
+7     LG+G(4) 80 -3471.142 7102.284 4.234573e-02 7311.316 1.315556e-01 7339.311
+8   LG+G(4)+I 81 -3469.690 7101.379 6.656172e-02 7319.150 2.618430e-03 7341.370
+9         WAG 79 -3645.585 7449.170 2.001546e-77 7649.805 4.141179e-75 7683.235
+10      WAG+I 80 -3561.317 7282.634 2.911966e-41 7491.666 9.046614e-41 7519.662
+11   WAG+G(4) 80 -3478.868 7117.736 1.867629e-05 7326.769 5.802170e-05 7354.764
+12 WAG+G(4)+I 81 -3476.672 7115.345 6.174971e-05 7333.115 2.429134e-06 7355.335</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which model has the lowest AIC?</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>mt<span class="sc">$</span>Model[mt<span class="sc">$</span>AIC<span class="sc">==</span><span class="fu">min</span>(mt<span class="sc">$</span>AIC)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "JTT+G(4)+I"</code></pre>
+</div>
+</div>
+<p>Looks like JTT is a good model to select; however, the test indicates the parameters G and I should be added to the model. G indicates gamma distribution, which assumes that the rate of evolution is unequal among OTUs, and I indicates invariant sites—i.e., assuming that some sites cannot be mutated (e.g., sites critically important to protein function). Both parameters are reasonable considering that some areas are important to hemoglobin function and that mutation rates are different between different species.</p>
+<p>Next, let’s use the model to construct a tree using maximum likelihood.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Next, let's use the NJ tree and the model selected by modelTest to rearrange the tree topology such </span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># that it represents the tree with the largest likelihood to be the true evolutionary tree.</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The output is a list-like object of class pml.</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># K is the number of intervals for gamma distribution</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># inv is the proportion of invariable sites</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>hba_aa_nj.pml <span class="ot">&lt;-</span> <span class="fu">pml</span>(hba_aa_nj,hba_phy,<span class="at">model=</span><span class="st">"JTT"</span>,<span class="at">k=</span><span class="dv">4</span>,<span class="at">inv=</span>.<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Initially we set the parameters of the model; now that we have the tree, let’s optimize the parameters of the model with <code>optim.pml</code>. This will take some time to complete.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize tree parameters</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>hba_aa_nj.pml <span class="ot">&lt;-</span> <span class="fu">optim.pml</span>(hba_aa_nj.pml,<span class="at">optNni=</span><span class="cn">TRUE</span>,<span class="at">optBf=</span><span class="cn">TRUE</span>,<span class="at">optQ=</span><span class="cn">TRUE</span>,<span class="at">optInv=</span><span class="cn">TRUE</span>,<span class="at">optGamma=</span><span class="cn">TRUE</span>,<span class="at">optEdge=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: I unrooted the tree</code></pre>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Important: The tree generated by pml is unrooted. Before you proceed, make sure to root the tree using midpoint rooting.</strong></p>
+</div>
+</div>
+<p><br></p>
+<section id="bootstrap-the-maximum-likelihood-tree" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="bootstrap-the-maximum-likelihood-tree"><span class="header-section-number">6.5.1</span> <strong>Bootstrap the maximum likelihood tree</strong></h3>
+<p>Just like with the NJ tree, we can assess the support of each of the edges. The function <code>bootstrap.pml()</code> performs bootstrap on ML trees.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that here we are only performing 100 iterations since more would take a lot of computational power</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>hba_aa_nj.pml.bs <span class="ot">&lt;-</span> <span class="fu">bootstrap.pml</span>(hba_aa_nj.pml,<span class="at">bs=</span><span class="dv">100</span>,<span class="at">trees=</span><span class="cn">TRUE</span>,<span class="at">optNni=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now we assign the bootstrap values back to the optimized tree and plot it.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transfer bootstrap values to the tree node labels</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>hba_aa_ml_booted <span class="ot">&lt;-</span> <span class="fu">plotBS</span>(hba_aa_nj.pml<span class="sc">$</span>tree, hba_aa_nj.pml.bs, <span class="at">type =</span> <span class="st">"none"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use midpoint rooting</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>hba_aa_ml_booted <span class="ot">&lt;-</span> <span class="fu">midpoint</span>(hba_aa_ml_booted)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the tree</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(hba_aa_ml_booted) <span class="sc">+</span> </span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nodelab</span>(<span class="fu">aes</span>(<span class="at">label =</span> label), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>() <span class="sc">+</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Bootstrapped Maximum Likelihood Tree"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fortify(data, ...): Arguments in `...` must be used.
+✖ Problematic arguments:
+• as.Date = as.Date
+• yscale_mapping = yscale_mapping
+• hang = hang
+ℹ Did you misspell an argument name?</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-lab7_trees_files/figure-html/mlb_plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="question-2" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="question-2"><span class="header-section-number">6.6</span> <strong>Question 2</strong></h2>
+<p>A. Generate a bootstrapped maximum likelihood tree for HBB and HBA. <strong>Make sure that your code takes into account the randomization of the bootstrap method and allows reproducibility</strong>. Show your code and make sure to comment (2 marks).</p>
+<p>B. Print both trees using <code>ggtree</code>; insert a descriptive plot title. Save the plots as PDFs and add them to your assignment. Show your code (2 marks).</p>
+<p>C. Compare the bootstrap values of the ML trees to the NJ trees. Do ML bootstrap values offer better support to branches of the tree (2 marks)?</p>
+<p><br></p>
+</section>
+<section id="comparing-trees" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="comparing-trees"><span class="header-section-number">6.7</span> <strong>Comparing trees</strong></h2>
+<p>Last, let’s compare the trees that you generated today. You have already used the function <code>tanglegram()</code> from <code>dendextend</code> to compare the topology of dendrograms. The package <code>phytools</code> offers the function <code>cophylo()</code>, which allows for a similar comparison of phylogenetic trees.</p>
+<p>But first…curious about what animals we have been working with? Let’s find out.</p>
+<p>First, we will extract the current species names (the scientific names) from the trees’ tip labels.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We are going to modify the tips of the trees, so let's copy them just in case you need them again</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>hba_aa_nj2 <span class="ot">&lt;-</span> hba_aa_nj</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>hba_aa_nj.pml2 <span class="ot">&lt;-</span> hba_aa_nj.pml</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Next, let's get species names; they are the tip labels</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The order is important, so we will get it for each tree</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>sp1 <span class="ot">&lt;-</span> hba_aa_nj2<span class="sc">$</span>tip.label</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>sp2 <span class="ot">&lt;-</span> hba_aa_nj.pml2<span class="sc">$</span>tree<span class="sc">$</span>tip.label</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, using the <code>taxize</code> package, we will query NCBI to retrieve the common names for each species.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let's get the common names of the organisms from NCBI</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the updated taxize function tax_name</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>cnames <span class="ot">&lt;-</span> <span class="fu">tax_name</span>(<span class="at">query =</span> sp1, <span class="at">get =</span> <span class="st">"common"</span>, <span class="at">db =</span> <span class="st">"ncbi"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `query` argument of `tax_name()` is deprecated as of taxize v0.9.97.
+ℹ Please use the `sci` argument instead.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>cnames2 <span class="ot">&lt;-</span> <span class="fu">tax_name</span>(<span class="at">query =</span> sp2, <span class="at">get =</span> <span class="st">"common"</span>, <span class="at">db =</span> <span class="st">"ncbi"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the common names from the returned dataframe</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The common names are in the 'common' column</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> cnames<span class="sc">$</span>common</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> cnames2<span class="sc">$</span>common</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Before we continue, let’s see if we have all the common names or if we have some missing values. Missing values will normally be denoted as <code>NA</code>s, and they can mess with downstream processes. As bioinformaticians, you will have to inspect data all the time for missing values and decide how to handle them. Here we will just use the scientific names. R has several functions to check for missing values. For 1D objects, <code>is.na()</code> is great, but for elements with 2D, you can use the function <code>complete.cases()</code> from the stats package, which is part of baseR.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Are there any NAs?</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(a))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+[26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41</code></pre>
+</div>
+</div>
+<p>Looks like we have some missing values; we will complete them from the original species list.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note how I subset the relevant values</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>a[<span class="fu">which</span>(<span class="fu">is.na</span>(a))] <span class="ot">&lt;-</span> sp1[<span class="fu">which</span>(<span class="fu">is.na</span>(a))]</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now for the ML tree as well</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember: the order of the tips on the tree might be different, and that's why we can't use only </span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co"># one list</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>a2[<span class="fu">which</span>(<span class="fu">is.na</span>(a2))] <span class="ot">&lt;-</span> sp2[<span class="fu">which</span>(<span class="fu">is.na</span>(a2))]</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>a2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Carassius auratus"           "Schizopygopsis pylzovi"     
+ [3] "Ictalurus punctatus"         "Salmo salar"                
+ [5] "Dugong dugon"                "Hydrodamalis gigas"         
+ [7] "Oryctolagus cuniculus"       "Octodon degus"              
+ [9] "Peromyscus maniculatus"      "Mus musculus"               
+[11] "Ictidomys tridecemlineatus"  "Marmota caligata"           
+[13] "Globicephala melas"          "Tursiops truncatus"         
+[15] "Monodon monoceros"           "Lipotes vexillifer"         
+[17] "Balaenoptera borealis"       "Physeter catodon"           
+[19] "Rousettus leschenaultii"     "Myotis lucifugus"           
+[21] "Rhinolophus ferrumequinum"   "Erythrocebus patas"         
+[23] "Papio anubis"                "Aotus nancymaae"            
+[25] "Ochotona princeps"           "Bos taurus"                 
+[27] "Oryx leucoryx"               "Equus caballus"             
+[29] "Panthera leo"                "Panthera uncia"             
+[31] "Alligator mississippiensis"  "Crocodylus niloticus"       
+[33] "Anser anser"                 "Phalaenoptilus nuttallii"   
+[35] "Zonotrichia capensis"        "Poecile palustris"          
+[37] "Columbina cruziana"          "Naja kaouthia"              
+[39] "Hydrophis melanocephalus"    "Macaca mulatta"             
+[41] "Allenopithecus nigroviridis"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let's change the tips of the trees</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>hba_aa_nj2<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> a</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>hba_aa_nj.pml2<span class="sc">$</span>tree<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> a2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p>Finally, let’s compare trees with <code>cophylo()</code>. Note that <code>cophylo()</code> objects are natively plotted with base R graphics rather than <code>ggtree</code>, so we will use the <code>plot()</code> function for this specific comparison step.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here I am comparing the NJ and ML trees of HBA</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note how I access the ML tree</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">cophylo</span>(hba_aa_nj2, hba_aa_nj.pml2<span class="sc">$</span>tree)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rotating nodes to optimize matching...
+Done.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the trees</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mar sets the margins of the plot</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(obj,<span class="at">mar=</span><span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">2</span>,.<span class="dv">1</span>))</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Title is self-explanatory</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"NJ                                                                   ML"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-lab7_trees_files/figure-html/cophy-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="question-3" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="question-3"><span class="header-section-number">6.8</span> <strong>Question 3</strong></h2>
+<p>A. Compare the following trees using <code>cophylo()</code>: NJ and ML of HBA, NJ and ML of HBB, ML of HBA and ML of HBB (three comparisons in total). Show your code, save the trees as PDF files, and attach them to your assignment (2 marks).</p>
+<p>B. Are there any clades that changed between HBA and HBB using ML (2 marks)?</p>
+<p>C. Are there any clades that changed between NJ and ML? Does it significantly change the tree (i.e., do you see mammals clustering with fish all of a sudden) (2 marks)?</p>
+<p>D. HBA trees denote some snakes as a possible outgroup. What taxonomic group do they belong to (e.g., is it a mammal)? Are there any other members of that taxonomic group on that tree? What does it tell you about this group (e.g., is it really monophyletic) (2 marks)?</p>
+<hr>
+
+
+</section>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-lab6_msa.html" class="pagination-link" aria-label="**Lab 6: Sequence Evolution**">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><strong>Lab 6: Sequence Evolution</strong></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08-lab8_genome_trees.html" class="pagination-link" aria-label="**Lab 8: Comparing Phylogenetic Trees Made with Genes and Genomes**">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><strong>Lab 8: Comparing Phylogenetic Trees Made with Genes and Genomes</strong></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/idohatam/Biol3315_lab_book/edit/main/07-lab7_trees.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

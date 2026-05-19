@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Lab 4: Handling of Biological Data in R - 2 – Biology 3315 Molecular Evolution and Phylogenetics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-lab5_pop_gen.html" rel="next">
+<link href="./03-lab3_biological_data1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet">
+<link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet">
+<script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-lab4_biologicaldata2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Lab 4: Handling of Biological Data in R - 2</strong></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Biology 3315 Molecular Evolution and Phylogenetics</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/idohatam/Biol3315_lab_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Biology 3315 Molecular Evolution and Phylogenetics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-lab1_intro_to_R_pt1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Lab 1: Introduction to the R Programming Language and the RStudio IDE</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-lab2_intro_to_R_pt2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Lab 2: Data Manipulation and Presentation in R</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-lab3_biological_data1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Lab 3: Handling of Biological Data in R - 1</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-lab4_biologicaldata2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Lab 4: Handling of Biological Data in R - 2</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-lab5_pop_gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Lab 5: Population Genetics and Selection</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-lab6_msa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Lab 6: Sequence Evolution</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-lab7_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><strong>Lab 7: Using Sequences to Reconstruct Phylogenetic Trees</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-lab8_genome_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><strong>Lab 8: Comparing Phylogenetic Trees Made with Genes and Genomes</strong></span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">5.1</span> <strong>Learning objectives</strong></a></li>
+  <li><a href="#lab-4" id="toc-lab-4" class="nav-link" data-scroll-target="#lab-4"><span class="header-section-number">5.2</span> <strong>Lab 4</strong></a></li>
+  <li><a href="#distances" id="toc-distances" class="nav-link" data-scroll-target="#distances"><span class="header-section-number">5.3</span> <strong>Distances</strong></a>
+  <ul>
+  <li><a href="#distance-calculations-with-tabulated-data" id="toc-distance-calculations-with-tabulated-data" class="nav-link" data-scroll-target="#distance-calculations-with-tabulated-data"><span class="header-section-number">5.3.1</span> <strong>Distance calculations with tabulated data</strong></a></li>
+  <li><a href="#two-dimensional-representation-of-distances" id="toc-two-dimensional-representation-of-distances" class="nav-link" data-scroll-target="#two-dimensional-representation-of-distances"><span class="header-section-number">5.3.2</span> <strong>Two dimensional representation of distances</strong></a></li>
+  <li><a href="#non-tabulated-data" id="toc-non-tabulated-data" class="nav-link" data-scroll-target="#non-tabulated-data"><span class="header-section-number">5.3.3</span> <strong>Non-tabulated data</strong></a></li>
+  </ul></li>
+  <li><a href="#dendrograms" id="toc-dendrograms" class="nav-link" data-scroll-target="#dendrograms"><span class="header-section-number">5.4</span> <strong>Dendrograms</strong></a>
+  <ul>
+  <li><a href="#plotting-dendrograms" id="toc-plotting-dendrograms" class="nav-link" data-scroll-target="#plotting-dendrograms"><span class="header-section-number">5.4.1</span> <strong>Plotting dendrograms</strong></a></li>
+  </ul></li>
+  <li><a href="#trees" id="toc-trees" class="nav-link" data-scroll-target="#trees"><span class="header-section-number">5.5</span> <strong>Trees</strong></a>
+  <ul>
+  <li><a href="#plotting-trees" id="toc-plotting-trees" class="nav-link" data-scroll-target="#plotting-trees"><span class="header-section-number">5.5.1</span> <strong>Plotting trees</strong></a></li>
+  </ul></li>
+  <li><a href="#summary-assignment" id="toc-summary-assignment" class="nav-link" data-scroll-target="#summary-assignment"><span class="header-section-number">6</span> <strong>Summary assignment</strong></a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/idohatam/Biol3315_lab_book/edit/main/04-lab4_biologicaldata2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Lab 4: Handling of Biological Data in R - 2</strong></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+</div>
+</div>
+<p><br></p>
+<p><br></p>
+<section id="learning-objectives" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">5.1</span> <strong>Learning objectives</strong></h2>
+<details>
+<summary>
+Click to expand
+</summary>
+<p><strong>By the end of this lab you will be able to:</strong></p>
+<ul>
+<li><p>Demonstrate the ability to generate distance matrices from a variety of data types</p></li>
+<li><p>Plot distances</p></li>
+<li><p>Demonstrate the ability to generate dendrograms</p></li>
+<li><p>Demonstrate the ability to generate phylogenetic trees</p></li>
+<li><p>Demonstrate the ability to export and import trees and dendrograms</p></li>
+<li><p>Demonstrate the ability to plot trees and dendrograms</p></li>
+</ul>
+</details>
+<p><br></p>
+</section>
+<section id="lab-4" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="lab-4"><span class="header-section-number">5.2</span> <strong>Lab 4</strong></h2>
+<p>In the previous lab you were introduced to handling biological strings with R. In this lab you will learn how to handle some of the output formats that result from analyzing those strings in R. In most cases, as you will see in lecture and subsequent labs, this entails working with distance matrices and some sort of hierarchical clustering of those matrices.</p>
+<p>R’s basic data structures, mainly lists, provide very flexible containers to house such complex types of information. As you will see, most non-bioconductor packages house their outputs in list form or at least as list-based objects.</p>
+<p>For the purposes of this lab you will need to install and load the following packages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"vegan"</span>,<span class="st">"ape"</span>,<span class="st">"ggdendro"</span>,<span class="st">"seqinr"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># lapply is part of the apply family of functions, one of those functions that act as a for loop</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lapply</span>(<span class="fu">c</span>(<span class="st">"vegan"</span>,<span class="st">"ape"</span>,<span class="st">"ggdendro"</span>,<span class="st">"seqinr"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>          <span class="st">"Biostrings"</span>, <span class="st">"tidyverse"</span>),library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+</section>
+<section id="distances" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="distances"><span class="header-section-number">5.3</span> <strong>Distances</strong></h2>
+<p>When handling biological data, distance measures—also known as dissimilarity measures or indices— are useful in comparing multiple entities. These entities can be populations, environmental samples, gene sequences, genomes, expression data, etc. In essence, every time we draw a comparison, we ask the quantitative question: how similar is X to Y, or better yet, how dissimilar are X and Y? The degree of dissimilarity between X and Y can simply be represented as percent dissimilarity or might require more sophisticated mathematical transformation. The approach used to measure dissimilarities depends on the nature of the data, its format, and of course the question in need of answering. For example, when performing a pairwise sequence alignment, the alignment score can be thought of as a relative measure of the dissimilarity between the two sequences and can be expressed as a percentage of the maximal alignment score.</p>
+<p>When calculating distances between entities (e.g., populations), the data you work with can be tabulated (e.g., allele/genotype frequency/abundance table, etc.) or non-tabulated (e.g., sequence alignment). R can do both, and the approaches are quite similar.</p>
+<p><br></p>
+<section id="distance-calculations-with-tabulated-data" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="distance-calculations-with-tabulated-data"><span class="header-section-number">5.3.1</span> <strong>Distance calculations with tabulated data</strong></h3>
+<p><code>BaseR</code> is equipped to handle distance calculation with tabulated data. First let’s generate data to work with by uploading the dune dataset that’s part of the <code>vegan</code> package. This dataset contains the counts of 30 different plants (columns) in 20 different sites (rows). This would be similar to an allele/genotype/gene expression frequency dataset, only much smaller, making it a great training tool for the purpose of this lab.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's load the dune dataset </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">data</span>(<span class="st">"dune"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Now, let's figure out what we're dealing with</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">class</span>(dune)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's see how the table is structured</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(dune)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere Bromhord Chenalbu
+1        1        0        0        0        0        0        0        0
+2        3        0        0        2        0        3        4        0
+3        0        4        0        7        0        2        0        0
+4        0        8        0        2        0        2        3        0
+5        2        0        0        0        4        2        2        0
+6        2        0        0        0        3        0        0        0
+  Cirsarve Comapalu Eleopalu Elymrepe Empenigr Hyporadi Juncarti Juncbufo
+1        0        0        0        4        0        0        0        0
+2        0        0        0        4        0        0        0        0
+3        0        0        0        4        0        0        0        0
+4        2        0        0        4        0        0        0        0
+5        0        0        0        4        0        0        0        0
+6        0        0        0        0        0        0        0        0
+  Lolipere Planlanc Poaprat Poatriv Ranuflam Rumeacet Sagiproc Salirepe
+1        7        0       4       2        0        0        0        0
+2        5        0       4       7        0        0        0        0
+3        6        0       5       6        0        0        0        0
+4        5        0       4       5        0        0        5        0
+5        2        5       2       6        0        5        0        0
+6        6        5       3       4        0        6        0        0
+  Scorautu Trifprat Trifrepe Vicilath Bracruta Callcusp
+1        0        0        0        0        0        0
+2        5        0        5        0        0        0
+3        2        0        2        0        2        0
+4        2        0        1        0        2        0
+5        3        2        2        0        2        0
+6        3        5        5        0        6        0</code></pre>
+</div>
+</div>
+<p>Note that the row names are made of numbers. It will make things clearer in the following steps if we modify sample names to be more meaningful.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's add S to each row, denoting site or sample.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Reminder, R is case sensitive</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Note that here I am asking paste to generate a vector with a sequence of numbers 1-20</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Then paste S to each element in the vector with no space separation</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Then assign the new character vector S1-S20 to the rownames of the dataframe</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">rownames</span>(dune) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"S"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,<span class="at">sep =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<p>The previous code snippet contained some hard coding. Can you think of two ways to make it less hard coded?</p>
+<hr>
+<p>Next let’s calculate the distance between each of the sites using the <code>dist()</code> function from the stats package, which is part of <code>baseR</code>. When we calculate distances of tabulated data, we are conducting a pairwise comparison of every row in the table to every other row, based on the values found in each of the columns. Rows with similar values in each column will receive a low score. The score represents distance; low score = short distance, meaning that they are not very dissimilar (or very similar). In the snippet below I am using <a href="https://en.wikipedia.org/wiki/Euclidean_distance">euclidean distance measure</a> to calculate the distance between each of the samples.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's use the dist function to calculate the euclidean distance</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dune.dist.euc <span class="ot">&lt;-</span> <span class="fu">dist</span>(dune, <span class="at">method =</span> <span class="st">"euclidean"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># The class of the variable created by the dist function is dist</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">class</span>(dune.dist.euc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "dist"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's print it</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dune.dist.euc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           S1        S2        S3        S4        S5        S6        S7
+S2  10.583005                                                            
+S3  10.000000  9.591663                                                  
+S4  11.532563 11.704700  9.110434                                        
+S5  11.874342 10.535654 13.000000 13.711309                              
+S6  13.711309 13.856406 14.764823 16.155494  9.000000                    
+S7   9.695360 10.099505 11.916375 13.076697  7.280110  7.348469          
+S8  11.313708 11.916375  8.602325 10.344080 13.820275 14.491377 11.832160
+S9  10.677078 10.862780  9.165151 10.246951 11.445523 14.422205 11.747340
+S10 11.180340  8.185353 12.688578 13.564660  9.899495 10.440307  7.416198
+S11  9.591663 12.165525 12.569805 13.152946 12.767145 10.954451  8.944272
+S12 15.198684 14.730920 11.269428 12.489996 14.560220 15.652476 14.177447
+S13 13.964240 12.369317 10.049876 11.135529 13.564660 16.583124 13.076697
+S14 13.490738 14.491377 15.033296 14.594520 14.798649 15.937377 14.422205
+S15 12.845233 15.588457 14.594520 13.784049 14.352700 15.459625 13.964240
+S16 15.779734 17.916473 14.594520 14.422205 17.029386 18.357560 16.822604
+S17 10.535654 13.820275 14.594520 14.899664 10.954451 14.035669 11.000000
+S18 11.618950 13.000000 13.453624 14.212670 11.832160 11.704700 10.440307
+S19 14.387495 15.329710 16.462078 15.874508 13.856406 15.329710 14.035669
+S20 14.594520 17.349352 16.031220 14.966630 16.062378 17.233688 15.716234
+           S8        S9       S10       S11       S12       S13       S14
+S2                                                                       
+S3                                                                       
+S4                                                                       
+S5                                                                       
+S6                                                                       
+S7                                                                       
+S8                                                                       
+S9   9.380832                                                            
+S10 12.767145 13.527749                                                  
+S11 11.313708 13.038405  9.746794                                        
+S12 10.344080 10.344080 15.620499 14.525839                              
+S13  9.643651  9.949874 14.696938 15.524175  8.366600                    
+S14 11.575837 13.564660 13.820275 13.266499 13.453624 13.304135          
+S15  9.433981 12.529964 14.764823 12.529964 12.727922 13.416408  8.185353
+S16  9.643651 14.177447 17.832555 16.583124 12.806248 13.341664 10.723805
+S17 12.767145 13.304135 11.661904 11.180340 13.784049 13.638182 11.180340
+S18 12.041595 13.000000 11.224972  7.280110 13.490738 14.899664 12.369317
+S19 14.106736 14.730920 14.000000 11.357817 14.071247 15.427249 13.000000
+S20 11.180340 14.035669 16.673332 14.525839 14.422205 14.628739 10.148892
+          S15       S16       S17       S18       S19
+S2                                                   
+S3                                                   
+S4                                                   
+S5                                                   
+S6                                                   
+S7                                                   
+S8                                                   
+S9                                                   
+S10                                                  
+S11                                                  
+S12                                                  
+S13                                                  
+S14                                                  
+S15                                                  
+S16  7.483315                                        
+S17 10.392305 14.422205                              
+S18 10.392305 14.966630 10.000000                    
+S19 12.165525 16.370706  8.366600 10.000000          
+S20  6.782330  8.602325 12.489996 11.401754 13.038405</code></pre>
+</div>
+</div>
+<p>The output looks like a distance table from an old road atlas, and that’s exactly how it is read. The distance between S1 and S2 is ~10.58, the distance between S1 and S12 is ~15.20. S1 is closer to S2 than S12 with respect to what species of plants are present in this site and their abundance.</p>
+<p>Dist objects look like matrices but they are not; they are in fact oddly shaped numeric vectors.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Dist objects are vectors</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">is.atomic</span>(dune.dist.euc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(dune.dist.euc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Use the <code>str()</code> function to study dune.dist.euc</p></li>
+<li><p>What attributes does it have? Which aspect of the output from the <code>str()</code> function helps with reproducibility?</p></li>
+<li><p>Print elements number 1, 2, and 20 from <code>dune.dist.euc</code>. What does that tell you about the order elements are indexed in dist objects?</p></li>
+</ol>
+<hr>
+<p>Distance measures included in the <code>dist()</code> function are not necessarily designed to be used with biological data, since most of them are symmetric. Symmetric dissimilarity measures regard double absence similarly to double presence.</p>
+<p>Say two populations show presence of a certain genotype or allele; dissimilarity measures will count this double presence toward lowering the dissimilarity score. Now say these populations also show an absence of a certain allele or genotype. Symmetric measures will treat this as a similarity between the two populations as well. However, when it comes to biological data, the absence can come from insufficient sampling of the population rather than true absence. Therefore, we need to use an asymmetric measure—a measure that does not treat double absence and double presence equally.</p>
+<p>The R package <code>vegan</code> contains additional asymmetric dissimilarity measures such as Bray-Curtis. One of the contributors to the package is <a href="https://fromthebottomoftheheap.net/">Dr.&nbsp;Gavin Simpson</a>, a professor from the University of Regina, worth checking out if you are interested in ecological informatics.</p>
+<p>The snippet below uses the function <code>vegdist()</code>, the vegan implementation of the <code>dist()</code> function, with <a href="https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity">Bray-Curtis</a> as a dissimilarity index. The function is run twice, with binary set to either T or F. When binary is set to T, all values larger than 0 are converted to 1 and the rows are evaluated based on presence and absence alone. When binary is set to F, the distance factors in weight as well (i.e., not just present but how much is present). These sorts of measures are important in molecular evolution but also when analyzing omics data (and ecology of course).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's run vegdist</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dune.vd.bry <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(dune, <span class="at">method =</span> <span class="st">"bray"</span>, <span class="at">binary =</span> F)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dune.vd.bry.bin <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(dune, <span class="at">method =</span> <span class="st">"bray"</span>, <span class="at">binary =</span> T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>What class of objects does <code>vegdist()</code> output?</p></li>
+<li><p>Use the <code>str()</code> function to explore <code>dune.vd.bry</code></p></li>
+<li><p>What will setting the arguments <code>upper</code> and <code>diag</code> to <code>TRUE</code> produce?</p></li>
+<li><p>What other distance indices does <code>vegdist()</code> accept under the method argument?</p></li>
+</ol>
+<p><br></p>
+</section>
+<section id="two-dimensional-representation-of-distances" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="two-dimensional-representation-of-distances"><span class="header-section-number">5.3.2</span> <strong>Two dimensional representation of distances</strong></h3>
+<p>Distance matrices (or vectors) are multidimensional, and as such it becomes harder to draw meaningful conclusions from them as the number of rows in your original table increases.</p>
+<p>Ordination techniques such as NMDS are helpful in dimension reduction and can be used to represent the matrix in two-dimensional space. We will not go into the details of ordination techniques in this course, just use them. However, in general all of them try to represent the distance matrix accurately in as few dimensions as possible.</p>
+<p>The snippet below will use vegan’s <code>metaMDS()</code> with the default setting of 2 dimensions. The end result of it will be each sample (line in the original dataframe) receiving two coordinates representing its location in two-dimensional space and how it relates to every other sample.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's perform NMDS on the Bray-Curtis and the euclidean distances</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># NMDS is a randomized iterative process, so setting seed to make sure the figure at the end looks</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># the same for all of us.</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># nmds for the euclidean distance matrix</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dune.euc.nmds <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune.dist.euc)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># nmds for the Bray-Curtis distance matrix</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dune.bry.nmds <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune.vd.bry)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The function <code>metaMDS()</code> can also call the <code>vegdist()</code> function and perform the distance calculation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># nmds with euclidean</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dune.euc.nmds2 <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune, <span class="at">distance =</span> <span class="st">"euclidean"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># nmds with bray, note binary can be set here as well</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dune.bry.nmds2 <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune, <span class="at">distance =</span> <span class="st">"bray"</span>, <span class="at">binary=</span>F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>What class of objects does <code>dune.bry.nmds</code> belong to?</p></li>
+<li><p>What type of an object is it?</p></li>
+<li><p>Explore the structure of <code>dune.bry.nmds</code> (hint: which function does that for you?)</p></li>
+<li><p>How would you access the 3rd element of <code>dune.bry.nmds</code>?</p></li>
+<li><p>What type of an object is the 3rd element of <code>dune.bry.nmds</code>?</p></li>
+</ol>
+<hr>
+<p>If you completed the above exercise, you saw that the output of <code>metaMDS()</code> is essentially a list with 35 elements. What each element represents is not that important for this lab, but in general the list stores all the information needed to ensure the reproducibility of the output as well as quality measures letting you know how good your results are from a statistical standpoint.</p>
+<p>For the sake of this lab, we are interested in the coordinates of each sample, and these are stored in the element points. The points element is a matrix with two columns of coordinates. Let’s extract it and turn it into a dataframe.</p>
+<p>Let’s first extract the points for the euclidean distances:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Extracting the points matrix as dataframe</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Turning the row names into a column; note that I am doing it the spartan way and not using the </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># rownames_to_columns function from the dplyr package</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># You can choose whichever method you prefer </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> dune.euc.points <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dune.euc.nmds<span class="sc">$</span>points) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Samp =</span> base<span class="sc">::</span><span class="fu">rownames</span>(<span class="fu">as.data.frame</span>(dune.euc.nmds<span class="sc">$</span>points))) <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">select</span>(Samp, <span class="fu">everything</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we extract the points for the Bray-Curtis distances:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dune.bry.points <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dune.bry.nmds<span class="sc">$</span>points) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Samp =</span> base<span class="sc">::</span><span class="fu">rownames</span>(<span class="fu">as.data.frame</span>(dune.bry.nmds<span class="sc">$</span>points))) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">select</span>(Samp, <span class="fu">everything</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Use the <code>head()</code> function to inspect each of the dataframes</p></li>
+<li><p>Do you find it useful in deciphering the relationships between the samples?</p></li>
+</ol>
+<hr>
+<p>The coordinates table might be simpler to look at compared to the distance matrix, but it still doesn’t really help us understand which samples are more similar to one another. In order to do that, we must plot the samples using a scatter plot. Samples that appear close to each other in the plot are more similar, while distant samples are less similar.</p>
+<p>BaseR’s <code>plot()</code> function is a quick and dirty approach to generate a scatter plot straight from the output list.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(dune.euc.nmds<span class="sc">$</span>points)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/plot base-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As always, base graphics are very spartan and not very informative. Let’s use <code>ggplot2</code> to generate a more informative plot. First, we create a scatter plot for the euclidean distances:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># geom_point produces a scatter plot</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p.euc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dune.euc.points, <span class="fu">aes</span>(<span class="at">x=</span>MDS1, <span class="at">y =</span> MDS2))<span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"NMDS Dune dataset</span><span class="sc">\n</span><span class="st">euclidean distances"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p.euc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we do the same for the Bray-Curtis distances:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> p.bry <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dune.bry.points, <span class="fu">aes</span>(<span class="at">x=</span>MDS1, <span class="at">y =</span> MDS2))<span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"NMDS Dune dataset</span><span class="sc">\n</span><span class="st">Bray-Curtis distances"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p.bry</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s print the two plots together to compare them.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/prit p-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Examining the two figures, we can see that the two distance measures produced different configurations of the samples in two-dimensional space. This was expected since we are comparing two different approaches to measuring similarities between samples. However, this does not really tell us how the configuration is different. One of the geometries of <code>ggplot2</code> is <code>geom_text()</code> that allows for printing labels. However, it requires adjustments of the coordinates to make sure that the points and labels do not overlap, which can be annoying. Luckily, the <code>ggrepel</code> package offers additional geometries that do the dirty work for you.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"ggrepel"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(ggrepel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, let’s use <code>geom_text_repel()</code> to label each point with its sample name and compare the output of the two measures.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> p.euc2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dune.euc.points, <span class="fu">aes</span>(<span class="at">x=</span>MDS1, <span class="at">y =</span> MDS2))<span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>Samp))<span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"NMDS Dune dataset</span><span class="sc">\n</span><span class="st">euclidean distances"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p.euc2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> p.bry2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dune.bry.points, <span class="fu">aes</span>(<span class="at">x=</span>MDS1, <span class="at">y =</span> MDS2))<span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>Samp))<span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"NMDS Dune dataset</span><span class="sc">\n</span><span class="st">Bray-Curtis distances"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p.bry2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/p print2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we have a plot we can use to compare the two distance indices. We can see that not only does each method result in a different configuration, but it also changes the way samples relate to each other. For example, using euclidean distances, sample S1 appears to be more similar to sample S7 than sample S2 is to sample S7. However, this is not the case when using Bray-Curtis.</p>
+<p>Dimension reduction and ordination techniques are great at visualizing the clustering of items into groups, especially if large numbers of samples are involved. This is very useful when comparing a large number of populations with respect to allele or genotype dynamics or when studying transcription or expression patterns of a large number of individuals. <br></p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A note about distances and ordination techniques</strong></p>
+<p>As I mentioned, distance calculation, ordination techniques, and hierarchical clustering (which we will deal with later in this lab) are important methods in exploring, understanding, and visualizing data. You will use these a lot as bioinformaticians, and it is imperative that you choose the correct method for the data you are studying. A great resource for that is the book <a href="http://adn.biol.umontreal.ca/~numericalecology/numecolR/">Numerical ecology with R</a>. While the book deals mainly with ecological data, it is relevant to biology in general. Unfortunately, too often researchers use approaches that are unsuitable for the way their data are collected or distributed. This book will help you avoid such mistakes. (Also, it’s always great to plug the work of fellow Canadians!)</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="non-tabulated-data" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="non-tabulated-data"><span class="header-section-number">5.3.3</span> <strong>Non-tabulated data</strong></h3>
+<p>Non-tabulated data refers mainly to sequence alignments. We will deal with multiple sequence alignments in lab 6. For this lab, we will focus on understanding what object type results from comparing two or more sequences. In most cases you will generate this sort of data in R (we will do that in lab 6), however, sometimes you will have to import such data. Both <code>Biostrings</code> and <code>seqinr</code> have functions allowing them to read or accept alignment files or objects.</p>
+<p>Let’s first use <code>Biostrings</code> since the <code>XString</code> family of classes is very convenient to work with.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># The file practice_al.fa contains an alignment of amino acid sequences</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Let's read it using the dedicated function from Biostrings</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> al_bios <span class="ot">&lt;-</span> <span class="fu">readAAMultipleAlignment</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="at">filepath =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_al.fa"</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="at">format =</span> <span class="st">"FASTA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>What class is <code>al_bios</code>?</p></li>
+<li><p>How many sequences does <code>practice_al.fa</code> contain?</p></li>
+<li><p>Subset the first 10 sequences in the alignment</p></li>
+</ol>
+<hr>
+<p>Now let’s do the same with the dedicated function from <code>seqinr</code>. Note that <code>seqinr</code> is not fussy and will read any alignment with just one function, while <code>Biostrings</code> has a function for each type of sequence (AA, DNA, RNA). Did I mention <code>seqinr</code> is spartan?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> al_snr <span class="ot">&lt;-</span> seqinr<span class="sc">::</span><span class="fu">read.alignment</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/idohatam/Biol-3315-files/main/practice_al.fa"</span>, </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="at">format =</span> <span class="st">"FASTA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>What class of an object is <code>al_snr</code>?</p></li>
+<li><p>What type of an object is <code>al_snr</code>?</p></li>
+</ol>
+<hr>
+<p>While <code>seqinr's</code> objects are less fancy than those of <code>Biostrings</code>, the <code>seqinr</code> package does have some nice perks. One of them is calculating the distances between the sequences in the sequence alignment.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d_al_snr <span class="ot">&lt;-</span> <span class="fu">dist.alignment</span>(al_snr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>What class is <code>d_al_snr</code>?</p></li>
+<li><p>What is the structure of <code>d_al_snr</code>?</p></li>
+<li><p>Print <code>d_al_snr</code>. Does it remind you of any other object you worked with during the current lab?</p></li>
+</ol>
+<hr>
+<p>While it is possible to reflect the distance matrix resulting from the alignment using ordination techniques, it is more useful to visualize them using hierarchical visualization tools such as dendrograms and phylogenetic trees, which is what we will do next.</p>
+<p><br></p>
+</section>
+</section>
+<section id="dendrograms" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="dendrograms"><span class="header-section-number">5.4</span> <strong>Dendrograms</strong></h2>
+<p><code>BaseR</code> has two classes of objects to house hierarchical information: <code>hclust</code> and <code>dendrogram</code>. The end result of both is a dendrogram, a tree-like graph where similar objects (samples, sequences, etc.) group together into clusters. Like 2D scatter plots, they are useful in fields outside evolution and phylogenetics.</p>
+<p>The <code>hclust()</code> function performs hierarchical clustering on the distance matrices you generated earlier using an assortment of agglomerative clustering algorithms. We will not go into the details of each clustering algorithm at this point, but will use this to study the structure of the <code>hclust</code> object.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's cluster the sequences from the multiple sequence alignment and see how they relate to </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># each other</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d_al_snr, <span class="at">method =</span> <span class="st">"average"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Calling an hclust variable prints information used to generate the object</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+hclust(d = d_al_snr, method = "average")
+
+Cluster method   : average 
+Number of objects: 15 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># The output is of class hclust</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">class</span>(hc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hclust"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># hclust variable is a type of a list (as always)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">typeof</span>(hc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Use the <code>str()</code> function to study <code>hc</code></p></li>
+<li><p>Convert the distance matrices generated for the dune dataset to an <code>hclust</code> object</p></li>
+</ol>
+<hr>
+<p>As you saw, <code>hc</code> contains 7 elements. Merge, height, and order are used to specify the topology of the dendrogram; labels specify the label of each leaf; and the rest store information that helps with documentation and reproducibility.</p>
+<p>Class hclust can be converted to a class dendrogram using the <code>as.dendrogram()</code> function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's convert </span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hcd <span class="ot">&lt;-</span> <span class="fu">as.dendrogram</span>(hc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>What type of an object is the variable <code>hcd</code>?</p></li>
+<li><p>Call the variable <code>hcd</code></p></li>
+<li><p>Use the <code>str()</code> function to study the structure of the variable <code>hcd</code></p></li>
+<li><p>Based on the variable call and the output of <code>str()</code>, how do variables of class hclust differ from class dendrogram? Which class stores more information?</p></li>
+<li><p>Convert the hclust objects generated for the dune dataset to class dendrogram</p></li>
+</ol>
+<p><br></p>
+<section id="plotting-dendrograms" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="plotting-dendrograms"><span class="header-section-number">5.4.1</span> <strong>Plotting dendrograms</strong></h3>
+<p>Both class hclust and class dendrogram can be plotted using the <code>plot()</code> function. This time the result is not too shabby. First, let’s plot the <code>hclust</code> object.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's plot the objects generated for the multiple sequence alignment</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># xlab and ylab are axis titles, main is the figure title. </span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Feel free to play with them</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">plot</span>(hc, <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>, <span class="at">main =</span> <span class="st">"hclust"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/plot hclust-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Next, let’s plot the <code>dendrogram</code> object.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># par sets the parameters of the plot; mar sets the margins in the following order:</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># bottom, left, top, right.</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Here I changed the setting of the bottom margin from its default 5 to 9.7 to make sure that the </span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># labels of the dendrogram are not cut.</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">9.7</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">+</span><span class="fl">0.1</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">plot</span>(hcd, <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>, <span class="at">main =</span> <span class="st">"dendrogram"</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/plot dendrogram-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As mentioned, hierarchical clustering groups similar elements together. In the case of the dendrogram we plotted, sequences. Each vertical line in the dendrogram is referred to as a branch; each tip is referred to as a leaf (in this case, each sequence is a leaf; when you plot the dune dataset, each sample will be a leaf). While the length of the branches between the two plots might be different, they are read the same: sequences that branch from the same junction are more similar to each other than the rest. For example, the sequences A9MLE0 and I83J28 are more similar to each other than to any other sequence. The level of dissimilarity between them is denoted by the scale of the y axis (0.2), which is the scale of the distance measure used in the clustering process—here, Hamming distance. Similarly, both these sequences are equally distant from A7FP80, and both are the closest sequences to it.</p>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Which sequences are the closest to the sequence A0A378D0M5?</p></li>
+<li><p>What is the level of dissimilarity between the group of 4 sequences to the left and the rest of the sequences?</p></li>
+</ol>
+<hr>
+<p>From the figures, we can see that the sequences cluster into at least two groups (left and right). In lab 6 and in advanced courses (e.g., all the omics courses), we will use some statistical approaches to test what is the optimal number of groups that the leaves cluster into.</p>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Plot the class dendrogram (no need to plot class hclust) variables you prepared for the dune dataset</p></li>
+<li><p>Do you notice any difference in the topology of the trees, order of branches between the one based on euclidean distances and the one based on non-binary Bray-Curtis distances?</p></li>
+</ol>
+<hr>
+<p>In labs 6 and 7, we will use the package dendextend to directly compare the topology of the different trees and dendrograms we generate.</p>
+<p><strong>Plotting dendrograms with ggplot2</strong></p>
+<p><code>ggdendro</code> is a package that converts dendrogram class variables to a format that can be used by <code>ggplot2</code> to plot dendrograms. This can be very useful due to the flexibility <code>ggplot2</code> offers in plot design and output. Furthermore, the resulting class stores data in a way that is easily accessed and modified using other <code>tidyverse</code> packages such as <code>dplyr</code> and <code>tidyr</code>.</p>
+<p>Variables of class dendrogram can be converted to class dendro, the class type used by ggdendro, using the <code>dendro_data()</code> function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's convert hcd to class dendro</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hcggd <span class="ot">&lt;-</span> <span class="fu">dendro_data</span>(hcd)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">class</span>(hcggd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "dendro"</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Use the <code>str()</code> function to study <code>hcggd</code></p></li>
+<li><p>What type of an object is <code>hcggd</code>?</p></li>
+<li><p>What type of an object are the elements labels and segments?</p></li>
+<li><p>What type of information do you think is stored in segments?</p></li>
+</ol>
+<hr>
+<p>ggdendro class variables, as you noticed, contain two important dataframes: segments and labels. The segment dataframe contains the topology of the tree and consists of 4 columns.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(hcggd<span class="sc">$</span>segments)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          x         y      xend      yend
+1  7.816406 0.8770710  2.757812 0.8770710
+2  2.757812 0.8770710  2.757812 0.7564288
+3  7.816406 0.8770710 12.875000 0.8770710
+4 12.875000 0.8770710 12.875000 0.7599243
+5  2.757812 0.7564288  1.000000 0.7564288
+6  1.000000 0.7564288  1.000000 0.0000000</code></pre>
+</div>
+</div>
+<p>x and xend denote the horizontal position of each branch of the tree (i.e., its coordinates along the x axis). y and yend denote the vertical positions of each branch of the tree (i.e., its coordinates along the y axis).</p>
+<p>The label dataframe contains the labels of each of the leaves (shocking, I know) and consists of 3 columns.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(hcggd<span class="sc">$</span>labels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y               label
+1 1 0 UniRef90_A0A378D0M5
+2 2 0     UniRef90_D5DDB7
+3 3 0 UniRef90_A0A098FCE3
+4 4 0 UniRef90_A0A1S2R5F0
+5 5 0 UniRef90_A0A121XUE5
+6 6 0 UniRef90_A0A378MVU6</code></pre>
+</div>
+</div>
+<p>x denotes the position along the x axis, and y denotes the position along the y axis, which is always 0. label contains…you got it. Now that we understand the structure of the dendro class, we can plot dendrograms with it using the <code>ggplot2</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Let's plot the dendrogram with ggplot2</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># The dendrogram has two parts: the segments, which are basically lines stretched between two points </span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># in two-dimensional space, and the labels. </span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># That's why I did not specify the x and y coordinates in the initial ggplot call, but rather </span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># specified them for each of the geoms</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> hcggd<span class="sc">$</span>segments) <span class="sc">+</span> </span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># geom_segment draws the segments (branches/lines) of the dendrogram</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend)) <span class="sc">+</span> </span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># geom_text adds a text layer to the plot, which are the leaf labels</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># The angle argument sets the orientation of the text and the hjust makes sure that the </span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># labels are justified horizontally</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># Within the aes, y is set to y-0.01 so that the labels will be a bit further away from the tips of</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># each leaf</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_text</span>(<span class="at">data =</span> hcggd<span class="sc">$</span>labels, <span class="fu">aes</span>(x, y<span class="fl">-0.01</span>, <span class="at">label =</span> label),</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># Don't really need any ticks or text for the x axis</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># The ylim function adjusts the range of values that ggplot includes in the plot</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># Here I set it to -0.45 - 0.62 to make sure none of the segments or labels get cut off</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># The default would cut it after -0.2, which means that some of the labels would not be </span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># fully displayed</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ylim</span>(<span class="fu">min</span>(hcggd<span class="sc">$</span>segments<span class="sc">$</span>y)<span class="sc">-</span><span class="dv">1</span>, <span class="fu">max</span>(hcggd<span class="sc">$</span>segments<span class="sc">$</span>yend))<span class="sc">+</span></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">xlab</span>(<span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ylab</span>(<span class="cn">NULL</span>)</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/ggd2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I sold you on the fact that <code>ggplot2</code> makes things flexible and great, but so far it looks more or less like <code>baseR</code> graphics. Let’s see an example of that. As I mentioned, there are several mathematical methods (e.g., k-means clustering) that help calculate the optimal number of clusters produced by the hierarchical clustering.</p>
+<p>For the following graph, assume a hypothetical scenario where k-means indicates that the optimal way to group the sequences would be into 3 groups: the four on the left would be group 1, the four sequences on the right would be group 3, and the rest are group 2. It is easy to add a fourth column to each of the dataframes of the class dendro object with that information and then overlay the grouping on the dendrogram.</p>
+<p>First, we use <code>mutate()</code> to assign a group to each sequence label:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Use mutate to add a column named Group which contains which group each sequence belongs to</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># We can use the positions of the labels to parse that; labels with position along the x axis smaller than 5 belong to</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># the 4 sequences on the left so we mark them as group 1, will do the same for the other two groups. </span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Can also use case_when.</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hcggd<span class="sc">$</span>labels <span class="ot">&lt;-</span> hcggd<span class="sc">$</span>labels <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">if_else</span>(x <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="st">"1"</span>, <span class="st">"2"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">11</span>, <span class="st">"3"</span>, Group))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we apply a similar process to the segments dataframe:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Use a similar process with the segments</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hcggd<span class="sc">$</span>segments <span class="ot">&lt;-</span> hcggd<span class="sc">$</span>segments <span class="sc">%&gt;%</span>  </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">if_else</span>(x <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="st">"1"</span>, <span class="st">"2"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">11</span>, <span class="st">"3"</span>, Group))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we plot the grouped dendrogram:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Now let's plot the dendrogram</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> hcggd<span class="sc">$</span>segments) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># Note that I color by the Group column</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># alpha denotes how transparent the coloring will be; the default is 1 and I want the colors to be</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># more gentle</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend, <span class="at">color=</span>Group), </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                <span class="at">linewidth =</span> <span class="fl">1.25</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_text</span>(<span class="at">data =</span> hcggd<span class="sc">$</span>labels, <span class="fu">aes</span>(x, y<span class="fl">-0.01</span>, <span class="at">label =</span> label, <span class="at">color =</span> Group),</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="at">show.legend =</span> F,</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>)<span class="sc">+</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.93</span>,<span class="fl">0.89</span>),</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">legend.background =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="co"># Setting the colors manually because the red and blue defaults are ugly</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dark red"</span>, <span class="st">"black"</span>, <span class="st">"dark green"</span>))<span class="sc">+</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ylim</span>(<span class="fu">min</span>(hcggd<span class="sc">$</span>segments<span class="sc">$</span>y)<span class="sc">-</span><span class="dv">1</span>, <span class="fu">max</span>(hcggd<span class="sc">$</span>segments<span class="sc">$</span>yend))<span class="sc">+</span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">xlab</span>(<span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ylab</span>(<span class="cn">NULL</span>)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/ggd3 plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A note about machine learning</strong> While this plot might not look impressive, what you have done here is to take your first steps (unless you’ve done this before) in machine learning. When you ask an algorithm (e.g., k-means clustering) to classify your samples into groups, without specifying groups, you are performing unsupervised machine learning. Once you have enough information about how the particular set of data classifies, you can use it to develop a predictive algorithm that would classify new samples into groups based on the information resulting from the unsupervised learning. When you train or use an algorithm to predict which category a sample would be classified into, you are performing supervised machine learning.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="trees" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="trees"><span class="header-section-number">5.5</span> <strong>Trees</strong></h2>
+<p>Phylogenetic trees are tree-like graphs that not only denote relationships between each leaf on the x axis, but also include a time component on the y axis (i.e., junctions lower on the tree are assumed to have occurred earlier than those showing higher on the tree). Phylogenetic trees require storing more information than dendrograms (e.g., information about taxa, molecular information, genetic codes, model assumptions, etc.). The package ape offers the class phylo, which stores phylogenetic trees.</p>
+<p>There are many methods to generate phylogenetic trees and several file formats in which phylogenetic trees are written (<a href="https://en.wikipedia.org/wiki/Nexus_file">nexus</a>, <a href="https://en.wikipedia.org/wiki/Newick_format">newick</a> are the most common file formats). We will go over those during lab 7. However, at the end of the day they all result in a phylo or phylo-like class of variable. Here we will only get familiarized with said class.</p>
+<p>Because all tree-like objects in R are stored as lists, it is easy to convert between them. The snippet below uses the <code>as.phylo()</code> function to generate a phylo object.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hcp <span class="ot">&lt;-</span> ape<span class="sc">::</span><span class="fu">as.phylo</span>(hc)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hcp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Phylogenetic tree with 15 tips and 14 internal nodes.
+
+Tip labels:
+  UniRef90_A0A378D0M5, UniRef90_D5DDB7, UniRef90_A0A098FCE3, UniRef90_A0A1S2R5F0, UniRef90_A0A121XUE5, UniRef90_A0A378MVU6, ...
+
+Rooted; includes branch length(s).</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Quick R exercise</strong></p>
+<ol type="1">
+<li><p>Explore the list outputted by <code>as.phylo()</code> (hcp). Which elements make up this list?</p></li>
+<li><p>What class does each element belong to?</p></li>
+</ol>
+<hr>
+<p>As you found out, <code>hcp</code> contains 4 elements. The matrix edge consists of two columns:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   16   17
+[2,]   17    1
+[3,]   17   20
+[4,]   20   21
+[5,]   21    2
+[6,]   21   28</code></pre>
+</div>
+</div>
+<p>Each row in the matrix represents a branch or an edge. If this sounds like terminology from graph theory, you are correct. Indeed, ape treats trees almost like association networks and actually allows you to add columns to the edge matrix and plot a network.</p>
+<p>The numeric vector edge.length contains the length of each branch of the tree:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06032113 0.37821438 0.01798655 0.14418781 0.21604002 0.03878098</code></pre>
+</div>
+</div>
+<p>Its order corresponds to the order of rows in the edge matrix.</p>
+<p>The character vector <code>tip.label</code> surprisingly contains the label of each leaf of the tree, making those easy to modify (for example, remove the UniRef90_ tag).</p>
+<p>Nnode represents the number of nodes in the tree; again, this is terminology borrowed from graph theory and represents each branching point along the tree (in our case, 14).</p>
+<p>As I mentioned, phylo class objects can contain additional information about the tree. The phylo object can include additional elements such as:</p>
+<ul>
+<li><p>node.label: a character vector that contains node labels, for example bootstrap values.</p></li>
+<li><p>root.edge: a numeric value giving the length of the branch at the root if it exists.</p></li>
+<li><p>tip.data: a vector dating the tips (leaves) of the tree, useful if some are not current.</p></li>
+</ul>
+<p><br></p>
+<section id="plotting-trees" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="plotting-trees"><span class="header-section-number">5.5.1</span> <strong>Plotting trees</strong></h3>
+<p>Plotting phylogenetic trees is straightforward using <code>baseR</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(hcp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/basep-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternatively, trees can be unrooted.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r fold-show code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(hcp, <span class="at">type =</span> <span class="st">"unrooted"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-lab4_biologicaldata2_files/figure-html/basep2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Plotting phylogenetic trees using ggplot2 requires converting the phylo object to dendro and following the workflow we used earlier.</p>
+<hr>
+</section>
+</section>
+<section id="summary-assignment" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> <strong>Summary assignment</strong></h1>
+<p>Start a script file in RStudio; name it 3315_lab4_yourinitials.R You will submit this script and output file if applicable to Brightspace.</p>
+<p><strong>1.</strong> Convert the distance matrices generated for the dune dataset (euclidean and both Bray-Curtis) to an hclust object.</p>
+<p><strong>2.</strong> Convert the distance matrices generated for the dune dataset to an R matrix (you should have 3 matrices) and save them as CSV files. Make sure the file names are descriptive.</p>
+<p><strong>3.</strong> Convert the class hclust variables you have created to class dendrogram.</p>
+<p><strong>4.</strong> Plot both the class dendrogram and class hclust variables you created for the dune dataset using base R; give titles using the argument main. Save plots as jpeg using the RStudio plots tab.</p>
+<ul>
+<li>Do you see any difference in clustering between each of the distance measures?</li>
+</ul>
+<p><strong>5.</strong> Convert the dendrogram objects to dendro objects and plot using <code>ggplot2</code>.</p>
+<p><strong>6.</strong> Export plots as pdf using <code>ggsave()</code>.</p>
+<p><strong>7.</strong> Add the column altitude to the label dataframe that’s part of the dendro class variables; have the values “low”, “high”, “sea level” added to each sample randomly.</p>
+<p><strong>8.</strong> Add the column Groups to the segment dataframe of the dendro class variables you generated. Divide the two Bray-Curtis based dendrograms into 3 groups and the euclidean into 2 groups based on the order of the samples.</p>
+<p><strong>9.</strong> Plot each of the dendro class objects; color the labels based on altitude and the branches based on the groups column. If this was real data, would you see any trends in clustering of these samples based on altitude? Make sure to export these plots as pdfs as well.</p>
+<p><strong>10.</strong> Use <code>?write.tree()</code> and <code>?write.nexus()</code> to export the phylogenetic tree generated in this lab. Give a descriptive file name so that it is clear which is a nexus and which is a newick format.</p>
+<ul>
+<li>Which functions would you have used to import each of the files you exported?</li>
+</ul>
+<p><strong>11.</strong> Write a function that reads all csv files from a folder, log transforms them, and uses <code>metaMDS()</code> to perform NMDS on all files with binary bray as distance. Make sure that the results are all stored as elements of a list (hint: make sure that the list has the same number of elements as the number of files in the folder). Make sure that your function returns said list.</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-lab3_biological_data1.html" class="pagination-link" aria-label="**Lab 3: Handling of Biological Data in R - 1**">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Lab 3: Handling of Biological Data in R - 1</strong></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-lab5_pop_gen.html" class="pagination-link" aria-label="**Lab 5: Population Genetics and Selection**">
+        <span class="nav-page-text"><strong>Lab 5: Population Genetics and Selection</strong></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/idohatam/Biol3315_lab_book/edit/main/04-lab4_biologicaldata2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
