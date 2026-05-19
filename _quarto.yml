@@ -6,6 +6,9 @@ book:
   title: "Biology 3315 Molecular Evolution and Phylogenetics"
   subtitle: "Lab manual"
   author: "Dr. Ido Hatam"
+  repo-url: "https://github.com/idohatam/Biol3315_lab_book"
+  repo-branch: main
+  repo-actions: [edit]
   chapters:
     - index.qmd
     - 01-lab1_intro_to_R_pt1.qmd
